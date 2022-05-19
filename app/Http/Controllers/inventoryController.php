@@ -38,8 +38,23 @@ class inventoryController extends Controller
             'sold'=>$request->sold,
             'product_id'=>$request->product_id      
              ]);
-             return redirect()->back()->withSuccess('Thêm kích thước thành công');
-      
-       
+             return redirect()->back()->withSuccess('Thêm kích thước thành công');     
     }
+    public function update_inventory(Request $request,$id){
+       $inventory= inventory::find($id);
+       $inventory->update([
+        'product_size' => $request->size,
+        'import_price'=> $request->import_price,
+        'price'=>$request->price,
+        'inventory'=>$request->inventory,
+        'sold'=>$request->sold,
+        'product_id'=>$request->product_id  
+       ]);
+       return redirect()->back()->withSuccess('Cập nhật thành công');  
+    }
+    public function delete_inventory(Request $request,$id){
+      $inventory= inventory::find($id);
+     $inventory->delete();
+      return redirect()->back()->withSuccess('Xóa nhật thành công');  
+   }
 }
