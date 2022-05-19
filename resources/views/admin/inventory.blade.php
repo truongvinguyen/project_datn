@@ -64,14 +64,14 @@ Sản phẩm tồn kho
                             <a data-bs-toggle="collapse" data-bs-target="#collapseExample{{$item->id}}"
                                 aria-expanded="false" aria-controls="collapseExample{{$item->id}}" data-color="#265ed7"
                                 style="color: rgb(38, 94, 215);"><i class="icon-copy dw dw-edit2"></i></a>
-                            <a href="#" data-color="#e95959" style="color: rgb(233, 89, 89);"><i
+                            <a data-toggle="modal" data-target="#confirmation-modal{{$item->id}}" href="#" data-color="#e95959" style="color: rgb(233, 89, 89);"><i
                                     class="icon-copy dw dw-delete-3"></i></a>
 
                         </td>
                     </tr>
 
                     <tr class="collapse table" id="collapseExample{{$item->id}}">
-                        <form action="/add-new-inventory" id="create" method="post">
+                        <form action="/update-inventory/{{$item->id}}" id="create" method="post">
                             @csrf
 
                             <td style="width:170px;" class="text-center"><i class="icon-copy fa fa-openid" style="font-size: 30px;color: blue;"  aria-hidden="true"></i></td>
@@ -139,9 +139,32 @@ Sản phẩm tồn kho
         </div>
     </div>
 </div>
-
-
-
+@foreach($data as $item)
+<div class="modal fade" id="confirmation-modal{{$item->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <form action="">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center font-18">
+                    <h4 class="padding-top-30 mb-30 weight-500">Xin hãy hạn chế xóa dữ liệu</h4>
+                    <div class="padding-bottom-30 row" style="max-width: 170px; margin: 0 auto;">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
+                                data-dismiss="modal"><i class="fa fa-times"></i></button>
+                            Hủy
+                        </div>
+                        <div class="col-6">
+                            <a href="/delete-inventory/{{$item->id}}" type="button" 
+                                class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"
+                                ><i class="fa fa-check"></i></a>
+                            Xóa
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@endforeach
 
 
 @endsection
