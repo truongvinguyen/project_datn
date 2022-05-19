@@ -13,20 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('brand', function (Blueprint $table) {
 			$table->engine = 'InnoDB';
 			$table->charset = 'utf8mb4';
 			$table->collation = 'utf8mb4_unicode_ci';
-			
-            $table->BigIncrements('id')->length(20);
-            $table->string('name', 255);
-            $table->string('email', 255)->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password', 255);
-			$table->string('user_img', 255);
-			$table->integer('user_role')->length(10);
-			$table->string('add_member', 255);
-            $table->rememberToken();
+	
+            $table->increments('id')->length(10);
+            $table->string('brand_name', 100);
+			$table->string('brand_image', 255);
+			$table->integer('brand_status')->length(10);
+			$table->text('brand_description');
 			
             $table->timestamps();
         });
@@ -39,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('brand');
     }
 };
