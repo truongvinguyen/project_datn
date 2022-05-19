@@ -77,7 +77,8 @@ class imageProductController extends Controller
     }
     public function delete_image(Request $request){
           $image_id = $request->image_id;
-          $image = imageProduct::find($image_id);       
+          $image = imageProduct::find($image_id);   
+          unlink(base_path('public/upload/product/'.$image->image));    
           $image->delete();
     }
 }
