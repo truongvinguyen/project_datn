@@ -75,27 +75,34 @@
         }
     </style>
 </head>
-
 <body>
     @if(Session::has('success'))
     <style>
         .ajs-message.ajs-custom {
-            color: #ffffff;
-            background-color: #151329;
-            border-color: #31708f;
+            color: black;
+            background-color: #fff;
+            border-color: black;
         }
     </style>
     <script>
-
         alertify.notify('{{Session::get('success')}}', 'custom', 2, function () { console.log('dismissed'); });
         alertify.set('notifier', 'position', 'bottom-right');
-
     </script>
-
     @endif
+    @if(Session::has('errors'))
+    <style>
+        .ajs-message.ajs-custom {
+            color: #ffffff;
+            background-color: red;
+            border-color: white;
+        }
+    </style>
+    <script>
+        alertify.notify('{{Session::get('errors')}}', 'custom', 2, function () { console.log('dismissed'); });
+        alertify.set('notifier', 'position', 'bottom-right');
+    </script>
+    @endif  
     <hr>
- 
-
     <div class="header">
         <div class="header-left">
             <div class="menu-icon dw dw-menu"></div>
@@ -323,8 +330,8 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="/">
-                <!-- <img src="https://www.pngmart.com/files/13/Avengers-A-Letter-Logo-Transparent-PNG.png" alt="" width="100px" class="dark-logo">
-                <img src="https://www.pngmart.com/files/13/Avengers-A-Letter-Logo-Transparent-PNG.png" alt="" width="100px" class="light-logo"> -->
+                <img src="{{asset('admin/src/images/logoblack.png')}}" alt="" width="150px" class="dark-logo">
+                <img src="{{asset('admin/src/images/logowhite.png')}}" alt="" width="150px" class="light-logo">
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -338,9 +345,8 @@
                             <span  class="micon dw dw-house-1"></span><span class="mtext">Home</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="index.html">Dashboard style 1</a></li>
-                            <li><a href="index2.html">Dashboard style 2</a></li>
-                            <li><a href="index3.html">Dashboard style 3</a></li>
+                            <li><a href="/home">Dashboard</a></li>
+                           
                         </ul>
                     </li>
                     <li class="dropdown">

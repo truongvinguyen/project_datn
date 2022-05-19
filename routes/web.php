@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//thêm sản phẩm
+//quản lý sản phẩm
 Route::get('add-new-product', [App\Http\Controllers\ProductController::class, 'add_product'])->name('');
 Route::post('save-product', [App\Http\Controllers\ProductController::class, 'save_product'])->name('');
 Route::get('edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('');
@@ -29,10 +29,12 @@ Route::post('/save-edit-product/{id}', [App\Http\Controllers\ProductController::
 Route::get('/product-detail/{id}', [App\Http\Controllers\ProductController::class, 'product_detail'])->name('');
 Route::get('/delete-product/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('');
 
-//tất cả sản phẩm
-
 Route::get('product', [App\Http\Controllers\ProductController::class, 'index'])->name('');
-
+//end quản lý sản phẩm
+//tồm kho
+Route::get('/view-inventory/{product_id}/{product_name}', [App\Http\Controllers\inventoryController::class, 'index'])->name('');
+Route::post('/add-new-inventory', [App\Http\Controllers\inventoryController::class, 'add_new_inventory'])->name('');
+//end tồn kho
 
 //thành viên
 //thêm thành viên
