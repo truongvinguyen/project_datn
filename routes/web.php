@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
 //quản lý sản phẩm
 Route::get('add-new-product', [App\Http\Controllers\ProductController::class, 'add_product'])->name('');
 Route::post('save-product', [App\Http\Controllers\ProductController::class, 'save_product'])->name('');
