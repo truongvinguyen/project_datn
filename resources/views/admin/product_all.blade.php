@@ -83,10 +83,10 @@ Sản phẩm
                                 data-target="#exampleModalCenter{{$item->id}}" href="#"><i class="dw dw-eye"></i>
                                 Xem chi
                                 tiết 1</a>
-                                <a class="droupdow-item product-item btn btn-dark"  href="product-detail/{{$item->id}}"><i class="dw dw-eye"></i>
+                                <a class="droupdow-item product-item btn btn-dark"  href="product-detail/{{$item->id}}/<?php echo str_replace(" ","-",$item->product_name); ?>"><i class="dw dw-eye"></i>
                                 Xem chi
                                 tiết 2</a>
-                            <a class="item product-item btn btn-dark" href="/view-inventory/{{$item->id}}/{{$item->product_name}}"><i class="dw dw-eye"></i> Xem
+                            <a class="item product-item btn btn-dark" href="/view-inventory/{{$item->id}}/<?php echo str_replace(" ","+",$item->product_name); ?>"><i class="dw dw-eye"></i> Xem
                                 kho</a>
                             <a class="item product-item btn btn-dark" href="/edit/{{$item->id}}"><i
                                     class="dw dw-edit2"></i> Chỉnh

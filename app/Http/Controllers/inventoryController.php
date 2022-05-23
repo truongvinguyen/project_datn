@@ -27,9 +27,11 @@ class inventoryController extends Controller
         $inventory=DB::table('product_inventory')->where('product_id',$request->product_id)->get();
           foreach($inventory as $item){
             if($item->product_size == $request->size){
-                return redirect()->back()->withErrors('Trùng kích thước');
+              
+               return redirect()->back()->withErrors('Trùng kích thước');
             }       
           }
+        
             inventory::create([
             'product_size' => $request->size,
             'import_price'=> $request->import_price,
@@ -54,7 +56,7 @@ class inventoryController extends Controller
     }
     public function delete_inventory(Request $request,$id){
       $inventory= inventory::find($id);
-     $inventory->delete();
+      $inventory->delete();
       return redirect()->back()->withSuccess('Xóa nhật thành công');  
    }
 }
