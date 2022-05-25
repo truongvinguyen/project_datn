@@ -60,3 +60,6 @@ Route::get('/layout', function () {
 //chi tiết sản phẩm
 
 Route::get('product-detail/{id}', [App\Http\Controllers\productDetail::class, 'index'])->name('');
+
+//giỏ hàng
+Route::get('/add-to-cart/{id}/{quantity}',[App\Http\Controllers\CartController::class,'add_to_cart'])->name('');

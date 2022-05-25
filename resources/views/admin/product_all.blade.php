@@ -6,15 +6,116 @@ Sản phẩm
 <!-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/modal.css')}}"> -->
 
 
+<style>
+    /* From uiverse.io by @mrhyddenn */
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+  font-weight: 500;
+  font-family: inherit;
+}
 
+.add-btn:hover {
+  width: 120px;
+}
+
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: seagreen;
+}
+
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.icon-btn:focus {
+  outline: none;
+}
+
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: seagreen;
+  overflow: hidden;
+}
+
+.add-icon::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.add-icon::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+.add-btn:hover .add-icon::after {
+  right: 15px;
+
+  height: 4px;
+  top: calc(50% - 2px);
+}
+</style>
 
 
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Quản lý sản phẩm <a href="/add-new-product"><button type="button"
-                            class="btn btn-xl btn-outline-primary"><i class="icon-copy fi-plus"></i>Thêm</button></a>
+                <h4>Quản lý sản phẩm
+                    <a href="/add-new-product" >
+                        <button type="button" class="btn btn-xl btn-outline-primary"><i class="icon-copy fi-plus"></i>Thêm</button>
+                       
+                    </a>
                 </h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
@@ -67,9 +168,11 @@ Sản phẩm
                     <td>{{number_format($item->product_price_sale)}}</td>
                     <td class="text-danger">{{number_format($item->product_price)}}</td>
                     @if ($item->product_status ==1)
-                    <td><span class="badge badge-pill"  style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
+                    <td><span class="badge badge-pill"
+                            style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
                     @else
-                    <td><span class="badge badge-pill"  style="color: red; background-color: rgb(231, 235, 245);">Ẩn</span></td>
+                    <td><span class="badge badge-pill"
+                            style="color: red; background-color: rgb(231, 235, 245);">Ẩn</span></td>
                     @endif
                     <td>{{$item->category_name}}</td>
                     <td class=" text-right">
@@ -83,15 +186,20 @@ Sản phẩm
                                 data-target="#exampleModalCenter{{$item->id}}" href="#"><i class="dw dw-eye"></i>
                                 Xem chi
                                 tiết 1</a>
-                                <a class="droupdow-item product-item btn btn-dark"  href="product-detail/{{$item->id}}/<?php echo str_replace(" ","-",$item->product_name); ?>"><i class="dw dw-eye"></i>
+                            <a class="droupdow-item product-item btn btn-dark"
+                                href="product-detail/{{$item->id}}/<?php echo str_replace(" ","-",$item->product_name);
+                                ?>"><i class="dw dw-eye"></i>
                                 Xem chi
                                 tiết 2</a>
-                            <a class="item product-item btn btn-dark" href="/view-inventory/{{$item->id}}/<?php echo str_replace(" ","+",$item->product_name); ?>"><i class="dw dw-eye"></i> Xem
+                            <a class="item product-item btn btn-dark"
+                                href="/view-inventory/{{$item->id}}/<?php echo str_replace(" ","-",$item->product_name); ?>"><i class="dw dw-eye"></i> Xem
                                 kho</a>
                             <a class="item product-item btn btn-dark" href="/edit/{{$item->id}}"><i
                                     class="dw dw-edit2"></i> Chỉnh
                                 sửa</a>
-                            <a class="item product-item btn btn-dark" href="#" data-toggle="modal" data-target="#confirmation-modal{{$item->id}}"><i class="dw dw-delete-3" data-toggle="modal" data-target="#confirmation-modal{{$item->id}}"></i> Xóa</a>
+                            <a class="item product-item btn btn-dark" href="#" data-toggle="modal"
+                                data-target="#confirmation-modal{{$item->id}}"><i class="dw dw-delete-3"
+                                    data-toggle="modal" data-target="#confirmation-modal{{$item->id}}"></i> Xóa</a>
                             <a class="item product-item btn btn-dark"
                                 href="/add-image-product/{{$item->id}}/for={{$item->product_name}}"><i
                                     class="dw dw-image" aria-hidden="true"></i>
@@ -112,7 +220,8 @@ Sản phẩm
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center font-18">
-                    <h4 class="padding-top-30 mb-30 weight-500">Sản phẩm sẽ được xóa khỏi hệ thống (bao gồm kho)</h4>
+                    <h4 class="padding-top-30 mb-30 weight-500">Sản phẩm sẽ được xóa khỏi hệ thống (bao gồm
+                        kho)</h4>
                     <div class="padding-bottom-30 row" style="max-width: 170px; margin: 0 auto;">
                         <div class="col-6">
                             <button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
@@ -120,9 +229,9 @@ Sản phẩm
                             Hủy
                         </div>
                         <div class="col-6">
-                            <a href="/delete-product/{{$item->id}}" type="button" 
-                                class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"
-                                ><i class="fa fa-check"></i></a>
+                            <a href="/delete-product/{{$item->id}}" type="button"
+                                class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"><i
+                                    class="fa fa-check"></i></a>
                             Có
                         </div>
                     </div>
@@ -146,39 +255,46 @@ Sản phẩm
             </div>
             <div class="row no-gutters">
                 <section class="py-5">
-                   <div class="row">
-                       <div class="col-md-6">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                        data-bs-slide-to="0" class="active" aria-current="true"
+                                        aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                        data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                        data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="/upload/product/{{$item->product_image}}" class="d-block w-100"
+                                            alt="...">
+                                    </div>
+                                    @foreach($image as $item2)
+                                    @if($item2->product_id == $item->id)
+                                    <div class="carousel-item">
+                                        <img src="/upload/product/{{$item2->image}}" class="d-block w-100" alt="...">
+                                    </div>
+                                    @endif
+                                    @endforeach
+
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
-                            <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img src="/upload/product/{{$item->product_image}}" class="d-block w-100" alt="...">
-                              </div>
-                              @foreach($image as $item2)
-                              @if($item2->product_id == $item->id)
-                              <div class="carousel-item">
-                                <img src="/upload/product/{{$item2->image}}" class="d-block w-100" alt="...">
-                              </div>
-                              @endif
-                              @endforeach
-                             
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
-                          </div>
-                       </div>
-                       <div class="col-md-6"></div>
-                   </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
 
                 </section>
 
@@ -190,5 +306,3 @@ Sản phẩm
 
 @endforeach
 @endsection
-
-

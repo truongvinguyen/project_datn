@@ -33,7 +33,7 @@ Sản phẩm tồn kho
 
 <div class="card-box mb-30">
     <div class="pd-20">
-        <h4 class="" style="font-size:20px ;">Chi tiết tồn kho thuộc ({{$product_name}})</h4>
+        <h4 class="" style="font-size:20px ;">Chi tiết tồn kho thuộc ( <?php echo str_replace("-"," ",$product_name); ?> )</h4>
     </div>
     <div class="pd-20">
         <div class="table-responsive">
@@ -122,8 +122,7 @@ Sản phẩm tồn kho
                     style="height:150px;margin-top: 50px;background-color: white;">
                     <form action="/add-new-inventory" id="create" method="post">
                         @csrf
-
-                        <td class="text-center">Thêm </td>
+                        <td class="text-center">Thêm</td>
                         <td class="text-center">
                             <select class="form-control" name="size" id="product_size">
                                 <option value="S">S</option>
@@ -137,9 +136,8 @@ Sản phẩm tồn kho
                                 id="import_price" class="form-control" value=""></td>
                         <td class="text-center" style="width:200px;"><input type="text" name="price" id="price"
                                 class="form-control" value="{{$price->product_price}}"></td>
-                        <td class="text-center" style="width:100px;"><input class="form-control" name="inventory"
-                                id="inventory" type="number"></td>
-                        <td class="text-center" style="width:100px;"><input class="form-control" name="sold" id="sold"
+                        <td class="text-center" style="width: 170px;"><input class="form-control" name="inventory" id="inventory" type="number"></td>
+                        <td class="text-center" style="width: 170px;"><input class="form-control" name="sold" id="sold"
                                 type="number" value="0">
                         </td>
                         <input type="hidden" id="product_id" name="product_id" value="{{$product_id}}">
