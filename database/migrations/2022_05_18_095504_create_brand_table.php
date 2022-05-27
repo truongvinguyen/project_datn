@@ -18,13 +18,21 @@ return new class extends Migration
 			$table->charset = 'utf8mb4';
 			$table->collation = 'utf8mb4_unicode_ci';
 	
-            $table->increments('id')->length(10);
+            $table->increments('id');
+			$table->bigInteger('employee_id')->length(20)->unsigned()->nullable();
             $table->string('brand_name', 100);
+            $table->string('brand_slug', 100)->nullable();
 			$table->string('brand_image', 255);
-			$table->integer('brand_status')->length(10);
-			$table->text('brand_description');
+			$table->text('brand_description')->nullable();
 			
+			//	0: hidden; 1: active; 2: pending approval
+			$table->tinyInteger('brand_status')->default(2);
             $table->timestamps();
+			$table->timestamp('deleted_at')->nullable();
+			
+			//	Set relationship
+			$table->foreign('employee_id')->references('id')->on('users')
+			->nullable()->onUpdate('cascade')->onDelete('no action');
         });
     }
 

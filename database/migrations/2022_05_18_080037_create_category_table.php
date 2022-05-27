@@ -19,11 +19,20 @@ return new class extends Migration
 			$table->collation = 'utf8mb4_unicode_ci';
 	
             $table->increments('id')->length(10);
+			$table->bigInteger('employee_id')->length(20)->unsigned()->nullable();
             $table->string('category_name', 100);
+            $table->string('category_slug', 100)->nullable();
 			$table->string('category_image', 255);
-			$table->integer('category_status');
+			$table->text('category_description')->nullable();
 			
+			//	0: hidden; 1: active; 2: pending approval
+			$table->tinyInteger('category_status')->default(2);
 			$table->timestamps();
+			$table->timestamp('deleted_at')->nullable();
+			
+			//	Set relationship
+			$table->foreign('employee_id')->references('id')->on('users')
+			->nullable()->onUpdate('cascade')->onDelete('no action');
         });
     }
 

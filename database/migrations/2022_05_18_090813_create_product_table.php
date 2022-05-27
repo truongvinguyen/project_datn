@@ -23,12 +23,13 @@ return new class extends Migration
 			$table->double('product_price_sale', 8, 2)->nullable();
 			$table->double('product_price', 8, 2);
 			$table->text('product_content')->nullable();
-			$table->integer('category_id')->length(11);
-			$table->integer('product_status')->length(11);
+			$table->integer('category_id')->length(11)->unsigned()->nullable();
+			$table->integer('brand_id')->unsigned()->nullable();
 			$table->string('product_image', 255);
 			$table->string('product_tag', 255);
 			$table->string('product_user', 255);
 			
+			$table->smallInteger('product_status')->length(11);
             $table->timestamps();
         });
     }
