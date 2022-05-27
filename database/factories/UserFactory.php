@@ -3,27 +3,20 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
 use Faker\Provider\vi_VN;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
 class UserFactory extends Factory
 {
-	protected $User = User::class;
-	
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
+		//	Add Vietnam provider
 		$vi_faker = $this->faker;
-		
 		$vi_faker->addProvider(new vi_VN\Person($vi_faker));
 		$vi_faker->addProvider(new vi_VN\Address($vi_faker));
 		$vi_faker->addProvider(new vi_VN\PhoneNumber($vi_faker));

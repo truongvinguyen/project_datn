@@ -24,7 +24,7 @@ return new class extends Migration
 			$table->string('comment', 255)->nullable();
 			$table->tinyInteger('rating');
 			
-			$table->boolean('is_rejected');
+			$table->boolean('is_rejected')->default(false);
             $table->timestamps();
 			
 			//	Set relationship
