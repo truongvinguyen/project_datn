@@ -27,7 +27,7 @@ Route::get('add-new-product', [App\Http\Controllers\ProductController::class, 'a
 Route::post('save-product', [App\Http\Controllers\ProductController::class, 'save_product'])->name('');
 Route::get('edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('');
 Route::post('/save-edit-product/{id}', [App\Http\Controllers\ProductController::class, 'edit_save'])->name('');
-Route::get('/product-detail/{id}', [App\Http\Controllers\ProductController::class, 'product_detail'])->name('');
+Route::get('/product-detail/{id}/{product_name}', [App\Http\Controllers\ProductController::class, 'product_detail'])->name('');
 Route::get('/delete-product/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('');
 Route::get('product', [App\Http\Controllers\ProductController::class, 'index'])->name('');
 //end quản lý sản phẩm
@@ -49,3 +49,17 @@ Route::post('/select-image', [App\Http\Controllers\imageProductController::class
 Route::post('/insert-image-product/{product_id}', [App\Http\Controllers\imageProductController::class, 'insert_image_product'])->name('');
 Route::post('/delete-image-product', [App\Http\Controllers\imageProductController::class, 'delete_image'])->name('');
 //end thành viên
+
+//layout
+
+
+Route::get('/layout', function () {
+    return view('layouts.client');
+});
+
+//chi tiết sản phẩm
+
+Route::get('product-detail/{id}', [App\Http\Controllers\productDetail::class, 'index'])->name('');
+
+//giỏ hàng
+Route::get('/add-to-cart/{id}/{quantity}',[App\Http\Controllers\CartController::class,'add_to_cart'])->name('');

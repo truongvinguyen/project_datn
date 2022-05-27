@@ -33,7 +33,7 @@ Sản phẩm tồn kho
 
 <div class="card-box mb-30">
     <div class="pd-20">
-        <h4 class="" style="font-size:20px ;">Chi tiết tồn kho thuộc ({{$product_name}})</h4>
+        <h4 class="" style="font-size:20px ;">Chi tiết tồn kho thuộc ( <?php echo str_replace("-"," ",$product_name); ?> )</h4>
     </div>
     <div class="pd-20">
         <div class="table-responsive">
@@ -52,7 +52,8 @@ Sản phẩm tồn kho
                 </thead>
                 <tbody id="show-inventory">
                     @foreach($data as $item)
-                    <tr>
+                    <tr data-bs-toggle="collapse" data-bs-target="#collapseExample{{$item->id}}" aria-expanded="false"
+                        aria-controls="collapseExample{{$item->id}}">
                         <td style="width:170px;" class="text-center">{{$loop->index}}</td>
                         <td style="width:170px;" class="text-center">{{$item->product_size}}</td>
                         <td style="width:170px;" class="text-center">{{number_format( $item->import_price)}}</td>
@@ -64,17 +65,19 @@ Sản phẩm tồn kho
                             <a data-bs-toggle="collapse" data-bs-target="#collapseExample{{$item->id}}"
                                 aria-expanded="false" aria-controls="collapseExample{{$item->id}}" data-color="#265ed7"
                                 style="color: rgb(38, 94, 215);"><i class="icon-copy dw dw-edit2"></i></a>
-                            <a data-toggle="modal" data-target="#confirmation-modal{{$item->id}}" href="#" data-color="#e95959" style="color: rgb(233, 89, 89);"><i
+                            <a data-toggle="modal" data-target="#confirmation-modal{{$item->id}}" href="#"
+                                data-color="#e95959" style="color: rgb(233, 89, 89);"><i
                                     class="icon-copy dw dw-delete-3"></i></a>
 
                         </td>
                     </tr>
-
+<!-- cập nhật thuộc tính sản phẩm -->
                     <tr class="collapse table" id="collapseExample{{$item->id}}">
                         <form action="/update-inventory/{{$item->id}}" id="create" method="post">
                             @csrf
 
-                            <td style="width:170px;" class="text-center"><i class="icon-copy fa fa-openid" style="font-size: 30px;color: blue;"  aria-hidden="true"></i></td>
+                            <td style="width:170px;" class="text-center"><i class="icon-copy fa fa-openid"
+                                    style="font-size: 30px;color: blue;" aria-hidden="true"></i></td>
                             <td class="text-center" style="width:170px;">
                                 <select class="form-control" name="size" id="product_size">
                                     <option value="S" {{($item->product_size=="S")?'selected':''}}>S</option>
@@ -83,9 +86,18 @@ Sản phẩm tồn kho
                                     <option value="XL" {{($item->product_size=="XL")?'selected':''}}>XL</option>
                                     <option value="XXL" {{($item->product_size=="XXL")?'selected':''}}>XXL</option>
                                 </select>
+
                             </td>
                             <td class="text-center" style="width:170px;"><input type="text" name="import_price"
                                     id="import_price" class="form-control" value="{{ $item->import_price}}"></td>
+                            @error('import_price')
+                            <div class="text-danger">{{ $message }}</div>
+                            <style>
+                                #import_price {
+                                    border: 1px solid red;
+                                }
+                            </style>
+                            @enderror
                             <td class="text-center" style="width:170px;"><input type="text" name="price" id="price"
                                     class="form-control" value="{{$item->price}}"></td>
                             <td class="text-center" style="width:170px;"><input class="form-control" name="inventory"
@@ -104,13 +116,13 @@ Sản phẩm tồn kho
 
                 </tbody>
             </table>
+<!-- Thêm thuộc tính sản phẩm -->
             <table class="table">
                 <tr class="collapse" id="collapseExample"
                     style="height:150px;margin-top: 50px;background-color: white;">
                     <form action="/add-new-inventory" id="create" method="post">
                         @csrf
-
-                        <td class="text-center">Thêm </td>
+                        <td class="text-center">Thêm</td>
                         <td class="text-center">
                             <select class="form-control" name="size" id="product_size">
                                 <option value="S">S</option>
@@ -124,9 +136,8 @@ Sản phẩm tồn kho
                                 id="import_price" class="form-control" value=""></td>
                         <td class="text-center" style="width:200px;"><input type="text" name="price" id="price"
                                 class="form-control" value="{{$price->product_price}}"></td>
-                        <td class="text-center" style="width:100px;"><input class="form-control" name="inventory"
-                                id="inventory" type="number"></td>
-                        <td class="text-center" style="width:100px;"><input class="form-control" name="sold" id="sold"
+                        <td class="text-center" style="width: 170px;"><input class="form-control" name="inventory" id="inventory" type="number"></td>
+                        <td class="text-center" style="width: 170px;"><input class="form-control" name="sold" id="sold"
                                 type="number" value="0">
                         </td>
                         <input type="hidden" id="product_id" name="product_id" value="{{$product_id}}">
@@ -153,9 +164,9 @@ Sản phẩm tồn kho
                             Hủy
                         </div>
                         <div class="col-6">
-                            <a href="/delete-inventory/{{$item->id}}" type="button" 
-                                class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"
-                                ><i class="fa fa-check"></i></a>
+                            <a href="/delete-inventory/{{$item->id}}" type="button"
+                                class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"><i
+                                    class="fa fa-check"></i></a>
                             Xóa
                         </div>
                     </div>
