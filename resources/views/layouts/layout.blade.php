@@ -11,7 +11,7 @@
     <title> @yield('title')</title>
 
     <!-- Scripts -->
-   
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -27,24 +27,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/core.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/icon-font.min.css')}}">
-    <link rel="stylesheet" type="text/css"
-        href="{{asset('admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css"
-        href="{{asset('admin/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/style.css')}}">
-    
+
     <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/switchery/switchery.min.css')}}">
     <!-- bootstrap-tagsinput css -->
-    <link rel="stylesheet" type="text/css"
-        href="{{asset('admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
     <!-- bootstrap-touchspin css -->
-    <link rel="stylesheet" type="text/css"
-        href="{{asset('admin/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css')}}">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Default theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
@@ -58,7 +53,10 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'UA-119386393-1');
@@ -75,6 +73,7 @@
         }
     </style>
 </head>
+
 <body>
     @if(Session::has('success'))
     <style>
@@ -85,7 +84,11 @@
         }
     </style>
     <script>
-        alertify.notify('{{Session::get('success')}}', 'custom', 2, function () { console.log('dismissed'); });
+        alertify.notify('{{Session::get('
+            success ')}}', 'custom', 2,
+            function() {
+                console.log('dismissed');
+            });
         alertify.set('notifier', 'position', 'bottom-right');
     </script>
     @endif
@@ -98,10 +101,14 @@
         }
     </style>
     <script>
-        alertify.notify('{{Session::get('errors')}}', 'custom', 2, function () { console.log('dismissed'); });
+        alertify.notify('{{Session::get('
+            errors ')}}', 'custom', 2,
+            function() {
+                console.log('dismissed');
+            });
         alertify.set('notifier', 'position', 'bottom-right');
     </script>
-    @endif  
+    @endif
     <hr>
     <div class="header">
         <div class="header-left">
@@ -232,8 +239,7 @@
                 </div>
             </div>
             <div class="github-link">
-                <a href="https://github.com/truongvinguyen/project_datn.git" target="_blank"><img src="/admin/vendors/images/github.svg"
-                        alt=""></a>
+                <a href="https://github.com/truongvinguyen/project_datn.git" target="_blank"><img src="/admin/vendors/images/github.svg" alt=""></a>
             </div>
         </div>
     </div>
@@ -265,57 +271,43 @@
                 <h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
                 <div class="sidebar-radio-group pb-10 mb-10">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebaricon-1" name="menu-dropdown-icon" class="custom-control-input"
-                            value="icon-style-1" checked="">
+                        <input type="radio" id="sidebaricon-1" name="menu-dropdown-icon" class="custom-control-input" value="icon-style-1" checked="">
                         <label class="custom-control-label" for="sidebaricon-1"><i class="fa fa-angle-down"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebaricon-2" name="menu-dropdown-icon" class="custom-control-input"
-                            value="icon-style-2">
+                        <input type="radio" id="sidebaricon-2" name="menu-dropdown-icon" class="custom-control-input" value="icon-style-2">
                         <label class="custom-control-label" for="sidebaricon-2"><i class="ion-plus-round"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebaricon-3" name="menu-dropdown-icon" class="custom-control-input"
-                            value="icon-style-3">
-                        <label class="custom-control-label" for="sidebaricon-3"><i
-                                class="fa fa-angle-double-right"></i></label>
+                        <input type="radio" id="sidebaricon-3" name="menu-dropdown-icon" class="custom-control-input" value="icon-style-3">
+                        <label class="custom-control-label" for="sidebaricon-3"><i class="fa fa-angle-double-right"></i></label>
                     </div>
                 </div>
 
                 <h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
                 <div class="sidebar-radio-group pb-30 mb-10">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-1" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-1" checked="">
-                        <label class="custom-control-label" for="sidebariconlist-1"><i
-                                class="ion-minus-round"></i></label>
+                        <input type="radio" id="sidebariconlist-1" name="menu-list-icon" class="custom-control-input" value="icon-list-style-1" checked="">
+                        <label class="custom-control-label" for="sidebariconlist-1"><i class="ion-minus-round"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-2" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-2">
-                        <label class="custom-control-label" for="sidebariconlist-2"><i class="fa fa-circle-o"
-                                aria-hidden="true"></i></label>
+                        <input type="radio" id="sidebariconlist-2" name="menu-list-icon" class="custom-control-input" value="icon-list-style-2">
+                        <label class="custom-control-label" for="sidebariconlist-2"><i class="fa fa-circle-o" aria-hidden="true"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-3" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-3">
+                        <input type="radio" id="sidebariconlist-3" name="menu-list-icon" class="custom-control-input" value="icon-list-style-3">
                         <label class="custom-control-label" for="sidebariconlist-3"><i class="dw dw-check"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-4" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-4" checked="">
-                        <label class="custom-control-label" for="sidebariconlist-4"><i
-                                class="icon-copy dw dw-next-2"></i></label>
+                        <input type="radio" id="sidebariconlist-4" name="menu-list-icon" class="custom-control-input" value="icon-list-style-4" checked="">
+                        <label class="custom-control-label" for="sidebariconlist-4"><i class="icon-copy dw dw-next-2"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-5" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-5">
-                        <label class="custom-control-label" for="sidebariconlist-5"><i
-                                class="dw dw-fast-forward-1"></i></label>
+                        <input type="radio" id="sidebariconlist-5" name="menu-list-icon" class="custom-control-input" value="icon-list-style-5">
+                        <label class="custom-control-label" for="sidebariconlist-5"><i class="dw dw-fast-forward-1"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-6" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-6">
+                        <input type="radio" id="sidebariconlist-6" name="menu-list-icon" class="custom-control-input" value="icon-list-style-6">
                         <label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
                     </div>
                 </div>
@@ -342,16 +334,16 @@
                 <ul id="accordion-menu">
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span  class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+                            <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
                         </a>
                         <ul class="submenu">
                             <li><a href="/home">Dashboard</a></li>
-                           
+
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span  class="micon icon-copy ion-person-stalker"></span><span class="mtext">Thành
+                            <span class="micon icon-copy ion-person-stalker"></span><span class="mtext">Thành
                                 viên</span>
                         </a>
                         <ul class="submenu">
@@ -362,12 +354,34 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span  class="micon icon-copy fi-folder"></span><span class="mtext">Danh mục</span>
+                            <span class="micon icon-copy fi-folder"></span><span class="mtext">Danh mục</span>
                         </a>
-                        
+
                         <ul class="submenu">
-                            <li><a href="/users">Quản lý danh mục</a></li>
-                            <li><a href="/add-new-user">Thêm danh mục</a></li>
+                            <li><a href="{{ route('categories.index') }}">Quản lý danh mục</a></li>
+                            <li><a href="{{ route('categories.create') }}">Thêm danh mục</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon icon-copy fi-folder"></span><span class="mtext">Bài viết</span>
+                        </a>
+
+                        <ul class="submenu">
+                            <li><a href="/users">Quản lý bài viết</a></li>
+                            <li><a href="/add-new-user">Thêm bài viết</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon icon-copy fi-folder"></span><span class="mtext">Thương hiệu</span>
+                        </a>
+
+                        <ul class="submenu">
+                            <li><a href="{{ route('brands.index') }}">Quản lý thương hiệu</a></li>
+                            <li><a href="/add-new-user">Thêm thương hiệu</a></li>
 
                         </ul>
                     </li>
@@ -387,7 +401,7 @@
                             <span class="micon icon-copy fi-graph-bar"></span><span class="mtext">Kho</span>
                             <i class="" aria-hidden="true"></i>
                         </a>
-                      
+
                         <ul class="submenu">
                             <li><a href="/product">Quản lý kho</a></li>
                             <li><a href="/add-new-product">Nhập kho</a></li>
@@ -410,8 +424,7 @@
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="{{asset('admin/vendors/scripts/main.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{asset('admin/vendors/scripts/core.js')}}"></script>
     <script src="{{asset('admin/vendors/scripts/script.min.js')}}"></script>
     <script src="{{asset('admin/vendors/scripts/process.js')}}"></script>
@@ -426,75 +439,85 @@
     <script src="{{asset('admin/src/plugins/switchery/switchery.min.js')}}"></script>
 
     <script src="{{asset('admin/src/plugins/datatables/js/dataTables.buttons.min.js')}}"></script>
-	<script src="{{asset('admin/src/plugins/datatables/js/buttons.bootstrap4.min.js')}}"></script>
-	<script src="{{asset('admin/src/plugins/datatables/js/buttons.print.min.js')}}"></script>
-	<script src="{{asset('admin/src/plugins/datatables/js/buttons.html5.min.js')}}"></script>
-	<script src="{{asset('admin/src/plugins/datatables/js/buttons.flash.min.js')}}"></script>
-	<script src="{{asset('admin/src/plugins/datatables/js/pdfmake.min.js')}}"></script>
-	<script src="{{asset('admin/src/plugins/datatables/js/vfs_fonts.js')}}"></script>
-	<!-- Datatable Setting js -->
-	<script src="{{asset('admin/vendors/scripts/datatable-setting.js')}}"></script></body>
-    <!-- bootstrap-tagsinput js -->
-    <script src="{{asset('admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
-    <!-- bootstrap-touchspin js -->
-    <script src="{{asset('admin/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js')}}"></script>
+    <script src="{{asset('admin/src/plugins/datatables/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/src/plugins/datatables/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('admin/src/plugins/datatables/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('admin/src/plugins/datatables/js/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('admin/src/plugins/datatables/js/pdfmake.min.js')}}"></script>
+    <script src="{{asset('admin/src/plugins/datatables/js/vfs_fonts.js')}}"></script>
+    <!-- Datatable Setting js -->
+    <script src="{{asset('admin/vendors/scripts/datatable-setting.js')}}"></script>
+</body>
+<!-- bootstrap-tagsinput js -->
+<script src="{{asset('admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
+<!-- bootstrap-touchspin js -->
+<script src="{{asset('admin/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js')}}"></script>
 
-    <!-- Default theme -->
-    
-    <script type="text/javascript">
-        $(document).ready(function () {
-            load_image();
-            function load_image() {
-                var product_id = $('.product_id').val();
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                    url: "/select-image",
-                    method: "post",
-                    data: { product_id: product_id, _token: _token },
-                    success: function (data) {
-                        $('#image-load').html(data);
-                    }
-                })
+<!-- Default theme -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        load_image();
+
+        function load_image() {
+            var product_id = $('.product_id').val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: "/select-image",
+                method: "post",
+                data: {
+                    product_id: product_id,
+                    _token: _token
+                },
+                success: function(data) {
+                    $('#image-load').html(data);
+                }
+            })
+        }
+        $('#image').change(function() {
+            var error = '';
+            var images = $('#image')[0].images;
+            if (images.length > 5) {
+                error += '<p>chọn tối đa 5 ảnh</p>';
+            } else if (images.length == '') {
+                error += '<p>Hình ảnh trống</p>';
+            } else if (images.size > 2000000) {
+                error += '<p>Hình ảnh vượt quá 2MB</p>';
             }
-            $('#image').change(function () {
-                var error = '';
-                var images = $('#image')[0].images;
-                if (images.length > 5) {
-                    error += '<p>chọn tối đa 5 ảnh</p>';
-                } else if (images.length == '') {
-                    error += '<p>Hình ảnh trống</p>';
-                } else if (images.size > 2000000) {
-                    error += '<p>Hình ảnh vượt quá 2MB</p>';
-                }
-                if (error == '') {
+            if (error == '') {
 
-                } else {
-                    $('#image').val('');
-                    $("#error_image").html('<span class="text-danger">' + error + '</span>');
-                    return false;
-                }
+            } else {
+                $('#image').val('');
+                $("#error_image").html('<span class="text-danger">' + error + '</span>');
+                return false;
+            }
 
-            });
-            $(document).on('click', '.delete-image', function () {
-
-
-                var image_id = $(this).data('item_id');
-                var _token = $('input[name="_token"]').val();
-
-                $.ajax({
-                    url: "/delete-image-product",
-                    method: "post",
-                    data: { image_id: image_id, _token: _token },
-                    success: function (data) {
-                        load_image();
-                        alertify.notify('Đã xóa hình ảnh', 'custom', 2, function () { console.log('dismissed'); });
-                        alertify.set('notifier', 'position', 'bottom-right');
-                    }
-                });
-
-            });
         });
-    </script>
+        $(document).on('click', '.delete-image', function() {
+
+
+            var image_id = $(this).data('item_id');
+            var _token = $('input[name="_token"]').val();
+
+            $.ajax({
+                url: "/delete-image-product",
+                method: "post",
+                data: {
+                    image_id: image_id,
+                    _token: _token
+                },
+                success: function(data) {
+                    load_image();
+                    alertify.notify('Đã xóa hình ảnh', 'custom', 2, function() {
+                        console.log('dismissed');
+                    });
+                    alertify.set('notifier', 'position', 'bottom-right');
+                }
+            });
+
+        });
+    });
+</script>
 
 </body>
 
