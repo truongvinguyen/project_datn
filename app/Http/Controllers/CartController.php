@@ -27,4 +27,16 @@ class CartController extends Controller
         }
         return view('client.cart');
    }
+   public function delete_item_cart(Request $request,$id){
+        $cartO = Session('cart') ? Session('cart') : null;
+        $newCart= new Cart($cartO);
+        $newCart->DeleteItem($id);
+        if(count( $newCart->products)>0)
+        {
+            $request->session()->put('cart',$newCart);   
+        }else{
+            $request->session()->forget('cart');   
+        }
+        return view('client.cart');
+   }
 }

@@ -4,7 +4,7 @@ Chi tiết sản phẩm
 @endsection
 @section('content')
 <!-- breadcrumb -->
-<div class="container">
+<div class="container" style="margin-top: 40px;">
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 		<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
 			trang chủ
@@ -41,7 +41,7 @@ Chi tiết sản phẩm
 								<div class="wrap-pic-w pos-relative">
 									<img src="/upload/product/{{$item->product_image}}" alt="IMG-PRODUCT">
 
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg3 hov-btn3 trans-04"
 										href="/upload/product/{{$item->product_image}}">
 										<i class="fa fa-expand"></i>
 									</a>
@@ -52,7 +52,7 @@ Chi tiết sản phẩm
 								<div class="wrap-pic-w pos-relative">
 									<img src="/upload/product/{{$item2->image}}" alt="IMG-PRODUCT">
 
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg3 hov-btn3 trans-04"
 										href="/upload/product/{{$item2->image}}">
 										<i class="fa fa-expand"></i>
 									</a>
@@ -66,31 +66,29 @@ Chi tiết sản phẩm
 
 			<div class="col-md-6 col-lg-5 p-b-30">
 				<div class="p-r-50 p-t-5 p-lr-0-lg">
-					<h4 class="mtext-105 cl2 js-name-detail p-b-14 text-uppercase">
+					<h4 class="mtext-105 cl10 js-name-detail p-b-14 text-uppercase">
 						{{$item->product_name}}
 					</h4>
-
-					<span class="mtext-106 cl2">
-						{{number_format($item->product_price)}} VND
+<hr>
+					<span class="mtext-106 cl10">
+						{{number_format($item->product_price)}} đ
 					</span>
-					<div class="p-t-33">
+					<hr>
+					<div class="">
 						<div class="flex-w p-b-10">
-							<div class="size-203  respon6">
-								Tồn kho:
-							</div>
+						
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2  bg0">
 									
-									<input type="button" class="btn btn-outline-dark" style="border: none;" id="showqty"
+									Số lượng có sẵn: <input type="button" class="btn btn-outline-dark" style="border: none;" id="showqty"
 										value="">
 									
 								</div>
 							</div>
 						</div>
+						<hr>
 						<div class="flex-w p-b-10">
-							<div class="size-203  respon6">
-								Kích thước
-							</div>
+							
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2  bg0">
 									@foreach($size as $item3)
@@ -101,6 +99,7 @@ Chi tiết sản phẩm
 								</div>
 							</div>
 						</div>
+						<hr>
 						<div class="flex-w p-b-10">
 							<div class="size-204 flex-w flex-m respon6-next">
 								<div class="wrap-num-product flex-w m-r-20 m-tb-10">
@@ -116,7 +115,7 @@ Chi tiết sản phẩm
 									</div>
 								</div>				
 								<input type="hidden" id="showinventory" class="inventory" value="">
-								<a href="javascript:" onclick="addtocart(id)" id="" type="button"
+								<a style="width: 100%;" href="javascript:" onclick="addtocart(id)" id="" type="button"
 									class="flex-c-m addtocart stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 ">
 									Thêm vào giỏ
 								</a>
@@ -651,34 +650,6 @@ Chi tiết sản phẩm
 		console.log(id, qty);
 	}
 </script>
-<style>
-	.ajs-message.ajs-custom {
-		color: rgb(255, 255, 255);
-		background-color: #717FE0;
-		border-color: #717FE0;
-	}
-</style>
-<script>
-	function addtocart(id){
-		let quantity = $("#quantity").val();
-		let inventory= $(".inventory").val();
-		console.log(quantity,inventory)
-		if(quantity > inventory){
-			alertify.error('Số lượng tồn kho không đủ');
-		}else{
-		$.ajax({
-			url: {{'/add-to-cart/'}}+id+'/'+ $("#quantity").val(),
-			type: 'get',		
-		}).done(function(response) {
-			renderCart(response);
-			alertify.notify('Thêm vào giỏ hàng thành công.', 'custom', 2,);
-		});
-	  }
-	}	
-	function renderCart(response) {
-		$("#showcart").empty();
-		$("#showcart").html(response);
-	}
 
-</script>
+
 @endsection
