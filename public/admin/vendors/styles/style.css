@@ -1707,7 +1707,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 
 .header-dark .header,
 .header-dark .header-left .header-search {
-    background: #212527;
+    background: #1d2124;
 }
 
 .header-dark .header .user-info-dropdown .dropdown-toggle,
@@ -1837,7 +1837,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     width: 230px;
     height: 100vh;
     z-index: 1000;
-    background: #212527;
+    background: #1d2124;
 }
 
 .left-side-bar .mCS-dark-2.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {

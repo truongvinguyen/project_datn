@@ -1,7 +1,5 @@
 <?php
  namespace App\Models;
-
-
  class cart{
      public $products = null;
      public $totalPrice = 0;
@@ -14,24 +12,24 @@
          }
      }
      public function addCart($product,$id,$quantity){
-         $newProduct = ['quanty'=>$quantity,'price'=>$product->price,'productInfo'=>$product];
+         $newProduct = ['quanty'=>0,'price'=>$product->price,'productInfo'=>$product];
          if($this->products){
            if(array_key_exists($id,$this->products)){
-             $newProduct = $this->products[$id];
-           }  
+             $newProduct = $this->products[$id];    
+           }
          }
-         $newProduct['quanty']=$quantity+$newProduct['quanty'];
-         $newProduct['price']= $newProduct['quanty']*$product->price;
+         $newProduct['quanty']=$quantity+$newProduct['quanty'];     
+         $newProduct['price']= $quantity*$product->price;
          $this->products[$id] = $newProduct;
-         $this->totalPrice +=$product->price;
-         $this->totalQty++;
-        
+         $this->totalPrice +=$newProduct['price'];
+         $this->totalQty +=$quantity;    
      }
-    //  public function DeleteItem($id){
-    //      $this->totalQty -= $this->products[$id]['quanty'];
-    //      $this->totalPrice -= $this->products[$id]['price'];
-    //      unset($this->products[$id]);
-    //  }
+     public function DeleteItem($id){
+         $price = $this->products[$id]['productInfo']->price;
+         $this->totalPrice -= $price * $this->products[$id]['quanty'];
+         $this->totalQty -= $this->products[$id]['quanty'];
+         unset($this->products[$id]);
+     }
      public function updateCart($id,$quanty){
          $this->totalQty -= $this->products[$id]['quanty'];
          $this->totalPrice -= $this->products[$id]['price'];
