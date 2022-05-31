@@ -142,8 +142,10 @@ Sản phẩm
                     <th>Id</th>
                     <th>Tên danh mục</th>
                     <th>Hình ảnh</th>
-                    <th>Trạng thái</th>
+                    <!-- <th>Trạng thái</th> -->
+                    <th>Danh mục cha</th>
                     <th>Ngày thêm</th>
+                    <th>Cập nhật lần cuối</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -154,9 +156,9 @@ Sản phẩm
                     <th scope="row">{{$category->id}}</th>
                     <td>{{$category->category_name}}</td>
                     <td class="table-plus">
-                        <img src="/upload/product/{{ $category->category_image }}" width="45px" height="45px" alt="">
+                        <img src="/upload/category/{{ $category->category_image }}" width="45px" height="45px" alt="">
                     </td>
-                    @if ($category->category_status ==1)
+                    <!-- @if ($category->category_status ==1)
                     <td><span class="badge badge-pill" style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
 
                     @elseif($category->category_status ==2)
@@ -164,7 +166,10 @@ Sản phẩm
                     @else
                     <td><span class="badge badge-pill" style="color: red; background-color: rgb(231, 235, 245);">Ẩn</span></td>
                     @endif
-                    <td>{{$category->category_status}}</td>
+                    <td>{{$category->category_status}}</td> -->
+                    <td>{{$category->parent_id != null ? $category->parent_id : '...'}}</td>
+                    <td>{{$category->created_at != null ? $category->created_at : '...'}}</td>
+                    <td>{{$category->updated_at != null ? $category->updated_at : '...'}}</td>
                     <td>
                         <a href="" class="btn btn-default">Edit</a>
                         <a href="" class="btn btn-danger">Delete</a>
