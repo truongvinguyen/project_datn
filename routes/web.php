@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +53,19 @@ Route::post('/insert-image-product/{product_id}', [App\Http\Controllers\imagePro
 Route::post('/delete-image-product', [App\Http\Controllers\imageProductController::class, 'delete_image'])->name('');
 //end thành viên
 
+//danh mục
+Route::prefix('categories')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('store', [CategoryController::class, 'store'])->name('categories.store');   
+    
+});
+//thương hiệu
+Route::prefix('brands')->group(function () {
+    Route::get('/', [BrandController::class, 'index'])->name('brands.index');
+  
+    
+});
 //layout
 
 

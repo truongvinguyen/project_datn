@@ -21,10 +21,11 @@ return new class extends Migration
             $table->BigIncrements('id')->length(20);
             $table->string('name', 255);
             $table->string('email', 255)->unique();
+            $table->string('phone_number', 20)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 255);
 			$table->string('user_img', 255);
-			$table->integer('user_role')->length(10);
+			$table->integer('user_rule')->length(10);
 			$table->string('add_member', 255);
             $table->rememberToken();
 			
