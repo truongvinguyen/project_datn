@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-Sản phẩm
+Danh mục
 @endsection
 @section('content')
 <!-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/modal.css')}}"> -->
@@ -106,22 +106,29 @@ Sản phẩm
     }
 </style>
 
+@if(Session::has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{Session::get('success')}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Quản lý sản phẩm
-                    <a href="/add-new-product">
+                <h4>Quản lý danh mục
+                    <a href="{{ route('categories.create') }}">
                         <button type="button" class="btn btn-xl btn-outline-primary"><i class="icon-copy fi-plus"></i>Thêm</button>
-
                     </a>
                 </h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="/product">quản lý sản phẩm</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('categories.index')}}">Quản lý danh mục<colgroup></colgroup></a></li>
                 </ol>
             </nav>
         </div>
@@ -171,8 +178,8 @@ Sản phẩm
                     <td>{{$category->created_at != null ? $category->created_at : '...'}}</td>
                     <td>{{$category->updated_at != null ? $category->updated_at : '...'}}</td>
                     <td>
-                        <a href="" class="btn btn-default">Edit</a>
-                        <a href="" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-default">Edit</a>
+                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger action_delete">Delete</a>
                     </td>
                 </tr>
                 @endforeach

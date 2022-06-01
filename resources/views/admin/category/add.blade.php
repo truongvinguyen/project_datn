@@ -11,8 +11,8 @@ Thêm sản phẩm mới
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="">Thêm danh mục
+                    <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('categories.create') }}">Thêm danh mục
                             mới</a></li>
                 </ol>
             </nav>
@@ -82,6 +82,7 @@ Thêm sản phẩm mới
                     </div>
                 </div>
                 <input type="hidden" value="{{ Auth::user()->id }}" name="employee_id">
+                
             </div>
         </div>
 </div>
