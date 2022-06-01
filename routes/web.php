@@ -30,14 +30,14 @@ Route::get('add-new-product', [App\Http\Controllers\ProductController::class, 'a
 Route::post('save-product', [App\Http\Controllers\ProductController::class, 'save_product'])->name('');
 Route::get('edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('');
 Route::post('/save-edit-product/{id}', [App\Http\Controllers\ProductController::class, 'edit_save'])->name('');
-Route::get('/product-detail/{id}/{product_name}', [App\Http\Controllers\ProductController::class, 'product_detail'])->name('');
+Route::get('/product-detail/{id}-{product_name}', [App\Http\Controllers\ProductController::class, 'product_detail'])->name('');
 Route::get('/delete-product/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('');
 Route::get('product', [App\Http\Controllers\ProductController::class, 'index'])->name('');
 //end quản lý sản phẩm
 
 
 //tồm kho
-Route::get('/view-inventory/{product_id}/{product_name}', [App\Http\Controllers\inventoryController::class, 'index'])->name('');
+Route::get('/view-inventory/{product_id}-{product_name}', [App\Http\Controllers\inventoryController::class, 'index'])->name('');
 Route::post('/add-new-inventory', [App\Http\Controllers\inventoryController::class, 'add_new_inventory'])->name('');
 Route::post('/update-inventory/{id}', [App\Http\Controllers\inventoryController::class, 'update_inventory'])->name('');
 Route::get('/delete-inventory/{id}', [App\Http\Controllers\inventoryController::class, 'delete_inventory'])->name('');
@@ -79,3 +79,4 @@ Route::get('product-detail/{id}', [App\Http\Controllers\productDetail::class, 'i
 
 //giỏ hàng
 Route::get('/add-to-cart/{id}/{quantity}',[App\Http\Controllers\CartController::class,'add_to_cart'])->name('');
+Route::get('/delete-item-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_cart'])->name('');

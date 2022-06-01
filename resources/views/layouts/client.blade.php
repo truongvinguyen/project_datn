@@ -5,35 +5,39 @@
 	<title>@yield('title')</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/vendor/bootstrap/css/bootstrap.min.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css"
 		href="{{asset('/client/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css"
 		href="{{asset('/client/fonts/iconic/css/material-design-iconic-font.min.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/fonts/linearicons-v1.0.0/icon-font.min.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/vendor/animate/animate.css')}}">
-	
+
+	<link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/icon-font.min.css')}}">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('admin/vendors/images/apple-touch-icon.png')}}">
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/vendor/css-hamburgers/hamburgers.min.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/vendor/animsition/css/animsition.min.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/vendor/select2/select2.min.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/vendor/daterangepicker/daterangepicker.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/vendor/slick/slick.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/vendor/MagnificPopup/magnific-popup.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/vendor/perfect-scrollbar/perfect-scrollbar.css')}}">
-	
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/client/css/main.css')}}">
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
@@ -44,21 +48,49 @@
 	<!-- Bootstrap theme -->
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-	
+	<style>
+		.ajs-message.ajs-custom {
+			color: rgb(255, 255, 255);
+			background-color:#2a3174;
+			border-color: #2a3174;
+		}
+	</style>
+
 </head>
 
-<body >
+<body>
 
 	<!-- Header -->
 	<header class="header-v2">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop trans-03">
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container text-capitalize">
+					<div class="left-top-bar">
+						giao hàng miễn phí cho đơn đặt hàng tiêu chuẩn trên 500.000VND
+					</div>
+
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							câu hỏi thường gặp?
+						</a>
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							tài khoản của tôi
+						</a>
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							EN
+						</a>
+					</div>
+				</div>
+			</div>
 			<div class="wrap-menu-desktop">
 				<nav class="limiter-menu-desktop p-l-45">
 
 					<!-- Logo desktop -->
 					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="{{asset('admin/src/images/logowhite.png')}}" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -120,7 +152,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.html"><img src="{{asset('admin/src/images/logowhite.png')}}" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -357,11 +389,11 @@
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
+				<span class="mtext-103 cl10">
 					giỏ hàng
 				</span>
 
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+				<div class="fs-35 lh-10 cl10 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
@@ -369,36 +401,39 @@
 				@if(Session::has('cart') != null)
 				<div class="header-cart-content flex-w js-pscroll">
 					<ul class="header-cart-wrapitem w-full text-capitalize">
-						@foreach(Session::get('cart')->products as $item)
+					@foreach(Session::get('cart')->products as $item) 
 						<li class="header-cart-item flex-w flex-t m-b-12">
-							<div class="header-cart-item-img">
+							<div  class="header-cart-item-img delete_cart" data-id="{{$item['productInfo']->id}}">
 								<img src="/upload/product/{{$item['productInfo']->product_image}}" alt="IMG">
 							</div>
-
+			
 							<div class="header-cart-item-txt p-t-8">
 								<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-									{{$item['productInfo']->product_name}}
+								{{$item['productInfo']->product_name}}
 								</a>
-
+			
 								<span class="header-cart-item-info">
-									{{number_format($item['productInfo']->price)}} x {{$item['quanty']}} size
-									{{$item['productInfo']->product_size}}
+								{{number_format($item['productInfo']->price)}}  x  {{$item['quanty']}} size {{$item['productInfo']->product_size}}
 								</span>
+								<button onclick="deleteCart({{$item['productInfo']->id}})">Xóa</button>
 							</div>
 						</li>
-						@endforeach
+					@endforeach
 					</ul>
 					<div class="w-full">
 						<div class="header-cart-total w-full p-tb-40 text-capitalize">
 							tổng cộng:{{number_format(Session::get('cart')->totalPrice)}} VNĐ
 						</div>
-
+						<div class="header-cart-total w-full p-tb-40 text-capitalize">
+							tổng cộng:{{number_format(Session::get('cart')->totalQty)}} 
+						</div>
+			
 						<div class="header-cart-buttons flex-w w-full">
 							<a href="shoping-cart.html"
 								class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 								vào giỏ hàng
 							</a>
-
+			
 							<a href="shoping-cart.html"
 								class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 								thanh toán
@@ -406,6 +441,8 @@
 						</div>
 					</div>
 				</div>
+				@else
+				<span>giỏ hàng của bạn đang trống</span>
 				@endif
 			</div>
 		</div>
@@ -743,11 +780,11 @@
 		</div>
 	</div>
 
-	
+
 	<script src="{{asset('/client/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-	<script src="{{asset('/client/vendor/animsition/js/animsition.min.js')}}"></script>	
+	<script src="{{asset('/client/vendor/animsition/js/animsition.min.js')}}"></script>
 	<script src="{{asset('/client/vendor/bootstrap/js/popper.js')}}"></script>
-	<script src="{{asset('/client/vendor/bootstrap/js/bootstrap.min.js')}}"></script>	
+	<script src="{{asset('/client/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('/client/vendor/select2/select2.min.js')}}"></script>
 	<script>
 		$(".js-select2").each(function () {
@@ -756,15 +793,15 @@
 				dropdownParent: $(this).next('.dropDownSelect2')
 			});
 		})
-	</script>	
+	</script>
 	<script src="{{asset('/client/vendor/daterangepicker/moment.min.js')}}"></script>
-	<script src="{{asset('/client/vendor/daterangepicker/daterangepicker.js')}}"></script>	
+	<script src="{{asset('/client/vendor/daterangepicker/daterangepicker.js')}}"></script>
 	<script src="{{asset('/client/vendor/slick/slick.min.js')}}"></script>
-	<script src="{{asset('/client/js/slick-custom.js')}}"></script>	
+	<script src="{{asset('/client/js/slick-custom.js')}}"></script>
 	<script src="{{asset('/client/vendor/parallax100/parallax100.js')}}"></script>
 	<script>
 		$('.parallax100').parallax100();
-	</script>	
+	</script>
 	<script src="{{asset('/client/vendor/MagnificPopup/jquery.magnific-popup.min.js')}}"></script>
 	<script>
 		$('.gallery-lb').each(function () { // the containers for all your galleries
@@ -814,7 +851,7 @@
 				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
-	</script>	
+	</script>
 	<script src="{{asset('/client/vendor/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
 	<script>
 		$('.js-pscroll').each(function () {
@@ -831,8 +868,48 @@
 			})
 		});
 	</script>
+	
 	<script src="{{asset('/client/js/main.js')}}"></script>
-
+	<script>
+		function addtocart(id){
+			let quantity = $("#quantity").val();
+			let inventory= $(".inventory").val();
+			console.log(quantity,inventory)
+			if(quantity > inventory){
+				alertify
+			.alert("Sản phẩm bạn mua vượt quá số lượng tồn kho.", function(){
+				alertify.message('Hãy chọn số lượn dựa trên số lượng tồn kho nhé :)))');
+			}).setHeader('<em> Thông báo </em> ');
+			}else{
+			$.ajax({
+				url: {{'/add-to-cart/'}}+id+'/'+ $("#quantity").val(),
+				type: 'get',		
+			}).done(function(response) {
+				renderCart(response);
+				alertify.notify('Thêm vào giỏ hàng thành công.', 'custom', 2,);
+			});
+			$('.js-panel-cart').addClass('show-header-cart')
+			let showinventory = inventory-quantity;
+			document.getElementById('showqty').setAttribute('value', showinventory);
+			document.getElementById('showinventory').setAttribute('value', showinventory);
+		  }
+		}	
+		
+		function renderCart(response) {
+			$("#showcart").empty();
+			$("#showcart").html(response);
+		}
+		function deleteCart (id) {
+				$.ajax({
+					url: {{'/delete-item-cart/'}} + id,
+					type: 'GET',
+				}).done(function (response) {
+					$("#showcart").empty();
+			        $("#showcart").html(response);
+					alertify.warning('Đã xóa sản phẩm khỏi giỏ hàng');
+				});
+			};
+	</script>
 </body>
 
 </html>
