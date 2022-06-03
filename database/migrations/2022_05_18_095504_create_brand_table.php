@@ -22,7 +22,7 @@ return new class extends Migration
 			$table->bigInteger('employee_id')->length(20)->unsigned()->nullable();
             $table->string('brand_name', 100);
             $table->string('brand_slug', 100)->nullable();
-			$table->string('brand_image', 255);
+			$table->string('brand_image', 255)->nullable();
 			$table->text('brand_description')->nullable();
 			
 			//	0: hidden; 1: active; 2: pending approval

@@ -20,9 +20,10 @@ return new class extends Migration
 	
             $table->increments('id')->length(10);
 			$table->bigInteger('employee_id')->length(20)->unsigned()->nullable();
+            $table->integer('parent_id')->length(10)->unsigned()->nullable();
             $table->string('category_name', 100);
             $table->string('category_slug', 100)->nullable();
-			$table->string('category_image', 255);
+			$table->string('category_image', 255)->nullable();
 			$table->text('category_description')->nullable();
 			
 			//	0: hidden; 1: active; 2: pending approval
