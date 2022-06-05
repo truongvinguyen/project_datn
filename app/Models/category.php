@@ -42,4 +42,5 @@ class category extends Model
     {
         return $this->belongsTo(User::class, 'employee_id', 'id');
     }
+    
 }

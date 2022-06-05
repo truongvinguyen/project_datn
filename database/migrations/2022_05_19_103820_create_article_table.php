@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('category_id')->length(10)->unsigned()->nullable();
             $table->bigInteger('employee_id')->length(20)->unsigned()->nullable();
             $table->string('article_title', 255);
+            $table->string('article_thumbnail', 255)->default('');
             $table->string('article_slug', 255)->nullable();
             $table->mediumText('article_content');
             $table->integer('article_view_count')->default(0);
