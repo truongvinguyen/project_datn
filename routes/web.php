@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ArticleController;
 
 
 /*
@@ -66,8 +67,20 @@ Route::prefix('categories')->group(function () {
 //thương hiệu
 Route::prefix('brands')->group(function () {
     Route::get('/', [BrandController::class, 'index'])->name('brands.index');
-  
-    
+    Route::get('create', [BrandController::class, 'create'])->name('brands.create');
+    Route::post('store', [BrandController::class, 'store'])->name('brands.store'); 
+    Route::get('edit/{id}', [BrandController::class, 'edit'])->name('brands.edit');   
+    Route::post('update/{id}', [BrandController::class, 'update'])->name('brands.update');
+    Route::get('delete/{id}', [BrandController::class, 'delete'])->name('brands.delete');   
+});
+//bài viết
+Route::prefix('articles')->group(function () {
+    Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
+    Route::get('create', [ArticleController::class, 'create'])->name('articles.create');
+    Route::post('store', [ArticleController::class, 'store'])->name('articles.store');    
+    Route::get('edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit'); 
+    Route::post('update/{id}', [ArticleController::class, 'update'])->name('articles.update');  
+    Route::get('delete/{id}', [ArticleController::class, 'delete'])->name('articles.delete');   
 });
 //layout
 
