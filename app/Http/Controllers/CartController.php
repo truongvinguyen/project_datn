@@ -39,4 +39,7 @@ class CartController extends Controller
         }
         return view('client.cart');
    }
+   public function showCart(){
+       return view('client.showcart');
+   }
 }

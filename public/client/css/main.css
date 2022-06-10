@@ -484,25 +484,28 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   line-height: 1;
   cursor: pointer;
 }
+.icon-header-item:hover {
+  color: #6c7ae0 !important;
+}
 
 
 /*---------------------------------------------*/
 .icon-header-noti::after {
   content: attr(data-notify);
-  font-family: Poppins-Regular;
-  font-size: 12px;
-  color: #fff;
-  line-height: 15px;
-  text-align: center;
-
-  display: block;
-  position: absolute;
-  top: -7px;
-  right: 0;
-  min-width: 15px;
-  height: 15px;
-  padding: 0 3px;
-  background-color: #1d2252;
+    font-family: Poppins-Regular;
+    font-size: 12px;
+    color: #fff;
+    line-height: 15px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: -20px;
+    right: -12px;
+    min-width: 24px;
+    height: 24px;
+    padding: 6px 5px;
+    border-radius: 5px;
+    background-color: #dc3545;
 }
 
 /*---------------------------------------------*/
@@ -1935,7 +1938,7 @@ input.num-product::-webkit-inner-spin-button {
 
 .table-shopping-cart .column-4 {
   width: 145px;
-  text-align: right;
+  text-align: center;
 }
 
 .table-shopping-cart .column-5 {
@@ -1944,9 +1947,15 @@ input.num-product::-webkit-inner-spin-button {
   text-align: right;
   font-size: 16px;
 }
+.table-shopping-cart .column-6{
+  width: 100px;
+  padding-right: 50px;
+  text-align: right;
+  font-size: 16px;
+}
 
 .table-shopping-cart .table_row {
-  height: 185px;
+  height: 125px;
 }
 
 .table-shopping-cart .table_row td {
@@ -2738,7 +2747,7 @@ input.num-product::-webkit-inner-spin-button {
 
 .bor13 {
   border: 1px solid #e6e6e6;
-  border-radius: 22px;
+  border-radius: 10px;
 }
 
 .bor14 {
