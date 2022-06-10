@@ -26,11 +26,13 @@
 			tổng cộng:{{number_format(Session::get('cart')->totalPrice)}} VNĐ
 		</div>
 		<div class="header-cart-total w-full p-tb-40 text-capitalize">
-			tổng cộng:{{number_format(Session::get('cart')->totalQty)}}
+			tổng cộng:
+			<input type="hidden" id="totalqtyshow" value="{{Session::get('cart')->totalQty}}">
 		</div>
 
+
 		<div class="header-cart-buttons flex-w w-full">
-			<a href="shoping-cart.html"
+			<a href="/show-cart"
 				class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 				vào giỏ hàng
 			</a>
