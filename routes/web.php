@@ -60,6 +60,9 @@ Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('store', [CategoryController::class, 'store'])->name('categories.store');   
+    Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');   
+    Route::post('update/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete'); 
     
 });
 //thương hiệu
@@ -82,6 +85,7 @@ Route::get('product-detail/{id}', [App\Http\Controllers\productDetail::class, 'i
 //giỏ hàng
 Route::get('/add-to-cart/{id}/{quantity}',[App\Http\Controllers\CartController::class,'add_to_cart'])->name('');
 Route::get('/delete-item-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_cart'])->name('');
+ phuong
 
 Route::middleware([
     'auth:sanctum',
@@ -96,3 +100,6 @@ Route::middleware([
 // login gg
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name("loginGg");
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+=======
+Route::get('/show-cart',[App\Http\Controllers\CartController::class,'showCart'])->name('');
+

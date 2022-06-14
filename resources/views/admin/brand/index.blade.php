@@ -112,7 +112,7 @@ Sản phẩm
         <div class="col-md-6 col-sm-12">
             <div class="title">
                 <h4>Quản lý sản phẩm
-                    <a href="/add-new-product">
+                    <a href="">">
                         <button type="button" class="btn btn-xl btn-outline-primary"><i class="icon-copy fi-plus"></i>Thêm</button>
 
                     </a>
@@ -121,7 +121,7 @@ Sản phẩm
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="/product">quản lý sản phẩm</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="/product">Quản lý thương hiệu</a></li>
                 </ol>
             </nav>
         </div>
@@ -140,11 +140,12 @@ Sản phẩm
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Mã thương hiệu</th>
-                    <th>Tên thương hiệu</th>
+                    <th>Tên danh mục</th>
                     <th>Hình ảnh</th>
-                    <th>Trạng thái</th>
+                    <!-- <th>Trạng thái</th> -->
+                    <th>Danh mục cha</th>
                     <th>Ngày thêm</th>
+                    <th>Cập nhật lần cuối</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -153,23 +154,17 @@ Sản phẩm
                 @foreach($brands as $brand)
                 <tr>
                     <th scope="row">{{$brand->id}}</th>
-                    <td>{{$brand->employee_id}}</td>
                     <td>{{$brand->brand_name}}</td>
                     <td class="table-plus">
-                        <img src="/upload/product/{{ $brand->brand_image }}" width="45px" height="45px" alt="">
+                        <img src="/upload/brand/{{ $brand->brand_image }}" width="45px" height="45px" alt="">
                     </td>
-                    @if ($brand->brand_status ==1)
-                    <td><span class="badge badge-pill" style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
-
-                    @elseif($brand->brand_status ==2)
-                    <td><span class="badge badge-pill" style="color: #6e1212; background-color: rgb(231, 235, 245);">Chờ phê duyệt </span></td>
-                    @else
-                    <td><span class="badge badge-pill" style="color: red; background-color: rgb(231, 235, 245);">Ẩn</span></td>
-                    @endif
-                    <td>{{$brand->brand_status}}</td>
+                    
+                    <td>{{$brand->parent_id != null ? $brand->parent_id : '...'}}</td>
+                    <td>{{$brand->created_at != null ? $brand->created_at : '...'}}</td>
+                    <td>{{$brand->updated_at != null ? $brand->updated_at : '...'}}</td>
                     <td>
                         <a href="" class="btn btn-default">Edit</a>
-                        <a href="" class="btn btn-danger">Delete</a>
+                        <a href=""   class="btn btn-danger action_delete">Delete</a>
                     </td>
                 </tr>
                 @endforeach
