@@ -3,6 +3,8 @@
 use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GoogleController;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -80,3 +82,17 @@ Route::get('product-detail/{id}', [App\Http\Controllers\productDetail::class, 'i
 //giỏ hàng
 Route::get('/add-to-cart/{id}/{quantity}',[App\Http\Controllers\CartController::class,'add_to_cart'])->name('');
 Route::get('/delete-item-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_cart'])->name('');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+// login gg
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name("loginGg");
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
