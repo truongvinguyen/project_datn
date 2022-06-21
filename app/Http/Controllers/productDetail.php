@@ -16,11 +16,11 @@ class productDetail extends Controller
      $data = DB::table('product')
      ->select('*')
      ->where('id',$id)
-     ->get();
+     ->first();
      $image =imageProduct::where('product_id',$id)->get();    
 
      $size = inventory::where('product_id',$id)->get();  
-    return view('client.product-detail',compact('data','image','size'));
+    return view('client.cart.product_detail',compact('data','image','size'));
 
     }
 }
