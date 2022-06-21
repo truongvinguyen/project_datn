@@ -83,4 +83,7 @@ Route::get('product-detail/{id}', [App\Http\Controllers\productDetail::class, 'i
 //giỏ hàng
 Route::get('/add-to-cart/{id}/{quantity}',[App\Http\Controllers\CartController::class,'add_to_cart'])->name('');
 Route::get('/delete-item-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_cart'])->name('');
-Route::get('/show-cart',[App\Http\Controllers\CartController::class,'showCart'])->name('');
+Route::get('/cart/view-cart',[App\Http\Controllers\CartController::class,'showCart'])->name('cart.viewcart');
+Route::get('/delete-list-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_list_cart'])->name('');
+Route::get('/delete-all-cart',[App\Http\Controllers\CartController::class,'delete_all_cart'])->name('');
+Route::get('/save-cart-item/{id}/{quanty}',[App\Http\Controllers\CartController::class,'save_cart'])->name('');
