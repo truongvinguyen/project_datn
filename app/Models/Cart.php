@@ -35,7 +35,7 @@
          $this->totalPrice -= $this->products[$id]['price'];
 
         $this->products[$id]['quanty'] = $quanty;
-        $this->products[$id]['price'] = $quanty * $this->products[$id]['productInfo']->product_price;
+        $this->products[$id]['price'] = $quanty * $this->products[$id]['productInfo']->price;
 
         $this->totalQty += $this->products[$id]['quanty'];
         $this->totalPrice += $this->products[$id]['price'];
