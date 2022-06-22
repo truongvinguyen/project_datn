@@ -3,6 +3,10 @@
 use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Client\HomeController as HomeClient;
+use App\Http\Controllers\Client\GoogleController;
+
 
 
 /*
@@ -84,3 +88,14 @@ Route::get('product-detail/{id}', [App\Http\Controllers\productDetail::class, 'i
 Route::get('/add-to-cart/{id}/{quantity}',[App\Http\Controllers\CartController::class,'add_to_cart'])->name('');
 Route::get('/delete-item-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_cart'])->name('');
 Route::get('/show-cart',[App\Http\Controllers\CartController::class,'showCart'])->name('');
+
+// login google
+Route::get('dang-nhap', [HomeClient::class, 'index'])->name('get_login');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+Route::get('dashboard', [HomeClient::class, 'dashboard'])->name('dashboard');
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('login_gg');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
