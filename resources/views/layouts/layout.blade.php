@@ -354,7 +354,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon icon-copy fi-folder"></span><span class="mtext">Danh mục</span>
+                            <span class="micon fa fa-th-list"></span><span class="mtext">Danh mục</span>
                         </a>
 
                         <ul class="submenu">
@@ -365,26 +365,27 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon icon-copy fi-folder"></span><span class="mtext">Bài viết</span>
+                            <span class="micon dw dw-tag"></span><span class="mtext">Thương hiệu</span>
                         </a>
 
                         <ul class="submenu">
-                            <li><a href="/users">Quản lý bài viết</a></li>
-                            <li><a href="/add-new-user">Thêm bài viết</a></li>
+                            <li><a href="{{ route('brands.index') }}">Quản lý thương hiệu</a></li>
+                            <li><a href="{{ route('brands.create') }}">Thêm thương hiệu</a></li>
 
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon icon-copy fi-folder"></span><span class="mtext">Thương hiệu</span>
+                            <span class="micon dw dw-newspaper-1"></span><span class="mtext">Bài viết</span>
                         </a>
 
                         <ul class="submenu">
-                            <li><a href="{{ route('brands.index') }}">Quản lý thương hiệu</a></li>
-                            <li><a href="/add-new-user">Thêm thương hiệu</a></li>
+                            <li><a href="{{ route('articles.index') }}">Quản lý bài viết</a></li>
+                            <li><a href="{{ route('articles.create') }}">Thêm bài viết</a></li>
 
                         </ul>
                     </li>
+                    
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon fa fa-th-large"></span><span class="mtext">Sản phẩm</span>
@@ -393,7 +394,6 @@
                         <ul class="submenu">
                             <li><a href="/product">Quản lý sản phẩm</a></li>
                             <li><a href="/add-new-product">Thêm sản phẩm</a></li>
-
                         </ul>
                     </li>
                     <li class="dropdown">

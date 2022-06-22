@@ -68,7 +68,7 @@ class CategoryController extends Controller
     //
     public function update(Request $request, $id){
         $categories=category::find($id);
-        $file_name = $categories->category_image;
+        
         if ($request->has('category_image')) {
             $category_image = $request->category_image;
             $file_name = $category_image->getClientOriginalName();
