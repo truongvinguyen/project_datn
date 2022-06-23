@@ -109,8 +109,8 @@
         alertify.set('notifier', 'position', 'bottom-right');
     </script>
     @endif
-    <hr>
-    <div class="header">
+    <!-- <hr> -->
+    <div class="header" id="global-header">
         <div class="header-left">
             <div class="menu-icon dw dw-menu"></div>
             <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
