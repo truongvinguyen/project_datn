@@ -1,0 +1,18 @@
+.overlayScrollBar {
+	overflow: inherit !important;
+	overflow-y: overlay !important;
+}
+
+.overlayScrollBar::-webkit-scrollbar {
+	width: .5rem;
+}
+.overlayScrollBar::-webkit-scrollbar-thumb {
+	border: 5px solid #66666625;
+	border-radius: 10rem;
+}
+.overlayScrollBar::-webkit-scrollbar-track {
+	position: absolute;
+	right: -3rem;
+	top: -50rem;
+	background: transparent;
+}

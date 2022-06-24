@@ -1,0 +1,343 @@
+commit 4db8ebd931c9aa9a8cad7f7116a29be4852c0848
+Author: Btoann <nguyenbaotoan2001@gmail.com>
+Date:   Thu Jun 23 18:25:55 2022 +0700
+
+    fix admin's categories UI
+
+diff --git a/app/Http/Controllers/CategoryController.php b/app/Http/Controllers/CategoryController.php
+index b596836..fb035c3 100644
+--- a/app/Http/Controllers/CategoryController.php
++++ b/app/Http/Controllers/CategoryController.php
+@@ -21,7 +21,7 @@ public function __construct(Category $category)
+ 
+     public function index()
+     {
+-        $categories = $this->category->latest()->paginate(50);
++        $categories = $this->category->orderBy('id', 'desc')->paginate(10);
+         // $categories = $this->category->latest()->paginate(50);
+         return (view('admin.category.index', compact('categories')));
+     }
+diff --git a/public/admin/vendors/scripts/datatable-setting.js b/public/admin/vendors/scripts/datatable-setting.js
+index 6c80bb0..56ee820 100644
+--- a/public/admin/vendors/scripts/datatable-setting.js
++++ b/public/admin/vendors/scripts/datatable-setting.js
+@@ -41,6 +41,84 @@ $('document').ready(function(){
+ 		]
+ 	});
+ 
++	// $(window).on('scroll', () => {
++		// console.log($(window).scrollTop() + $('#global-header').height(), $('#data-list-table').offset().top)
++		// let scrollPosition = $(window).scrollTop() + $('#global-header').height(),
++			// tableOffSet = $('#data-list-table').offset().top
++		// if (scrollPosition > tableOffSet) {
++			// $('#fixed-toolbar').addClass('sticky-top').css({
++				// 'top': $('#global-header').height(),
++				// 'background-color': '#fff',
++			// })
++		// }
++		// else {
++			// $('#fixed-toolbar').removeClass('sticky-top').removeAttr('style')
++		// }
++	// })
++	let thisDataTable2 = $('#data-table-export-2').DataTable({
++		fixedHeader: {
++			header: true
++		},
++		// scrollY: `${$(window).height() - $('#data-list-table').offset().top - $('#fixed-toolbar').height()}px`,
++		scrollY: '54vh',
++		scrollCollapse: true,
++		responsive: true,
++		autoWidth: true,
++		colReorder: true,
++		columnDefs: [{
++			targets: "datatable-nosort",
++			orderable: false,
++		}],
++		//	"aaSorting": [],
++		"lengthMenu": [[10, 25, 50, 75, 100, 150, 200], [10, 25, 50, 75, 100, 150, 200]],
++		"language": {
++			"info": "_START_-_END_ của _TOTAL_ mục",
++			// search: 'Tìm kiếm',
++			// searchPlaceholder: '',
++			"lengthMenu": "Hiển thị&ensp;_MENU_&ensp;mục",
++			paginate: {
++				next: '<i class="ion-chevron-right"></i>',
++				previous: '<i class="ion-chevron-left"></i>'
++			}
++		},
++		dom:
++			`<"#fixed-toolbar.row pb-20 pt-20"
++				<"#custom-tools.col-8 d-flex justify-content-start"f>
++				<"col-4 d-flex justify-content-end"<B>>
++			>
++			<rt>
++			<"row pt-20"
++				<"col-6 d-flex justify-content-start px-0"<l>>
++				<"col-6 d-flex justify-content-end px-0"<p>>
++			>`,
++		buttons: [
++			'copy', 'csv', 'pdf', 'print'
++		],
++		"initComplete": (settings, json) => {
++			$('#myTable_filter, .dt-buttons, #myTable_paginate').addClass('px-0')
++			$('.dataTables_scroll').addClass('w-100')
++			$('.dataTables_scrollBody').addClass('overlayScrollBar')
++			$('.dataTables_scrollHead').addClass('overlayHeaderScrollBar')
++		}
++	})
++	
++	$('#custom-tools').html(`
++		<form class="form-inline">
++			<input type="text" id="search-input-2" class="form-control form-control-sm mr-20" placeholder="Tìm kiếm" aria-controls="myTable">
++			<button type="button" id="btn-reset-2" class="btn btn-dark"><span class="dw dw-refresh1"></span></button>
++		</form>
++	`)
++	$('#search-input-2').on('input', (e) => {
++		thisDataTable2.search(e.target.value).draw()
++	})
++	$('#btn-reset-2').on('click', (e) => {
++		$('#search-input-2').val('')
++		thisDataTable2.search('').draw()
++		thisDataTable2.page.len(10).draw()
++		thisDataTable2.columns().order([]).draw()
++	})
++	
++	
+ 	var table = $('.select-row').DataTable();
+ 	$('.select-row tbody').on('click', 'tr', function () {
+ 		if ($(this).hasClass('selected')) {
+diff --git a/public/admin/vendors/styles/style.css b/public/admin/vendors/styles/style.css
+index 4239323..3ab8b6a 100644
+--- a/public/admin/vendors/styles/style.css
++++ b/public/admin/vendors/styles/style.css
+@@ -2388,7 +2388,8 @@ .register-info li {
+ }
+ 
+ .main-container {
+-    padding: 79px 10px 2px 245px;
++    /* padding: 79px 10px 2px 245px; */
++    padding: calc(79px + 2rem) 10px 2px 245px;
+ }
+ 
+ .page-header .dropdown-menu {
+diff --git a/resources/views/admin/category/index.blade.php b/resources/views/admin/category/index.blade.php
+index 4b87034..66f743f 100644
+--- a/resources/views/admin/category/index.blade.php
++++ b/resources/views/admin/category/index.blade.php
+@@ -5,106 +5,10 @@
+ @section('content')
+ <!-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/modal.css')}}"> -->
+ 
+-
+ <style>
+-    /* From uiverse.io by @mrhyddenn */
+-    .icon-btn {
+-        width: 50px;
+-        height: 50px;
+-        border: 1px solid #cdcdcd;
+-        background: white;
+-        border-radius: 25px;
+-        overflow: hidden;
+-        position: relative;
+-        transition: width 0.2s ease-in-out;
+-        font-weight: 500;
+-        font-family: inherit;
+-    }
+-
+-    .add-btn:hover {
+-        width: 120px;
+-    }
+-
+-    .add-btn::before,
+-    .add-btn::after {
+-        transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+-        content: "";
+-        position: absolute;
+-        height: 4px;
+-        width: 10px;
+-        top: calc(50% - 2px);
+-        background: seagreen;
+-    }
+-
+-    .add-btn::after {
+-        right: 14px;
+-        overflow: hidden;
+-        border-top-right-radius: 2px;
+-        border-bottom-right-radius: 2px;
+-    }
+-
+-    .add-btn::before {
+-        left: 14px;
+-        border-top-left-radius: 2px;
+-        border-bottom-left-radius: 2px;
+-    }
+-
+-    .icon-btn:focus {
+-        outline: none;
+-    }
+-
+-    .btn-txt {
+-        opacity: 0;
+-        transition: opacity 0.2s;
+-    }
+-
+-    .add-btn:hover::before,
+-    .add-btn:hover::after {
+-        width: 4px;
+-        border-radius: 2px;
+-    }
+-
+-    .add-btn:hover .btn-txt {
+-        opacity: 1;
+-    }
+-
+-    .add-icon::after,
+-    .add-icon::before {
+-        transition: all 0.2s ease-in-out;
+-        content: "";
+-        position: absolute;
+-        height: 20px;
+-        width: 2px;
+-        top: calc(50% - 10px);
+-        background: seagreen;
+-        overflow: hidden;
+-    }
+-
+-    .add-icon::before {
+-        left: 22px;
+-        border-top-left-radius: 2px;
+-        border-bottom-left-radius: 2px;
+-    }
+-
+-    .add-icon::after {
+-        right: 22px;
+-        border-top-right-radius: 2px;
+-        border-bottom-right-radius: 2px;
+-    }
+-
+-    .add-btn:hover .add-icon::before {
+-        left: 15px;
+-        height: 4px;
+-        top: calc(50% - 2px);
+-    }
+-
+-    .add-btn:hover .add-icon::after {
+-        right: 15px;
+-
+-        height: 4px;
+-        top: calc(50% - 2px);
+-    }
+ </style>
++<link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/app.css')}}">
++<link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/category/category.css')}}">
+ 
+ @if(Session::has('success'))
+ <div class="alert alert-success alert-dismissible fade show" role="alert">
+@@ -138,33 +42,33 @@
+     </div>
+ </div>
+ 
+-<div class="card-box mb-30">
+-    <div class="pd-20">
+-        <h4 class="" style="font-size:20px ;">Tất cả sản phẩm</h4>
+-    </div>
+-    <div class="pb-20">
+-        <table class="table hover data-table-export  nowrap" id="myTable">
++<div id="data-list-table" class="card-box mb-30">
++    <div class="pd-20 pb-0 d-none">
++		<h5 id="table-title" class=""><strong>Danh sách danh mục</strong></h5>
++	</div>
++    <div class="pd-20 pt-0">
++        <table class="table table-bordered table-small hover nowrap w-100" id="data-table-export-2" data-order="[]">
+             <thead>
+-                <tr>
+-                    <th>Id</th>
+-                    <th>Tên danh mục</th>
+-                    <th>Hình ảnh</th>
+-                    <!-- <th>Trạng thái</th> -->
+-                    <th>Danh mục cha</th>
+-                    <th>Ngày thêm</th>
+-                    <th>Cập nhật lần cuối</th>
+-                    <th>Action</th>
++                <tr class="thead-light">
++                    <th scope="col" class="datatable-nosort">#</th>
++                    <th scope="col">Tên danh mục</th>
++                    <th scope="col">Hình ảnh</th>
++                    <!-- <th scope="col">Trạng thái</th> -->
++                    <th scope="col">Danh mục cha</th>
++                    <th scope="col">Ngày thêm</th>
++                    <th scope="col">Cập nhật lần cuối</th>
++                    <th scope="col" class="datatable-nosort">Action</th>
+                 </tr>
+             </thead>
+             <tbody>
+-
+                 @foreach($categories as $category)
+                 <tr>
+-                    <th scope="row">{{$category->id}}</th>
++                    <td scope="row"><strong>{{$category->id}}</strong></td>
+                     <td>{{$category->category_name}}</td>
+                     <td class="table-plus">
+-                        <img src="/upload/category/{{ $category->category_image }}" width="45px" height="45px" alt="">
+-                    </td>
++                        <!-- <img src="/upload/category/{{ $category->category_image }}" width="45px" height="45px" alt="">
++						-->
++					</td>
+                     <!-- @if ($category->category_status ==1)
+                     <td><span class="badge badge-pill" style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
+ 
+@@ -178,12 +82,37 @@
+                     <td>{{$category->created_at != null ? $category->created_at : '...'}}</td>
+                     <td>{{$category->updated_at != null ? $category->updated_at : '...'}}</td>
+                     <td>
+-                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-default">Edit</a>
+-                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger action_delete">Delete</a>
++                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-dark"><span class="dw dw-edit2"></span></a>
++                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger"><span class="dw dw-delete-3"></span></a>
+                     </td>
+                 </tr>
+                 @endforeach
++@foreach($categories as $category)
++                <tr>
++                    <td scope="row"><strong>{{$category->id}}</strong></td>
++                    <td>{{$category->category_name}}</td>
++                    <td class="table-plus">
++                        <!-- <img src="/upload/category/{{ $category->category_image }}" width="45px" height="45px" alt="">
++						-->
++					</td>
++                    <!-- @if ($category->category_status ==1)
++                    <td><span class="badge badge-pill" style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
+ 
++                    @elseif($category->category_status ==2)
++                    <td><span class="badge badge-pill" style="color: #6e1212; background-color: rgb(231, 235, 245);">Chờ phê duyệt </span></td>
++                    @else
++                    <td><span class="badge badge-pill" style="color: red; background-color: rgb(231, 235, 245);">Ẩn</span></td>
++                    @endif
++                    <td>{{$category->category_status}}</td> -->
++                    <td>{{$category->parent_id != null ? $category->parent_id : '...'}}</td>
++                    <td>{{$category->created_at != null ? $category->created_at : '...'}}</td>
++                    <td>{{$category->updated_at != null ? $category->updated_at : '...'}}</td>
++                    <td>
++                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-dark"><span class="dw dw-edit2"></span></a>
++                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger"><span class="dw dw-delete-3"></span></a>
++                    </td>
++                </tr>
++                @endforeach
+             </tbody>
+         </table>
+     </div>
+diff --git a/resources/views/layouts/layout.blade.php b/resources/views/layouts/layout.blade.php
+index 05bf61f..0c70528 100644
+--- a/resources/views/layouts/layout.blade.php
++++ b/resources/views/layouts/layout.blade.php
+@@ -109,8 +109,8 @@ function() {
+         alertify.set('notifier', 'position', 'bottom-right');
+     </script>
+     @endif
+-    <hr>
+-    <div class="header">
++    <!-- <hr> -->
++    <div class="header" id="global-header">
+         <div class="header-left">
+             <div class="menu-icon dw dw-menu"></div>
+             <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
