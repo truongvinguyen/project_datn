@@ -26,7 +26,7 @@ return new class extends Migration
 			$table->integer('category_id')->length(11)->unsigned()->nullable();
 			$table->integer('brand_id')->unsigned()->nullable();
 			$table->string('product_image', 255);
-			$table->string('product_tag', 255);
+			$table->string('product_tag', 255)->nullable();
 			$table->string('product_user', 255);
 			
 			$table->smallInteger('product_status')->length(11);

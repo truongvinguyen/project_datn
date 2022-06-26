@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->category->latest()->paginate(50);
+        $categories = $this->category->orderBy('id', 'desc')->paginate(10);
         // $categories = $this->category->latest()->paginate(50);
         return (view('admin.category.index', compact('categories')));
     }
@@ -68,7 +68,7 @@ class CategoryController extends Controller
     //
     public function update(Request $request, $id){
         $categories=category::find($id);
-        $file_name = $categories->category_image;
+        
         if ($request->has('category_image')) {
             $category_image = $request->category_image;
             $file_name = $category_image->getClientOriginalName();

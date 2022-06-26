@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/core.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/icon-font.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/dataTables.searchHighlight.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/style.css')}}">
 
@@ -47,6 +48,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/app.css')}}">
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -109,8 +112,8 @@
         alertify.set('notifier', 'position', 'bottom-right');
     </script>
     @endif
-    <hr>
-    <div class="header">
+    <!-- <hr> -->
+    <div class="header" id="global-header">
         <div class="header-left">
             <div class="menu-icon dw dw-menu"></div>
             <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
@@ -354,7 +357,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon icon-copy fi-folder"></span><span class="mtext">Danh mục</span>
+                            <span class="micon fa fa-th-list"></span><span class="mtext">Danh mục</span>
                         </a>
 
                         <ul class="submenu">
@@ -365,26 +368,27 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon icon-copy fi-folder"></span><span class="mtext">Bài viết</span>
+                            <span class="micon dw dw-tag"></span><span class="mtext">Thương hiệu</span>
                         </a>
 
                         <ul class="submenu">
-                            <li><a href="/users">Quản lý bài viết</a></li>
-                            <li><a href="/add-new-user">Thêm bài viết</a></li>
+                            <li><a href="{{ route('brands.index') }}">Quản lý thương hiệu</a></li>
+                            <li><a href="{{ route('brands.create') }}">Thêm thương hiệu</a></li>
 
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon icon-copy fi-folder"></span><span class="mtext">Thương hiệu</span>
+                            <span class="micon dw dw-newspaper-1"></span><span class="mtext">Bài viết</span>
                         </a>
 
                         <ul class="submenu">
-                            <li><a href="{{ route('brands.index') }}">Quản lý thương hiệu</a></li>
-                            <li><a href="/add-new-user">Thêm thương hiệu</a></li>
+                            <li><a href="{{ route('articles.index') }}">Quản lý bài viết</a></li>
+                            <li><a href="{{ route('articles.create') }}">Thêm bài viết</a></li>
 
                         </ul>
                     </li>
+                    
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon fa fa-th-large"></span><span class="mtext">Sản phẩm</span>
@@ -393,7 +397,6 @@
                         <ul class="submenu">
                             <li><a href="/product">Quản lý sản phẩm</a></li>
                             <li><a href="/add-new-product">Thêm sản phẩm</a></li>
-
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -434,10 +437,11 @@
     <script src="{{asset('admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/responsive.bootstrap4.min.js')}}"></script>
+	<script src="{{asset('admin/src/plugins/datatables/js/jquery.highlight.js')}}"></script>
+	<script src="{{asset('admin/src/plugins/datatables/js/dataTables.searchHighlight.min.js')}}"></script>
     <script src="{{asset('admin/vendors/scripts/dashboard.js')}}"></script>
     <script src="{{asset('admin/vendors/scripts/advanced-components.js')}}"></script>
     <script src="{{asset('admin/src/plugins/switchery/switchery.min.js')}}"></script>
-
     <script src="{{asset('admin/src/plugins/datatables/js/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/buttons.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/buttons.print.min.js')}}"></script>

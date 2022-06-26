@@ -5,106 +5,15 @@ Danh mục
 @section('content')
 <!-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/modal.css')}}"> -->
 
-
 <style>
-    /* From uiverse.io by @mrhyddenn */
-    .icon-btn {
-        width: 50px;
-        height: 50px;
-        border: 1px solid #cdcdcd;
-        background: white;
-        border-radius: 25px;
-        overflow: hidden;
-        position: relative;
-        transition: width 0.2s ease-in-out;
-        font-weight: 500;
-        font-family: inherit;
-    }
-
-    .add-btn:hover {
-        width: 120px;
-    }
-
-    .add-btn::before,
-    .add-btn::after {
-        transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-        content: "";
-        position: absolute;
-        height: 4px;
-        width: 10px;
-        top: calc(50% - 2px);
-        background: seagreen;
-    }
-
-    .add-btn::after {
-        right: 14px;
-        overflow: hidden;
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-    }
-
-    .add-btn::before {
-        left: 14px;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-    }
-
-    .icon-btn:focus {
-        outline: none;
-    }
-
-    .btn-txt {
-        opacity: 0;
-        transition: opacity 0.2s;
-    }
-
-    .add-btn:hover::before,
-    .add-btn:hover::after {
-        width: 4px;
-        border-radius: 2px;
-    }
-
-    .add-btn:hover .btn-txt {
-        opacity: 1;
-    }
-
-    .add-icon::after,
-    .add-icon::before {
-        transition: all 0.2s ease-in-out;
-        content: "";
-        position: absolute;
-        height: 20px;
-        width: 2px;
-        top: calc(50% - 10px);
-        background: seagreen;
-        overflow: hidden;
-    }
-
-    .add-icon::before {
-        left: 22px;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-    }
-
-    .add-icon::after {
-        right: 22px;
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-    }
-
-    .add-btn:hover .add-icon::before {
-        left: 15px;
-        height: 4px;
-        top: calc(50% - 2px);
-    }
-
-    .add-btn:hover .add-icon::after {
-        right: 15px;
-
-        height: 4px;
-        top: calc(50% - 2px);
-    }
 </style>
+<link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/category/category.css')}}">
+
+<script>
+	const routesJS = {
+		'create': '{{ route('categories.create') }}',
+	}
+</script>
 
 @if(Session::has('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -119,16 +28,12 @@ Danh mục
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Quản lý danh mục
-                    <a href="{{ route('categories.create') }}">
-                        <button type="button" class="btn btn-xl btn-outline-primary"><i class="icon-copy fi-plus"></i>Thêm</button>
-                    </a>
-                </h4>
+                <h4><strong>Quản lý danh mục</strong></h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('categories.index')}}">Quản lý danh mục<colgroup></colgroup></a></li>
+                    <li class="breadcrumb-item"><a href="/home">Trang chủ</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Danh mục</span></li>
                 </ol>
             </nav>
         </div>
@@ -138,33 +43,33 @@ Danh mục
     </div>
 </div>
 
-<div class="card-box mb-30">
+<div id="data-list-table" class="card-box mb-30">
+    <div class="pd-20 pb-0 d-none">
+		<h5 id="table-title" class=""><strong>Danh sách danh mục</strong></h5>
+	</div>
     <div class="pd-20">
-        <h4 class="" style="font-size:20px ;">Tất cả sản phẩm</h4>
-    </div>
-    <div class="pb-20">
-        <table class="table hover data-table-export  nowrap" id="myTable">
+        <table class="table table-bordered table-small hover nowrap w-100" id="data-table-export-2" data-order="[]">
             <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Tên danh mục</th>
-                    <th>Hình ảnh</th>
-                    <!-- <th>Trạng thái</th> -->
-                    <th>Danh mục cha</th>
-                    <th>Ngày thêm</th>
-                    <th>Cập nhật lần cuối</th>
-                    <th>Action</th>
+                <tr class="thead-light">
+                    <th scope="col">#</th>
+                    <th scope="col">Tên danh mục</th>
+                    <th scope="col">Hình ảnh</th>
+                    <!-- <th scope="col">Trạng thái</th> -->
+                    <th scope="col">Danh mục cha</th>
+                    <th scope="col">Ngày thêm</th>
+                    <th scope="col">Cập nhật lần cuối</th>
+                    <th scope="col" class="datatable-nosort" style="width: 15%;">Tuỳ chọn</th>
                 </tr>
             </thead>
             <tbody>
-
                 @foreach($categories as $category)
                 <tr>
-                    <th scope="row">{{$category->id}}</th>
+                    <td scope="row"><strong>{{$category->id}}</strong></td>
                     <td>{{$category->category_name}}</td>
                     <td class="table-plus">
-                        <img src="/upload/category/{{ $category->category_image }}" width="45px" height="45px" alt="">
-                    </td>
+                        <!-- <img src="/upload/category/{{ $category->category_image }}" width="45px" height="45px" alt="">
+						-->
+					</td>
                     <!-- @if ($category->category_status ==1)
                     <td><span class="badge badge-pill" style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
 
@@ -177,13 +82,52 @@ Danh mục
                     <td>{{$category->parent_id != null ? $category->parent_id : '...'}}</td>
                     <td>{{$category->created_at != null ? $category->created_at : '...'}}</td>
                     <td>{{$category->updated_at != null ? $category->updated_at : '...'}}</td>
-                    <td>
-                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-default">Edit</a>
-                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger action_delete">Delete</a>
+                    <td style="width: 15%;">
+						<a href="#" data-target="#exampleModalCenter{{$category->id}}" class="droupdow-item btn btn-dark" data-toggle="modal">
+							<span class="dw dw-eye"></span>
+						</a>
+                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-dark">
+							<span class="dw dw-edit2"></span>
+						</a>
+                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger">
+							<span class="dw dw-delete-3"></span>
+						</a>
+					</td>
+                </tr>
+                @endforeach
+@foreach($categories as $category)
+                <tr>
+                    <td scope="row"><strong>{{$category->id}}</strong></td>
+                    <td>{{$category->category_name}}</td>
+                    <td class="table-plus">
+                        <!-- <img src="/upload/category/{{ $category->category_image }}" width="45px" height="45px" alt="">
+						-->
+					</td>
+                    <!-- @if ($category->category_status ==1)
+                    <td><span class="badge badge-pill" style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
+
+                    @elseif($category->category_status ==2)
+                    <td><span class="badge badge-pill" style="color: #6e1212; background-color: rgb(231, 235, 245);">Chờ phê duyệt </span></td>
+                    @else
+                    <td><span class="badge badge-pill" style="color: red; background-color: rgb(231, 235, 245);">Ẩn</span></td>
+                    @endif
+                    <td>{{$category->category_status}}</td> -->
+                    <td>{{$category->parent_id != null ? $category->parent_id : '...'}}</td>
+                    <td>{{$category->created_at != null ? $category->created_at : '...'}}</td>
+                    <td>{{$category->updated_at != null ? $category->updated_at : '...'}}</td>
+                    <td style="width: 15%;">
+						<a href="#" data-target="#exampleModalCenter{{$category->id}}" class="droupdow-item btn btn-dark" data-toggle="modal">
+							<span class="dw dw-eye"></span>
+						</a>
+                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-dark">
+							<span class="dw dw-edit2"></span>
+						</a>
+                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger">
+							<span class="dw dw-delete-3"></span>
+						</a>
                     </td>
                 </tr>
                 @endforeach
-
             </tbody>
         </table>
     </div>

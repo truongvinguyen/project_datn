@@ -2388,7 +2388,8 @@ body.IE .register-page-wrap .container {
 }
 
 .main-container {
-    padding: 79px 10px 2px 245px;
+    /* padding: 79px 10px 2px 245px; */
+    padding: calc(79px + 2rem) 10px 2px 245px;
 }
 
 .page-header .dropdown-menu {
