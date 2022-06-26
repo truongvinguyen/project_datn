@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/core.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/icon-font.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/dataTables.searchHighlight.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/style.css')}}">
 
@@ -47,6 +48,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/app.css')}}">
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -434,10 +437,11 @@
     <script src="{{asset('admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/responsive.bootstrap4.min.js')}}"></script>
+	<script src="{{asset('admin/src/plugins/datatables/js/jquery.highlight.js')}}"></script>
+	<script src="{{asset('admin/src/plugins/datatables/js/dataTables.searchHighlight.min.js')}}"></script>
     <script src="{{asset('admin/vendors/scripts/dashboard.js')}}"></script>
     <script src="{{asset('admin/vendors/scripts/advanced-components.js')}}"></script>
     <script src="{{asset('admin/src/plugins/switchery/switchery.min.js')}}"></script>
-
     <script src="{{asset('admin/src/plugins/datatables/js/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/buttons.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/buttons.print.min.js')}}"></script>

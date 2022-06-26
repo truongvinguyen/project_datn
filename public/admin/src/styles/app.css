@@ -16,3 +16,25 @@
 	top: -50rem;
 	background: transparent;
 }
+
+table.dataTable span.highlight {
+	position: relative;
+	background-color: transparent !important;
+	border-radius: 0.28571429rem;
+	z-index: 1;
+}
+table.dataTable span.highlight::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: .25;
+	background-color: var(--primary) !important;
+	border-radius: .2rem;
+	z-index: -1;
+}
+
+table.dataTable span.column_highlight {
+	background-color: transparent !imporrtant;
+	border-radius: .2rem;
+}

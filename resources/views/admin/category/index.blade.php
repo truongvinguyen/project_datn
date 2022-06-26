@@ -7,8 +7,13 @@ Danh mục
 
 <style>
 </style>
-<link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/app.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/category/category.css')}}">
+
+<script>
+	const routesJS = {
+		'create': '{{ route('categories.create') }}',
+	}
+</script>
 
 @if(Session::has('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -23,16 +28,12 @@ Danh mục
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Quản lý danh mục
-                    <a href="{{ route('categories.create') }}">
-                        <button type="button" class="btn btn-xl btn-outline-primary"><i class="icon-copy fi-plus"></i>Thêm</button>
-                    </a>
-                </h4>
+                <h4><strong>Quản lý danh mục</strong></h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('categories.index')}}">Quản lý danh mục<colgroup></colgroup></a></li>
+                    <li class="breadcrumb-item"><a href="/home">Trang chủ</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Danh mục</span></li>
                 </ol>
             </nav>
         </div>
@@ -46,18 +47,18 @@ Danh mục
     <div class="pd-20 pb-0 d-none">
 		<h5 id="table-title" class=""><strong>Danh sách danh mục</strong></h5>
 	</div>
-    <div class="pd-20 pt-0">
+    <div class="pd-20">
         <table class="table table-bordered table-small hover nowrap w-100" id="data-table-export-2" data-order="[]">
             <thead>
                 <tr class="thead-light">
-                    <th scope="col" class="datatable-nosort">#</th>
+                    <th scope="col">#</th>
                     <th scope="col">Tên danh mục</th>
                     <th scope="col">Hình ảnh</th>
                     <!-- <th scope="col">Trạng thái</th> -->
                     <th scope="col">Danh mục cha</th>
                     <th scope="col">Ngày thêm</th>
                     <th scope="col">Cập nhật lần cuối</th>
-                    <th scope="col" class="datatable-nosort">Action</th>
+                    <th scope="col" class="datatable-nosort" style="width: 15%;">Tuỳ chọn</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,10 +82,17 @@ Danh mục
                     <td>{{$category->parent_id != null ? $category->parent_id : '...'}}</td>
                     <td>{{$category->created_at != null ? $category->created_at : '...'}}</td>
                     <td>{{$category->updated_at != null ? $category->updated_at : '...'}}</td>
-                    <td>
-                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-dark"><span class="dw dw-edit2"></span></a>
-                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger"><span class="dw dw-delete-3"></span></a>
-                    </td>
+                    <td style="width: 15%;">
+						<a href="#" data-target="#exampleModalCenter{{$category->id}}" class="droupdow-item btn btn-dark" data-toggle="modal">
+							<span class="dw dw-eye"></span>
+						</a>
+                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-dark">
+							<span class="dw dw-edit2"></span>
+						</a>
+                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger">
+							<span class="dw dw-delete-3"></span>
+						</a>
+					</td>
                 </tr>
                 @endforeach
 @foreach($categories as $category)
@@ -107,9 +115,16 @@ Danh mục
                     <td>{{$category->parent_id != null ? $category->parent_id : '...'}}</td>
                     <td>{{$category->created_at != null ? $category->created_at : '...'}}</td>
                     <td>{{$category->updated_at != null ? $category->updated_at : '...'}}</td>
-                    <td>
-                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-dark"><span class="dw dw-edit2"></span></a>
-                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger"><span class="dw dw-delete-3"></span></a>
+                    <td style="width: 15%;">
+						<a href="#" data-target="#exampleModalCenter{{$category->id}}" class="droupdow-item btn btn-dark" data-toggle="modal">
+							<span class="dw dw-eye"></span>
+						</a>
+                        <a href="{{ route('categories.edit', ['id' => $category->id]) }}" class="btn btn-dark">
+							<span class="dw dw-edit2"></span>
+						</a>
+                        <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger">
+							<span class="dw dw-delete-3"></span>
+						</a>
                     </td>
                 </tr>
                 @endforeach

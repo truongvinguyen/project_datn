@@ -1,3 +1,7 @@
+
+const firstSpaceDetect = new RegExp(/^\s+/),
+	multiSpaceDetect = new RegExp(/\s{2,}/, 'g')
+
 $('document').ready(function(){
 	$('.data-table').DataTable({
 		scrollCollapse: true,
@@ -56,6 +60,7 @@ $('document').ready(function(){
 		// }
 	// })
 	let thisDataTable2 = $('#data-table-export-2').DataTable({
+		searchHighlight: true,
 		fixedHeader: {
 			header: true
 		},
@@ -73,18 +78,19 @@ $('document').ready(function(){
 		"lengthMenu": [[10, 25, 50, 75, 100, 150, 200], [10, 25, 50, 75, 100, 150, 200]],
 		"language": {
 			"info": "_START_-_END_ của _TOTAL_ mục",
-			// search: 'Tìm kiếm',
-			// searchPlaceholder: '',
+			search: '',
+			searchPlaceholder: 'Tìm kiếm',
 			"lengthMenu": "Hiển thị&ensp;_MENU_&ensp;mục",
+			"zeroRecords": "Không có dữ liệu",
 			paginate: {
 				next: '<i class="ion-chevron-right"></i>',
 				previous: '<i class="ion-chevron-left"></i>'
 			}
 		},
 		dom:
-			`<"#fixed-toolbar.row pb-20 pt-20"
-				<"#custom-tools.col-8 d-flex justify-content-start"f>
-				<"col-4 d-flex justify-content-end"<B>>
+			`<"#fixed-toolbar.row"
+				<"#custom-tools.col-md-8 col-sm-12 d-flex justify-content-start pb-20"f>
+				<"col-md-4 col-sm-12 d-flex justify-content-end pb-20"<"mr-20"B><"#btn-add-2">>
 			>
 			<rt>
 			<"row pt-20"
@@ -99,25 +105,41 @@ $('document').ready(function(){
 			$('.dataTables_scroll').addClass('w-100')
 			$('.dataTables_scrollBody').addClass('overlayScrollBar')
 			$('.dataTables_scrollHead').addClass('overlayHeaderScrollBar')
+			$('#custom-tools').html(`
+				<div class="mr-20">
+					<input type="text" id="search-input-2" class="form-control form-control-sm" placeholder="Tìm kiếm" aria-controls="myTable">
+				</div>
+				<div>
+					<button type="button" id="btn-reset-2" class="btn btn-dark"><span class="dw dw-refresh1"></span></button>
+				</div>
+			`)
+			$('#search-input-2').on('input', (e) => {
+				e.target.value = e.target.value.replace(firstSpaceDetect, '').replace(multiSpaceDetect, ' ')
+				
+				let body = $(thisDataTable2.table().body()),
+					nullValDetect = new RegExp(/^\.{1,3}$/)
+				thisDataTable2.search(e.target.value.match(nullValDetect)
+					? thisDataTable2.search(null).draw()
+					: e.target.value
+				).draw()
+				
+				body.unhighlight()
+				body.highlight(thisDataTable2.page.info().pages && e.target.value)
+			})
+			$('#btn-reset-2').on('click', (e) => {
+				$('#search-input-2').val('')
+				thisDataTable2.search('').draw()
+				thisDataTable2.page.len(10).draw()
+				thisDataTable2.columns().order([]).draw()
+			})
+			//	console.log(routesJS)
+			$('#btn-add-2').html(`
+				<a href="${routesJS?.create || '#'}" class="btn btn-xl btn-primary">
+					<i class="fa fa-plus-circle"></i>&ensp;Thêm mới
+				</a>
+			`)
 		}
 	})
-	
-	$('#custom-tools').html(`
-		<form class="form-inline">
-			<input type="text" id="search-input-2" class="form-control form-control-sm mr-20" placeholder="Tìm kiếm" aria-controls="myTable">
-			<button type="button" id="btn-reset-2" class="btn btn-dark"><span class="dw dw-refresh1"></span></button>
-		</form>
-	`)
-	$('#search-input-2').on('input', (e) => {
-		thisDataTable2.search(e.target.value).draw()
-	})
-	$('#btn-reset-2').on('click', (e) => {
-		$('#search-input-2').val('')
-		thisDataTable2.search('').draw()
-		thisDataTable2.page.len(10).draw()
-		thisDataTable2.columns().order([]).draw()
-	})
-	
 	
 	var table = $('.select-row').DataTable();
 	$('.select-row tbody').on('click', 'tr', function () {
