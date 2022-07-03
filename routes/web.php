@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\ArticleController;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -100,3 +102,12 @@ Route::get('/cart/view-cart',[App\Http\Controllers\CartController::class,'showCa
 Route::get('/delete-list-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_list_cart'])->name('');
 Route::get('/delete-all-cart',[App\Http\Controllers\CartController::class,'delete_all_cart'])->name('');
 Route::get('/save-cart-item/{id}/{quanty}',[App\Http\Controllers\CartController::class,'save_cart'])->name('');
+
+// login
+// Route::get('kich-hoat', [HomeController::class, 'getAcctiveAccount'])->name('getAcctiveAccount');
+Route::get('dang-ky', [HomeController::class, "getRegister"])->name('dang-ky');
+Route::post('dang-ky', [HomeController::class, "postRegister"])->name('submit-dang-ky');
+Route::post('kich-hoat', [HomeController::class, "postActive"])->name('active');
+// Route::get('kich-hoat', function(){
+//     return view('client.account.active');
+// });
