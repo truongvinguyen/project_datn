@@ -34,3 +34,7 @@ Route::put('product/{id}', function(Request $request ,$id) {
     return $product;
 });
 
+Route::prefix('home')->name('product')->group(function () {
+    Route::get('', [App\Http\Controllers\showDataController::class, 'product'])->name(''); 
+    Route::get('{id}', [App\Http\Controllers\showDataController::class, 'product_by_id'])->name('index');
+});
