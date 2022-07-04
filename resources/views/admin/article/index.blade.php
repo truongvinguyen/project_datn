@@ -8,7 +8,11 @@ Bài viết
 @section('content')
 <!-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/modal.css')}}"> -->
 
-
+<script>
+	const routesJS = {
+		'create': '{{ route('articles.create') }}',
+	}
+</script>
 <style>
     /* From uiverse.io by @mrhyddenn */
     .icon-btn {
@@ -141,12 +145,12 @@ Bài viết
     </div>
 </div>
 
-<div class="card-box mb-30">
+<div id="data-list-table" class="card-box mb-30">
     <div class="pd-20">
         <h4 class="" style="font-size:20px ;">Tất cả bài viết</h4>
     </div>
-    <div class="pb-20">
-        <table class="table hover data-table-export  nowrap" id="myTable">
+    <div class="pd-20">
+        <table class="table table-bordered table-small hover nowrap w-100" id="data-table-export-2" data-order="[]">
             <thead>
                 <tr>
                     <th class="col-1">Id</th>

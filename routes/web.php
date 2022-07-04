@@ -101,3 +101,8 @@ Route::get('/cart/view-cart',[App\Http\Controllers\CartController::class,'showCa
 Route::get('/delete-list-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_list_cart'])->name('');
 Route::get('/delete-all-cart',[App\Http\Controllers\CartController::class,'delete_all_cart'])->name('');
 Route::get('/save-cart-item/{id}/{quanty}',[App\Http\Controllers\CartController::class,'save_cart'])->name('');
+
+Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('');
+Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
+Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');
+Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');

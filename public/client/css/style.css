@@ -1603,6 +1603,23 @@ ul#cart-sidebar {
 	top: 0;
 	z-index: 1;
 }
+
+.qty-sold-label {
+	background: none repeat scroll 0 0 #fe0100;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 400;
+	right: 0;
+	line-height: 22px;
+	margin: 0;
+	padding: 0 5px;
+	position: absolute;
+	text-align: center;
+	text-transform: uppercase;
+	bottom: 0;
+	z-index: 1;
+}
+
 .icon-new-label {
 	background: none repeat scroll 0 0 #337ab7;
 	color: #fff;
@@ -2619,6 +2636,43 @@ article.jtv-entry {
 .jtv-banner-box .image>a {
 	float: left;
 }
+
+
+ .btn-best-selling {
+	background-color: rgba(0, 0, 0, 0.5);
+	line-height: inherit;
+	position: absolute;
+    bottom: -20px; 
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	opacity: 0;
+	-moz-transform: translateY(-20px);
+	-webkit-transform: translateY(-20px);
+	-o-transform: translateY(-20px);
+	-ms-transform: translateY(-20px);
+	transform: translateY(-20px);
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	-webkit-transition: all 0.4s ease;
+}
+
+.btn-best-selling .item-title{
+	margin-top: 10%;
+}
+.btn-best-selling:hover{
+	opacity: 1;
+}
+
+.special-product{
+	color: white;
+}
+.special-product-title{
+	font-weight: bolder;
+	font-size: 16px;
+}
 /* Home Banner CMS */
 .jtv-banner1 {
 	overflow: hidden;
@@ -3486,15 +3540,16 @@ button.subscribe:before {
 }
 .social ul.inline-mode li a {
 	border: 0px solid #666;
-	border-radius: 0px;
-	color: #fff;
-	font-size: 14px;
-	height: 36px;
-	line-height: 36px;
-	width: 36px;
-	display: inline-block;
-	text-align: center;
-	border-radius: 0px;
+    border-radius: 0px;
+    color: #fff;
+    font-size: 14px;
+    height: 34px;
+    line-height: 95px;
+    width: 36px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 35px;
+    padding-top: 10px;
 }
 .social .fb a:hover, .social .tw a:hover, .social .googleplus a:hover, .social .rss a:hover, .social .instagram a:hover, .social .linkedin a:hover {
 	background: #CF3341;
@@ -3543,7 +3598,8 @@ button.subscribe:before {
 }
 .payment {
 	margin-top: 10px;
-margin-bottom:10px display: inline-block;
+	margin-bottom:10px;
+	display: inline-block;
 	width: 100%;
 	text-align: right;
 }
@@ -4290,6 +4346,16 @@ h2.saider-bar-title {
 	margin-bottom: 14px;
 	padding-bottom: 5px
 }
+
+.brand{
+	display: grid;
+	float: left;
+}
+
+.li-brand{
+	margin: 5px auto;
+}
+
 /*24.5 shop by*/
 .shop-by-side {
 	margin-bottom: 15px
@@ -4746,7 +4812,13 @@ ul.products-list .sale-left {
 .old-price {
 	display: inline-block;
 	margin-right: 10px;
-	vertical-align: bottom;
+	text-decoration: line-through;
+	/* vertical-align: bottom; */
+}
+.qty-sold {
+	display: inline-block;
+	margin-right: 10px;
+	color: darkslategray;
 }
 .old-price .price-label {
 	color: #777777;
@@ -4757,7 +4829,7 @@ ul.products-list .sale-left {
 	color: #777777;
 	font-size: 14px;
 	font-weight: normal;
-	text-decoration: line-through;
+	/* text-decoration: line-through; */
 	margin-left: 6px
 }
 .special-price {

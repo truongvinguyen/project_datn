@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon  -->
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="client/image/x-icon" href="favicon.ico">
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
@@ -111,7 +111,7 @@
                                 <div class="mm-toggle"> <i class="fa fa-align-justify"></i><span
                                         class="mm-label">Menu</span> </div>
                             </div>
-                            <div class="logo"><a title="e-commerce" href="index.html"><img alt="e-commerce"
+                            <div class="logo"><a title="e-commerce" href="/home-page"><img alt="e-commerce"
                                         style="width:30%;" src="/client/images/logo.png"></a> </div>
                         </div>
                         <div class="col-lg-4 col-sm-4 col-xs-12 top-cart">
@@ -147,9 +147,8 @@
                             <div class="col-md-12">
                                 <div class="main-menu">
                                     <ul class="hidden-xs">
-                                        <li class="active custom-menu"><a href="index.html">Trang chủ</a></li>
-                                        <li class="megamenu"><a href="shop_grid.html">Sản phẩm <span
-                                                    class="menu-item-tag menu-item-tag-new">mới</span></a></li>
+                                        <li class="active custom-menu"><a href="/home-page">Trang chủ</a></li>
+                                        <li class="megamenu"><a href="/product-grid">Sản phẩm <span class="menu-item-tag menu-item-tag-new">mới</span></a></li>
                                         <li class="custom-menu"><a href="blog.html">Bài viết</a></li>
                                         <li><a href="contact_us.html">Về chúng tôi</a></li>
                                         <li><a href="contact_us.html">Liên hệ</a></li>
@@ -210,8 +209,8 @@
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
-                        <div class="footer-logo"><a href="index.html"><img style="width: 50%;"
-                                    src="images/footer-logo.png" alt="fotter logo"></a> </div>
+                        <div class="footer-logo"><a href="/home-page"><img style="width: 50%;"
+                                    src="client/images/footer-logo.png" alt="fotter logo"></a> </div>
                         <div class="footer-content">
                             <div class="email"> <i class="fa fa-envelope"></i>
                                 <p>
@@ -279,12 +278,10 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="payment">
                                 <ul>
-                                    <li><a href="#"><img title="Visa" alt="Visa" src="images/visa.png"></a></li>
-                                    <li><a href="#"><img title="Paypal" alt="Paypal" src="images/paypal.png"></a></li>
-                                    <li><a href="#"><img title="Discover" alt="Discover" src="images/discover.png"></a>
-                                    </li>
-                                    <li><a href="#"><img title="Master Card" alt="Master Card"
-                                                src="images/master-card.png"></a></li>
+                                    <li><a href="#"><img title="Visa" alt="Visa" src="client/images/visa.png"></a></li>
+                                    <li><a href="#"><img title="Paypal" alt="Paypal" src="client/images/paypal.png"></a></li>
+                                    <li><a href="#"><img title="Discover" alt="Discover" src="client/images/discover.png"></a></li>
+                                    <li><a href="#"><img title="Master Card" alt="Master Card"src="client/images/master-card.png"></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -293,8 +290,15 @@
             </div>
         </footer>
         <a href="#" id="back-to-top" title="Back to top"><i class="fa fa-angle-up"></i></a>
-        <!-- End Footer -->
-
+        <div id="modal-quickview" class="modal fade" role="dialog">
+            <div class="modal-dialog" style="width: 1035px !important; border-radius: 10px; padding: 10px;height: 510px;">
+                <div id="show-modal-quickview">
+                    <div class="container d-flex justify-content-center align-items-center">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="modal-cart" class="modal modal-right fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -363,156 +367,16 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+       
 
-        <!--Newsletter Popup Start -->
-        <div id="myModal" class="modal fade">
-            <div class="modal-dialog newsletter-popup">
-                <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <div class="modal-body">
-                        <h2 class="modal-title">bản tin</h2>
-                        <form id="newsletter-form" method="post" action="#">
-                            <div class="content-subscribe">
-                                <div class="form-subscribe-header">
-                                    <label>Đăng ký ngay để nhận thông tin cập nhật về chiết khấu & phiếu thưởng</label>
-                                </div>
-                                <div class="input-box">
-                                    <input type="text" class="input-text newsletter-subscribe"
-                                        title="Sign up for our newsletter" name="email"
-                                        placeholder="Nhập địa chỉ email của bạn">
-                                </div>
-                                <div class="actions">
-                                    <button class="button-subscribe" title="Subscribe" type="submit">đăng ký
-                                        ngay</button>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="subscribe-bottom">
-                            <input name="notshowpopup" id="notshowpopup" type="checkbox">
-                            Không hiển thị lại cửa sổ bật lên này
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End of Newsletter Popup-->
-
-        <div id="modal-quickview" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-body">
-                    <button type="button" class="close myclose" data-dismiss="modal">×</button>
-                    <div class="product-view-area">
-                        <div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
-                            <div class="icon-sale-label sale-left">Sale</div>
-                            <div class="slider-items-products">
-                                <div id="previews-list-slider" class="product-flexslider hidden-buttons">
-                                    <div class="slider-items slider-width-col6"> <a href="images/products/img03.jpg"
-                                            class="cloud-zoom-gallery" id="zoom1"> <img class="zoom-img"
-                                                src="images/products/img03.jpg" alt="products"> </a> <a
-                                            href='images/products/img01.jpg' class="cloud-zoom-gallery"><img
-                                                src="images/products/img01.jpg" alt="Thumbnail 2" /></a> <a
-                                            href='images/products/img07.jpg' class="cloud-zoom-gallery"><img
-                                                src="images/products/img07.jpg" alt="Thumbnail 1" /></a> <a
-                                            href='images/products/img02.jpg' class="cloud-zoom-gallery"><img
-                                                src="images/products/img02.jpg" alt="Thumbnail 1" /></a> <a
-                                            href='images/products/img04.jpg' class="cloud-zoom-gallery"><img
-                                                src="images/products/img04.jpg" alt="Thumbnail 2" /></a> </div>
-                                </div>
-                            </div>
-
-                            <!-- end: more-images -->
-
-                        </div>
-                        <div class="col-xs-12 col-sm-7 col-lg-7 col-md-7 product-details-area">
-                            <div class="product-name">
-                                <h2>AIR FORCE 1</h2>
-                            </div>
-                            <div class="price-box">
-                                <p class="special-price"> <span class="price-label">Giá đặt biệt:</span> <span
-                                        class="price"> ₫299.00 </span> </p>
-                                <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">
-                                        ₫399.00 </span> </p>
-                            </div>
-                            <div class="ratings">
-                                <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div> -->
-                                <p class="rating-links"> <a href="#">1 đánh giá(s)</a> <span class="separator">|</span>
-                                    <a href="#">Thêm đánh giá</a>
-                                </p>
-                                <p class="availability in-stock pull-right">Tình trạng: <span>Còn hàng</span></p>
-                            </div>
-                            <div class="short-description">
-                                <h3>Mô tả</h3>
-                                <p>Nike Air Force 1 Ra mắt vào năm 1982 bởi nhà thiết kế Bruce Kilgore, ngay lập tức mẫu
-                                    giày Nike Air Force 1 (AF1) đã trở thành một ‘hit’ mạnh trên khắp thế giới khi ‘sold
-                                    out’ ngay trong ngày đầu trình làng.
-                                </p>
-                            </div>
-                            <div class="product-color-size-area">
-                                <!-- <div class="color-area">
-                <h2 class="saider-bar-title">Màu</h2>
-                <div class="color">
-                  <ul>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                  </ul>
-                </div>
-              </div> -->
-                                <div class="size-area">
-                                    <h2 class="saider-bar-title">Size</h2>
-                                    <div class="size">
-                                        <ul>
-                                            <li><a href="#">S</a></li>
-                                            <li><a href="#">L</a></li>
-                                            <li><a href="#">M</a></li>
-                                            <li><a href="#">XL</a></li>
-                                            <li><a href="#">XXL</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-variation">
-                                <form action="#" method="post">
-                                    <div class="cart-plus-minus">
-                                        <label for="qty">Số lượng:</label>
-                                        <div class="numbers-row">
-                                            <div onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;"
-                                                class="dec qtybutton"><i class="fa fa-minus">&nbsp;</i></div>
-                                            <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="qty"
-                                                name="qty">
-                                            <div onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;"
-                                                class="inc qtybutton"><i class="fa fa-plus">&nbsp;</i></div>
-                                        </div>
-                                    </div>
-                                    <button class="button pro-add-to-cart" title="Add to Cart" type="button"><span><i
-                                                class="fa fa-shopping-cart"></i>Thêm vào giỏ</span></button>
-                                </form>
-                            </div>
-                            <div class="product-cart-option">
-                                <ul>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i><span>Thêm vào yêu
-                                                thích</span></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i><span>So sánh</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer"> <a href="#" class="btn-services-shop-now" data-dismiss="modal">Close</a>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- mobile menu -->
     <div id="jtv-mobile-menu" class="jtv-mobile-menu">
         <ul>
-            <li><a href="index.html"><img alt="e-commerce" src="images/logo-mobile.png"></a></li>
-            <li><a href="index.html">Trang chủ</a></li>
-            <li><a href="shop_grid.html">Sản phẩm</a></li>
+            <li><a href="/home-page"><img alt="e-commerce" src="images/logo-mobile.png"></a></li>
+            <li><a href="/home-page">Trang chủ</a></li>
+            <li><a href="/product-list">Sản phẩm</a></li>
             <li><a href="shop_grid.html">Bài viết</a></li>
             <li><a href="shop_grid.html">Về chúng tôi</a></li>
             <li><a href="shop_grid.html">Liên hệ</a></li>
@@ -538,6 +402,8 @@
     <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/jquery.nivo.slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/cart.js')}}"></script>
+    <script src="{{ asset('/client/js/home-page.js') }}"></script>
+    
     <script type='text/javascript'>
         jQuery(document).ready(function () {
             jQuery('#rev_slider_6').show().revolution({
@@ -625,45 +491,7 @@
         var iid1 = "countbox_1";
         CountBack_slider(gsecs1, "countbox_1", 1);
     </script>
-    <script>
-    //     function addtocart(id) {
-    //         let quantity = $("#quantity").val();
-    //         let inventory = $(".inventory").val();
-    //         if (quantity > inventory) {
-    //             alert("sản phẩm vượt quá hàng tồn kho");
-    //         } else {
-    //             $.ajax({
-    //                 url: {{ '/add-to-cart/'}} +id + '/' + $("#quantity").val(),
-    //                     type: 'get',		
-    //                 }).done(function (response) {
-    //                         renderCart(response);
-    //                         alertify.notify('Thêm vào giỏ hàng thành công.', 'custom', 2,);
-    //                     });
-    //     $('.js-panel-cart').addClass('show-header-cart')
-    //     let showinventory = inventory - quantity;
-    //     console.log(showinventory)
-    //     document.getElementById('showqty').innerHTML = showinventory;
-    //     document.getElementById('showinventory').setAttribute('value', showinventory);
-    //             }
-    //         }
-
-
-    //     function deleteCart(id) {
-    //         $.ajax({
-    //             url: {{ '/delete-item-cart/'}} + id,
-    //                 type: 'GET',
-    //     }).done(function (response) {
-    //                     renderCart(response);
-    //                     alertify.warning('Đã xóa sản phẩm khỏi giỏ hàng');
-    //                 });
-    // };
-    //     function renderCart(response) {
-    //         $("#showcart").empty();
-    //         $("#showcart").html(response);
-    //         let qtyshow = $("#totalqtyshow").val();
-    //         document.getElementById("showqtycart").innerHTML = qtyshow;
-    //     }
-    </script>
+    
 </body>
 
 <!-- Mirrored from htmlgenius.justthemevalley.com/Version2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Jun 2022 11:24:35 GMT -->
