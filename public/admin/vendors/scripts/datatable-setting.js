@@ -89,8 +89,8 @@ $('document').ready(function(){
 		},
 		dom:
 			`<"#fixed-toolbar.row"
-				<"#custom-tools.col-md-8 col-sm-12 d-flex justify-content-start pb-20"f>
-				<"col-md-4 col-sm-12 d-flex justify-content-end pb-20"<"mr-20"B><"#btn-add-2">>
+				<"#custom-tools.col-md-6 col-sm-12 d-flex justify-content-start pb-20"f>
+				<"col-md-6 col-sm-12 d-flex justify-content-end pb-20"<"mr-20"B><"#btn-add-2">>
 			>
 			<rt>
 			<"row pt-20"

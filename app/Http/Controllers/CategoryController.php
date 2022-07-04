@@ -25,6 +25,11 @@ class CategoryController extends Controller
         // $categories = $this->category->latest()->paginate(50);
         return (view('admin.category.index', compact('categories')));
     }
+    public function detail(){
+        $categories = $this->category;
+ 
+        return (view('admin.category.detail', compact('categories')));
+    }
     public function create()
     {
         $category = category::all();
