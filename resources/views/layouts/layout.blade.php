@@ -87,8 +87,7 @@
         }
     </style>
     <script>
-        alertify.notify('{{Session::get('
-            success ')}}', 'custom', 2,
+        alertify.message('{{Session::get('success')}}', 'custom', 2,
             function() {
                 console.log('dismissed');
             });
@@ -105,7 +104,7 @@
     </style>
     <script>
         alertify.notify('{{Session::get('
-            errors ')}}', 'custom', 2,
+            errors')}}', 'custom', 2,
             function() {
                 console.log('dismissed');
             });

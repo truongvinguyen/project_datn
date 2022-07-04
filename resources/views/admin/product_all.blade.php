@@ -105,7 +105,13 @@ Sản phẩm
   top: calc(50% - 2px);
 }
 </style>
+<link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/category/category.css')}}">
 
+<script>
+	const routesJS = {
+		'create': '/add-new-product',
+	}
+</script>
 
 <div class="page-header">
     <div class="row">
@@ -131,12 +137,12 @@ Sản phẩm
     </div>
 </div>
 
-<div class="card-box mb-30">
-    <div class="pd-20">
+<div id="data-list-table" class="card-box mb-30">
+    <div class="pd-20 d-none">
         <h4 class="" style="font-size:20px ;">Tất cả sản phẩm</h4>
     </div>
-    <div class="pb-20">
-        <table class="table hover data-table-export  nowrap" id="myTable">
+    <div class="pd-20">
+        <table class="table hover nowrap w-100" id="data-table-export-2" data-order="[]">
             <thead>
                 <tr>
                     <th></th>
@@ -147,7 +153,6 @@ Sản phẩm
                     <th>Giá KM<span class="text-danger">(Giá bán)</span></th>
                     <th>Ẩn/Hiện</th>
                     <th>Loại</th>
-
                     <th class="datatable-nosort">Tùy chọn</th>
                 </tr>
             </thead>

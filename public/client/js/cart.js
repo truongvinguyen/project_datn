@@ -45,6 +45,7 @@ function upDateCart(id){
 
 //render trong view cart
 function renderListCart(response) {
+    renderCart()
     $("#show-list-cart").empty();
     $("#show-list-cart").html(response);
     let qtyshow = $("#totalqtyshow").val();

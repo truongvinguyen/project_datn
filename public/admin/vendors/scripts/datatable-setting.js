@@ -115,7 +115,7 @@ $('document').ready(function(){
 			`)
 			$('#search-input-2').on('input', (e) => {
 				e.target.value = e.target.value.replace(firstSpaceDetect, '').replace(multiSpaceDetect, ' ')
-				
+				console.log(e.target.value)
 				let body = $(thisDataTable2.table().body()),
 					nullValDetect = new RegExp(/^\.{1,3}$/)
 				thisDataTable2.search(e.target.value.match(nullValDetect)

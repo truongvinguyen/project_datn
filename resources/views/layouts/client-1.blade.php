@@ -303,7 +303,7 @@
                                 aria-hidden="true">×</span></button>
                         <h4 class="modal-title">Giỏ của bạn</h4>
                     </div>
-                    <div id="showcart">
+                    <div id="showcart" style="height: 100%;">
                         @if(Session::has('cart') != null)
                         <div class="modal-body" style="height:85%;">
 
