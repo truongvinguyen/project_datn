@@ -105,11 +105,6 @@ Thương hiệu
         top: calc(50% - 2px);
     }
 </style>
-<script>
-	const routesJS = {
-		'create': '{{ route('brands.create') }}',
-	}
-</script>
 @if(Session::has('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>{{Session::get('success')}}</strong>
@@ -148,7 +143,7 @@ Thương hiệu
         <h4 class="" style="font-size:20px ;">Tất cả sản phẩm</h4>
     </div>
     <div class="pd-20">
-        <table class="table table-bordered table-small hover nowrap w-100" id="data-table-export-2" data-order="[]">
+        <table class="table table-bordered table-small hover nowrap w-100" id="data-table-export-2" data-create-route="{{ route('brands.create') }}" data-order="[]">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -168,9 +163,9 @@ Thương hiệu
                     <th scope="row">{{$brand->id}}</th>
                     <td>{{$brand->brand_name}}</td>
                     <td class="table-plus">
-                        <img src="/upload/brand/{{ $brand->brand_image }}" width="45px" height="45px" alt="">
+                        <img src="{{ _IMAGE::BRAND . $brand->brand_image }}" width="45px" height="45px" alt="">
                     </td>
-                    
+
                     <td>{{$brand->brand_description}}</td>
                     <td>{{$brand->created_at != null ? $brand->created_at : '...'}}</td>
                     <td>{{$brand->updated_at != null ? $brand->updated_at : '...'}}</td>

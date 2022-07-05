@@ -134,7 +134,7 @@ let thisDataTable2 = $('#data-table-export-2').DataTable({
 		})
 		//	console.log(routesJS)
 		$('#btn-add-2').html(`
-			<a href="${routesJS?.create || '#'}" class="btn btn-xl btn-primary">
+			<a href="${$('#data-table-export-2').data('create-route') || '#'}" class="btn btn-xl btn-primary">
 				<i class="fa fa-plus-circle"></i>&ensp;Thêm mới
 			</a>
 		`)

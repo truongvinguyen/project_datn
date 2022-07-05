@@ -8,11 +8,6 @@ Bài viết
 @section('content')
 <!-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/modal.css')}}"> -->
 
-<script>
-	const routesJS = {
-		'create': '{{ route('articles.create') }}',
-	}
-</script>
 <style>
     /* From uiverse.io by @mrhyddenn */
     .icon-btn {
@@ -150,7 +145,7 @@ Bài viết
         <h4 class="" style="font-size:20px ;">Tất cả bài viết</h4>
     </div>
     <div class="pd-20">
-        <table class="table table-bordered table-small hover nowrap w-100" id="data-table-export-2" data-order="[]">
+        <table class="table table-bordered table-small hover nowrap w-100" id="data-table-export-2" data-create-route="{{ route('articles.create') }}" data-order="[]">
             <thead>
                 <tr>
                     <th class="col-1">Id</th>
@@ -167,15 +162,15 @@ Bài viết
                 @foreach($articles as $article)
                 <tr>
                     <th scope="row">{{$article->id}}</th>
-                    <td >{{strlen($article->article_title) > 50 ? mb_strimwidth($article->article_title, 0, 50, '...') : $article->article_title}}</td>
+                    <td>{{strlen($article->article_title) > 50 ? mb_strimwidth($article->article_title, 0, 50, '...') : $article->article_title}}</td>
                     <td class="table-plus">
-                        <img src="/upload/article/{{ $article->article_thumbnail }}" width="45px" height="45px" alt="">
+                        <img src="{{ _IMAGE::ARTICLE . $article->article_thumbnail }}" width="45px" height="45px" alt="">
                     </td>
                     <!-- <td>{{$article->article_content}}</td> -->
                     <td>{{$article->created_at != null ? $article->created_at : '...'}}</td>
                     <td>{{$article->updated_at != null ? $article->updated_at : '...'}}</td>
                     <td>
-                        <a href="{{ route('articles.edit', ['id' => $article->id]) }}" class="btn btn-default" ><span class="micon dw dw-edit1"></span></a>
+                        <a href="{{ route('articles.edit', ['id' => $article->id]) }}" class="btn btn-default"><span class="micon dw dw-edit1"></span></a>
                         <a href="{{ route('articles.delete', ['id' => $article->id]) }}" class="btn btn-danger "><span class="micon dw dw-delete-1"></span></a>
                     </td>
                 </tr>

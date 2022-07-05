@@ -27,17 +27,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 //quản lý sản phẩm
-Route::get('add-new-product', [App\Http\Controllers\ProductController::class, 'add_product'])->name('');
-Route::post('save-product', [App\Http\Controllers\ProductController::class, 'save_product'])->name('');
-Route::get('edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('');
-Route::post('/save-edit-product/{id}', [App\Http\Controllers\ProductController::class, 'edit_save'])->name('');
-Route::get('/product-detail/{id}-{product_name}', [App\Http\Controllers\ProductController::class, 'product_detail'])->name('');
-Route::get('/delete-product/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('');
-Route::get('product', [App\Http\Controllers\ProductController::class, 'index'])->name('');
+Route::get('add-new-product', [App\Http\Controllers\ProductController::class, 'add_product'])->name('products.create');
+Route::post('save-product', [App\Http\Controllers\ProductController::class, 'save_product'])->name('products.store');
+Route::get('edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+Route::post('/save-edit-product/{id}', [App\Http\Controllers\ProductController::class, 'edit_save'])->name('products.update');
+Route::get('/product-detail/{id}-{product_name}', [App\Http\Controllers\ProductController::class, 'product_detail'])->name('products.detail');
+Route::get('/delete-product/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('products.delete');
+Route::get('product', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
 //end quản lý sản phẩm
 
 
-//tồm kho
+//tồn kho
 Route::get('/view-inventory/{product_id}-{product_name}', [App\Http\Controllers\inventoryController::class, 'index'])->name('');
 Route::post('/add-new-inventory', [App\Http\Controllers\inventoryController::class, 'add_new_inventory'])->name('');
 Route::post('/update-inventory/{id}', [App\Http\Controllers\inventoryController::class, 'update_inventory'])->name('');
@@ -59,29 +59,28 @@ Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('detail', [CategoryController::class, 'detail'])->name('categories.detail');
     Route::get('create', [CategoryController::class, 'create'])->name('categories.create');
-    Route::post('store', [CategoryController::class, 'store'])->name('categories.store');   
-    Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');   
+    Route::post('store', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::post('update/{id}', [CategoryController::class, 'update'])->name('categories.update');
-    Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete'); 
-    
+    Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
 });
 //thương hiệu
 Route::prefix('brands')->group(function () {
     Route::get('/', [BrandController::class, 'index'])->name('brands.index');
     Route::get('create', [BrandController::class, 'create'])->name('brands.create');
-    Route::post('store', [BrandController::class, 'store'])->name('brands.store'); 
-    Route::get('edit/{id}', [BrandController::class, 'edit'])->name('brands.edit');   
+    Route::post('store', [BrandController::class, 'store'])->name('brands.store');
+    Route::get('edit/{id}', [BrandController::class, 'edit'])->name('brands.edit');
     Route::post('update/{id}', [BrandController::class, 'update'])->name('brands.update');
-    Route::get('delete/{id}', [BrandController::class, 'delete'])->name('brands.delete');   
+    Route::get('delete/{id}', [BrandController::class, 'delete'])->name('brands.delete');
 });
 //bài viết
 Route::prefix('articles')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
     Route::get('create', [ArticleController::class, 'create'])->name('articles.create');
-    Route::post('store', [ArticleController::class, 'store'])->name('articles.store');    
-    Route::get('edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit'); 
-    Route::post('update/{id}', [ArticleController::class, 'update'])->name('articles.update');  
-    Route::get('delete/{id}', [ArticleController::class, 'delete'])->name('articles.delete');   
+    Route::post('store', [ArticleController::class, 'store'])->name('articles.store');
+    Route::get('edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::post('update/{id}', [ArticleController::class, 'update'])->name('articles.update');
+    Route::get('delete/{id}', [ArticleController::class, 'delete'])->name('articles.delete');
 });
 //layout
 
@@ -95,12 +94,12 @@ Route::get('/layout', function () {
 Route::get('product-detail/{id}', [App\Http\Controllers\productDetail::class, 'index'])->name('');
 
 //giỏ hàng
-Route::get('/add-to-cart/{id}/{quantity}',[App\Http\Controllers\CartController::class,'add_to_cart'])->name('');
-Route::get('/delete-item-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_cart'])->name('');
-Route::get('/cart/view-cart',[App\Http\Controllers\CartController::class,'showCart'])->name('cart.viewcart');
-Route::get('/delete-list-cart/{id}',[App\Http\Controllers\CartController::class,'delete_item_list_cart'])->name('');
-Route::get('/delete-all-cart',[App\Http\Controllers\CartController::class,'delete_all_cart'])->name('');
-Route::get('/save-cart-item/{id}/{quanty}',[App\Http\Controllers\CartController::class,'save_cart'])->name('');
+Route::get('/add-to-cart/{id}/{quantity}', [App\Http\Controllers\CartController::class, 'add_to_cart'])->name('');
+Route::get('/delete-item-cart/{id}', [App\Http\Controllers\CartController::class, 'delete_item_cart'])->name('');
+Route::get('/cart/view-cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('cart.viewcart');
+Route::get('/delete-list-cart/{id}', [App\Http\Controllers\CartController::class, 'delete_item_list_cart'])->name('');
+Route::get('/delete-all-cart', [App\Http\Controllers\CartController::class, 'delete_all_cart'])->name('');
+Route::get('/save-cart-item/{id}/{quanty}', [App\Http\Controllers\CartController::class, 'save_cart'])->name('');
 
 Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('');
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');

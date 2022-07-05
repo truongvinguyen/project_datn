@@ -8,119 +8,113 @@ Sản phẩm
 
 <style>
     /* From uiverse.io by @mrhyddenn */
-.icon-btn {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #cdcdcd;
-  background: white;
-  border-radius: 25px;
-  overflow: hidden;
-  position: relative;
-  transition: width 0.2s ease-in-out;
-  font-weight: 500;
-  font-family: inherit;
-}
+    .icon-btn {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #cdcdcd;
+        background: white;
+        border-radius: 25px;
+        overflow: hidden;
+        position: relative;
+        transition: width 0.2s ease-in-out;
+        font-weight: 500;
+        font-family: inherit;
+    }
 
-.add-btn:hover {
-  width: 120px;
-}
+    .add-btn:hover {
+        width: 120px;
+    }
 
-.add-btn::before,
-.add-btn::after {
-  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-  content: "";
-  position: absolute;
-  height: 4px;
-  width: 10px;
-  top: calc(50% - 2px);
-  background: seagreen;
-}
+    .add-btn::before,
+    .add-btn::after {
+        transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+        content: "";
+        position: absolute;
+        height: 4px;
+        width: 10px;
+        top: calc(50% - 2px);
+        background: seagreen;
+    }
 
-.add-btn::after {
-  right: 14px;
-  overflow: hidden;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
+    .add-btn::after {
+        right: 14px;
+        overflow: hidden;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+    }
 
-.add-btn::before {
-  left: 14px;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
+    .add-btn::before {
+        left: 14px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
 
-.icon-btn:focus {
-  outline: none;
-}
+    .icon-btn:focus {
+        outline: none;
+    }
 
-.btn-txt {
-  opacity: 0;
-  transition: opacity 0.2s;
-}
+    .btn-txt {
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
 
-.add-btn:hover::before,
-.add-btn:hover::after {
-  width: 4px;
-  border-radius: 2px;
-}
+    .add-btn:hover::before,
+    .add-btn:hover::after {
+        width: 4px;
+        border-radius: 2px;
+    }
 
-.add-btn:hover .btn-txt {
-  opacity: 1;
-}
+    .add-btn:hover .btn-txt {
+        opacity: 1;
+    }
 
-.add-icon::after,
-.add-icon::before {
-  transition: all 0.2s ease-in-out;
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 2px;
-  top: calc(50% - 10px);
-  background: seagreen;
-  overflow: hidden;
-}
+    .add-icon::after,
+    .add-icon::before {
+        transition: all 0.2s ease-in-out;
+        content: "";
+        position: absolute;
+        height: 20px;
+        width: 2px;
+        top: calc(50% - 10px);
+        background: seagreen;
+        overflow: hidden;
+    }
 
-.add-icon::before {
-  left: 22px;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
+    .add-icon::before {
+        left: 22px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
 
-.add-icon::after {
-  right: 22px;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
+    .add-icon::after {
+        right: 22px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+    }
 
-.add-btn:hover .add-icon::before {
-  left: 15px;
-  height: 4px;
-  top: calc(50% - 2px);
-}
+    .add-btn:hover .add-icon::before {
+        left: 15px;
+        height: 4px;
+        top: calc(50% - 2px);
+    }
 
-.add-btn:hover .add-icon::after {
-  right: 15px;
+    .add-btn:hover .add-icon::after {
+        right: 15px;
 
-  height: 4px;
-  top: calc(50% - 2px);
-}
+        height: 4px;
+        top: calc(50% - 2px);
+    }
 </style>
 <link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/category/category.css')}}">
-
-<script>
-	const routesJS = {
-		'create': '/add-new-product',
-	}
-</script>
 
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
                 <h4>Quản lý sản phẩm
-                    <a href="/add-new-product" >
+                    <a href="/add-new-product">
                         <button type="button" class="btn btn-xl btn-outline-primary"><i class="icon-copy fi-plus"></i>Thêm</button>
-                       
+
                     </a>
                 </h4>
             </div>
@@ -142,7 +136,7 @@ Sản phẩm
         <h4 class="" style="font-size:20px ;">Tất cả sản phẩm</h4>
     </div>
     <div class="pd-20">
-        <table class="table hover nowrap w-100" id="data-table-export-2" data-order="[]">
+        <table class="table hover nowrap w-100" id="data-table-export-2" data-create-route="{{ route('products.create') }}" data-order="[]">
             <thead>
                 <tr>
                     <th></th>
@@ -173,11 +167,9 @@ Sản phẩm
                     <td>{{number_format($item->product_price_sale)}}</td>
                     <td class="text-danger">{{number_format($item->product_price)}}</td>
                     @if ($item->product_status ==1)
-                    <td><span class="badge badge-pill"
-                            style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
+                    <td><span class="badge badge-pill" style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>
                     @else
-                    <td><span class="badge badge-pill"
-                            style="color: red; background-color: rgb(231, 235, 245);">Ẩn</span></td>
+                    <td><span class="badge badge-pill" style="color: red; background-color: rgb(231, 235, 245);">Ẩn</span></td>
                     @endif
                     <td>{{$item->category_name}}</td>
                     <td class=" text-right">
@@ -187,27 +179,19 @@ Sản phẩm
                                 <i class="dw dw-more"></i>
                             </a> -->
                             <!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"> -->
-                            <a class="droupdow-item product-item btn btn-dark " data-toggle="modal"
-                                data-target="#exampleModalCenter{{$item->id}}" href="#"><i class="dw dw-eye"></i>
+                            <a class="droupdow-item product-item btn btn-dark " data-toggle="modal" data-target="#exampleModalCenter{{$item->id}}" href="#"><i class="dw dw-eye"></i>
                                 Xem chi
                                 tiết 1</a>
-                            <a class="droupdow-item product-item btn btn-dark"
-                                href="product-detail/{{$item->id}}-<?php echo str_replace(" ","-",$item->product_name);
-                                ?>"><i class="dw dw-eye"></i>
+                            <a class="droupdow-item product-item btn btn-dark" href="product-detail/{{$item->id}}-<?php echo str_replace(" ", "-", $item->product_name);
+                                                                                                                    ?>"><i class="dw dw-eye"></i>
                                 Xem chi
                                 tiết 2</a>
-                            <a class="item product-item btn btn-dark"
-                                href="/view-inventory/{{$item->id}}-<?php echo str_replace(" ","-",$item->product_name); ?>"><i class="dw dw-eye"></i> Xem
+                            <a class="item product-item btn btn-dark" href="/view-inventory/{{$item->id}}-<?php echo str_replace(" ", "-", $item->product_name); ?>"><i class="dw dw-eye"></i> Xem
                                 kho</a>
-                            <a class="item product-item btn btn-dark" href="/edit/{{$item->id}}"><i
-                                    class="dw dw-edit2"></i> Chỉnh
+                            <a class="item product-item btn btn-dark" href="/edit/{{$item->id}}"><i class="dw dw-edit2"></i> Chỉnh
                                 sửa</a>
-                            <a class="item product-item btn btn-dark" href="#" data-toggle="modal"
-                                data-target="#confirmation-modal{{$item->id}}"><i class="dw dw-delete-3"
-                                    data-toggle="modal" data-target="#confirmation-modal{{$item->id}}"></i> Xóa</a>
-                            <a class="item product-item btn btn-dark"
-                                href="/add-image-product/{{$item->id}}/for={{$item->product_name}}"><i
-                                    class="dw dw-image" aria-hidden="true"></i>
+                            <a class="item product-item btn btn-dark" href="#" data-toggle="modal" data-target="#confirmation-modal{{$item->id}}"><i class="dw dw-delete-3" data-toggle="modal" data-target="#confirmation-modal{{$item->id}}"></i> Xóa</a>
+                            <a class="item product-item btn btn-dark" href="/add-image-product/{{$item->id}}/for={{$item->product_name}}"><i class="dw dw-image" aria-hidden="true"></i>
                                 </i>Thêm hình ảnh</a>
                             <!-- </div> -->
                         </div>
@@ -229,14 +213,11 @@ Sản phẩm
                         kho)</h4>
                     <div class="padding-bottom-30 row" style="max-width: 170px; margin: 0 auto;">
                         <div class="col-6">
-                            <button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
-                                data-dismiss="modal"><i class="fa fa-times"></i></button>
+                            <button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>
                             Hủy
                         </div>
                         <div class="col-6">
-                            <a href="/delete-product/{{$item->id}}" type="button"
-                                class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"><i
-                                    class="fa fa-check"></i></a>
+                            <a href="/delete-product/{{$item->id}}" type="button" class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"><i class="fa fa-check"></i></a>
                             Có
                         </div>
                     </div>
@@ -248,13 +229,11 @@ Sản phẩm
 @endforeach
 
 @foreach($product as $item)
-<div class="modal fade" id="exampleModalCenter{{$item->id}}" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close d-flex align-items-center justify-content-center"
-                    data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="fa fa-times text-dark"></span>
                 </button>
             </div>
@@ -264,18 +243,13 @@ Sản phẩm
                         <div class="col-md-6">
                             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carouselExampleIndicators"
-                                        data-bs-slide-to="0" class="active" aria-current="true"
-                                        aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carouselExampleIndicators"
-                                        data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carouselExampleIndicators"
-                                        data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                                 </div>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="/upload/product/{{$item->product_image}}" class="d-block w-100"
-                                            alt="...">
+                                        <img src="/upload/product/{{$item->product_image}}" class="d-block w-100" alt="...">
                                     </div>
                                     @foreach($image as $item2)
                                     @if($item2->product_id == $item->id)
@@ -286,13 +260,11 @@ Sản phẩm
                                     @endforeach
 
                                 </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                 </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
