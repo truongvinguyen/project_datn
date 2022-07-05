@@ -67,8 +67,7 @@
                             <td scope="row"><strong>{{ $category->id }}</strong></td>
                             <td>{{ $category->category_name }}</td>
                             <td class="table-plus">
-                                <!-- <img src="/upload/category/{{ $category->category_image }}" width="45px" height="45px" alt="">
-                  -->
+                                <img src="{{ _IMAGE::CATEGORY }}{{ $category->category_image }}" width="45px" height="45px" alt="">
                             </td>
                             <!-- @if ($category->category_status == 1)
     <td><span class="badge badge-pill" style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);">Hiện</span></td>

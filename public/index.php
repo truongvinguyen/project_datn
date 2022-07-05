@@ -53,3 +53,11 @@ $response = $kernel->handle(
 )->send();
 
 $kernel->terminate($request, $response);
+
+/*
+|--------------------------------------------------------------------------
+| Including Custom Global Constants
+|--------------------------------------------------------------------------
+|
+*/
+include_once '../config/global/constants.php';
