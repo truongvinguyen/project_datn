@@ -19,6 +19,7 @@ class showDataController extends Controller
     public function home_page(){
 
         $data = new product();
+        
         $best_product = $data->products();
         $products = $data::all();
         // return compact('new_product');
