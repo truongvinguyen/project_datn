@@ -39,28 +39,22 @@
                 </p>
             </div>
             <div class="product-color-size-area">
-                <!-- <div class="color-area">
-            <h2 class="saider-bar-title">Màu</h2>
-            <div class="color">
-              <ul>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-              </ul>
-            </div>
-          </div> -->
+                <div class="color-area">
+                    <h2 class="saider-bar-title">Màu</h2>
+                    <div class="">
+                        <ul>
+                            <li><a href="" id="showqty"> vui lòng chọn kích thước</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
                 <div class="size-area">
                     <h2 class="saider-bar-title">Size</h2>
                     <div class="size">
-                        <ul>
-                            <li><a href="#">S</a></li>
-                            <li><a href="#">L</a></li>
-                            <li><a href="#">M</a></li>
-                            <li><a href="#">XL</a></li>
-                            <li><a href="#">XXL</a></li>
+                        <ul> 
+                            @foreach($size as $item3)
+                            <li><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -70,14 +64,15 @@
                     <div class="cart-plus-minus">
                         <label for="qty">Số lượng:</label>
                         <div class="numbers-row">
-                            <div onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;"
+                            <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;"
                                 class="dec qtybutton"><i class="fa fa-minus">&nbsp;</i></div>
-                            <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
-                            <div onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;"
+                            <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="quantity" name="qty">
+                            <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;"
                                 class="inc qtybutton"><i class="fa fa-plus">&nbsp;</i></div>
                         </div>
                     </div>
-                    <button class="button pro-add-to-cart" title="Add to Cart" type="button"><span><i
+                    <input type="hidden" id="showinventory" class="inventory" value="">
+                    <button onclick="addtocart(id)" class="button pro-add-to-cart addtocart" id="" title="Add to Cart" type="button"><span><i
                                 class="fa fa-shopping-cart"></i>Thêm vào giỏ</span></button>
                 </form>
             </div>

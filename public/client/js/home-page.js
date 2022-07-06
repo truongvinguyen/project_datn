@@ -67,17 +67,10 @@ fetch(url)
                     <div class="item-content">
                       <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div> -->
                       <div class="price-box">
-                        <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">${numberFormat.format(product.product_price_sale)}</span> </p>
-                        <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">${numberFormat.format(product.product_price)} </span> </p>
+                        <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">${numberFormat.format(product.product_price)}</span> </p>
+                        <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price"> ${numberFormat.format(product.product_price_sale)} </span> </p>
                         <p class="old-price" style="width:40%;float:right;"> <span class="price-label">Đã bán:</span> <span class="qty-sold"> Đã bán: ${product.qty_sold} </span> </p>
                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="box-hover">
-                  <div class="product-item-actions">
-                    <div class="pro-actions">
-                      <button onclick="location.href='shopping_cart.html'" class="action add-to-cart" type="button" title="Add to Cart"> <span>Thêm vào giỏ</span> </button>
                     </div>
                   </div>
                 </div>
@@ -197,13 +190,19 @@ function productById($id){
     })
 }
 function quickviewProduct(id){
-    $.ajax({
-      url: `/quickview/${id}`,
-      type: 'GET',
-    }).done(function (response) {
-      $("#show-modal-quickview").empty();
-      $("#show-modal-quickview").html(response);
-      
-    });
+ document.getElementById('show-modal-quickview').innerHTML=` <div class="container d-flex justify-content-center align-items-center">
+ <div class="spinner"></div>
+</div>`;
+
+ setTimeout(() =>
+      $.ajax({
+        url: `/quickview/${id}`,
+        type: 'GET',
+      }).done(function (response) {
+        $("#show-modal-quickview").empty();
+        $("#show-modal-quickview").html(response); 
+      })
+ ,550)
+
 }
   

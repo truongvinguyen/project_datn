@@ -118,13 +118,7 @@ Trang Chủ
                         </div>
                       </div>
                     </div>
-                    <div class="box-hover">
-                      <div class="product-item-actions">
-                        <div class="pro-actions">
-                          <button onclick="location.href='shopping_cart.html'" class="action add-to-cart" type="button" title="Add to Cart"> <span>Thêm vào giỏ</span> </button>
-                        </div>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -167,13 +161,6 @@ Trang Chủ
                           <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price)}}₫</span></p> 
                             <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">&nbsp;{{number_format($product->product_price_sale)}}₫</span> </p>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="box-hover">
-                      <div class="product-item-actions">
-                        <div class="pro-actions">
-                          <button onclick="location.href='shopping_cart.html'" class="action add-to-cart" type="button" title="Add to Cart"> <span>Thêm vào giỏ</span> </button>
                         </div>
                       </div>
                     </div>

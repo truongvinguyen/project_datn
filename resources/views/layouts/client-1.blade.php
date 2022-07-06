@@ -147,7 +147,7 @@
                             <div class="col-md-12">
                                 <div class="main-menu">
                                     <ul class="hidden-xs">
-                                        <li class="active custom-menu"><a href="/home-page">Trang chủ</a></li>
+                                        <li class="active custom-menu"><a href="/">Trang chủ</a></li>
                                         <li class="megamenu"><a href="/product-grid">Sản phẩm <span class="menu-item-tag menu-item-tag-new">mới</span></a></li>
                                         <li class="custom-menu"><a href="blog.html">Bài viết</a></li>
                                         <li><a href="contact_us.html">Về chúng tôi</a></li>
@@ -291,11 +291,9 @@
         </footer>
         <a href="#" id="back-to-top" title="Back to top"><i class="fa fa-angle-up"></i></a>
         <div id="modal-quickview" class="modal fade" role="dialog">
-            <div class="modal-dialog" style="width: 1035px !important; border-radius: 10px; padding: 10px;height: 510px;">
+            <div class="modal-dialog" style="width: 1035px !important; border-radius: 10px; padding: 10px;height: 550px;">
                 <div id="show-modal-quickview">
-                    <div class="container d-flex justify-content-center align-items-center">
-                        <div class="spinner"></div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
