@@ -21,13 +21,13 @@
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" /></head>
 
 <body class="cms-index-index cms-home-page">
 
-    <!--[if lt IE 8]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+    <div id="toast">
+        
+    </div>
 
     <div id="page">
 
@@ -305,7 +305,7 @@
                                 aria-hidden="true">×</span></button>
                         <h4 class="modal-title">Giỏ của bạn</h4>
                     </div>
-                    <div id="showcart">
+                    <div id="showcart" style="height: 720px">
                         @if(Session::has('cart') != null)
                         <div class="modal-body" style="height:85%;">
 
@@ -400,6 +400,7 @@
     <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/jquery.nivo.slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/cart.js')}}"></script>
+    <script type="text/javascript" src="{{asset('client/js/toast.js')}}"></script>
     <script src="{{ asset('/client/js/home-page.js') }}"></script>
     
     <script type='text/javascript'>

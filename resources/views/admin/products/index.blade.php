@@ -182,13 +182,12 @@ Sản phẩm
                             <a class="droupdow-item product-item btn btn-dark " data-toggle="modal" data-target="#exampleModalCenter{{$item->id}}" href="#"><i class="dw dw-eye"></i>
                                 Xem chi
                                 tiết 1</a>
-                            <a class="droupdow-item product-item btn btn-dark" href="product-detail/{{$item->id}}-<?php echo str_replace(" ", "-", $item->product_name);
-                                                                                                                    ?>"><i class="dw dw-eye"></i>
+                            <a class="droupdow-item product-item btn btn-dark" href="{{ route('products.show', ['id'=>$item->id]) }}"><i class="dw dw-eye"></i>
                                 Xem chi
                                 tiết 2</a>
                             <a class="item product-item btn btn-dark" href="/view-inventory/{{$item->id}}-<?php echo str_replace(" ", "-", $item->product_name); ?>"><i class="dw dw-eye"></i> Xem
                                 kho</a>
-                            <a class="item product-item btn btn-dark" href="/edit/{{$item->id}}"><i class="dw dw-edit2"></i> Chỉnh
+                            <a class="item product-item btn btn-dark" href="{{ route('products.edit', ['id'=>$item->id]) }}"><i class="dw dw-edit2"></i> Chỉnh
                                 sửa</a>
                             <a class="item product-item btn btn-dark" href="#" data-toggle="modal" data-target="#confirmation-modal{{$item->id}}"><i class="dw dw-delete-3" data-toggle="modal" data-target="#confirmation-modal{{$item->id}}"></i> Xóa</a>
                             <a class="item product-item btn btn-dark" href="/add-image-product/{{$item->id}}/for={{$item->product_name}}"><i class="dw dw-image" aria-hidden="true"></i>
@@ -217,7 +216,7 @@ Sản phẩm
                             Hủy
                         </div>
                         <div class="col-6">
-                            <a href="/delete-product/{{$item->id}}" type="button" class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"><i class="fa fa-check"></i></a>
+                            <a href="{{ route('products.delete', ['id'=>$item->id]) }}" type="button" class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"><i class="fa fa-check"></i></a>
                             Có
                         </div>
                     </div>
