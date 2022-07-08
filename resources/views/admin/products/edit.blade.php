@@ -23,7 +23,7 @@ Cập nhật sản phẩm
     </div>
 </div>
 <div class="pd-20 card-box mb-30">
-    <form action="/save-edit-product/{{$product->id}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('products.update', ['id'=>$product->id]) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="clearfix">
 

@@ -394,8 +394,8 @@
                             <i class="" aria-hidden="true"></i>
                         </a>
                         <ul class="submenu">
-                            <li><a href="/product">Quản lý sản phẩm</a></li>
-                            <li><a href="/add-new-product">Thêm sản phẩm</a></li>
+                            <li><a href="{{ route('products.index') }}">Quản lý sản phẩm</a></li>
+                            <li><a href="{{ route('products.create') }}">Thêm sản phẩm</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

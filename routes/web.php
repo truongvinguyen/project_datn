@@ -26,15 +26,15 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//quản lý sản phẩm
-Route::get('add-new-product', [App\Http\Controllers\ProductController::class, 'add_product'])->name('products.create');
-Route::post('save-product', [App\Http\Controllers\ProductController::class, 'save_product'])->name('products.store');
-Route::get('edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
-Route::post('/save-edit-product/{id}', [App\Http\Controllers\ProductController::class, 'edit_save'])->name('products.update');
-Route::get('/product-detail/{id}-{product_name}', [App\Http\Controllers\ProductController::class, 'product_detail'])->name('products.detail');
-Route::get('/delete-product/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('products.delete');
-Route::get('product', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
-//end quản lý sản phẩm
+Route::prefix('admin/products')->group(function () {
+    Route::get('/create', [App\Http\Controllers\ProductController::class, 'add_product'])->name('products.create');
+    Route::post('/store', [App\Http\Controllers\ProductController::class, 'save_product'])->name('products.store');
+    Route::get('edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+    Route::post('/update/{id}', [App\Http\Controllers\ProductController::class, 'edit_save'])->name('products.update');
+    Route::get('/show/{id}', [App\Http\Controllers\ProductController::class, 'product_detail'])->name('products.show');
+    Route::get('/delete-product/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('products.delete');
+    Route::get('/', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+});
 
 
 //tồn kho
