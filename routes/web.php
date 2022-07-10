@@ -55,32 +55,34 @@ Route::post('/delete-image-product', [App\Http\Controllers\imageProductControlle
 //end thành viên
 
 //danh mục
-Route::prefix('categories')->group(function () {
-    Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
-    Route::get('detail', [CategoryController::class, 'detail'])->name('categories.detail');
-    Route::get('create', [CategoryController::class, 'create'])->name('categories.create');
-    Route::post('store', [CategoryController::class, 'store'])->name('categories.store');
-    Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-    Route::post('update/{id}', [CategoryController::class, 'update'])->name('categories.update');
-    Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+Route::prefix('categories')->name('categories.')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('index');
+    Route::get('detail/{id}', [CategoryController::class, 'detail'])->name('detail');
+    Route::get('create', [CategoryController::class, 'create'])->name('create');
+    Route::post('store', [CategoryController::class, 'store'])->name('store');
+    Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [CategoryController::class, 'update'])->name('update');
+    Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('delete');
 });
 //thương hiệu
-Route::prefix('brands')->group(function () {
-    Route::get('/', [BrandController::class, 'index'])->name('brands.index');
-    Route::get('create', [BrandController::class, 'create'])->name('brands.create');
-    Route::post('store', [BrandController::class, 'store'])->name('brands.store');
-    Route::get('edit/{id}', [BrandController::class, 'edit'])->name('brands.edit');
-    Route::post('update/{id}', [BrandController::class, 'update'])->name('brands.update');
-    Route::get('delete/{id}', [BrandController::class, 'delete'])->name('brands.delete');
+Route::prefix('brands')->name('brands.')->group(function () {
+    Route::get('/', [BrandController::class, 'index'])->name('index');
+    Route::get('detail/{id}', [BrandController::class, 'detail'])->name('detail');
+    Route::get('create', [BrandController::class, 'create'])->name('create');
+    Route::post('store', [BrandController::class, 'store'])->name('store');
+    Route::get('edit/{id}', [BrandController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [BrandController::class, 'update'])->name('update');
+    Route::get('delete/{id}', [BrandController::class, 'delete'])->name('delete');
 });
 //bài viết
-Route::prefix('articles')->group(function () {
-    Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
-    Route::get('create', [ArticleController::class, 'create'])->name('articles.create');
-    Route::post('store', [ArticleController::class, 'store'])->name('articles.store');
-    Route::get('edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
-    Route::post('update/{id}', [ArticleController::class, 'update'])->name('articles.update');
-    Route::get('delete/{id}', [ArticleController::class, 'delete'])->name('articles.delete');
+Route::prefix('articles')->name('articles.')->group(function () {
+    Route::get('/', [ArticleController::class, 'index'])->name('index');
+    Route::get('detail/{id}', [ArticleController::class, 'detail'])->name('detail');
+    Route::get('create', [ArticleController::class, 'create'])->name('create');
+    Route::post('store', [ArticleController::class, 'store'])->name('store');
+    Route::get('edit/{id}', [ArticleController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [ArticleController::class, 'update'])->name('update');
+    Route::get('delete/{id}', [ArticleController::class, 'delete'])->name('delete');
 });
 //layout
 

@@ -16,7 +16,7 @@ use _IMAGE;
 class CategoryController extends Controller
 {
     private $category;
-    public function __construct(Category $category)
+    public function __construct(category $category)
     {
         $this->category = $category;
     }

@@ -23,14 +23,33 @@ Danh mục
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4><strong>Quản lý danh mục</strong></h4>
+                <h4><strong>Quản lý danh mục</strong>
+                    <button type="button" data-api="{{ route('api.categories.index', []) }}" onClick="getCategories(this)" class="btn btn-outline-info">
+                        Test API
+                    </button>
+                </h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                    <li class="test-api"></li>
+                </ol>
+            </nav>
+            <!-- <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home">Trang chủ</a></li>
                     <li class="breadcrumb-item active text-muted" aria-current="page"><span>Danh mục</span></li>
                 </ol>
-            </nav>
+            </nav> -->
         </div>
         <div class="col-md-6 col-sm-12 text-right">
 
@@ -177,4 +196,6 @@ Danh mục
         </div>
     </div>
 </div>
+
+<script src="{{ asset('admin/src/js/category.js') }}"></script>
 @endsection
