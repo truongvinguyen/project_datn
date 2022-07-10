@@ -23,7 +23,7 @@ const getCategories = async (target) => {
             // });
             console.log(response[0])
             $.map($(`.test-api`), function (node, index) {
-                $(node).html(response[0][index] + ' ')
+                $(node).html(response[0]['category_description'] + ' ')
             });
             // $(`.test-api`)
             // console.log('AJAX: ')
