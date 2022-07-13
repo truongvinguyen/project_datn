@@ -23,7 +23,12 @@ Danh mục
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4><strong>Quản lý danh mục</strong></h4>
+                <h4><strong>Quản lý danh mục</strong>
+                    <button type="button" data-api="{{ route('api.categories.paginate', [1, 3]) }}" onclick="getCategories(this)" class="btn btn-outline-info">
+                        Test API
+                    </button>
+                    <input type="text" name="searching" id="test-search-api" data-api="{{ route('categories.search', []) }}" data-token="{{ csrf_token() }}" oninput="getSearchedRecords(this)">
+                </h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
@@ -56,7 +61,7 @@ Danh mục
                     <th scope="col" class="datatable-nosort" style="width: 15%;">Tuỳ chọn</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="data-table-tbody">
                 @foreach ($categories as $category)
                 <tr>
                     <td scope="row"><strong>{{ $category->id }}</strong></td>
@@ -177,4 +182,6 @@ Danh mục
         </div>
     </div>
 </div>
+
+<script src="{{ asset('admin/src/js/category.js') }}"></script>
 @endsection

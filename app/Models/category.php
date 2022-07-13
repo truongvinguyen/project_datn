@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+use _IMAGE;
 
 class category extends Model
 {
@@ -42,5 +46,4 @@ class category extends Model
     {
         return $this->belongsTo(User::class, 'employee_id', 'id');
     }
-    
 }
