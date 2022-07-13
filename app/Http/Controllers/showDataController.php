@@ -27,26 +27,18 @@ class showDataController extends Controller
     }
 
     public function product_grid(){
-
-        $data = new category();
-        $categories = $data::all();
-        return view('client.product-grid',compact('categories'));
+        $categories = category::all();
+        $length = product::all()->count();
+        return view('client.product.product-grid',compact('length','categories'));
     }
 
     public function product_list(){
-
-        $data = new category();
-        $categories = $data::all();
-        return view('client.product-list',compact('categories'));
-    }
-
-    public function product_by_id($id){
-
         $data = new product();
-        $product = $data->productsById($id);
-        return  response() ->json($product, 200);
-        
+        $categories = category::all();
+        $length = $data::all()->count();
+        return view('client.product.product-list',compact('length','categories'));
     }
+
     public function quickview (Request $request,$id){
         $data = DB::table('product')
         ->select('*')

@@ -29,11 +29,13 @@ class product extends Model
         
        
     ];
-    public function products (){
+
+    public function products ($offset = 0, $limit = 6){
         $data = DB::table('product')
         ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
         ->groupBy('product_inventory.product_id','product.id','product_name','product_price_sale', 'product_content', 'category_id','product_id','product_price', 'product_image')
-        ->orderBy('qty_sold','DESC')
+        ->orderBy('product.id','ASC')
+        ->offset($offset)->limit($limit)
         ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
         ->get();
         return $data;
@@ -44,6 +46,7 @@ class product extends Model
         ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
         ->groupBy('product_inventory.product_id','product.id','product_name','product_price_sale', 'product_content', 'category_id','product_id','product_price', 'product_image')
         ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
+        ->join('brand', 'product.id', '=', 'brand.product_id')
         ->where('category_id','=', $id)
         ->get();
         return $data;

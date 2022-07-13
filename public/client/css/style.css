@@ -3543,9 +3543,9 @@ button.subscribe:before {
     border-radius: 0px;
     color: #fff;
     font-size: 14px;
-    height: 34px;
-    line-height: 95px;
-    width: 36px;
+    height: 40px;
+    line-height: 20px;
+    width: 40px;
     display: inline-block;
     text-align: center;
     border-radius: 35px;
@@ -3723,6 +3723,33 @@ nav {
 	margin-left: 5px;
 	padding-right: 0px
 }
+
+#pagination-item{
+	border: 1px solid #e0e0e0;
+    color: #363636;
+    font-size: 12px;
+    font-weight: 700;
+    height: 30px;
+    width: 30px;
+    text-decoration: none;
+    border-radius: 0px;
+    transition: all .4s ease-out .2s
+}
+
+#pagination-item:hover {
+    background: #000000;
+    border: 1px solid #000000;
+    color: #fff;
+}
+
+#pagination .active{
+    background: #CF3341;
+    border: 1px solid #CF3341;
+    border-radius: 0px;
+    color: #fff;
+    transition: all .4s ease-out .2s;
+}
+
 .view-mode li.active a {
 	color: #fff;
 	background: #CF3341;
@@ -4720,7 +4747,8 @@ ul.products-list .sale-left {
 .products-list .product-shop p {
 	font-size: 14px;
 	color: #666;
-	line-height: 1.5em
+	line-height: 1.5em;
+	overflow: hidden;
 }
 .products-list .product-shop p.old-price {
 	margin-right: 4px
@@ -4827,8 +4855,8 @@ ul.products-list .sale-left {
 }
 .old-price .price {
 	color: #777777;
-	font-size: 14px;
 	font-weight: normal;
+	
 	/* text-decoration: line-through; */
 	margin-left: 6px
 }

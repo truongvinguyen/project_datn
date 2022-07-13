@@ -162,6 +162,7 @@
         </header>
         @yield('content')
         <!-- Footer -->
+        
         <footer>
             <div class="container">
                 <div class="row">
@@ -372,7 +373,7 @@
     <!-- mobile menu -->
     <div id="jtv-mobile-menu" class="jtv-mobile-menu">
         <ul>
-            <li><a href="/home-page"><img alt="e-commerce" src="images/logo-mobile.png"></a></li>
+            <li><a href="/home-page"><img alt="e-commerce" src="client/images/logo-mobile.png"></a></li>
             <li><a href="/home-page">Trang chủ</a></li>
             <li><a href="/product-list">Sản phẩm</a></li>
             <li><a href="shop_grid.html">Bài viết</a></li>
@@ -401,6 +402,7 @@
     <script type="text/javascript" src="{{asset('client/js/jquery.nivo.slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/cart.js')}}"></script>
     <script src="{{ asset('/client/js/home-page.js') }}"></script>
+    <script src="{{ asset('/client/js/product-list.js') }}"></script>
     
     <script type='text/javascript'>
         jQuery(document).ready(function () {
