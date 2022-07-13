@@ -56,6 +56,9 @@ Route::post('/delete-image-product', [App\Http\Controllers\imageProductControlle
 
 //danh mục
 Route::prefix('categories')->name('categories.')->group(function () {
+    // Fetch
+    Route::post('s/{col?}/{offset?}/{limit?}', [CategoryController::class, 'getSearchedRecords'])->name('search');
+
     Route::get('/', [CategoryController::class, 'index'])->name('index');
     Route::get('detail/{id}', [CategoryController::class, 'detail'])->name('detail');
     Route::get('create', [CategoryController::class, 'create'])->name('create');

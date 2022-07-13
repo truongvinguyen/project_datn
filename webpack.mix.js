@@ -18,5 +18,9 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.browserSync({
     proxy: '127.0.0.1:8000',
+    port: 21050,
+    ui: {
+        port: 21051
+    },
     notify: false
 });

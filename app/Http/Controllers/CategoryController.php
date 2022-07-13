@@ -23,7 +23,8 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->category->orderBy('id', 'desc')->paginate(10);
+        $categories = $this->category->orderBy('id', 'desc')->get();
+        // $categories = $this->category->orderBy('id', 'desc')->paginate(50);
         // $categories = $this->category->latest()->paginate(50);
         return (view('admin.category.index', compact('categories')));
     }
@@ -81,7 +82,7 @@ class CategoryController extends Controller
         if ($request->has('category_image')) {
             $category_image = $request->category_image;
             $file_name = $category_image->getClientOriginalName();
-            $category_image->move(base_path('public/upload/category'), $file_name);
+            $category_image->move(base_path('public' . _IMAGE::CATEGORY), $file_name);
         }
         if (($request->category_slug == '') || ($request->category_name != $categories->category_name)) {
             $request->category_slug = Str::slug($request->category_name);
@@ -105,5 +106,23 @@ class CategoryController extends Controller
         $delete = category::find($id);
         $delete->delete();
         return redirect()->route('categories.index')->withSuccess('Xóa thành công');
+    }
+
+    public function getSearchedRecords(Request $request, String $col = 'category_name', int $offset = 0, int $limit = 10)
+    {
+        // $records = $this->category->getSearchedRecords($request, $col, $offset, $limit);
+
+        $res = category::where($col, 'like', "%$request->where%")->offset($offset)->limit($limit)->get();
+        $records = response()->json($res, 200)->header('Content-Type', 'text/plain');
+        // echo print_r(json_encode($records));
+
+        // foreach ($res as $key => $value) {
+        //     echo $value;
+        // }
+        // return $records;
+        // $records = $res;
+        // // return response()->json($records, 200);
+        return view('admin.category.fetch.records', compact('records'));
+        // return $records;
     }
 }
