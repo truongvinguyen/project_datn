@@ -3,19 +3,28 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Models\category;
-use _IMAGE;
+use _ROLE, _IMAGE, _STATUS;
 
 class CategoryController extends Controller
 {
     private $__category;
+    private $__isAdmin;
+    private $__msg403;
 
     public function __construct(category $category)
     {
         $this->__category = $category;
+        $this->__isAdmin = false;
+        $this->__msgForbidden = response()->error(null, 403);
+
+        if (isset(Auth::user()->user_rule) && Auth::user()->user_rule >= _ROLE::EMPLOYEE) {
+            $this->__isAdmin = Auth::user()->user_rule;
+        }
     }
 
     /**
@@ -51,69 +60,131 @@ class CategoryController extends Controller
 
     public function storeRecord(Request $req)
     {
-        try {
-            $this->validate(request(), [
-                'is_admin' => '',
-                'category_name' => 'required',
-                'employee_id' => 'required'
-            ]);
-            $data = $req;
-
-            // Handling slug
-            $req->whenFilled('category_slug', function () use ($req, $data) {
-                $data->category_slug = Str::slug($req->category_slug);
-            }, function () use ($req, $data) {
-                $data->category_slug = Str::slug($req->category_name);
-            });
-
-            $data->merge([
-                'created_at' => now()
-            ]);
-
-            $res = $this->__category::create($data->input());
-            return response()->json($res, 201);
-        } catch (\Throwable $th) {
-            return response()->error('Bad request', 400);
+        if (!$this->__isAdmin) {
+            return $this->__msgForbidden;
         }
+        $this->validate($req, [
+            'category_name' => 'required',
+            'employee_id' => 'required'
+        ]);
+
+        $data = $req;
+        // Handling slug
+        $req->whenFilled('category_slug', function () use ($req, $data) {
+            $data->category_slug = Str::slug($req->category_slug);
+        }, function () use ($req, $data) {
+            $data->category_slug = Str::slug($req->category_name);
+        });
+        $data->merge([
+            'category_slug' => $data->category_slug,
+            'created_at' => now()
+        ]);
+
+        $res = $this->__category::create($data->input());
+        return response()->json($res, 201);
     }
 
     public function updateRecord(Request $req, int $id)
     {
-        $record = $this->__category::findOrFail($id);
-        $file_name = '';
-        if ($req->has('category_image')) {
-            $image = $req->category_image;
-            $file_name = $image->getClientOriginalName();
-            $image->move(base_path('public' . _IMAGE::CATEGORY), $file_name);
+        if (!$this->__isAdmin) {
+            return $this->__msgForbidden;
         }
-        if (($req->category_slug == '') || ($req->category_name != $record->category_name)) {
-            $req->category_slug = Str::slug($req->category_name);
-        } else {
-            $req->category_slug = Str::slug($req->category_slug);
-        }
+        $this->validate($req, [
+            'category_name' => 'required',
+            'employee_id' => 'required'
+        ]);
 
-        return $req;
-        $record->update([
-            'category_name' => $req->category_name,
-            'parent_id' => $req->parent_id,
-            'employee_id' => $req->employee_id,
-            'category_slug' => $req->category_slug,
-            'category_description' => $req->category_description,
+        $data = $req;
+        $record = category::findOrFail($id);
+        // Handling slug
+        $req->whenFilled('category_slug', function () use ($req, $data, $record) {
+            if ($req->category_name != $record->category_name) {
+                $data->category_slug = Str::slug($req->category_name);
+                return;
+            }
+            $data->category_slug = Str::slug($req->category_slug);
+        }, function () use ($req, $data) {
+            $data->category_slug = Str::slug($req->category_name);
+        });
+
+        $data->merge([
+            'category_slug' => $data->category_slug,
             'updated_at' => now()
         ]);
+        $res = $this->__category::findOrFail($id)->update($data->input());
+        return response()->json($res, 200);
     }
 
     public function uploadImage(Request $req, int $id)
     {
+        if (!$this->__isAdmin) {
+            return $this->__msgForbidden;
+        }
+
         // Handling image file
-        $req->whenHas('category_image', function () use ($req, $data) {
-            $image = $req->category_input_image;
-            $file_name = $image->getClientOriginalName();
-            $image->move(base_path('public' . _IMAGE::CATEGORY), $file_name);
+        $uploaded_name = '';
+        $req->whenHas('category_upload_image', function () use ($req, &$uploaded_name) {
+            $file = $req->category_upload_image;
+            $file_name = $file->getClientOriginalName();
+            $name = pathinfo($file_name, PATHINFO_FILENAME);
+            $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+            $uploaded_name = md5($name) . ".$extension";
+            $file->move(base_path('public' . _IMAGE::CATEGORY), $uploaded_name);
         });
+
+        $res = $this->__category::findOrFail($id)->update(['category_image' => $uploaded_name]);
+        return response()->json($res, 201);
     }
 
-    public function updateImage(Request $req, int $id)
+    public function deleteRecord(Request $req, int $id)
     {
+        if (!$this->__isAdmin || $this->__isAdmin < _ROLE::MANAGER) {
+            return $this->__msgForbidden;
+        }
+        $res = $this->__category::findOrFail($id)->update([
+            'category_status' => _STATUS::DISABLED,
+            'updated_at' => now(),
+            'deleted_at' => now()
+        ]);
+        return response()->json($res, 200);
+    }
+
+    public function restoreRecord(Request $req, int $id)
+    {
+        if (!$this->__isAdmin || $this->__isAdmin < _ROLE::MANAGER) {
+            return $this->__msgForbidden;
+        }
+        $res = $this->__category::findOrFail($id)->update([
+            'category_status' => _STATUS::PENDING,
+            'deleted_at' => null
+        ]);
+        return response()->json($res, 200);
+    }
+
+    public function activateRecord(Request $req, int $id)
+    {
+        if (!$this->__isAdmin || $this->__isAdmin < _ROLE::MANAGER) {
+            return $this->__msgForbidden;
+        }
+        $res = $this->__category::findOrFail($id)->update(['category_status' => _STATUS::ACTIVED]);
+        return response()->json($res, 200);
+    }
+
+    public function disableRecord(Request $req, int $id)
+    {
+        if (!$this->__isAdmin || $this->__isAdmin < _ROLE::MANAGER) {
+            return $this->__msgForbidden;
+        }
+        $res = $this->__category::findOrFail($id)->update(['category_status' => _STATUS::DISABLED]);
+        return response()->json($res, 200);
+    }
+
+    public function destroyRecord(Request $req, int $id)
+    {
+        if (!$this->__isAdmin || $this->__isAdmin < _ROLE::MANAGER) {
+            return $this->__msgForbidden;
+        }
+        $res = $this->__category::findOrFail($id)->delete();
+        return response()->json($res, 200);
     }
 }

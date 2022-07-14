@@ -28,9 +28,9 @@ final class _STATUS
 {
 	public const PENDING = 2;	/*	Chờ được phê duyệt	*/
 	public const ACTIVED = 1;	/*	Hiện (Được kích hoạt)	*/
-	public const INACTIVED = 0;	/*	Ẩn	*/
+	public const DISABLED = 0;	/*	Ẩn	*/
 	public const DELETED = -1;	/*	Đã xoá {*unnecessary}	*/
-	
+
 	public const ACCEPTED = 0;	/*	Được chấp thuận	*/
 	public const REJECTED = 1;	/*	Bị từ chối	*/
 }

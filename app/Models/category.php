@@ -15,17 +15,16 @@ class category extends Model
     public $timestamps = false;
     protected $table = 'category';
     protected $fillable = [
-
         'category_name',
         'parent_id',
         'employee_id',
         'category_slug',
         'category_image',
         'category_description',
+        'category_status',
         'created_at',
-        'updated_at'
-
-
+        'updated_at',
+        'deleted_at'
     ];
 
     // public function parent(){
