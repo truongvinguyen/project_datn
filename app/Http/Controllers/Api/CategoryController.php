@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     private $__category;
     private $__isAdmin;
-    private $__msg403;
+    private $__msgForbidden;
 
     public function __construct(category $category)
     {
