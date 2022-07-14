@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function __construct(category $category)
     {
         $this->__category = $category;
-        $this->__isAdmin = 2;
+        $this->__isAdmin = false;
         $this->__msgForbidden = response()->error(null, 403);
 
         if (isset(Auth::user()->user_rule) && Auth::user()->user_rule >= _ROLE::EMPLOYEE) {
