@@ -24,9 +24,12 @@ Route::controller(CategoryController::class)->prefix('categories')->name('api.ca
     Route::get('detail/{id}', 'getOneRecord')->name('detail');
     Route::post('store', 'storeRecord')->name('store');
     Route::put('update/{id}', 'updateRecord')->name('update');
-    Route::post('updateImage/{id}', 'updateImage')->name('updateImg');
-    Route::put('delete/{id}', 'delete')->name('delete');
-    Route::delete('destroy/{id}', 'destroy')->name('destroy');
+    Route::post('uploadImage/{id}', 'uploadImage')->name('uploadImage');
+    Route::put('delete/{id}', 'deleteRecord')->name('delete');
+    Route::put('restore/{id}', 'restoreRecord')->name('restore');
+    Route::delete('destroy/{id}', 'destroyRecord')->name('destroy');
+    Route::put('activate/{id}', 'activateRecord')->name('activate');
+    Route::put('disable/{id}', 'disableRecord')->name('disable');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
