@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\product;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,13 +48,14 @@ Route::put('product/{id}', function (Request $request, $id) {
     return $product;
 });
 
-Route::prefix('home')->name('product')->group(function () {
-    Route::get('', [App\Http\Controllers\showDataController::class, 'product'])->name('');
-    Route::get('{id}', [App\Http\Controllers\showDataController::class, 'product_by_id'])->name('index');
+Route::controller(ProductController::class)->prefix('products')->name('products')->group(function () {
+    Route::get('/{orderBy?}/{sort?}','qty_sold')->name('');
+    Route::get('/new_product','new_product')->name('');                                 
+   
 });
 
 Route::get('product-list/{offset?}/{limit?}', function($offset = 0, $limit = 6) {
-    $products = product::offset($offset)->limit($limit)->orderBy('id','desc')->get();
+    $products = product::offset($offset)->limit($limit)->qty_sold();
     return view('client.product.productList',compact('products'));
 });
 
