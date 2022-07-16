@@ -23,7 +23,11 @@ Thêm sản phẩm mới
     </div>
 </div>
 <div class="pd-20 card-box mb-30">
+<<<<<<< HEAD
     <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
+=======
+    <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+>>>>>>> 5d282b02e113f954f358a975a9dcda0fbe719530
         @csrf
         <div class="clearfix">
 

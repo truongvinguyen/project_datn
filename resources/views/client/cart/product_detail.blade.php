@@ -3,6 +3,42 @@
 {{$data->product_name}}
 @endsection
 @section('content')
+<style>
+    div.stars {
+    width: 270px;
+    display: inline-block;
+    }
+ 
+    input.star { display: none; }
+    
+    label.star {
+    /* float: right; */
+    padding: 10px;
+    font-size: 36px;
+    color: #444;
+    /* transition: all .2s; */
+    }
+    
+    input.star:checked ~ label.star:before {
+    content: '\f005';
+    color: #FD4;
+    transition: all .25s;
+    }
+    
+    input.star-5:checked ~ label.star:before {
+    color: #FE7;
+    /* text-shadow: 0 0 20px #952; */
+    }
+    
+    input.star-1:checked ~ label.star:before { color: #F62; }
+    
+    /* label.star:hover { transform: rotate(-15deg) scale(1.3); } */
+    
+    label.star:before {
+    content: '\f006';
+    font-family: FontAwesome;
+    }
+</style>
 <div class="breadcrumbs">
     <div class="container">
         <div class="row">
@@ -125,132 +161,35 @@
                       </div>
                     </div>
                     <div id="reviews" class="tab-pane fade">
-                      <div class="col-sm-5 col-lg-5 col-md-5">
-                        <div class="reviews-content-left">
-                          <h2>Customer Reviews</h2>
-                          <div class="review-ratting">
-                            <p><a href="#">Amazing</a> Review by Company</p>
-                            <table>
-                              <tbody>
-                                <tr>
-                                  <th>Price</th>
-                                  <td><div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div></td>
-                                </tr>
-                                <tr>
-                                  <th>Value</th>
-                                  <td><div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div></td>
-                                </tr>
-                                <tr>
-                                  <th>Quality</th>
-                                  <td><div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                            <p class="author"> Angela Mack<small> (Posted on 16/12/2015)</small> </p>
-                          </div>
-                          <div class="review-ratting">
-                            <p><a href="#">Good!!!!!</a> Review by Company</p>
-                            <table>
-                              <tbody>
-                                <tr>
-                                  <th>Price</th>
-                                  <td><div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div></td>
-                                </tr>
-                                <tr>
-                                  <th>Value</th>
-                                  <td><div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div></td>
-                                </tr>
-                                <tr>
-                                  <th>Quality</th>
-                                  <td><div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                            <p class="author"> Lifestyle<small> (Posted on 20/12/2015)</small> </p>
-                          </div>
-                          <div class="review-ratting">
-                            <p><a href="#">Excellent</a> Review by Company</p>
-                            <table>
-                              <tbody>
-                                <tr>
-                                  <th>Price</th>
-                                  <td><div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div></td>
-                                </tr>
-                                <tr>
-                                  <th>Value</th>
-                                  <td><div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div></td>
-                                </tr>
-                                <tr>
-                                  <th>Quality</th>
-                                  <td><div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                            <p class="author"> Jone Deo<small> (Posted on 25/12/2015)</small> </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-7 col-lg-7 col-md-7">
+                      <div class="col-sm-12 col-lg-12 col-md-12">
                         <div class="reviews-content-right">
-                          <h2>Write Your Own Review</h2>
-                          <form>
-                            <h3>You're reviewing: <span>Donec Ac Tempus</span></h3>
-                            <h4>How do you rate this product?<em>*</em></h4>
+                          <h2>Đánh giá sản phẩm</h2>
+                          <form action="{{route('review')}}" method="post">
                             <div class="table-responsive reviews-table">
-                              <table>
-                                <tbody>
-                                  <tr>
-                                    <th></th>
-                                    <th>1 star</th>
-                                    <th>2 stars</th>
-                                    <th>3 stars</th>
-                                    <th>4 stars</th>
-                                    <th>5 stars</th>
-                                  </tr>
-                                  <tr>
-                                    <td>Quality</td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Price</td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Value</td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                    <td><input type="radio"></td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                                <div class="start" style="display: inline-flex; flex-direction: row-reverse;">
+                                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                    <label class="star star-1" for="star-1"></label>
+                                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                                    <label class="star star-2" for="star-2"></label>
+                                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                    <label class="star star-3" for="star-3"></label>
+                                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                    <label class="star star-4" for="star-4"></label>
+                                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                    <label class="star star-5" for="star-5"></label>
+                                </div>
                             </div>
+                            <input type="hidden" value="{{$data->id}}">
                             <div class="form-area">
                               <div class="form-element">
-                                <label>Nickname <em>*</em></label>
-                                <input type="text">
+                                <label>Bình luận</label>
+                                <textarea style="resize:none;"></textarea>
                               </div>
-                              <div class="form-element">
-                                <label>Summary of Your Review <em>*</em></label>
-                                <input type="text">
-                              </div>
-                              <div class="form-element">
-                                <label>Review <em>*</em></label>
-                                <textarea></textarea>
-                              </div>
-                              <div class="buttons-set">
+                              <div class="">
                                 <button class="button submit" title="Submit Review" type="submit"><span><i class="fa fa-thumbs-up"></i> &nbsp;Review</span></button>
                               </div>
                             </div>
+                            @csrf
                           </form>
                         </div>
                       </div>

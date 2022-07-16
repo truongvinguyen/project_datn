@@ -24,10 +24,11 @@ Danh mục
         <div class="col-md-6 col-sm-12">
             <div class="title">
                 <h4><strong>Quản lý danh mục</strong>
-                    <button type="button" data-api="{{ route('api.categories.paginate', [1, 3]) }}" onclick="getCategories(this)" class="btn btn-outline-info">
+                    {{-- <button type="button" data-api="{{ route('api.categories.paginate', [1, 3]) }}" onclick="getCategories(this)" class="btn btn-outline-info">
+                        Test API {{Auth::user()}}
                         Test API
                     </button>
-                    <input type="text" name="searching" id="test-search-api" data-api="{{ route('categories.search', []) }}" data-token="{{ csrf_token() }}" oninput="getSearchedRecords(this)">
+                    <input type="text" name="searching" id="test-search-api" data-api="{{ route('categories.search', []) }}" data-token="{{ csrf_token() }}" oninput="getSearchedRecords(this)"> --}}
                 </h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
