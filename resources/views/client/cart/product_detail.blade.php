@@ -102,7 +102,7 @@
                     <ul>
                      
                       @foreach($size as $item3)
-					  <li onclick="setsize({{$item3->id}},{{$item3->inventory}})"><a href="javascript:">{{$item3->product_size}}</a></li>
+					  <li ><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
 					  @endforeach
                     </ul>
                   </div>
@@ -123,11 +123,13 @@
                     <div class="numbers-row">
                       <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) ) result.value--;return false;" class="dec qtybutton"><i class="fa fa-minus">&nbsp;</i></div>
                       <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="quantity">
+                      <input type="hidden" id="image" value="{{$data->product_image}}">
+                      <input type="hidden" id="name" value="{{$data->product_name}}">
                       <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="inc qtybutton"><i class="fa fa-plus">&nbsp;</i></div>
                     </div>
                   </div>
                   <input type="hidden" id="showinventory" class="inventory" value="">
-                  <button class="button pro-add-to-cart addtocart" onclick="addtocart(id)" id="" title="Add to Cart" type="button" data-toggle="modal" data-target="#modal-cart"><span><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</span></button>
+                  <button class="button pro-add-to-cart addtocart" onclick="addtocart(id)" id="" title="Add to Cart" type="button"><span><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</span></button>
                 </form>
               </div>
               <div class="product-cart-option">

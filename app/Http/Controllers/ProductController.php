@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function add_product()
     {
         $category=category::all();
-        return view('admin.add_product' ,compact('category'));
+        return view('admin.products.create' ,compact('category'));
     }
     public function save_product(Request $request){
         $validate= $request->validate([
@@ -72,7 +72,7 @@ class ProductController extends Controller
                      'created_at'=>now(),
                      'updated_at'=>now()            
              ]);
-             return redirect('/product')->withSuccess('Thêm sản phẩm thành công');
+             return redirect()->route('products.index')->withSuccess('Thêm sản phẩm thành công');
         }
     }
     public function index(){
@@ -83,12 +83,12 @@ class ProductController extends Controller
         ->paginate(15);
 
         $image =imageProduct::all();
-        return view('admin.product_all',compact('product','image'));
+        return view('admin.products.index',compact('product','image'));
     }
     public function edit($id){
         $product=product::find($id);
         $category=category::all();
-        return view('admin.edit_product',compact('product','category'));
+        return view('admin.products.edit',compact('product','category'));
     }
     public function edit_save(Request $request,$id){
       $product=product::find($id);
@@ -132,7 +132,7 @@ class ProductController extends Controller
                      'created_at'=>$product->created_at,
                      'updated_at'=>now()            
              ]);
-             return redirect('/product')->withSuccess('Cập nhật sản phẩm thành công');
+             return redirect()->route('products.index')->withSuccess('Cập nhật sản phẩm thành công');
         }
     }
     public function product_detail($id){
@@ -142,11 +142,11 @@ class ProductController extends Controller
         ->where('product.id','=',$id)
         ->get();
         $image =imageProduct::all();
-        return view('admin.product_detail',compact('product','image'));
+        return view('admin.products.show',compact('product','image'));
     }
     public function delete($id){
         $delete=product::find($id);
         $delete->delete();
-        return redirect('/product')->withSuccess('Xóa sản phẩm thành công');
+        return redirect()->route('products.index')->withSuccess('Xóa sản phẩm thành công');
     }
 }

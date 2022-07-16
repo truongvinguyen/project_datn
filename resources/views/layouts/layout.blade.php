@@ -27,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/core.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/icon-font.min.css')}}">
@@ -87,8 +87,7 @@
         }
     </style>
     <script>
-        alertify.notify('{{Session::get('
-            success ')}}', 'custom', 2,
+        alertify.message('{{Session::get('success')}}', 'custom', 2,
             function() {
                 console.log('dismissed');
             });
@@ -105,7 +104,7 @@
     </style>
     <script>
         alertify.notify('{{Session::get('
-            errors ')}}', 'custom', 2,
+            errors')}}', 'custom', 2,
             function() {
                 console.log('dismissed');
             });
@@ -395,8 +394,8 @@
                             <i class="" aria-hidden="true"></i>
                         </a>
                         <ul class="submenu">
-                            <li><a href="/product">Quản lý sản phẩm</a></li>
-                            <li><a href="/add-new-product">Thêm sản phẩm</a></li>
+                            <li><a href="{{ route('products.index') }}">Quản lý sản phẩm</a></li>
+                            <li><a href="{{ route('products.create') }}">Thêm sản phẩm</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

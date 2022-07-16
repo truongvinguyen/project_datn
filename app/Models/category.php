@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+use _IMAGE;
 
 class category extends Model
 {
@@ -11,17 +15,16 @@ class category extends Model
     public $timestamps = false;
     protected $table = 'category';
     protected $fillable = [
-
         'category_name',
         'parent_id',
         'employee_id',
         'category_slug',
         'category_image',
         'category_description',
+        'category_status',
         'created_at',
-        'updated_at'
-
-
+        'updated_at',
+        'deleted_at'
     ];
 
     // public function parent(){
@@ -42,5 +45,4 @@ class category extends Model
     {
         return $this->belongsTo(User::class, 'employee_id', 'id');
     }
-    
 }

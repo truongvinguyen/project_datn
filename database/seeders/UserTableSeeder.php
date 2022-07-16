@@ -89,7 +89,7 @@ class UserTableSeeder extends Seeder
 				'updated_at' => '2022-05-05 10:21:53'
 			],
 		]);
-		
+
         User::factory()->count(20)->create();
     }
 }
