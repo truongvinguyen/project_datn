@@ -267,13 +267,6 @@ Trang Chủ
                               </div>
                             </div>
                           </div>
-                          <div class="box-hover">
-                            <div class="product-item-actions">
-                              <div class="pro-actions">
-                                <button onclick="location.href='shopping_cart.html'" class="action add-to-cart" type="button" title="Add to Cart"> <span>Thêm vào giỏ</span> </button>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
