@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function add_product()
     {
         $category=category::all();
-        return view('admin.add_product' ,compact('category'));
+        return view('admin.products.create' ,compact('category'));
     }
     public function save_product(Request $request){
         $validate= $request->validate([

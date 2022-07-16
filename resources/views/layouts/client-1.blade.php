@@ -12,6 +12,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title> @yield('title')</title>
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Mobile specific metas  -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -394,7 +395,7 @@
     <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/main.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/jquery.bxslider.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/jquery.flexslider.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{asset('client/js/jquery.flexslider.js')}}"></script> --}}
     <script type="text/javascript" src="{{asset('client/js/magnific-popup.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/cloud-zoom.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>
@@ -490,6 +491,8 @@
         var iid1 = "countbox_1";
         CountBack_slider(gsecs1, "countbox_1", 1);
     </script>
+
+
     
 </body>
 
