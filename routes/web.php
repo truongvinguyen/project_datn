@@ -105,6 +105,18 @@ Route::get('/delete-all-cart', [App\Http\Controllers\CartController::class, 'del
 Route::get('/save-cart-item/{id}/{quanty}', [App\Http\Controllers\CartController::class, 'save_cart'])->name('');
 Route::post('/save-all-cart', [App\Http\Controllers\CartController::class, 'save_all_cart'])->name('');
 
+// login
+// Route::get('kich-hoat', [HomeController::class, 'getAcctiveAccount'])->name('getAcctiveAccount');
+Route::get('dang-ky', [HomeController::class, "getRegister"])->name('dang-ky');
+Route::post('dang-ky', [HomeController::class, "postRegister"])->name('submit-dang-ky');
+Route::post('kich-hoat', [HomeController::class, "postActive"])->name('active');
+Route::get('dang-nhap', [HomeController::class, "getlogin"])->name('getLogin');
+Route::post('dang-nhap', [HomeController::class, "postLogin"])->name('postLogin');
+Route::get('quen-mat-khau', [HomeController::class,"getForgotPass"])->name('getForgotPass');
+Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("postForgotPass");
+Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
+Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
+
 Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('');
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
 Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');

@@ -12,9 +12,11 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title> @yield('title')</title>
     <meta name="description" content="">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <!-- Mobile specific metas  -->
+    <meta name="csrf-token" content="{{csrf_token()}}">
+
+
+      <!-- Mobile specific metas  -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon  -->
@@ -411,63 +413,49 @@
                 delay: 5000,
                 startwidth: 1170,
                 startheight: 520,
-
                 hideThumbs: 200,
                 thumbWidth: 200,
                 thumbHeight: 50,
                 thumbAmount: 2,
-
                 navigationType: 'thumb',
                 navigationArrows: 'solo',
                 navigationStyle: 'round',
-
                 touchenabled: 'on',
                 onHoverStop: 'on',
-
                 swipe_velocity: 0.7,
                 swipe_min_touches: 1,
                 swipe_max_touches: 1,
                 drag_block_vertical: false,
-
                 spinner: 'spinner0',
                 keyboardNavigation: 'off',
-
                 navigationHAlign: 'center',
                 navigationVAlign: 'bottom',
                 navigationHOffset: 0,
                 navigationVOffset: 20,
-
                 soloArrowLeftHalign: 'left',
                 soloArrowLeftValign: 'center',
                 soloArrowLeftHOffset: 20,
                 soloArrowLeftVOffset: 0,
-
                 soloArrowRightHalign: 'right',
                 soloArrowRightValign: 'center',
                 soloArrowRightHOffset: 20,
                 soloArrowRightVOffset: 0,
-
                 shadow: 0,
                 fullWidth: 'on',
                 fullScreen: 'off',
-
                 stopLoop: 'off',
                 stopAfterLoops: -1,
                 stopAtSlide: -1,
-
                 shuffle: 'off',
-
                 autoHeight: 'off',
                 forceFullWidth: 'on',
                 fullScreenAlignForce: 'off',
                 minFullScreenHeight: 0,
                 hideNavDelayOnMobile: 1500,
-
                 hideThumbsOnMobile: 'off',
                 hideBulletsOnMobile: 'off',
                 hideArrowsOnMobile: 'off',
                 hideThumbsUnderResolution: 0,
-
                 hideSliderAtLimit: 0,
                 hideCaptionAtLimit: 0,
                 hideAllCaptionAtLilmit: 0,
@@ -487,7 +475,6 @@
         else
             ddiff = new Date((dthen1) - (dnow1));
         gsecs1 = Math.floor(ddiff.valueOf() / 1000);
-
         var iid1 = "countbox_1";
         CountBack_slider(gsecs1, "countbox_1", 1);
     </script>
@@ -495,7 +482,7 @@
 
     
 </body>
-
+@yield('js')
 <!-- Mirrored from htmlgenius.justthemevalley.com/Version2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Jun 2022 11:24:35 GMT -->
 
 </html>
