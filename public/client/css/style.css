@@ -3270,7 +3270,7 @@ img.secondary-img {
 }
 .jtv-promotion .wrap {
 	margin: 0 auto;
-	background: url('../images/promotion-bg.jpg') no-repeat;
+	background: url('../images/color.jpg');
 }
 .jtv-promotion .jtv-custom {
 	background: transparent;
@@ -3292,18 +3292,18 @@ img.secondary-img {
 	font-weight: 400;
 	font-size: 18px;
 	text-transform: uppercase;
-	color: #fff;
+	color: #000;
 	line-height: 18px;
 	margin-bottom: 0px;
 }
 .promotion-center .text_large {
 	padding: 10px 0px;
 	margin: 10px 20%;
-	border: 1px solid white;
+	border: 1px solid #000;
 	background: rgba(255, 255, 255, 0.2);
 	font-weight: 700;
 	text-transform: uppercase;
-	color: #fff;
+	color: #000;
 	letter-spacing: 0px;
 	font-size: 60px;
 	position: relative;
@@ -3322,7 +3322,7 @@ img.secondary-img {
 }
 .promotion-center .text_small {
 	font-size: 16px;
-	color: #fff;
+	color: #000;
 	line-height: 18px;
 }
 /******************************************
@@ -3724,6 +3724,12 @@ nav {
 	padding-right: 0px
 }
 
+.productlg li{
+	margin-left: 15px !important;
+    display: inline-block !important;
+	float: right;
+}
+
 #pagination-item{
 	border: 1px solid #e0e0e0;
     color: #363636;
@@ -3788,7 +3794,8 @@ nav {
 	line-height: 30px;
 	margin: 0 0 0 5px;
 	width: 30px;
-	border-radius: 0px
+	border-radius: 0px;
+	cursor: pointer
 }
 .pagination-area ul li a {
 	border: 1px solid #e0e0e0;
@@ -4291,6 +4298,20 @@ button.button-checkout {
 .check-box-list {
 	overflow: hidden
 }
+
+.check-box-list li {
+    display: block;
+    cursor: pointer;
+	margin: 0 0 10px;
+    line-height: 12px;
+	font-weight: 700;
+}
+
+.check-box-list li:hover {
+    color: #CF3341;
+}
+
+
 .check-box-list li {
 	line-height: 24px
 }

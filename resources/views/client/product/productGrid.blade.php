@@ -42,10 +42,6 @@
                                                 <span class="price-label">Giá thường:</span> 
                                                 <span class="price"> {{number_format($product->product_price_sale)}}₫ </span> 
                                             </p>
-                                            <p class="old-price" style="width:40%;float:right;"> 
-                                                <span class="price-label">Đã bán:</span> 
-                                                <span class="qty-sold"> Đã bán: {{$product->qty_sold}} </span> 
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
