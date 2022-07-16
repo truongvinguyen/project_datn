@@ -23,7 +23,7 @@ Thêm sản phẩm mới
     </div>
 </div>
 <div class="pd-20 card-box mb-30">
-    <form action="save-product" method="post" enctype="multipart/form-data">
+    <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="clearfix">
 

@@ -28,8 +28,8 @@
                     </td>
                     <td class="price"><span>{{number_format($item['productInfo']->price)}}
                         </span></td>
-                    <td class="qty"><input id="quanty-item-{{$item['productInfo']->id}}" class="form-control input-sm" type="text"
-                            value="{{$item['quanty']}}"></td>
+                        <td class="qty">
+                            <input data-id="{{$item['productInfo']->id}}" id="quanty-item-{{$item['productInfo']->id}}" class="form-control input-sm" type="text" value="{{$item['quanty']}}"></td>
                     <td class="price">
                         <span>{{number_format($item['productInfo']->price*$item['quanty'])}}</span>
                     </td>
@@ -42,12 +42,9 @@
             </tbody>
             <tfoot>
                 <tr class="first last">
-                    <td colspan="50" class="a-right last"><button type="button"
-                            title="Continue Shopping" class="button btn-continue"
-                            onclick="setLocation('#')"><span>Tiếp tục mua sắm</span></button>
-                        <button type="submit" name="update_cart_action" value="update_qty"
-                            title="Update Cart" class="button btn-update"><span>Cập nhật giỏ
-                                hàng</span></button>
+                    <td colspan="50" class="a-right last"><a href="/product-grid"><button type="button"title="Continue Shopping" class="button btn-continue"><span>Tiếp tục mua sắm</span></button></a>
+                        <input type="hidden" class="token_saveall" value="{{csrf_token()}}">
+                        <button onclick="upDateAllCart()" type="button"  value="update_qty" title="Update Cart" class="button btn-update update_cart_action"><span>Cập nhật giỏ hàng</span></button>
                         <button onclick="deleteAllCart()" type="submit" name="update_cart_action" value="empty_cart"
                             title="Clear Cart" class="button btn-empty"
                             id="empty_cart_button"><span>Xóa giỏ hàng</span></button>

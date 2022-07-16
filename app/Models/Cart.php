@@ -31,14 +31,17 @@
             unset($this->products[$id]);
         }
         public function updateCart($id,$quanty){
-            $this->totalQty -= $this->products[$id]['quanty'];
-            $this->totalPrice -= $this->products[$id]['price'];
+                $price = $this->products[$id]['productInfo']->price;
+                $this->totalPrice -= $price * $this->products[$id]['quanty'];
+                $this->totalQty -= $this->products[$id]['quanty'];
+            
 
-            $this->products[$id]['quanty'] = $quanty;
-            $this->products[$id]['price'] = $quanty * $this->products[$id]['productInfo']->price;
+                $this->products[$id]['quanty'] = $quanty;
+                $this->products[$id]['price'] = $quanty * $this->products[$id]['productInfo']->price;
 
-            $this->totalQty += $this->products[$id]['quanty'];
-            $this->totalPrice += $this->products[$id]['price'];
+                $this->totalQty += $this->products[$id]['quanty'];
+                $this->totalPrice += $this->products[$id]['price'];
+            
         }
     }
 
