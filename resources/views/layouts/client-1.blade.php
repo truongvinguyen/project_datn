@@ -67,8 +67,8 @@
                                 <div class="welcome-msg hidden-xs">Chào mừng bạn đến với Website</div>
                                 <ul class="links">
                                     <li><a href="checkout.html">Thủ tục thanh toán</a></li>
-                                    <li><a href="register_page.html">Tạo tài khoản</a></li>
-                                    <li><a href="account_page.html">Đăng nhập</a></li>
+                                    <li><a href="{{ route('dang-ky') }}">Tạo tài khoản</a></li>
+                                    <li><a href="{{ route('getLogin') }}">Đăng nhập</a></li>
                                 </ul>
                                 <div class="language-currency-wrapper pull-right">
                                     <div class="inner-cl">
