@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\CategoryController;
 */
 
 //danh mục
-Route::controller(CategoryController::class)->prefix('categories')->name('api.categories.')->group(function () {
+Route::controller(CategoryController::class)->prefix('categories')->middleware('api')->name('api.categories.')->group(function () {
     Route::get('home/{orderBy?}/{sort?}', 'getAllRecords')->name('index');
     Route::get('p/{offset?}/{limit?}/{orderBy?}/{sort?}', 'getPageOfRecords')->name('paginate');
     Route::post('s/{col?}/{offset?}/{limit?}', 'getSearchedRecords')->name('search');

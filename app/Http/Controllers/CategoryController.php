@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\category;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 
 use App\Components\Recusive;
 use Illuminate\Support\Str;
@@ -108,21 +110,19 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->withSuccess('Xóa thành công');
     }
 
-    public function getSearchedRecords(Request $request, String $col = 'category_name', int $offset = 0, int $limit = 10)
+    public function getSearchedRecords(Request $req, int $offset = 0, int $limit = 10, String $col = 'category_name')
     {
-        // $records = $this->category->getSearchedRecords($request, $col, $offset, $limit);
+        // Call internal api
+        $params = "/$offset/$limit/$col";
+        $request = Request::create(
+            route('api.categories.search') . $params,
+            'POST',
+            parameters: [],
+            content: $req
+        );
+        $res = Route::dispatch($request)->getContent();
 
-        $res = category::where($col, 'like', "%$request->where%")->offset($offset)->limit($limit)->get();
-        $records = response()->json($res, 200)->header('Content-Type', 'text/plain');
-        // echo print_r(json_encode($records));
-
-        // foreach ($res as $key => $value) {
-        //     echo $value;
-        // }
-        // return $records;
-        // $records = $res;
-        // // return response()->json($records, 200);
-        return view('admin.category.fetch.records', compact('records'));
-        // return $records;
+        $records = json_decode($res, false);
+        return view('admin.category.fetch.records', compact('records'))->render();
     }
 }
