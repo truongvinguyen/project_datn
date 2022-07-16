@@ -25,7 +25,7 @@
       <div class="account-login">
         <div class="box-authentication new-customer-box Account Page ">
           @if (Session::has('msg'))
-            <div class="alert alert-success"><p>{{Session::get('msg')}}</p></div>
+            <div class="alert alert-{{Session::get('type')}}"><p>{{Session::get('msg')}}</p></div>
           @endif
           @if (isset($errActive))
             <div class="alert alert-danger"><p>{{$errActive}}</p></div>

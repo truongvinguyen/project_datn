@@ -12,6 +12,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title> @yield('title')</title>
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{csrf_token()}}">
 
     <!-- Mobile specific metas  -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +22,7 @@
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 
 <body class="cms-index-index cms-home-page">
@@ -625,47 +627,9 @@
         var iid1 = "countbox_1";
         CountBack_slider(gsecs1, "countbox_1", 1);
     </script>
-    <script>
-    //     function addtocart(id) {
-    //         let quantity = $("#quantity").val();
-    //         let inventory = $(".inventory").val();
-    //         if (quantity > inventory) {
-    //             alert("sản phẩm vượt quá hàng tồn kho");
-    //         } else {
-    //             $.ajax({
-    //                 url: {{ '/add-to-cart/'}} +id + '/' + $("#quantity").val(),
-    //                     type: 'get',		
-    //                 }).done(function (response) {
-    //                         renderCart(response);
-    //                         alertify.notify('Thêm vào giỏ hàng thành công.', 'custom', 2,);
-    //                     });
-    //     $('.js-panel-cart').addClass('show-header-cart')
-    //     let showinventory = inventory - quantity;
-    //     console.log(showinventory)
-    //     document.getElementById('showqty').innerHTML = showinventory;
-    //     document.getElementById('showinventory').setAttribute('value', showinventory);
-    //             }
-    //         }
-
-
-    //     function deleteCart(id) {
-    //         $.ajax({
-    //             url: {{ '/delete-item-cart/'}} + id,
-    //                 type: 'GET',
-    //     }).done(function (response) {
-    //                     renderCart(response);
-    //                     alertify.warning('Đã xóa sản phẩm khỏi giỏ hàng');
-    //                 });
-    // };
-    //     function renderCart(response) {
-    //         $("#showcart").empty();
-    //         $("#showcart").html(response);
-    //         let qtyshow = $("#totalqtyshow").val();
-    //         document.getElementById("showqtycart").innerHTML = qtyshow;
-    //     }
-    </script>
+    
 </body>
-
+@yield('js')
 <!-- Mirrored from htmlgenius.justthemevalley.com/Version2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Jun 2022 11:24:35 GMT -->
 
 </html>

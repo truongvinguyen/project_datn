@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client\UserClient;
+use Mail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -75,7 +78,7 @@ class HomeController extends Controller
             return redirect()-> back();
         }else{
             // $isAddSuccsess = UserClient::addUser($email,$pass,$fullname,$address,$phone);
-            $isAddCodeSuccess = UserClient::createCode($email);
+            // $isAddCodeSuccess = UserClient::createCode($email);
             $isAddSuccsess = true;
             $isAddCodeSuccess = true;
             if ($isAddSuccsess && $isAddCodeSuccess){
@@ -84,10 +87,10 @@ class HomeController extends Controller
                 // return redirect('/kich-hoat')->with(['email', $email]);
                 return view('client.account.active');
             }
-            // else{
-            //     session()->flash('msgErr','Đăng ký không thành công. Đã có lỗi xảy ra. Vui lòng thử lại sau.');
-            //     return redirect()-> back();
-            // }
+            else{
+                session()->flash('msgErr','Đăng ký không thành công. Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+                return redirect()-> back();
+            }
         }
     }
 
@@ -113,14 +116,23 @@ class HomeController extends Controller
                 $errActive = "Kích hoạt không thành công. Vui lòng kiểm tra lại.";
                 return view('client.account.active', compact('errActive'));
             }
+            $date = date('Y-m-d H:i:s');
+            if (strtotime($date) >= strtotime($info->code_expried)){
+                // dd(strtotime($date), strtotime($info->code_expried));
+                session()->flash('msg', "Mã kích hoạt đã hết hạn.");
+                session()->flash('type', 'danger');
+                // $errActive = "Mã kích hoạt hết hạn.";
+                return view('client.account.active');//, compact('errActive'));
+            }
             // dd($info); 944954
             if ($info->email != $email || md5($code) != $info->code){
                 $errActive = "Kích hoạt không thành công. Vui lòng kiểm tra lại.";
                 return view('client.account.active', compact('errActive'));
             }else{
                 $msg = "Kích hoạt thành công.";
-                $result = UserClient::updateApprovedUser($email);
+                $result = UserClient::updateApprovedUser($email);    
                 if($result){
+                    UserClient::deleteCode($email);
                     return view('client.account.notice', compact('msg'));
                 }
                 $errActive = "Kích hoạt không thành công. Vui lòng thử lại sau.";
@@ -128,5 +140,127 @@ class HomeController extends Controller
             }
             dd($info);
         }
+    }
+
+    public function getLogin(){
+        return view('client.account.login');
+    }
+
+    public function postLogin(Request $request){
+        $rules = [
+            "email" => "required|min:10|max:255|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix",
+            "password" => "required|min:8|max:255",
+        ];
+        $messages = [
+            "email.required" =>":attribute là bắt buộc.",
+            "email.min" =>":attribute tối thiểu :min ký tự.",
+            "email.max" =>":attribute tối đa :max ký tự.",
+            "email.regex" =>":attribute không đúng định dạng.",
+            "password.required" => ":attribute là bắt buộc.",
+            "password.min" =>":attribute tối thiểu :min ký tự.",
+            "password.max" =>":attribute tối đa :max ký tự",
+        ];
+        $attributes = [
+            "email" => "Email",
+            "password" => "Mật khẩu"
+        ];
+        $request->validate($rules,$messages,$attributes);
+        $email = $request->email;
+        $pass = $request->password;
+        $user = UserClient::login($email, $pass);
+        if ($user == null) {
+            return view('client.account.login')->with('msgErr', 'Tài khoản không tồn tại.');
+        }
+        if ($user->email == $email && $user->password == md5($pass)){
+            return "okla";
+        }else{
+            return view('client.account.login')->with('msgErr', 'Đăng nhập không thành công. Vui lòng kiểm tra lại.');
+        }
+        dd($user);
+    }
+
+    public function getForgotPass(){
+        return view('client.account.emailForgotPass');
+    }
+
+    public function postForgotPass(Request $request){
+        $rules = [
+            'email' => ['required', 'min:10', 'max:255', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix']
+        ];
+        $messages = [
+            'required' =>':attribute là bắt buộc.',
+            'min' =>':attribute tối thiểu :min ký tự.',
+            'max' =>':attribute tối đa :max ký tự.',
+            'regex' =>':attribute không đúng định dạng.'
+        ];
+        $attributes = [
+            "email" => "Email"
+        ];
+        // $rst = $request->validate($rules,$messages);
+        // return response()->json($rst);
+        $validator = Validator::make($request->all(),$rules, $messages, $attributes);
+        // $validator->validate();
+        if ($validator->fails()){
+            return response()->json(['err'=>$validator->errors()->all()]);
+        }else{
+            return response()->json(['email'=>$request->email]);
+        }
+        // $request->validate($rules, $messages);
+        // return response()->json('cc');
+        // $email = $request->email;
+        // $issetEmail = UserClient::checkIssetEmail($email);
+        // if (!$issetEmail){
+        //     $data = [
+        //         'msg' => 'Email does not exist',
+        //     ];
+        //     return response()->json($data, 400);
+            // return view('client.account.emailForgotPass')->with('msgErr', 'Email không tồn tại.');
+        // }
+        // $code = UserClient::createCodeForgotPass($email);
+
+    }
+
+    public function postGetCodeForgotPass(Request $request){
+        $rules = [
+            'email' => ['required', 'min:10', 'max:255', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix']
+        ];
+        $messages = [
+            'required' =>':attribute là bắt buộc.',
+            'min' =>':attribute tối thiểu :min ký tự.',
+            'max' =>':attribute tối đa :max ký tự.',
+            'regex' =>':attribute không đúng định dạng.'
+        ];
+        $attributes = [
+            "email" => "Email"
+        ];
+        // // $rst = $request->validate($rules,$messages);
+        // // return response()->json($rst);
+        $validator = Validator::make($request->all(),$rules, $messages, $attributes);
+        // $validator->validate();
+        try{
+            if ($validator->fails()){
+                return response()->json(['err'=>$validator->errors()->all()], 400);
+            }
+            $emailDB = UserClient::checkIssetEmail($request->email);
+            if ($emailDB){
+                return response()->json([
+                    'codeErr' => 1,
+                    'msg'=>'Email ko ton tai.',
+                ]);
+            }
+            $code = 12345;
+            return response()->json([
+                'code'=>$code, 
+                'codeErr' => 0,
+                'msg' => "Mã xác thực đã được gửi về email."]
+            );
+        } catch(\Exception $e){
+            return response()->json(['code'=>500, 'error'=>$e->getMessage()], 500);
+        }
+    }
+
+    public function postReview(Request $request){
+        $user = Auth::user();
+        dd($user);
     }
 }
