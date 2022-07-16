@@ -13,13 +13,14 @@ use _ROLE, _IMAGE, _STATUS;
 class CategoryController extends Controller
 {
     private $__category;
+    private $__user;
     private $__isAdmin;
-    private $__msg403;
+    private $__msgForbidden;
 
     public function __construct(category $category)
     {
         $this->__category = $category;
-        $this->__isAdmin = false;
+        $this->__isAdmin = _ROLE::MANAGER;
         $this->__msgForbidden = response()->error(null, 403);
 
         if (isset(Auth::user()->user_rule) && Auth::user()->user_rule >= _ROLE::EMPLOYEE) {
@@ -45,16 +46,25 @@ class CategoryController extends Controller
         return response()->json($res, 200);
     }
 
+    public function getCount(int $offset = 0, int $limit = 10, String $orderBy = 'id', String $sort = 'desc')
+    {
+        $res = $this->__category::offset($offset)->limit($limit)->orderBy($orderBy, $sort)->get();
+        return response()->json($res, 200);
+    }
+
     public function getOneRecord(int $id = 0)
     {
         $res = $this->__category::findOrFail($id);
         return response()->json($res, 200);
     }
 
-    public function getSearchedRecords(Request $req, String $col = 'category_name', int $offset = 0, int $limit = 10)
+    public function getSearchedRecords(Request $req, int $offset = 0, int $limit = 10, String $col = 'category_name')
     {
-        $keyword = $req->where;
-        $res = $this->__category::where($col, 'like', "%$keyword%")->offset($offset)->limit($limit)->get();
+        // return Auth::user()->user_rule;
+        // if (!$this->__isAdmin) {
+        //     return $this->__msgForbidden;
+        // }
+        $res = $this->__category::where($col, 'like', "%$req->where%")->offset($offset)->limit($limit)->get();
         return response()->json($res, 200);
     }
 
@@ -111,7 +121,7 @@ class CategoryController extends Controller
             'category_slug' => $data->category_slug,
             'updated_at' => now()
         ]);
-        $res = $this->__category::findOrFail($id)->update($data->input());
+        $res = $record->update($data->input());
         return response()->json($res, 200);
     }
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\client\HomeController;
 
 
 /*
@@ -17,13 +18,11 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home-admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::prefix('admin/products')->group(function () {
@@ -105,6 +104,19 @@ Route::get('/cart/view-cart', [App\Http\Controllers\CartController::class, 'show
 Route::get('/delete-list-cart/{id}', [App\Http\Controllers\CartController::class, 'delete_item_list_cart'])->name('');
 Route::get('/delete-all-cart', [App\Http\Controllers\CartController::class, 'delete_all_cart'])->name('');
 Route::get('/save-cart-item/{id}/{quanty}', [App\Http\Controllers\CartController::class, 'save_cart'])->name('');
+Route::post('/save-all-cart', [App\Http\Controllers\CartController::class, 'save_all_cart'])->name('');
+
+// login
+// Route::get('kich-hoat', [HomeController::class, 'getAcctiveAccount'])->name('getAcctiveAccount');
+Route::get('dang-ky', [HomeController::class, "getRegister"])->name('dang-ky');
+Route::post('dang-ky', [HomeController::class, "postRegister"])->name('submit-dang-ky');
+Route::post('kich-hoat', [HomeController::class, "postActive"])->name('active');
+Route::get('dang-nhap', [HomeController::class, "getlogin"])->name('getLogin');
+Route::post('dang-nhap', [HomeController::class, "postLogin"])->name('postLogin');
+Route::get('quen-mat-khau', [HomeController::class,"getForgotPass"])->name('getForgotPass');
+Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("postForgotPass");
+Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
+Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
 
 Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('');
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
