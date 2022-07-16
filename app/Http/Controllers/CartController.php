@@ -65,5 +65,15 @@ class CartController extends Controller
     $newCart->updateCart($id,$quanty);
     $request->session()->put('cart',$newCart);  
     return view('client.cart.showcart_cut');
-}
+    }
+    public function save_all_cart(Request $request){
+        $data = $request->data;
+        foreach($data as $item) {
+            $cartO = Session('cart') ? Session('cart') : null;
+            $newCart= new cart($cartO);
+            $newCart->updateCart($item["key"],$item["value"]);
+            $request->session()->put('cart',$newCart);  
+        }
+        return view('client.cart.showcart_cut');
+    }
 }

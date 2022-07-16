@@ -5,6 +5,7 @@ function setsize(id, qty) {
     document.getElementById('showinventory').setAttribute('value', qty);
     document.querySelector('.addtocart').setAttribute('id', id);
     console.log(id, qty);
+    
 }
 //xóa item trong view cart
 function deleteitemlist(id){
@@ -60,7 +61,33 @@ function upDateCart(id){
     }
    
 }
+function upDateAllCart(){
+    var list = []
+    $("table tbody tr td").each(function(){
+        $(this).find("input").each(function(){
+            var element = {key:$(this).data("id"),value:$(this).val()};
+            list.push(element);
+        });
+    });
+    $.ajax({
+        url: `/save-all-cart`,
+        type: 'POST',
+        data:{
+            "_token": $(".token_saveall").val(),
+            "data":list
+        }
+    }).done(function (response) {
+        toast({
+            title: "Thành công!",
+            message: "Bạn đã cập nhật số lượng thành công",
+            type: "success",
+            duration: 5000
+          });
+          renderListCart(response);
+        
+    });
 
+}
 //render trong view cart
 function renderListCart(response) {
     renderCart()
