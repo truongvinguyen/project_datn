@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\product;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\articleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,32 +52,23 @@ Route::put('product/{id}', function (Request $request, $id) {
     return $product;
 });
 
+
 Route::controller(ProductController::class)->prefix('products')->name('products')->group(function () {
-    Route::get('/{orderBy?}/{sort?}','qty_sold')->name('');
-    Route::get('/new_product','new_product')->name('');                                 
-   
+    Route::get('/list/{orderBy?}/{sort?}/{offset?}/{limit?}','orderByList')->name('');
+    Route::get('/grid/{orderBy?}/{sort?}/{offset?}/{limit?}','orderByGrid')->name('');
+    Route::get('/gridProduct/{columns_name?}/{cate_id?}','gridByColumns')->name('');  
+    Route::get('/listProduct/{columns_name?}/{cate_id?}','listByColumns')->name('');  
+    // Route::get('/filter/{brand_id?}','productByCategory')->name('');      
+                
+    Route::get('price/grid/{orderBy?}/{sort?}','gridPrice')->name('');     
+    Route::get('discount/grid/{orderBy?}/{sort?}','gridDiscount')->name('');
+
+    Route::get('price/list/{orderBy?}/{sort?}','listPrice')->name('');     
+    Route::get('discount/list/{orderBy?}/{sort?}','listDiscount')->name('');                  
 });
 
-Route::get('product-list/{offset?}/{limit?}', function($offset = 0, $limit = 6) {
-    $products = product::offset($offset)->limit($limit)->qty_sold();
-    return view('client.product.productList',compact('products'));
-});
-
-Route::get('product-grid/{offset?}/{limit?}', function($offset = 0, $limit = 6) {
-    $products = product::offset($offset)->limit($limit) 
-    ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
-    ->groupBy('product_inventory.product_id','product.id','product_name','product_price_sale', 'product_content', 'category_id','product_id','product_price', 'product_image')
-    ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
-    ->orderBy('product.id','desc')->get();
-    return view('client.product.productGrid',compact('products'));
-});
-
-Route::get('product-best/{offset?}/{limit?}', function($offset = 0, $limit = 6) {
-    $products = product::offset($offset)->limit($limit) 
-    ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
-    ->groupBy('product_inventory.product_id','product.id','product_name','product_price_sale', 'product_content', 'category_id','product_id','product_price', 'product_image')
-    ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
-    ->orderBy('qty_sold','desc')->get();
-    return view('client.product.productList',compact('products'));
+Route::controller(articleController::class)->prefix('articles')->name('articles')->group(function () {
+    Route::get('/','articles')->name('');      
+    Route::get('/','articles')->name('');                         
 });
 

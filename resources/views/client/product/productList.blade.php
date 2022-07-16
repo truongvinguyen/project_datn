@@ -33,10 +33,6 @@
                         <span class="price-label"></span> 
                         <span class="price">{{number_format($product->product_price)}}₫</span>
                     </p>
-                    <p class="old-price" style="width:15%;float:right;"> 
-                        <span class="price-label">Đã bán:</span> 
-                        <span class="qty-sold"> Đã bán: {{$product->qty_sold}} </span> 
-                    </p>
                     </div>
                     <div class="desc std">
                         <p>

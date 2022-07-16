@@ -62,7 +62,7 @@
 }
 .tp-caption.ExtraLargeTitle {
 	font-weight: 900;
-	color: #333;
+	color: white;
 	text-decoration: none;
 	background-color: transparent;
 	padding: 0px 20px 0px 20px;
@@ -78,7 +78,7 @@
 .tp-caption.LargeTitle {
 	line-height: 32px;
 	font-weight: 700;
-	color: #333;
+	color: white;
 	text-decoration: none;
 	background-color: transparent;
 	padding: 0px 20px 0px 20px;
@@ -105,7 +105,7 @@ a.shop-now-btn:hover {
 	line-height: 18px;
 	font-weight: normal;
 	text-transform: none;
-	color: #666;
+	color: white;
 	text-decoration: none;
 	background-color: transparent;
 	padding: 0px 0px 0px 0px;

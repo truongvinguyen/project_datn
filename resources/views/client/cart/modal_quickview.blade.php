@@ -51,10 +51,13 @@
                 <div class="size-area">
                     <h2 class="saider-bar-title">Size</h2>
                     <div class="size">
-                        <ul> 
-                            @foreach($size as $item3)
-                            <li><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
-                            @endforeach
+                        <ul>@if($size != null)
+                                @foreach($size as $item3)
+                                <li><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
+                                @endforeach
+                            @else
+                                Sản phẩm chưa mở bán
+                            @endif
                         </ul>
                     </div>
                 </div>

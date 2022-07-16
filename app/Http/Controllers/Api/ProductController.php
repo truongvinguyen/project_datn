@@ -3,23 +3,66 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-
-    public function qty_sold(String $orderBy = 'product.id', String $sort = 'desc'){
-        $qty_sold = DB::table('product') 
-        ->selectRaw('product.id,5 CAST(sum(inventory) as int) as qty_sold')
-        ->groupBy($orderBy)
+    public function orderByList($offset = 0, $limit = 6, String $orderBy = 'id', String $sort = 'desc'){
+        $products = DB::table('product')
         ->orderBy($orderBy, $sort)
-        ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
+        ->offset($offset)->limit($limit) 
         ->get();
-        return $qty_sold;
+        return view('client.product.productList',compact('products'));
     }
 
+    public function orderByGrid($offset = 0, $limit = 6, String $orderBy = 'id', String $sort = 'desc'){
+        $products = DB::table('product') 
+        ->orderBy($orderBy, $sort)
+        ->offset($offset)->limit($limit) 
+        ->get();
+        return view('client.product.productGrid',compact('products'));
+    }
+
+    public function gridPrice(String $orderBy = 'id', String $sort = 'desc'){
+        $products = DB::table('product') 
+        ->orderBy($orderBy, $sort)
+        ->get();
+        return view('client.product.productGrid',compact('products'));
+    }
+
+    public function gridDiscount(String $orderBy = 'id', String $sort = 'desc', $discount = 'product_price_sale'){
+        $products = DB::table('product') 
+        ->orderBy($orderBy, $sort)
+        ->where($discount, '!=', 'null')
+        ->get();
+        return view('client.product.productGrid',compact('products'));
+    }
+
+    public function listPrice(String $orderBy = 'id', String $sort = 'desc'){
+        $products = DB::table('product') 
+        ->orderBy($orderBy, $sort)
+        ->get();
+        return view('client.product.productList',compact('products'));
+    }
+
+    public function listDiscount(String $orderBy = 'id', String $sort = 'desc', $discount = 'product_price_sale'){
+        $products = DB::table('product') 
+        ->orderBy($orderBy, $sort)
+        ->where($discount, '!=', 'null')
+        ->get();
+        return view('client.product.productList',compact('products'));
+    }
+
+    public function gridByColumns($columns_name,$cate_id){
+        $products = DB::table('product')->where($columns_name, $cate_id)->get();
+        return view('client.product.productGrid',compact('products'));
+    }
+
+    public function listByColumns($columns_name,$cate_id){
+        $products = DB::table('product')->where($columns_name, $cate_id)->get();
+        return view('client.product.productList',compact('products'));
+    }
 
     public function show($id)
     {

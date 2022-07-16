@@ -3,7 +3,7 @@ $(document).ready(function () {
     let offset = e.target.dataset.offset;
     // console.log(e.target.dataset.offset)
     $.ajax({
-      url: `/api/product-grid/${offset}`,
+      url: `/api/products/grid/${offset}`,
       type: 'GET',
       dataType: 'text',
       success: function (response){
@@ -15,10 +15,81 @@ $(document).ready(function () {
       }
     })
   });
+
+
+  $('#productByCate li').on('click', function (e) {
+    let offset = e.target.dataset.offset;
+    console.log(e.target)
+    $.ajax({
+      url: `/api/products/gridProduct/category_id/${offset}`,
+      type: 'GET',
+      dataType: 'text',
+      success: function (response){
+        // console.log(response)
+        $(`#product-g`).html(response)   
+      },
+      error: function( error){
+        console.log(error.message)
+      }
+    })
+  });
+
+  $('#productByBrand li').on('click', function (e) {
+    let offset = e.target.dataset.offset;
+    // console.log(e.target)
+    $.ajax({
+      // url: `/api/products/gridProduct/brand_id/${offset}`,
+      type: 'GET',
+      dataType: 'text',
+      success: function (response){
+        // console.log(response)
+        $(`#product-g`).html(response)   
+      },
+      error: function( error){
+        console.log(error.message)
+      }
+    })
+  });
+
+
+  $('#data_price ').on('click', function (e) {
+    let price = e.target.dataset.price;
+    console.log(e.target.dataset)
+    $.ajax({
+      url: `/api/products/price/grid/product_price/${price}`,
+      type: 'GET',
+      dataType: 'text',
+      success: function (response){
+        console.log(response)
+        $(`#product-g`).html(response)   
+      },
+      error: function( error){
+        console.log(error.message)
+      }
+    })
+  });
+
+  $('#data_price ').on('click', function (e) {
+    let price = e.target.dataset.price;
+    console.log(e.target.dataset)
+    $.ajax({
+      url: `/api/products/discount/grid/product_price/${price}`,
+      type: 'GET',
+      dataType: 'text',
+      success: function (response){
+        console.log(response)
+        $(`#product-g`).html(response)   
+      },
+      error: function( error){
+        console.log(error.message)
+      }
+    })
+  });
+
 });
 
 $.ajax({
-  url: `/api/product-grid`,
+  url: `/api/products/grid`,
   type: 'GET',
   dataType: 'text',
   success: function (response){

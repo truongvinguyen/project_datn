@@ -152,9 +152,9 @@
                                     <ul class="hidden-xs">
                                         <li class="active custom-menu"><a href="/">Trang chủ</a></li>
                                         <li class="megamenu"><a href="/product-grid">Sản phẩm <span class="menu-item-tag menu-item-tag-new">mới</span></a></li>
-                                        <li class="custom-menu"><a href="blog.html">Bài viết</a></li>
-                                        <li><a href="contact_us.html">Về chúng tôi</a></li>
-                                        <li><a href="contact_us.html">Liên hệ</a></li>
+                                        <li class="custom-menu"><a href="/article">Bài viết</a></li>
+                                        <li><a href="/contact-us">Về chúng tôi</a></li>
+                                        <li><a href="/contact-us">Liên hệ</a></li>
                                     </ul>
                                 </div>
                             </div>
