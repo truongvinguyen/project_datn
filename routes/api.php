@@ -25,12 +25,13 @@ Route::controller(CategoryController::class)->prefix('categories')->middleware('
     Route::get('detail/{id}', 'getOneRecord')->name('detail');
     Route::post('store', 'storeRecord')->name('store');
     Route::put('update/{id}', 'updateRecord')->name('update');
-    Route::post('uploadImage/{id}', 'uploadImage')->name('uploadImage');
+    Route::post('upload/image/{id}', 'uploadImage')->name('upload.image');
     Route::put('delete/{id}', 'deleteRecord')->name('delete');
     Route::put('restore/{id}', 'restoreRecord')->name('restore');
     Route::delete('destroy/{id}', 'destroyRecord')->name('destroy');
     Route::put('activate/{id}', 'activateRecord')->name('activate');
     Route::put('disable/{id}', 'disableRecord')->name('disable');
+    Route::post('count/s/{col?}', 'countSearchedRecords')->name('count.search');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -52,31 +53,29 @@ Route::put('product/{id}', function (Request $request, $id) {
 });
 
 Route::controller(ProductController::class)->prefix('products')->name('products')->group(function () {
-    Route::get('/{orderBy?}/{sort?}','qty_sold')->name('');
-    Route::get('/new_product','new_product')->name('');                                 
-   
+    Route::get('/{orderBy?}/{sort?}', 'qty_sold')->name('');
+    Route::get('/new_product', 'new_product')->name('');
 });
 
-Route::get('product-list/{offset?}/{limit?}', function($offset = 0, $limit = 6) {
+Route::get('product-list/{offset?}/{limit?}', function ($offset = 0, $limit = 6) {
     $products = product::offset($offset)->limit($limit)->qty_sold();
-    return view('client.product.productList',compact('products'));
+    return view('client.product.productList', compact('products'));
 });
 
-Route::get('product-grid/{offset?}/{limit?}', function($offset = 0, $limit = 6) {
-    $products = product::offset($offset)->limit($limit) 
-    ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
-    ->groupBy('product_inventory.product_id','product.id','product_name','product_price_sale', 'product_content', 'category_id','product_id','product_price', 'product_image')
-    ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
-    ->orderBy('product.id','desc')->get();
-    return view('client.product.productGrid',compact('products'));
+Route::get('product-grid/{offset?}/{limit?}', function ($offset = 0, $limit = 6) {
+    $products = product::offset($offset)->limit($limit)
+        ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
+        ->groupBy('product_inventory.product_id', 'product.id', 'product_name', 'product_price_sale', 'product_content', 'category_id', 'product_id', 'product_price', 'product_image')
+        ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
+        ->orderBy('product.id', 'desc')->get();
+    return view('client.product.productGrid', compact('products'));
 });
 
-Route::get('product-best/{offset?}/{limit?}', function($offset = 0, $limit = 6) {
-    $products = product::offset($offset)->limit($limit) 
-    ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
-    ->groupBy('product_inventory.product_id','product.id','product_name','product_price_sale', 'product_content', 'category_id','product_id','product_price', 'product_image')
-    ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
-    ->orderBy('qty_sold','desc')->get();
-    return view('client.product.productList',compact('products'));
+Route::get('product-best/{offset?}/{limit?}', function ($offset = 0, $limit = 6) {
+    $products = product::offset($offset)->limit($limit)
+        ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
+        ->groupBy('product_inventory.product_id', 'product.id', 'product_name', 'product_price_sale', 'product_content', 'category_id', 'product_id', 'product_price', 'product_image')
+        ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
+        ->orderBy('qty_sold', 'desc')->get();
+    return view('client.product.productList', compact('products'));
 });
-

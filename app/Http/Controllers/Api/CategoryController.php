@@ -46,12 +46,6 @@ class CategoryController extends Controller
         return response()->json($res, 200);
     }
 
-    public function getCount(int $offset = 0, int $limit = 10, String $orderBy = 'id', String $sort = 'desc')
-    {
-        $res = $this->__category::offset($offset)->limit($limit)->orderBy($orderBy, $sort)->get();
-        return response()->json($res, 200);
-    }
-
     public function getOneRecord(int $id = 0)
     {
         $res = $this->__category::findOrFail($id);
@@ -65,6 +59,12 @@ class CategoryController extends Controller
         //     return $this->__msgForbidden;
         // }
         $res = $this->__category::where($col, 'like', "%$req->where%")->offset($offset)->limit($limit)->get();
+        return response()->json($res, 200);
+    }
+
+    public function countSearchedRecords(Request $req, String $col = 'category_name')
+    {
+        $res = $this->__category::where($col, 'like', "%$req->where%")->count();
         return response()->json($res, 200);
     }
 
