@@ -407,6 +407,7 @@
     <script type="text/javascript" src="{{asset('client/js/toast.js')}}"></script>
     <script src="{{ asset('/client/js/home-page.js') }}"></script>
     <script src="{{ asset('/client/js/product-list.js') }}"></script>
+    <script src="{{ asset('/client/js/article.js') }}"></script>
     
     <script type='text/javascript'>
         jQuery(document).ready(function () {

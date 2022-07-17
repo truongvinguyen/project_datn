@@ -15,7 +15,7 @@ Trang Sản Phẩm
                             <div id="category-slider" class="product-flexslider hidden-buttons">
                                 <div class="slider-items slider-width-col4">
                                     <a href="#"><img src="client/images/banner111.jpg" alt="banner"></a>
-                                    <a href="#"><img src="client/images/banner1111.jpg" alt="banner"></a>
+                                    <a href="#"><img src="client/images/banner41111.jpg" alt="banner"></a>
                                 </div>
                             </div>
                         </div>

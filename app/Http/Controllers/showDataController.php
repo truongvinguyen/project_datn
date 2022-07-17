@@ -34,9 +34,9 @@ class showDataController extends Controller
     public function article_page(){
         $article = new article();
         $articles = $article->article();
-
+        $length = article::all()->count();
         $brands = brand::all();
-        return view('client.article.article-page',compact('articles','brands'));
+        return view('client.article.article-page',compact('articles','brands','length'));
     }
 
     public function product_grid(){

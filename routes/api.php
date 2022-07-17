@@ -68,7 +68,6 @@ Route::controller(ProductController::class)->prefix('products')->name('products'
 });
 
 Route::controller(articleController::class)->prefix('articles')->name('articles')->group(function () {
-    Route::get('/','articles')->name('');      
-    Route::get('/','articles')->name('');                         
+    Route::get('/{orderBy?}/{sort?}/{offset?}/{limit?}','articles')->name('');                        
 });
 

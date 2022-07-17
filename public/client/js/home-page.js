@@ -19,7 +19,7 @@ $(document).ready(function () {
 
   $('#productByCate li').on('click', function (e) {
     let offset = e.target.dataset.offset;
-    console.log(e.target)
+    // console.log(e.target)
     $.ajax({
       url: `/api/products/gridProduct/category_id/${offset}`,
       type: 'GET',
@@ -38,7 +38,7 @@ $(document).ready(function () {
     let offset = e.target.dataset.offset;
     // console.log(e.target)
     $.ajax({
-      // url: `/api/products/gridProduct/brand_id/${offset}`,
+      url: `/api/products/gridProduct/brand_id/${offset}`,
       type: 'GET',
       dataType: 'text',
       success: function (response){
