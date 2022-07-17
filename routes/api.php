@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\product;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\articleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,9 @@ Route::put('product/{id}', function (Request $request, $id) {
     return $product;
 });
 
+
 Route::controller(ProductController::class)->prefix('products')->name('products')->group(function () {
+<<<<<<< HEAD
     Route::get('/{orderBy?}/{sort?}', 'qty_sold')->name('');
     Route::get('/new_product', 'new_product')->name('');
 });
@@ -78,4 +81,22 @@ Route::get('product-best/{offset?}/{limit?}', function ($offset = 0, $limit = 6)
         ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
         ->orderBy('qty_sold', 'desc')->get();
     return view('client.product.productList', compact('products'));
+=======
+    Route::get('/list/{orderBy?}/{sort?}/{offset?}/{limit?}','orderByList')->name('');
+    Route::get('/grid/{orderBy?}/{sort?}/{offset?}/{limit?}','orderByGrid')->name('');
+    Route::get('/gridProduct/{columns_name?}/{cate_id?}','gridByColumns')->name('');  
+    Route::get('/listProduct/{columns_name?}/{cate_id?}','listByColumns')->name('');  
+    // Route::get('/filter/{brand_id?}','productByCategory')->name('');      
+                
+    Route::get('price/grid/{orderBy?}/{sort?}','gridPrice')->name('');     
+    Route::get('discount/grid/{orderBy?}/{sort?}','gridDiscount')->name('');
+
+    Route::get('price/list/{orderBy?}/{sort?}','listPrice')->name('');     
+    Route::get('discount/list/{orderBy?}/{sort?}','listDiscount')->name('');                  
+});
+
+Route::controller(articleController::class)->prefix('articles')->name('articles')->group(function () {
+    Route::get('/','articles')->name('');      
+    Route::get('/','articles')->name('');                         
+>>>>>>> 3be478d23b1a5ab9c5c2256fe94ae2ee74303bd4
 });

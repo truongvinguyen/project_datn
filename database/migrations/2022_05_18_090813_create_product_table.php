@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::table('product', function (Blueprint $table) {
+            $table->integer('brand_id')->length(11)->unsigned()->nullable();
+        });
+
         Schema::create('product', function (Blueprint $table) {
 			$table->engine = 'InnoDB';
 			$table->charset = 'utf8mb4';
@@ -32,6 +36,8 @@ return new class extends Migration
 			$table->smallInteger('product_status')->length(11);
             $table->timestamps();
         });
+
+       
     }
 
     /**
