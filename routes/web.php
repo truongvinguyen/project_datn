@@ -126,3 +126,4 @@ Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, '
 Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
 Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
 Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
+//Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');

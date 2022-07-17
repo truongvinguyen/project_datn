@@ -26,12 +26,13 @@ Route::controller(CategoryController::class)->prefix('categories')->middleware('
     Route::get('detail/{id}', 'getOneRecord')->name('detail');
     Route::post('store', 'storeRecord')->name('store');
     Route::put('update/{id}', 'updateRecord')->name('update');
-    Route::post('uploadImage/{id}', 'uploadImage')->name('uploadImage');
+    Route::post('upload/image/{id}', 'uploadImage')->name('upload.image');
     Route::put('delete/{id}', 'deleteRecord')->name('delete');
     Route::put('restore/{id}', 'restoreRecord')->name('restore');
     Route::delete('destroy/{id}', 'destroyRecord')->name('destroy');
     Route::put('activate/{id}', 'activateRecord')->name('activate');
     Route::put('disable/{id}', 'disableRecord')->name('disable');
+    Route::post('count/s/{col?}', 'countSearchedRecords')->name('count.search');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -54,6 +55,7 @@ Route::put('product/{id}', function (Request $request, $id) {
 
 
 Route::controller(ProductController::class)->prefix('products')->name('products')->group(function () {
+
     Route::get('/list/{orderBy?}/{sort?}/{offset?}/{limit?}','orderByList')->name('');
     Route::get('/grid/{orderBy?}/{sort?}/{offset?}/{limit?}','orderByGrid')->name('');
     Route::get('/gridProduct/{columns_name?}/{cate_id?}','gridByColumns')->name('');  
@@ -68,6 +70,5 @@ Route::controller(ProductController::class)->prefix('products')->name('products'
 });
 
 Route::controller(articleController::class)->prefix('articles')->name('articles')->group(function () {
-    Route::get('/{orderBy?}/{sort?}/{offset?}/{limit?}','articles')->name('');                        
+    Route::get('/{orderBy?}/{sort?}/{offset?}/{limit?}','articles')->name('');          
 });
-
