@@ -24,7 +24,8 @@
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" /></head> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" /> -->
+</head>
 
 <body class="cms-index-index cms-home-page">
 
@@ -67,8 +68,14 @@
                                 <div class="welcome-msg hidden-xs">Chào mừng bạn đến với Website</div>
                                 <ul class="links">
                                     <li><a href="checkout.html">Thủ tục thanh toán</a></li>
-                                    <li><a href="{{ route('dang-ky') }}">Tạo tài khoản</a></li>
-                                    <li><a href="{{ route('getLogin') }}">Đăng nhập</a></li>
+                                    @if((Session::has('userEmail')))
+                                        <li><a href="#">{{Session::get('userEmail')}}</a></li>
+                                        <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                    @else
+                                        <li><a href="{{route('dang-ky')}}">Tạo tài khoản</a></li>
+                                        <li><a href="{{route('getLogin')}}">Đăng nhập</a></li>
+                                    @endif
+
                                 </ul>
                                 <div class="language-currency-wrapper pull-right">
                                     <div class="inner-cl">
@@ -100,7 +107,7 @@
                             <div id="search">
                                 <form>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search" name="search">
+                                        <input type="text" class="form-control" placeholder="tìm kiếm..." name="search">
                                         <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
                                     </div>
                                 </form>
@@ -398,7 +405,7 @@
     <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/main.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/jquery.bxslider.js')}}"></script>
-    {{-- <script type="text/javascript" src="{{asset('client/js/jquery.flexslider.js')}}"></script> --}}
+    <script type="text/javascript" src="{{asset('client/js/jquery.flexslider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/magnific-popup.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/cloud-zoom.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>
@@ -482,7 +489,13 @@
         CountBack_slider(gsecs1, "countbox_1", 1);
     </script>
 
-
+    <script>
+        var btnLogout = document.querySelector('#logout');
+        // btnLogout.onclick = function() {
+        //     alert('Logged out');
+        // }
+        
+    </script>
     
 </body>
 @yield('js')

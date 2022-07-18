@@ -28,7 +28,7 @@ $(document).ready(function ($id) {
       dataType: 'text',
       success: function (response){
         // console.log(response)
-        $(`#product-g`).html(response)   
+        $(`#product-l`).html(response)   
       },
       error: function( error){
         console.log(error.message)
@@ -45,7 +45,7 @@ $(document).ready(function ($id) {
       dataType: 'text',
       success: function (response){
         // console.log(response)
-        $(`#product-g`).html(response)   
+        $(`#product-l`).html(response)   
       },
       error: function( error){
         console.log(error.message)
@@ -62,7 +62,7 @@ $(document).ready(function ($id) {
       dataType: 'text',
       success: function (response){
         console.log(response)
-        $(`#product-g`).html(response)   
+        $(`#product-l`).html(response)   
       },
       error: function( error){
         console.log(error.message)
@@ -79,7 +79,7 @@ $(document).ready(function ($id) {
       dataType: 'text',
       success: function (response){
         console.log(response)
-        $(`#product-g`).html(response)   
+        $(`#product-l`).html(response)   
       },
       error: function( error){
         console.log(error.message)

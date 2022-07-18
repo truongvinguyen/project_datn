@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\client\HomeController;
+use App\Http\Controllers\Client\HomeController;
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\CheckoutController;
+
 
 
 /*
@@ -108,6 +112,7 @@ Route::post('/save-all-cart', [App\Http\Controllers\CartController::class, 'save
 
 // login
 // Route::get('kich-hoat', [HomeController::class, 'getAcctiveAccount'])->name('getAcctiveAccount');
+// Route::get('', [HomeController::class, 'index'])->route('home_client');
 Route::get('dang-ky', [HomeController::class, "getRegister"])->name('dang-ky');
 Route::post('dang-ky', [HomeController::class, "postRegister"])->name('submit-dang-ky');
 Route::post('kich-hoat', [HomeController::class, "postActive"])->name('active');
@@ -116,14 +121,25 @@ Route::post('dang-nhap', [HomeController::class, "postLogin"])->name('postLogin'
 Route::get('quen-mat-khau', [HomeController::class,"getForgotPass"])->name('getForgotPass');
 Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("postForgotPass");
 Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
+Route::get('dang-xuat', [HomeController::class, "getLogout"])->name('getLogout');
 Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
 
-Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('');
+Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
 Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');
 Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
 Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
+Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
+
 Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
 Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
+
 //Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
+
+//thanh toán
+Route::get('/checkout', function(){
+    return view('client.checkout.checkout');
+})->name('');
+Route::post('/order', [CheckoutController::class, 'order'])->name('order');
+

@@ -212,7 +212,11 @@ a.read-more {
 	color: #666;
 	font-size: 13px;
 }
-.entry-excerpt{ padding-top:4px;}
+.entry-excerpt{ 
+	padding-top:4px;
+	height: 100px;
+    overflow: hidden;
+}
 .blog-posts .post-item .entry-meta-data span {
 	margin-right: 12px;
 	border-right: 1px #ddd solid;
@@ -417,7 +421,13 @@ blockquote {
 	padding: 20px 20px 30px 67px;
 	border-left: 3px solid #eaeaea;
 	background: #fff;
+	overflow: hidden;
+    height: 115px;
+	text-align: justify;
 }
+
+.content-text .post{line-height: 25px;
+text-align: justify;}
 .entry-info {
 	padding-bottom: 10px; display:inline-block;
 }

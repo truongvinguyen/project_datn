@@ -59,9 +59,9 @@ Trang Bài Viết
                         <ul class="blog-list-sidebar">   
                             @foreach($articles as $article)
                                 <li>
-                                    <div class="post-thumb"> <a href="#"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
+                                    <div class="post-thumb"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
                                     <div class="post-info">
-                                        <h5 class="entry_title"><a href="#">{!!$article->article_title!!}</a></h5>
+                                        <h5 class="entry_title"><a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a></h5>
                                         <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{$article->created_at}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
                                     </div>
                                 </li>

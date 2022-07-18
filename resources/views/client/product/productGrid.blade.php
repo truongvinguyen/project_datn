@@ -6,9 +6,11 @@
                 <div class="product-item">
                     <div class="item-inner">
                         <div class="product-thumbnail">
-                            <div class="icon-sale-label sale-left">
-                                {{round((($product->product_price_sale-$product->product_price)/$product->product_price_sale)*100)}}%
-                            </div>
+                            @if($product->product_price_sale != null)
+                                <div class="icon-sale-label sale-left">
+                                    {{round((($product->product_price_sale-$product->product_price)/$product->product_price_sale)*100)}}%
+                                </div>
+                            @endif
                             <div class="box-hover">
                                 <div class="btn-quickview"> 
                                     <a  href="" onclick="quickviewProduct({{$product->id}})" data-toggle="modal" data-target="#modal-quickview">
@@ -21,7 +23,7 @@
                                     <a href="compare.html" class="action add-to-compare" title="Add to Compare"></a> 
                                 </div>
                             </div>
-                            <a href="/product-detail/${product.id}" class="product-item-photo"> 
+                            <a href="/product-detail/${product.id}/{{$product->category_id}}" class="product-item-photo"> 
                                 <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
                             </a> 
                         </div>
