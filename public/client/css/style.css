@@ -3752,6 +3752,11 @@ nav {
     border: 1px solid #000000;
     color: #fff;
 }
+#pagination li:hover{
+	background: #000000;
+    border: 1px solid #000000;
+    color: #fff;
+}
 
 #pagination .active{
     background: #CF3341;

@@ -238,541 +238,68 @@
 <!-- Main Container End -->
 
 <!-- Related Product Slider -->
-
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="related-product-area">
-                <div class="title_block">
-                    <h3 class="products_title">Related Products</h3>
-                </div>
-                <div class="related-products-pro">
-                    <div class="slider-items-products">
-                        <div id="related-product-slider" class="product-flexslider hidden-buttons">
-                            <div class="slider-items slider-width-col4">
-                                <div class="product-item">
-                                    <div class="item-inner">
-                                        <div class="product-thumbnail">
-                                            <div class="icon-sale-label sale-left">Sale</div>
-                                            <div class="box-hover">
-                                                <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                        data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                            aria-hidden="true"></i> Quick View</a> </div>
-                                                <div class="add-to-links" data-role="add-to-links"> <a
-                                                        href="wishlist.html" class="action add-to-wishlist"
-                                                        title="Add to Wishlist"></a> <a href="compare.html"
-                                                        class="action add-to-compare" title="Add to Compare"></a> </div>
-                                            </div>
-                                            <a href="single_product.html" class="product-item-photo"> <img
-                                                    class="product-image-photo" src="images/products/img01.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="pro-box-info">
-                                            <div class="item-info">
-                                                <div class="info-inner">
-                                                    <div class="item-title">
-                                                        <h4><a title="Ipsums Dolors Untra"
-                                                                href="single_product.html">Ipsums Dolors Untra </a></h4>
-                                                    </div>
-                                                    <div class="item-content">
-                                                        <div class="rating"> <i class="fa fa-star"></i> <i
-                                                                class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
-                                                                class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="item-price">
-                                                            <div class="price-box"> <span class="regular-price"> <span
-                                                                        class="price">$125.00</span> </span> </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="box-hover">
-                                                <div class="product-item-actions">
-                                                    <div class="pro-actions">
-                                                        <button onclick="location.href='shopping_cart.html'"
-                                                            class="action add-to-cart" type="button"
-                                                            title="Add to Cart"> <span>Add to Cart</span> </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-item">
-                                    <div class="item-inner">
-                                        <div class="product-thumbnail">
-                                            <div class="box-hover">
-                                                <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                        data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                            aria-hidden="true"></i> Quick View</a> </div>
-                                                <div class="add-to-links" data-role="add-to-links"> <a
-                                                        href="wishlist.html" class="action add-to-wishlist"
-                                                        title="Add to Wishlist"></a> <a href="compare.html"
-                                                        class="action add-to-compare" title="Add to Compare"></a> </div>
-                                            </div>
-                                            <a href="single_product.html" class="product-item-photo"> <img
-                                                    class="product-image-photo" src="images/products/img02.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="pro-box-info">
-                                            <div class="item-info">
-                                                <div class="info-inner">
-                                                    <div class="item-title">
-                                                        <h4><a title="Ipsums Dolors Untra"
-                                                                href="single_product.html">Ipsums Dolors Untra </a></h4>
-                                                    </div>
-                                                    <div class="item-content">
-                                                        <div class="rating"> <i class="fa fa-star-o"></i> <i
-                                                                class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="item-price">
-                                                            <div class="price-box"> <span class="regular-price"> <span
-                                                                        class="price">$175.88</span> </span> </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="box-hover">
-                                                <div class="product-item-actions">
-                                                    <div class="pro-actions">
-                                                        <button onclick="location.href='shopping_cart.html'"
-                                                            class="action add-to-cart" type="button"
-                                                            title="Add to Cart"> <span>Add to Cart</span> </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-item">
-                                    <div class="item-inner">
-                                        <div class="product-thumbnail">
-                                            <div class="icon-new-label new-left">new</div>
-                                            <div class="box-hover">
-                                                <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                        data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                            aria-hidden="true"></i> Quick View</a> </div>
-                                                <div class="add-to-links" data-role="add-to-links"> <a
-                                                        href="wishlist.html" class="action add-to-wishlist"
-                                                        title="Add to Wishlist"></a> <a href="compare.html"
-                                                        class="action add-to-compare" title="Add to Compare"></a> </div>
-                                            </div>
-                                            <a href="single_product.html" class="product-item-photo"> <img
-                                                    class="product-image-photo" src="images/products/img03.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="pro-box-info">
-                                            <div class="item-info">
-                                                <div class="info-inner">
-                                                    <div class="item-title">
-                                                        <h4><a title="Ipsums Dolors Untra"
-                                                                href="single_product.html">Ipsums Dolors Untra </a></h4>
-                                                    </div>
-                                                    <div class="item-content">
-                                                        <div class="rating"> <i class="fa fa-star"></i> <i
-                                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                                class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                        </div>
-                                                        <div class="item-price">
-                                                            <div class="price-box">
-                                                                <p class="special-price"> <span
-                                                                        class="price-label">Special Price</span> <span
-                                                                        class="price"> $299.00 </span> </p>
-                                                                <p class="old-price"> <span class="price-label">Regular
-                                                                        Price:</span> <span class="price"> $399.00
-                                                                    </span> </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="box-hover">
-                                                <div class="product-item-actions">
-                                                    <div class="pro-actions">
-                                                        <button onclick="location.href='shopping_cart.html'"
-                                                            class="action add-to-cart" type="button"
-                                                            title="Add to Cart"> <span>Add to Cart</span> </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-item">
-                                    <div class="item-inner">
-                                        <div class="product-thumbnail">
-                                            <div class="box-hover">
-                                                <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                        data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                            aria-hidden="true"></i> Quick View</a> </div>
-                                                <div class="add-to-links" data-role="add-to-links"> <a
-                                                        href="wishlist.html" class="action add-to-wishlist"
-                                                        title="Add to Wishlist"></a> <a href="compare.html"
-                                                        class="action add-to-compare" title="Add to Compare"></a> </div>
-                                            </div>
-                                            <a href="single_product.html" class="product-item-photo"> <img
-                                                    class="product-image-photo" src="images/products/img04.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="pro-box-info">
-                                            <div class="item-info">
-                                                <div class="info-inner">
-                                                    <div class="item-title">
-                                                        <h4><a title="Ipsums Dolors Untra"
-                                                                href="single_product.html">Ipsums Dolors Untra </a></h4>
-                                                    </div>
-                                                    <div class="item-content">
-                                                        <div class="rating"> <i class="fa fa-star"></i> <i
-                                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                                class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="item-price">
-                                                            <div class="price-box"> <span class="regular-price"> <span
-                                                                        class="price">$125.99</span> </span> </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="box-hover">
-                                                <div class="product-item-actions">
-                                                    <div class="pro-actions">
-                                                        <button onclick="location.href='shopping_cart.html'"
-                                                            class="action add-to-cart" type="button"
-                                                            title="Add to Cart"> <span>Add to Cart</span> </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-item">
-                                    <div class="item-inner">
-                                        <div class="product-thumbnail">
-                                            <div class="box-hover">
-                                                <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                        data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                            aria-hidden="true"></i> Quick View</a> </div>
-                                                <div class="add-to-links" data-role="add-to-links"> <a
-                                                        href="wishlist.html" class="action add-to-wishlist"
-                                                        title="Add to Wishlist"></a> <a href="compare.html"
-                                                        class="action add-to-compare" title="Add to Compare"></a> </div>
-                                            </div>
-                                            <a href="single_product.html" class="product-item-photo"> <img
-                                                    class="product-image-photo" src="images/products/img05.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="pro-box-info">
-                                            <div class="item-info">
-                                                <div class="info-inner">
-                                                    <div class="item-title">
-                                                        <h4><a title="Ipsums Dolors Untra"
-                                                                href="single_product.html">Ipsums Dolors Untra </a></h4>
-                                                    </div>
-                                                    <div class="item-content">
-                                                        <div class="rating"> <i class="fa fa-star"></i> <i
-                                                                class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="item-price">
-                                                            <div class="price-box">
-                                                                <p class="special-price"> <span
-                                                                        class="price-label">Special Price</span> <span
-                                                                        class="price"> $188.80 </span> </p>
-                                                                <p class="old-price"> <span class="price-label">Regular
-                                                                        Price:</span> <span class="price"> $299.00
-                                                                    </span> </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="box-hover">
-                                                <div class="product-item-actions">
-                                                    <div class="pro-actions">
-                                                        <button onclick="location.href='shopping_cart.html'"
-                                                            class="action add-to-cart" type="button"
-                                                            title="Add to Cart"> <span>Add to Cart</span> </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Related Product Slider End -->
-
-<!-- Upsell Product Slider -->
 <section class="upsell-product-area">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
                 <div class="title_block">
-                    <h3 class="products_title">UpSell Products</h3>
+                    <h3 class="products_title">Sản phẩm liên quan</h3>
                 </div>
                 <div class="slider-items-products">
                     <div id="upsell-product-slider" class="product-flexslider hidden-buttons">
                         <div class="slider-items slider-width-col4">
-                            <div class="product-item">
-                                <div class="item-inner">
-                                    <div class="product-thumbnail">
-                                        <div class="icon-sale-label sale-left">Sale</div>
-                                        <div class="box-hover">
-                                            <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                    data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                        aria-hidden="true"></i> Quick View</a> </div>
-                                            <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
-                                                    class="action add-to-wishlist" title="Add to Wishlist"></a> <a
-                                                    href="compare.html" class="action add-to-compare"
-                                                    title="Add to Compare"></a> </div>
-                                        </div>
-                                        <a href="single_product.html" class="product-item-photo"> <img
-                                                class="product-image-photo" src="images/products/img06.jpg" alt=""></a>
-                                    </div>
-                                    <div class="pro-box-info">
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <h4><a title="Ipsums Dolors Untra" href="single_product.html">Ipsums
-                                                            Dolors Untra </a></h4>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="rating"> <i class="fa fa-star"></i> <i
-                                                            class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i
-                                                            class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box"> <span class="regular-price"> <span
-                                                                    class="price">$125.00</span> </span> </div>
-                                                    </div>
-                                                </div>
+                            @foreach($products as $product)
+                                <div class="product-item">
+                                    <div class="item-inner">
+                                        <div class="product-thumbnail">
+                                            @if($product->product_price_sale != null)
+                                            <div class="icon-sale-label sale-left">
+                                                {{round((($product->product_price_sale-$product->product_price)/$product->product_price_sale)*100)}}%
                                             </div>
-                                        </div>
-                                        <div class="box-hover">
-                                            <div class="product-item-actions">
-                                                <div class="pro-actions">
-                                                    <button onclick="location.href='shopping_cart.html'"
-                                                        class="action add-to-cart" type="button" title="Add to Cart">
-                                                        <span>Add to Cart</span> </button>
-                                                </div>
-
+                                            @endif
+                                            <div class="box-hover">
+                                                <div class="btn-quickview"> <a href="#" data-toggle="modal"
+                                                        data-target="#modal-quickview"><i class="fa fa-search-plus"
+                                                            aria-hidden="true"></i> Quick View</a> </div>
+                                                <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
+                                                        class="action add-to-wishlist" title="Add to Wishlist"></a> <a
+                                                        href="compare.html" class="action add-to-compare"
+                                                        title="Add to Compare"></a> </div>
                                             </div>
+                                            <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img
+                                                    class="product-image-photo" src="/upload/product/{{$product->product_image}}" alt=""></a>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="item-inner">
-                                    <div class="product-thumbnail">
-                                        <div class="box-hover">
-                                            <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                    data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                        aria-hidden="true"></i> Quick View</a> </div>
-                                            <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
-                                                    class="action add-to-wishlist" title="Add to Wishlist"></a> <a
-                                                    href="compare.html" class="action add-to-compare"
-                                                    title="Add to Compare"></a> </div>
-                                        </div>
-                                        <a href="single_product.html" class="product-item-photo"> <img
-                                                class="product-image-photo" src="images/products/img07.jpg" alt=""></a>
-                                    </div>
-                                    <div class="pro-box-info">
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <h4><a title="Ipsums Dolors Untra" href="single_product.html">Ipsums
-                                                            Dolors Untra </a></h4>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="rating"> <i class="fa fa-star-o"></i> <i
-                                                            class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-                                                            class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
+                                        <div class="pro-box-info">
+                                            <div class="item-info">
+                                                <div class="info-inner">
+                                                    <div class="item-title">
+                                                        <h4><a title="Ipsums Dolors Untra" href="/product-detail/{{$product->id}}">{{$product->product_name}}</a></h4>
                                                     </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box"> <span class="regular-price"> <span
-                                                                    class="price">$175.88</span> </span> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="box-hover">
-                                            <div class="product-item-actions">
-                                                <div class="pro-actions">
-                                                    <button onclick="location.href='shopping_cart.html'"
-                                                        class="action add-to-cart" type="button" title="Add to Cart">
-                                                        <span>Add to Cart</span> </button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="item-inner">
-                                    <div class="product-thumbnail">
-                                        <div class="icon-new-label new-left">new</div>
-                                        <div class="box-hover">
-                                            <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                    data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                        aria-hidden="true"></i> Quick View</a> </div>
-                                            <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
-                                                    class="action add-to-wishlist" title="Add to Wishlist"></a> <a
-                                                    href="compare.html" class="action add-to-compare"
-                                                    title="Add to Compare"></a> </div>
-                                        </div>
-                                        <a href="single_product.html" class="product-item-photo"> <img
-                                                class="product-image-photo" src="images/products/img08.jpg" alt=""></a>
-                                    </div>
-                                    <div class="pro-box-info">
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <h4><a title="Ipsums Dolors Untra" href="single_product.html">Ipsums
-                                                            Dolors Untra </a></h4>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="rating"> <i class="fa fa-star"></i> <i
-                                                            class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                            class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="special-price"> <span class="price-label">Special
-                                                                    Price</span> <span class="price"> $299.00 </span>
-                                                            </p>
-                                                            <p class="old-price"> <span class="price-label">Regular
-                                                                    Price:</span> <span class="price"> $399.00 </span>
-                                                            </p>
+                                                    <div class="item-content">
+                                                       
+                                                        <div class="item-price">
+                                                            <div class="price-box"> 
+                                                                <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price)}}₫</span></p> 
+                                                                <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">&nbsp;{{number_format($product->product_price_sale)}}₫</span> </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="box-hover">
-                                            <div class="product-item-actions">
-                                                <div class="pro-actions">
-                                                    <button onclick="location.href='shopping_cart.html'"
-                                                        class="action add-to-cart" type="button" title="Add to Cart">
-                                                        <span>Add to Cart</span> </button>
-                                                </div>
+                                            <div class="box-hover">
+                                                <div class="product-item-actions">
+                                                    <div class="pro-actions">
+                                                        <button onclick="location.href='shopping_cart.html'"
+                                                            class="action add-to-cart" type="button" title="Add to Cart">
+                                                            <span>Add to Cart</span> </button>
+                                                    </div>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="item-inner">
-                                    <div class="product-thumbnail">
-                                        <div class="box-hover">
-                                            <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                    data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                        aria-hidden="true"></i> Quick View</a> </div>
-                                            <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
-                                                    class="action add-to-wishlist" title="Add to Wishlist"></a> <a
-                                                    href="compare.html" class="action add-to-compare"
-                                                    title="Add to Compare"></a> </div>
-                                        </div>
-                                        <a href="single_product.html" class="product-item-photo"> <img
-                                                class="product-image-photo" src="images/products/img09.jpg" alt=""></a>
-                                    </div>
-                                    <div class="pro-box-info">
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <h4><a title="Ipsums Dolors Untra" href="single_product.html">Ipsums
-                                                            Dolors Untra </a></h4>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="rating"> <i class="fa fa-star"></i> <i
-                                                            class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                            class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box"> <span class="regular-price"> <span
-                                                                    class="price">$125.99</span> </span> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="box-hover">
-                                            <div class="product-item-actions">
-                                                <div class="pro-actions">
-                                                    <button onclick="location.href='shopping_cart.html'"
-                                                        class="action add-to-cart" type="button" title="Add to Cart">
-                                                        <span>Add to Cart</span> </button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="item-inner">
-                                    <div class="product-thumbnail">
-                                        <div class="box-hover">
-                                            <div class="btn-quickview"> <a href="#" data-toggle="modal"
-                                                    data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                        aria-hidden="true"></i> Quick View</a> </div>
-                                            <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
-                                                    class="action add-to-wishlist" title="Add to Wishlist"></a> <a
-                                                    href="compare.html" class="action add-to-compare"
-                                                    title="Add to Compare"></a> </div>
-                                        </div>
-                                        <a href="single_product.html" class="product-item-photo"> <img
-                                                class="product-image-photo" src="images/products/img10.jpg" alt=""></a>
-                                    </div>
-                                    <div class="pro-box-info">
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title">
-                                                    <h4><a title="Ipsums Dolors Untra" href="single_product.html">Ipsums
-                                                            Dolors Untra </a></h4>
-                                                </div>
-                                                <div class="item-content">
-                                                    <div class="rating"> <i class="fa fa-star"></i> <i
-                                                            class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-                                                            class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="special-price"> <span class="price-label">Special
-                                                                    Price</span> <span class="price"> $188.80 </span>
-                                                            </p>
-                                                            <p class="old-price"> <span class="price-label">Regular
-                                                                    Price:</span> <span class="price"> $299.00 </span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="box-hover">
-                                            <div class="product-item-actions">
-                                                <div class="pro-actions">
-                                                    <button onclick="location.href='shopping_cart.html'"
-                                                        class="action add-to-cart" type="button" title="Add to Cart">
-                                                        <span>Add to Cart</span> </button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -816,46 +343,37 @@
 <!-- our clients Slider -->
 <!-- our clients Slider -->
 
-<div class="our-clients">
-    <div class="container">
-        <div class="slider-items-products">
-            <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-                <div class="slider-items slider-width-col6">
-
-                    <!-- Item -->
-                    <div class="item"> <a href="#"><img src="images/brand1.png" alt="Image" class="grayscale"></a>
-                    </div>
-                    <!-- End Item -->
-
-                    <!-- Item -->
-                    <div class="item"> <a href="#"><img src="images/brand2.png" alt="Image" class="grayscale"></a>
-                    </div>
-                    <!-- End Item -->
-
-                    <!-- Item -->
-                    <div class="item"> <a href="#"><img src="images/brand3.png" alt="Image" class="grayscale"></a>
-                    </div>
-                    <!-- End Item -->
-
-                    <!-- Item -->
-                    <div class="item"> <a href="#"><img src="images/brand4.png" alt="Image" class="grayscale"></a>
-                    </div>
-                    <!-- End Item -->
-                    <!-- Item -->
-                    <div class="item"> <a href="#"><img src="images/brand5.png" alt="Image" class="grayscale"></a>
-                    </div>
-                    <!-- End Item -->
-                    <!-- Item -->
-                    <div class="item"> <a href="#"><img src="images/brand6.png" alt="Image" class="grayscale"></a>
-                    </div>
-                    <!-- End Item -->
-                    <!-- Item -->
-                    <div class="item"> <a href="#"><img src="images/brand7.png" alt="Image" class="grayscale"></a>
-                    </div>
-                    <!-- End Item -->
-
-                </div>
-            </div>
+<div class="container">
+    <div class="slider-items-products">
+        <div id="our-clients-slider" class="product-flexslider hidden-buttons">
+          <div class="slider-items slider-width-col6"> 
+            
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand1.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand2.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand3.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand4.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand5.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand6.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand7.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            
+          </div>
         </div>
     </div>
 </div>

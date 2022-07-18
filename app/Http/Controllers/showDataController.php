@@ -33,31 +33,46 @@ class showDataController extends Controller
 
     public function article_page(){
         $article = new article();
+
         $articles = $article->article();
         $length = article::all()->count();
         $brands = brand::all();
         return view('client.article.article-page',compact('articles','brands','length'));
     }
+    public function articleOne($id){
+        $art = new article();
+
+        $articles = $art->article();
+        $articleOne = $art->articleOne($id);
+        $articleByCategory = $art->articleByCategory($articleOne->category_id);
+ 
+        return view('client.article.article-one',compact('articles','articleOne','articleByCategory'));
+    }
 
     public function product_grid(){
-        $categories = category::all();
+        $data = new product();
         $article = new article();
+
+        $categories = category::all();
         $articles = $article->article();
         $brands = brand::all();
-        $size = inventory::all();  
-        $length = product::all()->count();
-        return view('client.product.product-grid',compact('length','categories','brands','size','articles'));
+          
+        $products = $data::all();
+        $length = $data::all()->count();
+        return view('client.product.product-grid',compact('length','categories','brands','articles','products'));
     }
 
     public function product_list(){
         $data = new product();
         $article = new article();
+
         $articles = $article->article();
         $categories = category::all();
         $brands = brand::all();
-        $size = inventory::all();  
+
+        $products = $data::all();
         $length = $data::all()->count();
-        return view('client.product.product-list',compact('length','categories','brands','size','articles'));
+        return view('client.product.product-list',compact('length','categories','brands','articles','products'));
     }
 
     public function aboutUs(){
