@@ -3,9 +3,11 @@
         @foreach($products as $product)
             <li class="item ">
                 <div class="product-img">
-                    <div class="icon-sale-label sale-left">
-                        {{round((($product->product_price_sale-$product->product_price)/$product->product_price_sale)*100)}}%
-                    </div>
+                    @if($product->product_price_sale != null)
+                      <div class="icon-sale-label sale-left">
+                          {{round((($product->product_price_sale-$product->product_price)/$product->product_price_sale)*100)}}%
+                      </div>
+                    @endif
                     <a href="/product-detail/{{$product->id}}" title="{{$product->product_name}}">
                         <figure> <img class="small-image" src="/upload/product/{{$product->product_image}}" alt="{{$product->product_name}}"></figure>
                     </a>

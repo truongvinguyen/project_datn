@@ -130,8 +130,11 @@ Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'pr
 Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
 Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
+Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
+
 Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
 Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
+
 //Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
 //thanh toán

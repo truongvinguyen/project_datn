@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class article extends Model
 {
@@ -57,5 +58,18 @@ class article extends Model
         ->join('brand','brand.id','=','article.brand_id')
         ->orderBy('article.id','DESC')->limit(4)->get();
         return $articles;
+    }
+
+    public function articleOne($id){
+        $articles = article::select('*')
+        ->join('users','users.id','=','article.employee_id')
+        ->join('brand','brand.id','=','article.brand_id')
+        ->where('article.id','=',$id)->first();
+        return $articles;
+    }
+
+    public function articleByCategory($cate){
+        $data = DB::table('article')->where('category_id','=',$cate)->get();
+        return $data;
     }
 }
