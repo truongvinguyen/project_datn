@@ -8,10 +8,17 @@ use App\Models\Client\UserClient;
 use Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class HomeController extends Controller
 {
+    public function index(){
+        return view();
+    }
     public function getRegister(){
+        if(Session::has('userId')){
+            return redirect()->route('home_client');
+        }
         return view('client.account.register');
     }
 
@@ -24,6 +31,7 @@ class HomeController extends Controller
             "email" => "required|min:10|max:255|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix",
             "password" => "min:8|max:255|required",
             "cf_password" => "required|min:8|max:255|same:password",
+            "file" => "required|mimes:jpeg,png,jpg|max:1024"
         ];
         $messages = [
             "fullname.required" =>":attribute là bắt buộc.",
@@ -41,7 +49,7 @@ class HomeController extends Controller
             "email.max" =>":attribute tối đa :max ký tự.",
             "email.regex" =>":attribute không đúng định dạng.",
             "email.unique" =>":attribute đã tồn tại.",
-            "code" => "required|size:6|regex:[0-9]",
+            // "code" => "required|size:6|regex:[0-9]",
             "password.required" => ":attribute là bắt buộc.",
             "password.required_with" => ":attribute yêu cầu với xác thực mật khẩu.",
             "password.min" =>":attribute tối thiểu :min ký tự.",
@@ -54,7 +62,11 @@ class HomeController extends Controller
             "code.required" => ":attribute là bắt buộc.",
             "code.size" => ":attribute không hợp lệ.",
             "code.regex" => ":attribute không hợp lệ.",
-            "code" => "Mã Code",
+            // "code" => "Mã Code",
+            "file.required" => "::attribute là bắt buộc.",
+            // "file.image" => "::attribute phải là ảnh.",
+            "file.mimes" => "::attribute phải là png, jpeg, jpg.",
+            "file.max" => "::attribute tối đa 1MB."
         ];
         $attributes = [
             "fullname" => "Họ và tên",
@@ -63,6 +75,7 @@ class HomeController extends Controller
             "email" => "Email",
             "password" => "Mật khẩu",
             "cf_password" => "Xác thực mật khẩu",
+            "file" => "Ảnh đại diện"
         ];
         $request->validate($rules, $messages, $attributes );
         // dd($request->email);
@@ -71,17 +84,28 @@ class HomeController extends Controller
         $fullname = $request->fullname;
         $address = $request->address;
         $phone = $request->phone;
-        // $emailDB = UserClient::checkIssetEmail($email);
-        $emailDB = true;
+        $image = $request->file('file')->getClientOriginalName();
+        $emailDB = UserClient::checkIssetEmail($email);
+        // $emailDB = true;
         if (!$emailDB){
             session()->flash('msgErr','Đăng ký không thành công. Email đã tồn tại.');
             return redirect()-> back();
         }else{
-            // $isAddSuccsess = UserClient::addUser($email,$pass,$fullname,$address,$phone);
-            // $isAddCodeSuccess = UserClient::createCode($email);
-            $isAddSuccsess = true;
-            $isAddCodeSuccess = true;
-            if ($isAddSuccsess && $isAddCodeSuccess){
+            $isAddSuccsess = UserClient::addUser($email,$pass,$fullname,$address,$phone,$image);
+            // $isAddSuccsess = true;
+            if ($isAddSuccsess){
+                $code = UserClient::createCode($email);
+                Mail::send('client.account.mailUpdatePass',[
+                    'email' => $request->email,
+                    'code' => $code,
+                    
+                ],function($mail) use ($request){
+                    $mail->to($request->email);
+                    $mail->from($request->email);
+                    $mail->subject('Mã kích hoạt tài khoản.');
+                });
+                $request->file('file')->move(public_path('public/upload/client/user'), $image);
+                // dd($image);
                 session()->flash('msg','Đăng ký thành công. Nhập mã code được gửi vào tài khoản để kích hoạt.');
                 session()->flash('emailActive',$email);
                 // return redirect('/kich-hoat')->with(['email', $email]);
@@ -119,16 +143,13 @@ class HomeController extends Controller
             $date = date('Y-m-d H:i:s');
             if (strtotime($date) >= strtotime($info->code_expried)){
                 // dd(strtotime($date), strtotime($info->code_expried));
-                session()->flash('msg', "Mã kích hoạt đã hết hạn.");
-                session()->flash('type', 'danger');
-                // $errActive = "Mã kích hoạt hết hạn.";
-                return view('client.account.active');//, compact('errActive'));
+                // session()->flash('msg', "Mã kích hoạt đã hết hạn.");
+                // session()->flash('type', 'danger');
+                $errActive = "Mã kích hoạt hết hạn.";
+                return view('client.account.active',compact('errActive'));//, compact('errActive'));
             }
             // dd($info); 944954
-            if ($info->email != $email || md5($code) != $info->code){
-                $errActive = "Kích hoạt không thành công. Vui lòng kiểm tra lại.";
-                return view('client.account.active', compact('errActive'));
-            }else{
+            if ($info->email == $email && md5($code) == $info->code){
                 $msg = "Kích hoạt thành công.";
                 $result = UserClient::updateApprovedUser($email);    
                 if($result){
@@ -137,12 +158,18 @@ class HomeController extends Controller
                 }
                 $errActive = "Kích hoạt không thành công. Vui lòng thử lại sau.";
                 return view('client.account.active', compact('errActive'));
+            }else{
+                $errActive = "Kích hoạt không thành công. Vui lòng kiểm tra lại.";
+                return view('client.account.active', compact('errActive'));
             }
             dd($info);
         }
     }
 
     public function getLogin(){
+        if(Session::has('userId')){
+            return redirect()->route('home_client');
+        }
         return view('client.account.login');
     }
 
@@ -172,7 +199,15 @@ class HomeController extends Controller
             return view('client.account.login')->with('msgErr', 'Tài khoản không tồn tại.');
         }
         if ($user->email == $email && $user->password == md5($pass)){
-            return "okla";
+            Session::put('userId',$user->id);
+            Session::put('userEmail',$user->email);
+            Session::put('userFullname',$user->fullname);
+            Session::put('userImage',$user->image);
+            Session::put('userPhone',$user->phone);
+            Session::put('userAddress',$user->address);
+            // dd($user);
+            // return view('client.account.dcm');
+            return redirect()->route('home_client')->with('success',"Đăng nhập thành công.");
         }else{
             return view('client.account.login')->with('msgErr', 'Đăng nhập không thành công. Vui lòng kiểm tra lại.');
         }
@@ -185,7 +220,9 @@ class HomeController extends Controller
 
     public function postForgotPass(Request $request){
         $rules = [
-            'email' => ['required', 'min:10', 'max:255', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix']
+            'email' => ['required', 'min:10', 'max:255', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
+            'code' => ['required', 'min:6', 'max:6'],
+            'password' => ['required', 'min:8', 'max:255']
         ];
         $messages = [
             'required' =>':attribute là bắt buộc.',
@@ -194,7 +231,9 @@ class HomeController extends Controller
             'regex' =>':attribute không đúng định dạng.'
         ];
         $attributes = [
-            "email" => "Email"
+            "email" => "Email",
+            "code" => "Mã xác thực",
+            "password" => "Mật khẩu"
         ];
         // $rst = $request->validate($rules,$messages);
         // return response()->json($rst);
@@ -203,7 +242,42 @@ class HomeController extends Controller
         if ($validator->fails()){
             return response()->json(['err'=>$validator->errors()->all()]);
         }else{
-            return response()->json(['email'=>$request->email]);
+            $email = $request->email;
+            $code = $request->code;
+            $codeForgotPass = UserClient::getCuFogotPass($email, $code);
+
+            if ($codeForgotPass == null){
+                return response()->json([
+                    'codeErr'=> 1,
+                    'msg'=> "Mã xác thức không đúng. Vui lòng kiểm tra lại."
+                ]);
+            }
+            $date = date('Y-m-d H:i:s');
+            $dateExpired = $codeForgotPass->code_expired;
+            if (strtotime($date) >= strtotime($dateExpired)) {
+                return response()->json([
+                    'codeErr' => 1,
+                    'msg' => "Mã xác thực đã hết hạn."
+                ]);
+            }
+            UserClient::updatePass($email, $request->password);
+            // UserClient::find($email)->updatePass(['password'=> md5($request->password)]);
+            Mail::send('client.account.mailUpdatePass',[
+                'email' => $request->email,
+                'code' => $code,
+                
+            ],function($mail) use ($request){
+                $mail->to($request->email);
+                $mail->from($request->email);
+                $mail->subject('Cập nhật mật khẩu thành công.');
+            });
+            UserClient::deleteCodeForgotPass($request->email);
+            return response()->json([
+                'codeErr'=>0,
+                'email'=>$request->email,
+                'code'=>$request->code,
+                'pass'=>$request->password
+            ]);
         }
         // $request->validate($rules, $messages);
         // return response()->json('cc');
@@ -248,15 +322,34 @@ class HomeController extends Controller
                     'msg'=>'Email ko ton tai.',
                 ]);
             }
-            $code = 12345;
+            // $code = 12345;
+            // $code = UserClient::createCodeForgotPass($request->email);
+            Mail::send('client.account.mailUpdatePass',[
+                'email' => $request->email,
+                'code' => UserClient::createCodeForgotPass($request->email)
+                
+            ],function($mail) use ($request){
+                $mail->to($request->email);
+                $mail->from($request->email);
+                $mail->subject('Mã xác thực đặt lại mật khẩu.');
+            });
             return response()->json([
-                'code'=>$code, 
+                'code'=>UserClient::createCodeForgotPass($request->email), 
                 'codeErr' => 0,
                 'msg' => "Mã xác thực đã được gửi về email."]
             );
         } catch(\Exception $e){
             return response()->json(['code'=>500, 'error'=>$e->getMessage()], 500);
         }
+    }
+
+    public function getLogout(){
+        Session::forget('userId');
+        Session::forget('userEmail');
+        Session::forget('userFullname');
+        Session::forget('userPhone');
+        Session::forget('userAddress');
+        return redirect()->route('home_client');
     }
 
     public function postReview(Request $request){

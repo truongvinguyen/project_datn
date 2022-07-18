@@ -67,8 +67,14 @@
                                 <div class="welcome-msg hidden-xs">Chào mừng bạn đến với Website</div>
                                 <ul class="links">
                                     <li><a href="checkout.html">Thủ tục thanh toán</a></li>
-                                    <li><a href="{{ route('dang-ky') }}">Tạo tài khoản</a></li>
-                                    <li><a href="{{ route('getLogin') }}">Đăng nhập</a></li>
+                                    @if((Session::has('userEmail')))
+                                        <li><a href="#">{{Session::get('userEmail')}}</a></li>
+                                        <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                    @else
+                                        <li><a href="{{route('dang-ky')}}">Tạo tài khoản</a></li>
+                                        <li><a href="{{route('getLogin')}}">Đăng nhập</a></li>
+                                    @endif
+
                                 </ul>
                                 <div class="language-currency-wrapper pull-right">
                                     <div class="inner-cl">
@@ -482,7 +488,13 @@
         CountBack_slider(gsecs1, "countbox_1", 1);
     </script>
 
-
+    <script>
+        var btnLogout = document.querySelector('#logout');
+        // btnLogout.onclick = function() {
+        //     alert('Logged out');
+        // }
+        
+    </script>
     
 </body>
 @yield('js')

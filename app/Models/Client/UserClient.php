@@ -2,7 +2,8 @@
 
 namespace App\Models\Client;
 use Illuminate\Support\Facades\DB;
-class UserClient{
+use Illuminate\Database\Eloquent\Model;
+class UserClient extends Model{
     static function checkIssetEmail($email){
         $user = DB::table('customer_user')
         ->where('email',$email)
@@ -18,13 +19,14 @@ class UserClient{
         }
     }
 
-    static function addUser($email, $pass, $fullname, $address, $phone){
+    static function addUser($email, $pass, $fullname, $address, $phone, $image){
         $id = DB::table('customer_user')->insertGetId([
                 'email' => $email,
                 'password' => md5($pass),
                 'address' => $address,
                 'phone' => $phone,
                 'fullname' => $fullname,
+                'image'=> $image
         ]);
 
         if ($id != 0){
@@ -45,19 +47,15 @@ class UserClient{
     static function createCode($email){
         $code = mt_rand(100000,999999);
         $start = date('Y-m-d H:i:s');
-        $date = date('Y-m-d H:i:s',strtotime('+1 minutes',strtotime($start)));
+        $date = date('Y-m-d H:i:s',strtotime('+2 minutes',strtotime($start)));
         // dd($start,$date);
-        echo $code;
-        $flag = DB::table('cu_code')->insert([
+        // echo $code;
+       DB::table('cu_code')->insert([
             'email' => $email,
             'code' => md5($code),
             'code_expried' => $date
         ]);
-        if ($flag != 0){
-            return true;
-        }else{
-            return false;
-        }
+        return $code;
     }
 
     static function getCode($email){
@@ -79,7 +77,7 @@ class UserClient{
 
     static function login($email, $pass){
         $user = DB::table('customer_user')
-        ->select('email','password')
+        ->select('*')
         ->where('email', $email, null, 'and', 'password', md5($pass))
         ->first();
         return $user;
@@ -88,14 +86,35 @@ class UserClient{
     static function createCodeForgotPass($email){
         $code = mt_rand(100000,999999);
         $start = date('Y-m-d H:i:s');
-        $date = date('Y-m-d H:i:s',strtotime('+1 minutes',strtotime($start)));
+        $date = date('Y-m-d H:i:s',strtotime('+2 minutes',strtotime($start)));
         // dd($start,$date);
-        echo $code;
+        // echo $code;
         DB::table('cu_forgotpass')->insert([
             'email' => $email,
             'code' => $code ,//md5($code),
             'code_expired' => $date
         ]);
         return $code;
+    }
+
+    static function getCuFogotPass($email, $code){
+        $rst = DB::table('cu_forgotpass')
+        ->select('email','code', 'code_expired')
+        ->where('email', $email)
+        ->where('code', $code)
+        ->first();
+        return $rst;
+    }
+
+    static function updatePass($email, $pass){
+        DB::table('customer_user')
+        ->where('email', $email)
+        ->update(['password'=>md5($pass)]);
+    }
+
+    static function deleteCodeForgotPass($email){
+        DB::table('cu_forgotpass')
+        ->where('email', $email)
+        ->delete();
     }
 }
