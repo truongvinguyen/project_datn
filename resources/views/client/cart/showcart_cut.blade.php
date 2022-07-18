@@ -77,7 +77,7 @@
             </tfoot>
             <tbody>
                 <tr>
-                    <td style="" class="a-left" colspan="1"> Phí vận chuyển: </td>
+                    <td style="" class="a-left" colspan="1"> Phí vận chuyển (đơn hàng trên 500,000đ sẽ tự động miễn phí vận chuyển): </td>
                     <td style="" class="a-right"><span class="price">30.000 đ</span></td>
                 </tr>
             </tbody>
