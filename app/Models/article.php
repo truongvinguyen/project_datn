@@ -54,9 +54,9 @@ class article extends Model
 
     public function article(){
         $articles = article::select('*')
-        ->join('users','users.id','=','article.employee_id')
-        ->join('brand','brand.id','=','article.brand_id')
-        ->orderBy('article.id','DESC')->limit(4)->get();
+        // ->join('users','users.id','=','article.employee_id')
+        // ->join('brand','brand.id','=','article.brand_id')
+        ->orderBy('id','DESC')->limit(4)->get();
         return $articles;
     }
 
