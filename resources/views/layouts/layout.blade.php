@@ -120,7 +120,7 @@
                 <form>
                     <div class="form-group mb-0">
                         <i class="dw dw-search2 search-icon"></i>
-                        <input type="text" class="form-control search-input" placeholder="Search Here">
+                        <input type="text" class="form-control search-input" placeholder="Tìm kiếm">
                         <div class="dropdown">
                             <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
                                 <i class="ion-arrow-down-c"></i>
@@ -226,12 +226,12 @@
                         <span class="user-name"> {{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                        <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Hồ sơ</a>
+                        <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Cài đặt</a>
+                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Trợ giúp</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            <i class="icon-copy dw dw-logout1"></i> {{ __('Đăng xuất') }}
+                            <i class="icon-copy dw dw-logout1"></i> Đăng xuất
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -239,9 +239,6 @@
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="github-link">
-                <a href="https://github.com/truongvinguyen/project_datn.git" target="_blank"><img src="/admin/vendors/images/github.svg" alt=""></a>
             </div>
         </div>
     </div>
@@ -324,8 +321,8 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="/">
-                <img src="{{asset('admin/src/images/logoblack.png')}}" alt="" width="150px" class="dark-logo">
                 <img src="{{asset('admin/src/images/logowhite.png')}}" alt="" width="150px" class="light-logo">
+                <img src="{{asset('admin/src/images/logoblack.png')}}" alt="" width="150px" class="dark-logo">
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -336,10 +333,10 @@
                 <ul id="accordion-menu">
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+                            <span class="micon dw dw-house-1"></span><span class="mtext">Trang chủ</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="/home">Dashboard</a></li>
+                            <li><a href="/home-admin">Thống kê</a></li>
 
                         </ul>
                     </li>

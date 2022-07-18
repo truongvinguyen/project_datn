@@ -9,7 +9,7 @@
 @endif
 <div class="pre-loader">
 	<div class="pre-loader-box">
-		<div class="loader-logo"><img src="/admin/vendors/images/logoblack.png" width="270px" alt=""></div>
+		<div class="loader-logo"><img src="/admin/src/images/logowhite.png" width="270px" alt=""></div>
 		<div class='loader-progress' id="progress_div">
 			<div class='bar' id='bar1'></div>
 		</div>
@@ -28,7 +28,7 @@
 			</div>
 			<div class="col-md-10">
 				<h4 class="font-20 weight-500 mb-10 text-capitalize">
-					Người quản trị <div class="weight-600 font-30 "> {{ Auth::user()->name }}</div>
+					Quản trị viên <div class="weight-600 font-30 "> {{ Auth::user()->name }}</div>
 				</h4>
 
 			</div>

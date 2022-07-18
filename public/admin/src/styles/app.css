@@ -35,6 +35,6 @@ table.dataTable span.highlight::before {
 }
 
 table.dataTable span.column_highlight {
-	background-color: transparent !imporrtant;
+	background-color: transparent !important;
 	border-radius: .2rem;
 }
