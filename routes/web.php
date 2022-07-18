@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\client\HomeController;
 
 
@@ -127,3 +128,10 @@ Route::get('/article', [App\Http\Controllers\showDataController::class, 'article
 Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
 Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
 //Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
+
+//thanh toán
+Route::get('/checkout', function(){
+    return view('client.checkout.checkout');
+})->name('');
+Route::post('/order', [CheckoutController::class, 'order'])->name('order');
+
