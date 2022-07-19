@@ -118,11 +118,12 @@ Route::post('dang-ky', [HomeController::class, "postRegister"])->name('submit-da
 Route::post('kich-hoat', [HomeController::class, "postActive"])->name('active');
 Route::get('dang-nhap', [HomeController::class, "getlogin"])->name('getLogin');
 Route::post('dang-nhap', [HomeController::class, "postLogin"])->name('postLogin');
-Route::get('quen-mat-khau', [HomeController::class,"getForgotPass"])->name('getForgotPass');
+Route::get('quen-mat-khau', [HomeController::class, "getForgotPass"])->name('getForgotPass');
 Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("postForgotPass");
 Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
 Route::get('dang-xuat', [HomeController::class, "getLogout"])->name('getLogout');
 Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
+Route::get('ho-so', [HomeController::class, 'profile'])->name('profile');
 
 Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
@@ -138,8 +139,7 @@ Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'cont
 //Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
 //thanh toán
-Route::get('/checkout', function(){
+Route::get('/checkout', function () {
     return view('client.checkout.checkout');
 })->name('');
 Route::post('/order', [CheckoutController::class, 'order'])->name('order');
-
