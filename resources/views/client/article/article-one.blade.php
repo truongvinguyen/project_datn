@@ -28,7 +28,7 @@ Trang Bài Viết
             <div class="entry-photo">
               <figure><img src="/upload/article/{{$articleOne->article_thumbnail}}" alt="Blog"></figure>
             </div>
-            <div class="entry-meta-data"> <span class="author"> <i class="fa fa-user"></i>&nbsp; by: <a href="#">{{$articleOne->name}}</a></span> <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#">{{$articleOne->brand}} </a> </span> <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span> <span class="date"><i class="fa fa-calendar">&nbsp;</i>&nbsp;{{$articleOne->created_id}}</span>
+            <div class="entry-meta-data"> <span class="author"> <i class="fa fa-user"></i>&nbsp; by: <a href="#">{{$articleOne->name}}</a></span> <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#">{{$articleOne->brand}} </a> </span> <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span> <span class="date"><i class="fa fa-calendar">&nbsp;</i>&nbsp;{{date('d-m-y', strtotime($articleOne->created_at))}}</span>
               <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>&nbsp; <span>(5 votes)</span></div> -->
             </div>
             <div class="content-text clearfix">
@@ -51,7 +51,7 @@ Trang Bài Viết
                         <div class="entry-thumb"> <a href="/article-detail/{{$article->id}}"> <img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"> </a> </div>
                         <div class="entry-info">
                           <h3 class="entry-title"><a href="/article-detail/{{$article->id}}" style="width: 300px;">{{$article->article_title}}</a></h3>
-                          <div class="entry-meta-data"> <span class="comment-count"> <i class="fa fa-comment-o">&nbsp;</i> 1 </span> <span class="date"> <i class="fa fa-calendar">&nbsp;</i>/article-detail/{{$article->created_at}}</span> </div>
+                          <div class="entry-meta-data"> <span class="comment-count"> <i class="fa fa-comment-o">&nbsp;</i> 1 </span> <span class="date"> <i class="fa fa-calendar">&nbsp;</i>{{date('d-m-y', strtotime($article->created_at))}}</span> </div>
                           <div class="entry-more"> <a href="/article-detail/{{$article->id}}">Xem thêm</a> </div>
                         </div>
                       </article>
@@ -126,7 +126,7 @@ Trang Bài Viết
                       <div class="post-thumb"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
                       <div class="post-info">
                         <h5 class="entry_title"><a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a></h5>
-                        <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{$article->created_at}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
+                        <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{date('d-m-y', strtotime($article->created_at))}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
                       </div>
                     </li>
                   @endforeach
@@ -245,38 +245,34 @@ Trang Bài Viết
   </div>
   <!-- our clients Slider -->
   <div class="container">
-      <div class="slider-items-products">
-        <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-          <div class="slider-items slider-width-col6"> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand1.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand2.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand3.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand4.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand5.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand6.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand7.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-          </div>
+    <div class="slider-items-products">
+      <div id="our-clients-slider" class="product-flexslider hidden-buttons">
+        <div class="slider-items slider-width-col6"> 
+          
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand1.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand2.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand3.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand4.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('/images/brand6.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand7.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
         </div>
       </div>
     </div>
+  </div>
 
 @endsection

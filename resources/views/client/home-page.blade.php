@@ -20,16 +20,16 @@ Trang Chủ
                       <div class='tp-caption ExtraLargeTitle sft  tp-resizeme' data-x='82'  data-y='200'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>THEO MÙA</div>
                       <div class='tp-caption ExtraLargeTitle jtv-text sft  tp-resizeme' data-x='85'  data-y='258'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>LÊN ĐẾN 55%</div>
                       <div class='tp-caption decs sft  tp-resizeme' data-x='105'  data-y='305'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Power2.easeInOut' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'>Nhiều sản phẩm đang được giảm giá...<br></div>
-                      <div class='tp-caption sfb  tp-resizeme ' data-x='105'  data-y='375'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'><a href='#' class="shop-now-btn">Mua ngay</a></div>
+                      <!-- <div class='tp-caption sfb  tp-resizeme ' data-x='105'  data-y='375'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'><a href='#' class="shop-now-btn">Mua ngay</a></div> -->
                     </div>
                   </li>
                   <li data-transition='slidedown' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="client/images/slider/slider-img2.jpg" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
                     <div class="caption-inner">
                       <div class='tp-caption LargeTitle sft  tp-resizeme' data-x='85'  data-y='145'  data-endspeed='500'  data-speed='500' data-start='1300' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:3; white-space:nowrap;'>MÙA HÈ NÀY</div>
                       <div class='tp-caption ExtraLargeTitle sft  tp-resizeme' data-x='82'  data-y='200'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>bộ sưu tập</div>
-                      <div class='tp-caption ExtraLargeTitle jtv-text sft  tp-resizeme' data-x='85'  data-y='258'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>giày nữ</div>
+                      <div class='tp-caption ExtraLargeTitle jtv-text sft  tp-resizeme' data-x='85'  data-y='258'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>thời trang hè thu</div>
                       <div class='tp-caption decs sft  tp-resizeme' data-x='105'  data-y='305'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Power2.easeInOut' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'>Sản phẩm ấn tượng với nhiều đợt khuyến mãi...</div>
-                      <div class='tp-caption sfb  tp-resizeme ' data-x='105'  data-y='375'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'><a href='#' class="shop-now-btn">Mua ngay</a></div>
+                      <!-- <div class='tp-caption sfb  tp-resizeme ' data-x='105'  data-y='375'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'><a href='#' class="shop-now-btn">Mua ngay</a></div> -->
                     </div>
                   </li>
                 </ul>
@@ -113,12 +113,13 @@ Trang Chủ
                         <div class="item-content">
                           
                           <div class="price-box">
-                          <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price)}}₫</span></p>
-                            <p class="special-price"> <span class="price-label">Giá đặt biệt</span> &nbsp;<span class="price">₫{{number_format($product->product_price_sale)}}₫</span> </p>
-                            <p class="old-price" style="width:40%;float:right;"> 
-                                <span class="price-label">Đã bán:</span> 
-                                <span class="qty-sold"> Đã bán: {{$product->qty_sold}} </span> 
-                            </p>
+                            @if($product->product_price == null)
+                              <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}₫</span></p>
+                              <p class="special-price"> <span class="price-label">Giá đặt biệt</span> &nbsp;<span class="price">₫{{number_format($product->product_price)}}₫</span> </p>
+                            @else
+                              <p class="special-price"> <span class="price-label">Giá thường:</span> <span class="regular-price">{{number_format($product->product_price)}}₫</span></p>
+                            @endif
+                            <p class="old-price" style="width:40%;float:right;"><span class="qty-sold"> Đã bán: {{$product->qty_sold}} </span></p>
                           </div>
                         </div>
                       </div>
@@ -165,8 +166,12 @@ Trang Chủ
                         <div class="item-content">
                           
                           <div class="price-box">
-                          <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price)}}₫</span></p> 
-                          <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">&nbsp;{{number_format($product->product_price_sale)}}₫</span> </p>
+                            @if($product->product_price_sale != null)
+                              <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}₫</span></p>
+                              <p class="special-price"> <span class="price-label">Giá đặt biệt</span> &nbsp;<span class="price">₫{{number_format($product->product_price)}}₫</span> </p>
+                            @else
+                              <p class="special-price"> <span class="price-label">Giá thường:</span> <span class="regular-price">{{number_format($product->product_price)}}₫</span></p>
+                            @endif
                           </div>
                         </div>
                       </div>
@@ -263,8 +268,12 @@ Trang Chủ
                                 <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div> -->
                                 <div class="item-price">
                                   <div class="price-box">
-                                    <p class="special-price"> <span class="price-label">Giá đặt biệt:</span> <span class="price"> {{number_format($suggestion->product_price)}}₫ </span> </p>
-                                    <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price"> {{number_format($suggestion->product_price_sale)}}₫ </span> </p>
+                                  @if($product->product_price_sale != null)
+                                    <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($suggestion->product_price_sale)}}₫</span></p>
+                                    <p class="special-price"> <span class="price-label">Giá đặt biệt</span> &nbsp;<span class="price">₫{{number_format($suggestion->product_price)}}₫</span> </p>
+                                  @else
+                                    <p class="special-price"> <span class="price-label">Giá thường:</span> <span class="regular-price">{{number_format($suggestion->product_price)}}₫</span></p>
+                                  @endif
                                   </div>
                                 </div>
                               </div>
@@ -328,7 +337,7 @@ Trang Chủ
                     <div class="jtv-content-post">
                       <h4 class="title-post"> <a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a> </h4>
                       <ul class="meta-post">
-                        <li class="day"> <a href="#">{{$article->created_at}}/</a> </li>
+                        <li class="day"> <a href="#">{{date('d-m-y', strtotime($article->created_at))}}/</a> </li>
                         <li class="author"> <a href="#">{{$article->name}} /</a> </li>
                         <li class="travel"> <a href="#">{{$article->brand_name}}</a> </li>
                       </ul>
