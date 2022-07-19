@@ -170,48 +170,29 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="notification-list mx-h-350 customscroll">
                             <ul>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/img.jpg" alt="">
-                                        <h3>John Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/photo1.jpg" alt="">
-                                        <h3>Lea R. Frith</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/photo2.jpg" alt="">
-                                        <h3>Erik L. Richards</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/photo3.jpg" alt="">
-                                        <h3>John Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/photo4.jpg" alt="">
-                                        <h3>Renee I. Hansen</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/img.jpg" alt="">
-                                        <h3>Vicki M. Coleman</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
+                                {{-- @if($notification)
+                                @foreach ($notification as $item)
+                                 @if($item->notification_status==1)
+                                    <li> 
+                                        <a href="#">
+                                                <img src="/upload/user/{{$item->notification_image}}" alt="">
+                                                <h3>{{$item->notification_name}} *</h3>
+                                                <p>{{$item->notification_content}}</p>
+                                        </a>
+                                    </li>
+                                @else
+                                    <li style="opacity:0.6 ;"> 
+                                        <a href="#">
+                                                <img src="/upload/user/{{$item->notification_image}}" alt="">
+                                                <h3>{{$item->notification_name}}</h3>
+                                                <p>{{$item->notification_content}}</p>
+                                        </a>
+                                    </li>
+                                @endif
+                                @endforeach
+                                @else
+                                //
+                                @endif --}}
                             </ul>
                         </div>
                     </div>
@@ -393,6 +374,19 @@
                         <ul class="submenu">
                             <li><a href="{{ route('products.index') }}">Quản lý sản phẩm</a></li>
                             <li><a href="{{ route('products.create') }}">Thêm sản phẩm</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon fa fa-th-large"></span><span class="mtext">Đơn hàng</span>
+                            <i class="" aria-hidden="true"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="{{ route('new_order') }}">Đơn hàng mới</a></li>
+                            <li><a href="">Đơn hàng đã xử lý</a></li>
+                            <li><a href="">Đơn hàng đã hoàn thành</a></li>
+
+                            
                         </ul>
                     </li>
                     <li class="dropdown">

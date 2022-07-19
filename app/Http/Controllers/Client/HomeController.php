@@ -113,7 +113,7 @@ class HomeController extends Controller
                     $mail->from($request->email);
                     $mail->subject('Mã kích hoạt tài khoản.');
                 });
-                $request->file('file')->move(public_path('public/upload/client/user'), $image);
+                $request->file('file')->move(public_path('public/upload/user'), $image);
                 // dd($image);
                 session()->flash('msg', 'Đăng ký thành công. Nhập mã code được gửi vào tài khoản để kích hoạt.');
                 session()->flash('emailActive', $email);
@@ -223,6 +223,45 @@ class HomeController extends Controller
             return view('client.account.login')->with('msgErr', 'Đăng nhập không thành công. Vui lòng kiểm tra lại.');
         }
         dd($user);
+    }
+    public function loginCheckout(Request $request){
+        $rules = [
+            "email" => "required|min:10|max:255|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix",
+            "password" => "required|min:8|max:255",
+        ];
+        $messages = [
+            "email.required" =>":attribute là bắt buộc.",
+            "email.min" =>":attribute tối thiểu :min ký tự.",
+            "email.max" =>":attribute tối đa :max ký tự.",
+            "email.regex" =>":attribute không đúng định dạng.",
+            "password.required" => ":attribute là bắt buộc.",
+            "password.min" =>":attribute tối thiểu :min ký tự.",
+            "password.max" =>":attribute tối đa :max ký tự",
+        ];
+        $attributes = [
+            "email" => "Email",
+            "password" => "Mật khẩu"
+        ];
+        $request->validate($rules,$messages,$attributes);
+        $email = $request->email;
+        $pass = $request->password;
+        $user = UserClient::login($email, $pass);
+        if ($user == null) {
+            return view('client.account.login')->with('msgErr', 'Tài khoản không tồn tại.');
+        }
+        if ($user->email == $email && $user->password == md5($pass)){
+            Session::put('userId',$user->id);
+            Session::put('userEmail',$user->email);
+            Session::put('userFullname',$user->fullname);
+            Session::put('userImage',$user->image);
+            Session::put('userPhone',$user->phone);
+            Session::put('userAddress',$user->address);
+            // dd($user);
+            // return view('client.account.dcm');
+            return redirect()->route('checkout')->with('success',"Đăng nhập thành công.");
+        }else{
+            return view('client.checkout.checkout')->with('msgErr', 'Đăng nhập không thành công. Vui lòng kiểm tra lại.');
+        }
     }
 
     public function getForgotPass()

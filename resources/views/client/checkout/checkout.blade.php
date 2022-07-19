@@ -39,6 +39,16 @@ Thanh toán
         <div class="page-content checkout-page"><div class="page-title">
           <h2>thanh toán</h2>
         </div>
+        @if((Session::has('userFullname')))
+        <h4 class="checkout-sep">1. Lời khuyên</h4>
+        <div class="box-border">
+            <div class="row">
+               <div class="col-sm-12 text-center">
+                  Bạn vẫn có thể giữ nguyên hoặc thay đổi thông tin mua hàng của mình
+               </div>
+            </div>
+        </div>
+        @else
             <h4 class="checkout-sep">1. Lời khuyên</h4>
             <div class="box-border">
                 <div class="row">
@@ -51,17 +61,30 @@ Thanh toán
                     </div>
                     <div class="col-sm-6">
                         <h5>Đăng nhập</h5>
-                        <p>Đã đăng ký? Vui lòng đăng nhập bên dưới:</p>
-                        <label>Địa chỉ email</label>
-                        <input type="text" class="form-control input">
-                        <label>Mật khẩu</label>
-                        <input type="password" class="form-control input">
-                        <p><a href="#">Quên mật khẩu?</a></p>
-                        <button class="button"><i class="icon-login"></i>&nbsp; <span>Đăng nhập</span></button>
+                        <p>Vui lòng đăng nhập bên dưới:</p>
+                        <form action="{{route('loginCheckout')}}" method="post">
+                          @csrf
+                          <label>Email:</label>
+                          <div class="input-text">
+                            <input type="text" name="email" value="{{old('email')}}" class="form-control input">
+                          </div>
+                          @error('email')
+                            <span style="color:red">{{$message}}</span>
+                          @enderror
+                          <label>Mật khẩu:</label>
+                          <div class="input-text">
+                            <input type="password" name="password" value="{{old('password')}}" class="form-control">
+                          </div>
+                          @error('password')
+                            <span style="color:red">{{$message}}</span>
+                          @enderror
+                          <p><a href="{{ route('getForgotPass') }}">Quên mật khẩu?</a></p>
+                          <button class="button" type="submit"><i class="icon-login"></i>&nbsp; <span>Đăng nhập</span></button>
+                        </form>
                     </div>
-
                 </div>
             </div>
+        @endif
             <h4 class="checkout-sep">2. thông tin thanh toán</h4>
             <form action="{{ route('order') }}" method="POST">
                 @csrf
@@ -73,7 +96,12 @@ Thanh toán
                         <div class="col-sm-12">
                             
                             <label for="first_name_1" class="required">Họ và tên của bạn</label>
+                            @if((Session::has('userFullname')))
+                            <input class="input form-control" type="text" name="customer_name" id="customer_name" value="{{Session::get('userFullname')}}">
+                            @else
                             <input class="input form-control" type="text" name="customer_name" id="customer_name" value="{{@old('customer_name')}}">
+                            @endif
+                           
                             @error('customer_name')
                                <span class="text-danger">{{$message}}</span>
                                <style>
@@ -101,7 +129,11 @@ Thanh toán
                         <div class="col-sm-12">
                             
                             <label for="email_address_1" class="required">Địa chỉ email</label>
+                            @if((Session::has('userFullname')))
+                            <input class="input form-control" type="text" name="customer_email" id="customer_email" value="{{Session::get('userEmail')}}">
+                            @else
                             <input class="input form-control" type="text" name="customer_email" id="customer_email" value="{{@old('customer_email')}}">
+                            @endif
                             @error('customer_email')
                             <span class="text-danger">{{$message}}</span>
                             <style>
@@ -116,50 +148,64 @@ Thanh toán
 
                         <li class="row">
                           
+                           @if((Session::has('userFullname')))
+                           <div class="col-sm-12">
+                            <label for="email_address_1" class="required">Địa chỉ giao hàng</label>
+                            <input class="input form-control" type="text" name="customer_address" id="telephone_1" value="{{Session::get('userAddress')}}">
+                            @error('customer_provinces')
+                            <span class="text-danger tinh">{{$message}}</span>
+                            <style>
+                              .tinh{
+                                border: 1px solid red;
+                              }
+                            </style>
+                            @enderror
+                          </div>
+                           @else
                             <div class="col-sm-4">
-                                <label for="email_address_1" class="required">Tỉnh / Thành phố</label>
-                                <select class="input form-control tinh" name="calc_shipping_provinces" >
-                                    <option value="">Tỉnh / Thành phố</option>
-                                </select>
-                                @error('customer_provinces')
-                                <span class="text-danger tinh">{{$message}}</span>
-                                <style>
-                                  .tinh{
-                                     border: 1px solid red;
-                                  }
-                                </style>
-                                 @enderror
+                              <label for="email_address_1" class="required">Tỉnh / Thành phố</label>
+                              <select class="input form-control tinh" name="calc_shipping_provinces" >
+                                  <option value="">Tỉnh / Thành phố</option>
+                              </select>
+                              @error('customer_provinces')
+                              <span class="text-danger tinh">{{$message}}</span>
+                              <style>
+                                .tinh{
+                                  border: 1px solid red;
+                                }
+                              </style>
+                              @enderror
                             </div>
-                           
+                       
                             <div class="col-sm-4">
                                 <label for="email_address_1" class="required">Quận / Huyện</label>
                                 <select class="input form-control quan" name="calc_shipping_district" >
                                     <option value="">Quận / Huyện</option>
-                               </select>
-                               @error('customer_district')
-                               <span class="text-danger quan">{{$message}}</span>
-                               <style>
-                                 .quan{
+                              </select>
+                              @error('customer_district')
+                              <span class="text-danger quan">{{$message}}</span>
+                              <style>
+                                .quan{
                                     border: 1px solid red;
-                                 }
-                               </style>
+                                }
+                              </style>
                                 @enderror
                             </div>
                             <div class="col-sm-4">
                                 <label for="email_address_1" class="required">Nhập tên xã / phường và địa chỉ nhà cụ thể</label>
                                 <input class="input form-control address" name="customer_address" value="{{@old('customer_address')}}">  
                                 @error('customer_address')
-                               <span class="text-danger address">{{$message}}</span>
-                               <style>
-                                 .address{
+                              <span class="text-danger address">{{$message}}</span>
+                              <style>
+                                .address{
                                     border: 1px solid red;
-                                 }
-                               </style>
+                                }
+                              </style>
                                 @enderror 
                             </div>
-                              <input class="billing_address_1" name="customer_provinces" type="hidden" value="">
-                              <input class="billing_address_2" name="customer_district" type="hidden" value="">
-
+                            <input class="billing_address_1" name="customer_provinces" type="hidden" value="">
+                            <input class="billing_address_2" name="customer_district" type="hidden" value="">
+                           @endif
                         </li><!--/ .row -->
 
 
@@ -174,7 +220,11 @@ Thanh toán
                         <div class="col-sm-12">
 
                             <label for="telephone_1" class="required">Diện thoại</label>
+                            @if((Session::has('userFullname')))
+                            <input class="input form-control" type="text" name="customer_phone" id="telephone_1" value="{{Session::get('userPhone')}}">
+                            @else
                             <input class="input form-control" type="text" name="customer_phone" id="telephone_1" value="{{@old('customer_phone')}}">
+                            @endif
                             @error('customer_phone')
                             <span class="text-danger address">{{$message}}</span>
                             <style>
@@ -190,6 +240,16 @@ Thanh toán
                             <textarea class="input form-control" type="text" name="customer_note" id="telephone_1">{{@old('customer_phone')}}</textarea>
 
                         </div><!--/ [col] -->
+                        @if((Session::has('userFullname')))
+                        <input type="hidden" name="status" value="1">
+                        @else
+                        <input type="hidden" name="status" value="0">
+                        @endif
+                        @if((Session::has('userFullname')))
+                        <input type="hidden" name="customer_id" value="{{Session::get('userId')}}">
+                        @else
+                        <input type="hidden" name="customer_id" value="0">
+                        @endif
                         </li>
                     </ul>
                     {{-- <button class="button"><i class="fa fa-angle-double-right"></i>&nbsp; <span>tiếp tục</span></button> --}}
