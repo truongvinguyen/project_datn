@@ -66,36 +66,39 @@
                             <div class="headerlinkmenu col-md-7 col-sm-7 col-xs-12">
                                 <!-- Default Welcome Message -->
                                 <div class="welcome-msg hidden-xs">Chào mừng bạn đến với Website</div>
+                                @if((Session::has('userFullname')))
+                                <div class="welcome-msg hidden-xs"><a href="">Thanh toán</a></div>
+                                @else
+                                <div class="welcome-msg hidden-xs"><a href="{{ route('checkout') }}">Thanh toán</a></div>
+                                @endif
                                 <ul class="links">
-                                    <li><a href="checkout.html">Thủ tục thanh toán</a></li>
-                                    @if((Session::has('userEmail')))
-                                        <li><a href="#">{{Session::get('userEmail')}}</a></li>
-                                        <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                    @if((Session::has('userFullname')))
+                                        <li class="nav-item dropdown">
+                                            <div class="language-currency-wrapper pull-right">
+                                                <div class="inner-cl">
+                                                    <div class="block block-language form-language">
+                                                        <div class="lg-cur"> <span> <span class="lg-fr"><img class="img_user" src="/upload/user/{{Session::get('userImage')}}" alt="">{{Session::get('userFullname')}}</span> <i class="fa fa-angle-down"></i> </span> </div>
+                                                        <ul>
+                                                            <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    {{-- <div class="block block-currency">
+                                                        <div class="item-cur"> <span>VND</span> <i class="fa fa-angle-down"></i>
+                                                        </div>
+                                                        <ul>
+                                                            <li> <a class="selected" href="#"><span class="cur_icon">$</span>USD</a> </li>
+                                                        </ul>
+                                                    </div> --}}
+                                                </div>
+                                            </div>
+                                        </li>
                                     @else
-                                        <li><a href="{{route('dang-ky')}}">Tạo tài khoản</a></li>
-                                        <li><a href="{{route('getLogin')}}">Đăng nhập</a></li>
+                                        <li style="line-height: 45px;"><a href="{{route('dang-ky')}}">Tạo tài khoản</a></li>
+                                        <li style="line-height: 45px;"><a href="{{route('getLogin')}}">Đăng nhập</a></li>
                                     @endif
 
                                 </ul>
-                                <div class="language-currency-wrapper pull-right">
-                                    <div class="inner-cl">
-                                        <div class="block block-language form-language">
-                                            <div class="lg-cur"> <span> <span class="lg-fr">Tiếng Việt</span> <i
-                                                        class="fa fa-angle-down"></i> </span> </div>
-                                            <ul>
-                                                <li> <a href="#"><span>English</span> </a> </li>
-                                            </ul>
-                                        </div>
-                                        <div class="block block-currency">
-                                            <div class="item-cur"> <span>VND</span> <i class="fa fa-angle-down"></i>
-                                            </div>
-                                            <ul>
-                                                <li> <a class="selected" href="#"><span class="cur_icon">$</span>
-                                                        USD</a> </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -360,7 +363,7 @@
                                 </div>
                                 <!-- /.col -->
 
-                                <div class="col-xs-6 no-padding"> <a href="checkout.html"
+                                <div class="col-xs-6 no-padding"> <a href="{{route('checkout')}}"
                                         class="btn-checkout no-margin">thanh toán</a> </div>
                                 <!-- /.col -->
                             </div>

@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\orderController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\CheckoutController;
@@ -123,6 +124,7 @@ Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("p
 Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
 Route::get('dang-xuat', [HomeController::class, "getLogout"])->name('getLogout');
 Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
+Route::post('login-checkout', [HomeController::class, 'loginCheckout'])->name('loginCheckout');
 
 Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
@@ -138,8 +140,13 @@ Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'cont
 //Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
 //thanh toán
-Route::get('/checkout', function(){
-    return view('client.checkout.checkout');
-})->name('');
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::post('/order', [CheckoutController::class, 'order'])->name('order');
+Route::get('/accept-order/{id}', [CheckoutController::class, 'accept'])->name('accept');
+
+//đơn hàng
+Route::prefix('admin/order')->group(function () {
+    Route::get('/order-new', [orderController::class, 'new_order'])->name('new_order');
+});
+
 

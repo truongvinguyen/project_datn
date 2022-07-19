@@ -116,9 +116,7 @@ Giỏ hàng của bạn
                                 </table>
                                 <ul class="checkout">
                                     <li>
-                                        <button type="button" title="Proceed to Checkout"
-                                            class="button btn-proceed-checkout"><span>Tiến hành thanh
-                                                toán</span></button>
+                                        <a href="{{ route('checkout') }}"><button type="button" title="Proceed to Checkout"class="button btn-proceed-checkout"><span>Tiến hành thanh toán</span></button></a>
                                     </li>
                                     <br>
                                     <!-- <li><a href="multiple_addresses.html" title="Checkout with Multiple Addresses">Checkout with Multiple Addresses</a> </li> -->

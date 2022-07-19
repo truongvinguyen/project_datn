@@ -507,6 +507,11 @@ input:focus {
 	color: #eee;
 	padding: 4px 0px;
 }
+.img_user{
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+}
 .header-top a {
 	color: #eee;
 }
@@ -519,7 +524,7 @@ input:focus {
 	padding: 0px 18px 0px 0;
 	margin: 0px 6px 0 0;
 	color: #eee;
-	line-height: 16px;
+	line-height: 45px;
 }
 .menu-area .phone {
 	padding: 11px 0px 2px 0;
@@ -701,10 +706,10 @@ input:focus {
 	text-align: left;
 }
 .offer-content-text p {
-	font-size: 12px;
-	color: #eee;
-	padding: 4px 0px 0px;
-	margin: auto;
+	font-size: 16px;
+    color: #eee;
+    padding: 16px 0px 0px;
+    margin: auto;
 }
 .offer-content-text span {
 	font-weight: 400;

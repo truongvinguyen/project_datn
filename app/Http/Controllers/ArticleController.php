@@ -8,6 +8,7 @@ use App\Models\article;
 use App\Models\brand;
 use App\Models\category;
 use App\Models\product;
+use App\Models\notification;
 use Illuminate\Support\Str;
 
 class ArticleController extends Controller
