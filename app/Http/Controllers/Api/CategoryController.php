@@ -197,4 +197,16 @@ class CategoryController extends Controller
         $res = $this->__category::findOrFail($id)->delete();
         return response()->json($res, 200);
     }
+
+    public function getAllParentRecords()
+    {
+        $res = $this->__category::whereNull('parent_id')->get();
+        return response()->json($res, 200);
+    }
+
+    public function getChildrensRecords(int $id)
+    {
+        $res = $this->__category::where('parent_id', '=', $id)->get();
+        return response()->json($res, 200);
+    }
 }

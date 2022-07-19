@@ -31,7 +31,7 @@
             {{-- @if (Session::has('msg'))
               <div class="alert alert-success"><p>{{Session::get('msg')}}</p></div>
             @endif --}}
-          <form action="{{route('submit-dang-ky')}}" method="post">
+          <form action="{{route('submit-dang-ky')}}" method="post" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="check-title">
@@ -93,11 +93,15 @@
                     @enderror
                   </div>
                   <div class="col-xs-12">
-                    {{-- <div class="billing-checkbox">
-                    <label class="inline" for="rememberme">
-                      <input type="checkbox" value="forever" id="rememberme" name="rememberme">
-                      Đăng ký</label>
-                    </div> --}}
+                    <label>Ảnh đại diện</label>
+                    <div class="input-text">
+                      <input type="file" name="file" value="{{old('file')}}" class="form-control">
+                    </div>
+                    @error('file')
+                      <span style="color:red">{{$message}}</span>
+                    @enderror
+                  </div>
+                  <div class="col-xs-12">
                     <div class="">
                       <button name="submit-dk" class="button"><i class="fa fa-user"></i>&nbsp; <span>Đăng ký</span></button>
                     </div>

@@ -501,11 +501,16 @@ input:focus {
 	background: #3b4348
 }
 .header-top {
-	background-color: ;
+	background-color: #3b4348;
 	border-bottom: 1px solid rgba(255,255,255,0.1);
 	width: 100%;
 	color: #eee;
 	padding: 4px 0px;
+}
+.img_user{
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
 }
 .header-top a {
 	color: #eee;
@@ -519,7 +524,7 @@ input:focus {
 	padding: 0px 18px 0px 0;
 	margin: 0px 6px 0 0;
 	color: #eee;
-	line-height: 16px;
+	line-height: 45px;
 }
 .menu-area .phone {
 	padding: 11px 0px 2px 0;
@@ -701,10 +706,10 @@ input:focus {
 	text-align: left;
 }
 .offer-content-text p {
-	font-size: 12px;
-	color: #eee;
-	padding: 4px 0px 0px;
-	margin: auto;
+	font-size: 16px;
+    color: #eee;
+    padding: 16px 0px 0px;
+    margin: auto;
 }
 .offer-content-text span {
 	font-weight: 400;
@@ -4789,7 +4794,7 @@ ul.products-list .sale-left {
 	border: 1px #e5e5e5 solid;
 }
 .products-list .product-img img {
- width: max-100%
+ width: 100%;
 }
 .products-list .product-shop {
 	width: 67%;
@@ -5144,6 +5149,9 @@ font-weight: bold;
 	border-bottom: 1px solid #e5e5e5;
 	text-transform: uppercase;
 }
+.product-view-area .product-name h1.no-cut {
+	line-height: initial !important;
+}
 .product-view-area .short-description {
 	font-size: 13px;
 	padding-top: 12px;
@@ -5176,16 +5184,25 @@ font-weight: bold;
 	margin-bottom: 12px;
 	display: inline-block
 }
-.availability.in-stock span {
+.availability.in-stock span,
+.availability.active span {
 	color: #fff;
 	background-color: #5cb85c;
 	border-radius: 0px;
 	font-size: 12px;
 	font-weight: bold
 }
-.availability.out-of-stock span {
+.availability.out-of-stock span,
+.availability.disable span {
 	color: #fff;
 	background-color: #d9534f;
+	border-radius: 0px;
+	font-size: 12px;
+	font-weight: bold
+}
+.availability.pending span {
+	color: #3b4348;
+	background-color: #FC0;
 	border-radius: 0px;
 	font-size: 12px;
 	font-weight: bold

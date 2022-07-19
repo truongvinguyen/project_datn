@@ -38,7 +38,7 @@
         </div>
         <!-- /.col -->
 
-        <div class="col-xs-6 no-padding"> <a href="checkout.html" class="btn-checkout no-margin">thanh toán</a> </div>
+        <div class="col-xs-6 no-padding"> <a href="{{route('checkout')}}" class="btn-checkout no-margin">thanh toán</a> </div>
         <!-- /.col -->
     </div>
     <!-- /.row -->

@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\category;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Redirect;
+use App\Models\product;
+use App\Models\order;
+use App\Models\notification;
+use App\Models\order_detail;
+use App\Models\imageProduct;
 
 class HomeController extends Controller
 {
@@ -23,6 +31,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $notification = DB::table('notification')
+        ->select('*')
+        ->orderby('id','desc')
+        ->orderby('notification_status','desc')
+        ->get();
+        return view('home',compact('notification'));
     }
 }

@@ -45,7 +45,7 @@
                     </div>
                     @error('email')
                       <span style="color:red">{{$message}}</span>
-                   @enderror
+                    @enderror
                   </div>
                   <div class="col-xs-12">
                     <label>Mật khẩu:</label>
