@@ -292,10 +292,10 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="payment">
                                 <ul>
-                                    <li><a href="#"><img title="Visa" alt="Visa" src="client/images/visa.png"></a></li>
-                                    <li><a href="#"><img title="Paypal" alt="Paypal" src="client/images/paypal.png"></a></li>
-                                    <li><a href="#"><img title="Discover" alt="Discover" src="client/images/discover.png"></a></li>
-                                    <li><a href="#"><img title="Master Card" alt="Master Card"src="client/images/master-card.png"></a></li>
+                                    <li><a href="#"><img title="Visa" alt="Visa" src="{{asset('client/images/visa.png')}}"></a></li>
+                                    <li><a href="#"><img title="Paypal" alt="Paypal" src="{{asset('client/images/paypal.png')}}"></a></li>
+                                    <li><a href="#"><img title="Discover" alt="Discover" src="{{asset('client/images/discover.png')}}"></a></li>
+                                    <li><a href="#"><img title="Master Card" alt="Master Card"src="{{asset('client/images/master-card.png')}}"></a></li>
                                 </ul>
                             </div>
                         </div>

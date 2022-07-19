@@ -27,10 +27,6 @@ class showDataController extends Controller
         $products = $data::select('*')->orderBy('id','DESC')->get();
         $suggestions = $data::select('*')->limit(8)->get();
         $articles = $article->article();
-        // echo '<pre>';
-        // print_r($articles);
-        // echo '</pre>';
-        // die;
         return view('client.home-page', compact('best_product','products','articles','suggestions'));
     }
 

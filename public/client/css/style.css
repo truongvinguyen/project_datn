@@ -501,7 +501,7 @@ input:focus {
 	background: #3b4348
 }
 .header-top {
-	background-color: ;
+	background-color: #3b4348;
 	border-bottom: 1px solid rgba(255,255,255,0.1);
 	width: 100%;
 	color: #eee;
@@ -4330,6 +4330,32 @@ button.button-checkout {
 .check-box-list li {
 	line-height: 24px
 }
+
+#productByCate .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
+#productByBrand .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
+#data_price .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
+#listByBrand .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
+#listByCate .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
 .check-box-list label {
 	display: inline-block;
 	cursor: pointer;
@@ -4768,7 +4794,7 @@ ul.products-list .sale-left {
 	border: 1px #e5e5e5 solid;
 }
 .products-list .product-img img {
- width: max-100%
+ width: 100%;
 }
 .products-list .product-shop {
 	width: 67%;
@@ -4912,6 +4938,13 @@ ul.products-list .sale-left {
 	font-size: 16px;
 	color: #fe0100;
 	font-weight: bold
+}
+
+.regular-price{
+font-size: 16px;
+color: #000;
+margin-left: 25px;
+font-weight: bold;
 }
 .special-price .price-label {
 	font-size: 13px;
@@ -5116,6 +5149,9 @@ ul.products-list .sale-left {
 	border-bottom: 1px solid #e5e5e5;
 	text-transform: uppercase;
 }
+.product-view-area .product-name h1.no-cut {
+	line-height: initial !important;
+}
 .product-view-area .short-description {
 	font-size: 13px;
 	padding-top: 12px;
@@ -5148,16 +5184,25 @@ ul.products-list .sale-left {
 	margin-bottom: 12px;
 	display: inline-block
 }
-.availability.in-stock span {
+.availability.in-stock span,
+.availability.active span {
 	color: #fff;
 	background-color: #5cb85c;
 	border-radius: 0px;
 	font-size: 12px;
 	font-weight: bold
 }
-.availability.out-of-stock span {
+.availability.out-of-stock span,
+.availability.disable span {
 	color: #fff;
 	background-color: #d9534f;
+	border-radius: 0px;
+	font-size: 12px;
+	font-weight: bold
+}
+.availability.pending span {
+	color: #3b4348;
+	background-color: #FC0;
 	border-radius: 0px;
 	font-size: 12px;
 	font-weight: bold

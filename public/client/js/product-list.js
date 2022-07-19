@@ -29,6 +29,8 @@ $(document).ready(function ($id) {
       success: function (response){
         // console.log(response)
         $(`#product-l`).html(response)   
+        $(`#listByCate li.active`).toggleClass(`active`);
+        $(e.target).toggleClass('active');
       },
       error: function( error){
         console.log(error.message)
@@ -46,6 +48,8 @@ $(document).ready(function ($id) {
       success: function (response){
         // console.log(response)
         $(`#product-l`).html(response)   
+        $(`#listByBrand li.active`).toggleClass(`active`);
+        $(e.target).toggleClass('active');
       },
       error: function( error){
         console.log(error.message)
@@ -63,6 +67,8 @@ $(document).ready(function ($id) {
       success: function (response){
         console.log(response)
         $(`#product-l`).html(response)   
+        $(`#data_price li.active`).toggleClass(`active`);
+        $(e.target).toggleClass('active');
       },
       error: function( error){
         console.log(error.message)
@@ -79,7 +85,9 @@ $(document).ready(function ($id) {
       dataType: 'text',
       success: function (response){
         console.log(response)
-        $(`#product-l`).html(response)   
+        $(`#product-l`).html(response)         
+        $(`#data_price li.active`).toggleClass(`active`);
+        $(e.target).toggleClass('active');
       },
       error: function( error){
         console.log(error.message)
