@@ -30,7 +30,7 @@ Trang Sản Phẩm
                     </div>
                     <div class="tab-info">
                         <ul class="check-box-list productlg" id="data_price">
-                            <li data-price="discount">Gian hàng giảm giá</li>
+                            <li data-price="">Gian hàng giảm giá</li>
                             <li data-price="">Giá từ cao đến thấp</li>
                             <li data-price="ASC">Giá từ thấp đến cao</li>
                         </ul>
@@ -96,7 +96,7 @@ Trang Sản Phẩm
                                             <div class="post-thumb"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
                                             <div class="post-info">
                                                 <h5 class="entry_title"><a href="/article-detail/{{$article->id}}">{!!$article->article_title!!}</a></h5>
-                                                <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{$article->created_at}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
+                                                <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{date('d-m-y', strtotime($article->created_at))}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
                                             </div>
                                         </li>
                                     @endforeach

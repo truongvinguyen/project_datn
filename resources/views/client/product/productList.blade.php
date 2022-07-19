@@ -14,7 +14,7 @@
                 </div>
                 <div class="product-shop">
                     <h2 class="product-name"><a href="/product-detail/{{$product->id}}" title="{{$product->product_name}}">{{$product->product_name}}</a></h2>
-                    <div class="ratings">
+                    <!-- <div class="ratings">
                         <div class="rating"> 
                             <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
                             <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
@@ -25,16 +25,23 @@
                             <span class="separator">|</span> 
                             <a href="#">Thêm đánh giá</a> 
                         </p>
-                        </div>
+                    </div> -->
                     <div class="price-box">
-                    <p class="special-price"> 
-                        <span class="price-label"></span> 
-                        <span class="price">{{number_format($product->product_price_sale)}}₫</span>
-                    </p>
-                    <p class="old-price"> 
-                        <span class="price-label"></span> 
-                        <span class="price">{{number_format($product->product_price)}}₫</span>
-                    </p>
+                        @if($product->product_price_sale != null)
+                            <p class="special-price"> 
+                                <span class="price-label"></span> 
+                                <span class="price">{{number_format($product->product_price)}}₫</span>
+                            </p>
+                            <p class="old-price"> 
+                                <span class="price-label"></span> 
+                                <span class="price">{{number_format($product->product_price_sale)}}₫</span>
+                            </p>
+                        @else
+                            <p class="special-price"> 
+                                <span class="price-label"></span> 
+                                <span class="regular-price" style="margin-left: 0 !important;">{{number_format($product->product_price)}}₫</span>
+                            </p>
+                        @endif
                     </div>
                     <div class="desc std">
                         <p>

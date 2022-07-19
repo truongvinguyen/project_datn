@@ -118,6 +118,7 @@ Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("p
 Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
 Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
 
+
 Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('');
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
 Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');

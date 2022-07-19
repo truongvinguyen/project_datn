@@ -30,6 +30,8 @@ $(document).ready(function () {
       success: function (response){
         // console.log(response)
         $(`#product-g`).html(response)   
+        $(`#productByCate li.active`).toggleClass(`active`);
+        $(e.target).toggleClass('active');
       },
       error: function( error){
         console.log(error.message)
@@ -47,6 +49,8 @@ $(document).ready(function () {
       success: function (response){
         // console.log(response)
         $(`#product-g`).html(response)   
+        $(`#productByBrand li.active`).toggleClass(`active`);
+        $(e.target).toggleClass('active');
       },
       error: function( error){
         console.log(error.message)
@@ -64,7 +68,9 @@ $(document).ready(function () {
       dataType: 'text',
       success: function (response){
         console.log(response)
-        $(`#product-g`).html(response)   
+        $(`#product-g`).html(response)    
+        $(`#data_price li.active`).toggleClass(`active`);
+        $(e.target).toggleClass('active');
       },
       error: function( error){
         console.log(error.message)
@@ -91,18 +97,18 @@ $(document).ready(function () {
 
 });
 
-// $.ajax({
-//   url: `/api/products/grid`,
-//   type: 'GET',
-//   dataType: 'text',
-//   success: function (response){
-//     // console.log(response)
-//     $(`#product-g`).html(response)   
-//   },
-//   error: function( error){
-//     console.log(error.message)
-//   }
-// })
+$.ajax({
+  url: `/api/products/grid`,
+  type: 'GET',
+  dataType: 'text',
+  success: function (response){
+    // console.log(response)
+    $(`#product-g`).html(response)   
+  },
+  error: function( error){
+    console.log(error.message)
+  }
+})
 
 function quickviewProduct(id){
  document.getElementById('show-modal-quickview').innerHTML=` 

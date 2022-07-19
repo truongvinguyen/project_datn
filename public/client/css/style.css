@@ -4325,6 +4325,32 @@ button.button-checkout {
 .check-box-list li {
 	line-height: 24px
 }
+
+#productByCate .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
+#productByBrand .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
+#data_price .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
+#listByBrand .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
+#listByCate .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
 .check-box-list label {
 	display: inline-block;
 	cursor: pointer;
@@ -4907,6 +4933,13 @@ ul.products-list .sale-left {
 	font-size: 16px;
 	color: #fe0100;
 	font-weight: bold
+}
+
+.regular-price{
+font-size: 16px;
+color: #000;
+margin-left: 25px;
+font-weight: bold;
 }
 .special-price .price-label {
 	font-size: 13px;

@@ -36,14 +36,12 @@
                                     <div class="item-content">
                                         <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div> -->
                                         <div class="price-box">
-                                            <p class="special-price"> 
-                                                <span class="price-label">Giá đặt biệt</span> 
-                                                <span class="price">{{number_format($product->product_price)}}₫</span> 
-                                            </p>
-                                            <p class="old-price"> 
-                                                <span class="price-label">Giá thường:</span> 
-                                                <span class="price"> {{number_format($product->product_price_sale)}}₫ </span> 
-                                            </p>
+                                        @if($product->product_price_sale != null)
+                                            <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}₫</span></p>
+                                            <p class="special-price"> <span class="price-label">Giá đặt biệt</span> &nbsp;<span class="price">₫{{number_format($product->product_price)}}₫</span> </p>
+                                        @else
+                                            <p class="special-price"> <span class="price-label">Giá thường:</span> <span class="regular-price">{{number_format($product->product_price)}}₫</span></p>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
