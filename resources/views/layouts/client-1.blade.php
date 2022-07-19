@@ -67,7 +67,7 @@
                                 <!-- Default Welcome Message -->
                                 <div class="welcome-msg hidden-xs">Chào mừng bạn đến với Website</div>
                                 @if((Session::has('userFullname')))
-                                <div class="welcome-msg hidden-xs"><a href="">Thanh toán</a></div>
+                                <div class="welcome-msg hidden-xs"><a href="{{ route('checkout') }}">Thanh toán</a></div>
                                 @else
                                 <div class="welcome-msg hidden-xs"><a href="{{ route('checkout') }}">Thanh toán</a></div>
                                 @endif
@@ -319,9 +319,9 @@
                                 aria-hidden="true">×</span></button>
                         <h4 class="modal-title">Giỏ của bạn</h4>
                     </div>
-                    <div id="showcart" style="height: 720px">
+                    <div id="showcart" style="height: 100%">
                         @if(Session::has('cart') != null)
-                        <div class="modal-body" style="height:85%;">
+                        <div class="modal-body" >
 
                             <!-- Begin shopping cart content -->
                             <div class="cart-content">

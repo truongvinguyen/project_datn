@@ -11,7 +11,7 @@ Trang Sản Phẩm
                 
                 <div class="shop-inner">
                     <div class="page-title"><h2>Sản phẩm</h2></div>
-                    <div class="category-description">
+                    {{-- <div class="category-description">
                         <div class="slider-items-products">
                             <div id="category-slider" class="product-flexslider hidden-buttons">
                                 <div class="slider-items slider-width-col4">
@@ -20,7 +20,7 @@ Trang Sản Phẩm
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="toolbar">
                         <div class="view-mode">
                             <ul>

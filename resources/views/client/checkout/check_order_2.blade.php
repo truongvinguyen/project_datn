@@ -3,7 +3,7 @@
     <div style="width:600px;margin:0 auto">
         <h5>Dear: {{$order->customer_name}} </h5>
         <p>Bạn thân mến! bạn vừa đặt hàng thành công tại trendy shop</p>
-        <p>mời bạn xem lại đơn hàng của mình và ấn xác nhận đơn để bọn mình lên đơn và giao thật nhanh cho bạn nhé</p>
+        <p>dưới đây là thông tin đơn hàng của bạn</p>
         <p></p>
         <h5>Thông tin đơn hàng</h5>
         <b>Họ và tên: </b><i>{{$order->customer_name}}</i> <br>
@@ -28,8 +28,8 @@
               </tr>
             @endforeach
         </table>
-        <div style="text-align: center;margin-top: 30px;"> 
+        {{-- <div style="text-align: center;"> 
           <a href="{{ route('accept', ['id'=>$order->id]) }}" style="display:inline-block;background:green;color:white;padding:7px 25px;">Xác nhận đơn hàng</a>
-        </div>
+        </div> --}}
 
     </div>

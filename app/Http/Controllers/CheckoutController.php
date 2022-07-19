@@ -94,6 +94,16 @@ class CheckoutController extends Controller
                 $mail->to($request->customer_email);
                 $mail->subject('Xác nhận đơn hàng.');
             });
+        }else {
+            $order=DB::table('order')
+            ->select('*')
+            ->where('id',$order_id)
+            ->first();
+            $order_detail=Session()->get('cart')->products;
+            Mail::send('client.checkout.check_order_2',compact('order','order_detail'),function($mail) use ($request){
+                $mail->to($request->customer_email);
+                $mail->subject('Đặt hàng thành công.');
+            });
         }
         notification::create([
             'notification_name'=>"Đơn hàng mới",
