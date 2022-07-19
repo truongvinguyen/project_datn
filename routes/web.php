@@ -119,12 +119,16 @@ Route::post('dang-ky', [HomeController::class, "postRegister"])->name('submit-da
 Route::post('kich-hoat', [HomeController::class, "postActive"])->name('active');
 Route::get('dang-nhap', [HomeController::class, "getlogin"])->name('getLogin');
 Route::post('dang-nhap', [HomeController::class, "postLogin"])->name('postLogin');
-Route::get('quen-mat-khau', [HomeController::class,"getForgotPass"])->name('getForgotPass');
+Route::get('quen-mat-khau', [HomeController::class, "getForgotPass"])->name('getForgotPass');
 Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("postForgotPass");
 Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
 Route::get('dang-xuat', [HomeController::class, "getLogout"])->name('getLogout');
 Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
+
 Route::post('login-checkout', [HomeController::class, 'loginCheckout'])->name('loginCheckout');
+
+Route::get('ho-so', [HomeController::class, 'profile'])->name('profile');
+
 
 Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
@@ -140,6 +144,7 @@ Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'cont
 //Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
 //thanh toán
+
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::post('/order', [CheckoutController::class, 'order'])->name('order');
 Route::get('/accept-order/{id}', [CheckoutController::class, 'accept'])->name('accept');
@@ -149,4 +154,7 @@ Route::prefix('admin/order')->group(function () {
     Route::get('/order-new', [orderController::class, 'new_order'])->name('new_order');
 });
 
+
+
+Route::post('/order', [CheckoutController::class, 'order'])->name('order');
 
