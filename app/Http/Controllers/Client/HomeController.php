@@ -40,7 +40,7 @@ class HomeController extends Controller
             "email" => "required|min:10|max:255|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix",
             "password" => "min:8|max:255|required",
             "cf_password" => "required|min:8|max:255|same:password",
-            "file" => "required|mimes:jpeg,png,jpg|max:1024"
+            "file" => "mimes:jpeg,png,jpg|max:1024"
         ];
         $messages = [
             "fullname.required" => ":attribute là bắt buộc.",
@@ -72,7 +72,6 @@ class HomeController extends Controller
             "code.size" => ":attribute không hợp lệ.",
             "code.regex" => ":attribute không hợp lệ.",
             // "code" => "Mã Code",
-            "file.required" => "::attribute là bắt buộc.",
             // "file.image" => "::attribute phải là ảnh.",
             "file.mimes" => "::attribute phải là png, jpeg, jpg.",
             "file.max" => "::attribute tối đa 1MB."
