@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Redirect;
 use App\Models\product;
 use App\Models\imageProduct;
+use App\Models\brand;
 
 
 class ProductController extends Controller
@@ -30,7 +31,8 @@ class ProductController extends Controller
     public function add_product()
     {
         $category=category::all();
-        return view('admin.products.create' ,compact('category'));
+        $brand=brand::all();
+        return view('admin.products.create' ,compact('category','brand'));
     }
     public function save_product(Request $request){
         $validate= $request->validate([
@@ -38,6 +40,7 @@ class ProductController extends Controller
             'product_price_save'=>['integer'],
             'product_price'=>['required','integer'],
             'category_id'=>['required'],
+            'brand_id'=>['required'],
             'product_status'=>['required'],
             'product_image'=>['required'],
             'product_tag'=>['required'],
@@ -49,6 +52,7 @@ class ProductController extends Controller
            'product_price.required'=>'Giá bán sản phẩm không được bỏ trống',
            'product_price.integer'=>'Giá bán sản phẩm phải là chữ số',
            'category_id.required'=>'Vui lòng chọn loại sản phẩm',
+           'brand_id.required'=>'Vui lòng chọn thương hiệu sản phẩm',
            'product_status.required'=>'Vui lòng chọn trạng thái sản phẩm',
            'product_image.required'=>'Vui lòng chọn hình ảnh',
            'product_tag.required'=>'vui lòng nhập TAG sản phẩm để seo dễ dàng hơn',         
@@ -64,6 +68,7 @@ class ProductController extends Controller
                      'product_price_sale'=> $request->product_price_sale,
                      'product_price'=>$request->product_price,
                      'category_id'=>$request->category_id,
+                     'brand_id'=>$request->brand_id,
                      'product_content'=>$request->product_content,
                      'product_status'=>$request->product_status,
                      'product_image'=>$file_name,
@@ -88,7 +93,8 @@ class ProductController extends Controller
     public function edit($id){
         $product=product::find($id);
         $category=category::all();
-        return view('admin.products.edit',compact('product','category'));
+        $brand=brand::all();
+        return view('admin.products.edit',compact('product','category','brand'));
     }
     public function edit_save(Request $request,$id){
       $product=product::find($id);
@@ -97,6 +103,7 @@ class ProductController extends Controller
             'product_price_save'=>['integer'],
             'product_price'=>['required','integer'],
             'category_id'=>['required'],
+            'brand_id'=>['required'],
             'product_status'=>['required'],
             'product_tag'=>['required'],
             
@@ -107,6 +114,7 @@ class ProductController extends Controller
            'product_price.required'=>'Giá bán sản phẩm không được bỏ trống',
            'product_price.integer'=>'Giá bán sản phẩm phải là chữ số',
            'category_id.required'=>'Vui lòng chọn loại sản phẩm',
+           'brand_id.required'=>'Vui lòng chọn thương hiệu sản phẩm',
            'product_status.required'=>'Vui lòng chọn trạng thái sản phẩm',         
            'product_tag.required'=>'vui lòng nhập TAG sản phẩm để seo dễ dàng hơn',         
         ]);
@@ -124,6 +132,7 @@ class ProductController extends Controller
                      'product_price_sale'=> $request->product_price_sale,
                      'product_price'=>$request->product_price,
                      'category_id'=>$request->category_id,
+                     'brand_id'=>$request->brand_id,
                      'product_content'=>$request->product_content,
                      'product_status'=>$request->product_status,
                      'product_image'=>$file_name,
