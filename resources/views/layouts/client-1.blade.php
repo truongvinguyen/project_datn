@@ -77,7 +77,20 @@
                                             <div class="language-currency-wrapper pull-right">
                                                 <div class="inner-cl">
                                                     <div class="block block-language form-language">
-                                                        <div class="lg-cur"> <span> <span class="lg-fr"><img class="img_user" src="/upload/user/{{Session::get('userImage')}}" alt="">{{Session::get('userFullname')}}</span> <i class="fa fa-angle-down"></i> </span> </div>
+                                                        <div class="lg-cur">
+                                                             <span> 
+                                                                <span class="lg-fr">
+                                                                    <i class="fa fa-angle-down"></i> {{Session::get('userFullname')}}
+                                                                    @if(Session::get('userImage')==null)
+                                                                   <img class="img_user" src="https://ui-avatars.com/api/?name={{Session::get('userFullname')}}" alt="">
+                                                                   @else
+                                                                   <img class="img_user" src="/upload/user/{{Session::get('userImage')}}" alt="">
+                                                                   @endif
+                                                                   
+                                                                </span> 
+                                                               
+                                                            </span>
+                                                     </div>
                                                         <ul>
                                                             <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
                                                         </ul>
