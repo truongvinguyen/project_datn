@@ -74,6 +74,70 @@
             background-color: #151329;
             border-color: #31708f;
         }
+        .spinner {
+	--size: 15px;
+	--first-block-clr: #CF3341;
+	--second-block-clr: #3b4348;
+	--clr: #111;
+	width: 100px;
+	height: 100px;
+	
+   }
+   
+   .spinner::after,.spinner::before {
+	box-sizing: border-box;
+	position: absolute;
+	content: "";
+	width: var(--size);
+	height: var(--size);
+	top: 50%;
+	animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+	left: 50%;
+	background: var(--first-block-clr);
+   }
+   
+   .spinner::after {
+	background: var(--second-block-clr);
+	top: calc(50% - var(--size));
+	left: calc(50% - var(--size));
+	animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+   }
+   
+   @keyframes down {
+	0%, 100% {
+	 transform: none;
+	}
+   
+	25% {
+	 transform: translateX(100%);
+	}
+   
+	50% {
+	 transform: translateX(100%) translateY(100%);
+	}
+   
+	75% {
+	 transform: translateY(100%);
+	}
+   }
+   
+   @keyframes up {
+	0%, 100% {
+	 transform: none;
+	}
+   
+	25% {
+	 transform: translateX(-100%);
+	}
+   
+	50% {
+	 transform: translateX(-100%) translateY(-100%);
+	}
+   
+	75% {
+	 transform: translateY(-100%);
+	}
+   }
     </style>
 </head>
 
@@ -163,36 +227,14 @@
             </div>
             <div class="user-notification">
                 <div class="dropdown">
-                    <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+                    <a onclick="loadNotification()" class="dropdown-toggle no-arrow" href="javascript:" role="button" data-toggle="dropdown">
                         <i class="icon-copy dw dw-notification"></i>
                         <span class="badge notification-active"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="notification-list mx-h-350 customscroll">
-                            <ul>
-                                {{-- @if($notification)
-                                @foreach ($notification as $item)
-                                 @if($item->notification_status==1)
-                                    <li> 
-                                        <a href="#">
-                                                <img src="/upload/user/{{$item->notification_image}}" alt="">
-                                                <h3>{{$item->notification_name}} *</h3>
-                                                <p>{{$item->notification_content}}</p>
-                                        </a>
-                                    </li>
-                                @else
-                                    <li style="opacity:0.6 ;"> 
-                                        <a href="#">
-                                                <img src="/upload/user/{{$item->notification_image}}" alt="">
-                                                <h3>{{$item->notification_name}}</h3>
-                                                <p>{{$item->notification_content}}</p>
-                                        </a>
-                                    </li>
-                                @endif
-                                @endforeach
-                                @else
-                                //
-                                @endif --}}
+                            <ul id="show-notification">
+                                
                             </ul>
                         </div>
                     </div>
@@ -511,6 +553,10 @@
 
         });
     });
+</script>
+<script type="text/javascript">
+   
+ 
 </script>
 
 </body>

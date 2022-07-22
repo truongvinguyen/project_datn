@@ -1,5 +1,7 @@
 @extends('layouts.layout')
-
+@section('title')
+Bảng tin
+@endsection
 @section('content')
 @if(Session::has('success'))
 <script>
