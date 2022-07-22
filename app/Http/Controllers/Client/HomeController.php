@@ -113,7 +113,7 @@ class HomeController extends Controller
                     $mail->from($request->email);
                     $mail->subject('Mã kích hoạt tài khoản.');
                 });
-                $request->file('file')->move(public_path('public/upload/user'), $image);
+                $request->file('file')->move(base_path('public/upload/user'), $image);
                 // dd($image);
                 session()->flash('msg', 'Đăng ký thành công. Nhập mã code được gửi vào tài khoản để kích hoạt.');
                 session()->flash('emailActive', $email);

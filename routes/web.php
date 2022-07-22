@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\orderController;
+use App\Models\notification;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\CheckoutController;
@@ -28,6 +29,14 @@ use App\Http\Controllers\CheckoutController;
 Auth::routes();
 
 Route::get('/home-admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/load-notification', function(){
+        $notification = DB::table('notification')
+        ->select('*')
+        ->orderby('id','desc')
+        ->orderby('notification_status','desc')
+        ->get();
+        return view('layouts.notification',compact('notification'));
+})->name('');
 
 
 Route::prefix('admin/products')->group(function () {

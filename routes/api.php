@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\product;
+use App\Models\notification;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\articleController;
@@ -55,6 +56,13 @@ Route::put('product/{id}', function (Request $request, $id) {
     return $product;
 });
 
+Route::get('notification', function () {
+    return $notification = DB::table('notification')
+    ->select('*')
+    ->orderby('id','desc')
+    ->orderby('notification_status','desc')
+    ->get();
+});
 
 Route::controller(ProductController::class)->prefix('products')->name('products')->group(function () {
 

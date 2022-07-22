@@ -36,6 +36,14 @@ class HomeController extends Controller
         ->orderby('id','desc')
         ->orderby('notification_status','desc')
         ->get();
-        return view('home',compact('notification'));
+        return view('home');
+    }
+    public function loadNotification(){
+        $notification = DB::table('notification')
+        ->select('*')
+        ->orderby('id','desc')
+        ->orderby('notification_status','desc')
+        ->get();
+        return view('layouts.notification',compact('notification'));
     }
 }
