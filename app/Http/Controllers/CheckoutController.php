@@ -88,7 +88,6 @@ class CheckoutController extends Controller
            $data['customer_id']=$request->customer_id;
            $data['created_at']=now();
            $data['updated_at']=now();
-
            $order_id =DB::table('order')->insertGetId($data);
 
            foreach(Session()->get('cart')->products as $item){
@@ -117,6 +116,10 @@ class CheckoutController extends Controller
                 $mail->to($request->customer_email);
                 $mail->subject('Xác nhận đơn hàng.');
             });
+
+
+
+
         }else {
             $order_table=DB::table('order')
             ->select('*')
@@ -130,7 +133,7 @@ class CheckoutController extends Controller
         }
         Session()->forget('cart'); 
         }
-        else{
+        else {
         //thanh toán momo
 
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
