@@ -24,7 +24,56 @@
 .cssbuttons-io-button:active {
   box-shadow: inset -1px -1px #fff, inset 1px 1px #292929, inset -2px -2px #ffffff, inset 2px 2px rgb(158, 158, 158);
 }
-
+#btn-add-2{
+    display: none !important;
+}
+.company-details{
+            float: right;
+            text-align: right;
+        }
+        .body-section{
+            padding: 16px;
+        }
+        .heading{
+            font-size: 20px;
+            margin-bottom: 08px;
+        }
+        .sub-heading{
+            color: #262626;
+            margin-bottom: 05px;
+        }
+        table{
+            background-color: #fff;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table thead tr{
+            border: 1px solid #111;
+            background-color: #f2f2f2;
+        }
+        table td {
+            vertical-align: middle !important;
+            text-align: center;
+        }
+        table th, table td {
+            padding-top: 08px;
+            padding-bottom: 08px;
+        }
+        .table-bordered{
+            box-shadow: 0px 0px 5px 0.5px gray;
+        }
+        .table-bordered td, .table-bordered th {
+            border: 1px solid #dee2e6;
+        }
+        .text-right{
+            text-align: end;
+        }
+        .w-20{
+            width: 20%;
+        }
+        .float-right{
+            float: right;
+        }
 </style>
 <link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/category/category.css')}}">
 
@@ -60,7 +109,7 @@
                     <th class="table-plus datatable-nosort">Mã đơn hàng</th>
                     <th>Tên khách hàng</th>
                     <th>Số điện thoại </th>
-                    <th>Địa chỉ giao hàng</th>
+                    {{-- <th>Địa chỉ giao hàng</th> --}}
                     {{-- <th>Email</th> --}}
                     <th>Tổng thanh toán</th>
                     <th>Trạng thái</th>
@@ -79,7 +128,7 @@
                     <td>{{$item->customer_name}}</td>
                     @endif
                     <td>{{$item->customer_phone}}</td>
-                    <td>{{$item->customer_address}}</td>
+                    {{-- <td>{{$item->customer_address}}</td> --}}
                     {{-- <td>{{$item->customer_email}}</td> --}}
                     <td>{{number_format($item->total_price)}}</td>
                     @if($item->status==0)
@@ -105,7 +154,7 @@
                                 <i class="dw dw-more"></i>
                             </a> -->
                             <!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"> -->
-                            <a class="droupdow-item product-item btn btn-dark " data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="dw dw-eye"></i> Xem nhanh</a>
+                            <a onclick="showBill({{$item->id}})" class="droupdow-item product-item btn btn-dark " data-toggle="modal" data-target="#bd-example-modal-lg" href="javascript:"><i class="dw dw-eye"></i> Xem hóa đơn</a>
                             <a class="droupdow-item product-item btn btn-dark" href=""><i class="dw dw-eye"></i>Xem chi tiết </a>
                            
                         </div>
@@ -117,84 +166,100 @@
         </table>
     </div>
 </div>
-
-{{-- @foreach($product as $item)
-<div class="modal fade" id="confirmation-modal{{$item->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-    <form action="">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body text-center font-18">
-                    <h4 class="padding-top-30 mb-30 weight-500">Sản phẩm sẽ được xóa khỏi hệ thống (bao gồm
-                        kho)</h4>
-                    <div class="padding-bottom-30 row" style="max-width: 170px; margin: 0 auto;">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>
-                            Hủy
-                        </div>
-                        <div class="col-6">
-                            <a href="{{ route('products.delete', ['id'=>$item->id]) }}" type="button" class="delete-image btn btn-primary border-radius-100 btn-block confirmation-btn"><i class="fa fa-check"></i></a>
-                            Có
-                        </div>
+<div class="modal fade bs-example-modal-lg show" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="" aria-modal="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3b4348;">
+                <div class="invoice-header">
+                    <div class="logo text-center">
+                        <img src="vendors/images/deskapp-logo.png" alt="">
                     </div>
                 </div>
+                <h4 class="text-center mb-30 weight-600 text-white">Hóa đơn</h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-        </div>
-    </form>
-</div>
-@endforeach --}}
-
-{{-- @foreach($product as $item)
-<div class="modal fade" id="exampleModalCenter{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="fa fa-times text-dark"></span>
-                </button>
-            </div>
-            <div class="row no-gutters">
-                <section class="py-5">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="/upload/product/{{$item->product_image}}" class="d-block w-100" alt="...">
-                                    </div>
-                                    @foreach($image as $item2)
-                                    @if($item2->product_id == $item->id)
-                                    <div class="carousel-item">
-                                        <img src="/upload/product/{{$item2->image}}" class="d-block w-100" alt="...">
-                                    </div>
-                                    @endif
-                                    @endforeach
-
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
+            <div class="invoice-wrap">
+                <div class="invoice-box" id="show-bill">
+                    <div class="container">
+                        <div class="brand-section">
+                            <div class="row">
                             </div>
                         </div>
-                        <div class="col-md-6"></div>
-                    </div>
-
-                </section>
-
-
+                    
+                        <div class="body-section">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h2 class="heading">Số hóa đơn : 001</h2>
+                                    <p class="sub-heading">Ngày đặt hàng: 20-20-2021 </p>
+                                    <p class="sub-heading">Email: customer@gfmail.com </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="sub-heading">Tên khách hàng:  </p>
+                                    <p class="sub-heading">Địa chỉ giao hàng:  </p>
+                                    <p class="sub-heading">Số điện thoại:  </p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="body-section">
+                            <h3 class="heading">Sản phẩm</h3>
+                            <br>
+                            <table class="table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Tên</th>
+                                        <th class="w-20 text-center">Kích thước</th>
+                                        <th class="w-20 text-center">Số lượng x giá</th>
+                                        <th class="w-20 text-center">Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Product Name</td>
+                                        <td>10</td>
+                                        <td>1</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-right">Sub Total</td>
+                                        <td> 10.XX</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-right">Tax Total %1X</td>
+                                        <td> 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-right">Grand Total</td>
+                                        <td> 12.XX</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <h3 class="heading">Payment Status: Paid</h3>
+                            <h3 class="heading">Payment Mode: Cash on Delivery</h3>
+                        </div> 
+                    </div>   
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function showBill(id){
+        document.getElementById('show-bill').innerHTML=` 
+            <div class="container d-flex justify-content-center align-items-center">
+                <div class="spinner"></div>
+            </div>`;
 
-@endforeach --}}
+        setTimeout(() =>
+            $.ajax({
+                url: `/show-bill/${id}`,
+                type: 'GET',
+            }).done(function (response) {
+                $("#show-bill").empty();
+                $("#show-bill").html(response); 
+            })
+        ,550)
+          }
+</script>
 @endsection

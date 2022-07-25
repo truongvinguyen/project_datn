@@ -161,7 +161,9 @@ Route::get('/accept-order/{id}', [CheckoutController::class, 'accept'])->name('a
 //đơn hàng
 Route::prefix('admin/order')->group(function () {
     Route::get('/order-new', [orderController::class, 'new_order'])->name('new_order');
+  
 });
+Route::get('/show-bill/{id}', [orderController::class, 'showBill'])->name('show-bill');
 
 
 

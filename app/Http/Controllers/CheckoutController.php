@@ -95,6 +95,7 @@ class CheckoutController extends Controller
                 'order_id'=>  $order_id,
                 'product_id'=>$item['productInfo']->id,
                 'quantity'=>$item['quanty'],
+                'product_name'=>$item['productInfo']->product_name,
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ]);
@@ -198,6 +199,7 @@ class CheckoutController extends Controller
                  'order_id'=>  $order_id,
                  'product_id'=>$item['productInfo']->id,
                  'quantity'=>$item['quanty'],
+                 'product_name'=>$item['productInfo']->product_name,
                  'created_at'=>now(),
                  'updated_at'=>now(),
              ]);

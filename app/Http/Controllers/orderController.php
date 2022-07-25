@@ -22,4 +22,16 @@ class orderController extends Controller
      ->get();
      return view('admin.order.new',compact('order'));
    }
+   public function showBill($id){
+    $order=DB::table('order')
+    ->select('*')
+    ->where('id',$id)
+    ->first();
+    $order_detail=DB::table('product_inventory')
+    ->join('=order_detail','=order_detail.product_id','=','product_inventory.id')
+    ->select('product_inventory.*','=order_detail.product_name','=order_detail.quantity')
+    ->where('order_id',$id)
+    ->get();
+    return view('admin.order.show-bill',compact('order','order_detail'));
+   }
 }
