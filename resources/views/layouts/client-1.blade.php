@@ -80,6 +80,7 @@
                                                         <div class="lg-cur"> <span> <span class="lg-fr"><img class="img_user" src="/upload/user/{{Session::get('userImage')}}" alt="">{{Session::get('userFullname')}}</span> <i class="fa fa-angle-down"></i> </span> </div>
                                                         <ul>
                                                             <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                                            <li ><a href="/wishlist">Sản phẩm yêu thích</a></li>
                                                         </ul>
                                                     </div>
                                                     {{-- <div class="block block-currency">
@@ -110,7 +111,7 @@
                             <div id="search">
                                 <form>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="tìm kiếm..." name="search">
+                                        <input type="text" class="form-control" placeholder="tìm kiếm..." id="search" name="search">
                                         <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
                                     </div>
                                 </form>
@@ -124,7 +125,7 @@
                                 <div class="mm-toggle"> <i class="fa fa-align-justify"></i><span
                                         class="mm-label">Menu</span> </div>
                             </div>
-                            <div class="logo"><a title="e-commerce" href="/home-page"><img alt="e-commerce"
+                            <div class="logo"><a title="e-commerce" href="/"><img alt="e-commerce"
                                         style="width:30%;" src="/client/images/logo.png"></a> </div>
                         </div>
                         <div class="col-lg-4 col-sm-4 col-xs-12 top-cart">
