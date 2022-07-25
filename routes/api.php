@@ -7,7 +7,7 @@ use App\Models\notification;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\articleController;
-
+use App\Http\Controllers\Api\SearchController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -78,6 +78,13 @@ Route::controller(ProductController::class)->prefix('products')->name('products'
     Route::get('price/list/{orderBy?}/{sort?}', 'listPrice')->name('');
     Route::get('discount/list/{orderBy?}/{sort?}', 'listDiscount')->name('');
 });
+
+
+Route::controller(SearchController::class)->prefix('search')->name('search')->group(function () {
+
+    Route::post('/{value?}', 'search')->name('');
+});
+
 
 Route::controller(articleController::class)->prefix('articles')->name('articles')->group(function () {
     Route::get('/{orderBy?}/{sort?}/{offset?}/{limit?}', 'articles')->name('');

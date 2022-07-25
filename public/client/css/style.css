@@ -4861,6 +4861,13 @@ ul.products-list .sale-left {
 	color: #fe0100;
 	white-space: nowrap;
 }
+
+.regular{
+	font-size: 14px;
+	color: #000;
+	white-space: nowrap;
+}
+
 .price-box {
 	margin: 6px 0 2px;
 	min-height: 24px;
@@ -6087,7 +6094,7 @@ button.button.btn-proceed-checkout span {
 	font-weight: 700;
 	padding: 8px 16px;
 	text-transform: uppercase;
-	width: 115px;
+	width: 140px;
 }
 .wishlist-item .all-cart {
 	background: #000000;

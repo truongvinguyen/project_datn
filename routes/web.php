@@ -139,18 +139,28 @@ Route::post('login-checkout', [HomeController::class, 'loginCheckout'])->name('l
 Route::get('ho-so', [HomeController::class, 'profile'])->name('profile');
 
 
-Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
-Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
-Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');
-Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
-Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
-Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
+// đổ sản phẩm ra layout
+Route::prefix('')->group(function () {
+    Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
+    Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
+    Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');
+    Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
+    
+    Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
+    Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
+    
+    Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
+    Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
+});
 
-Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
-Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
+//sản phẩm yêu thích
+Route::prefix('wishlist')->group(function () {
+    Route::get('/', [App\Http\Controllers\WishlistController::class, 'index'])->name('wishlist');
+    Route::get('/add/{id}', [App\Http\Controllers\WishlistController::class, 'create'])->name('');
+    Route::get('/delete/{id}', [App\Http\Controllers\WishlistController::class, 'destroy'])->name('');
+});
 
-//Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
 //thanh toán
 
