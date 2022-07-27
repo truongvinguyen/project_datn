@@ -85,6 +85,12 @@ class HomeController extends Controller
             "cf_password" => "Xác thực mật khẩu",
             "file" => "Ảnh đại diện"
         ];
+        // $request->file('file')->move(base_path('public/upload/user'), $image);
+        if($request->has('file')){
+            $image_user = $request->file;
+            $file_name = $image_user->getClientOriginalName();
+            $image_user->move(base_path('public/upload/user'),$file_name);
+        }
         $request->validate($rules, $messages, $attributes);
         // dd($request->email);
         $email = $request->email;
@@ -92,7 +98,14 @@ class HomeController extends Controller
         $fullname = $request->fullname;
         $address = $request->address;
         $phone = $request->phone;
-        $image = $request->file('file')->getClientOriginalName();
+        if($request->has('file'))
+        {
+        $image = $file_name;
+        }
+        else
+        {
+        $image = ""; 
+        }
         $emailDB = UserClient::checkIssetEmail($email);
         // $emailDB = true;
         if (!$emailDB) {
@@ -112,8 +125,7 @@ class HomeController extends Controller
                     $mail->from($request->email);
                     $mail->subject('Mã kích hoạt tài khoản.');
                 });
-                $request->file('file')->move(base_path('public/upload/user'), $image);
-                // dd($image);
+              
                 session()->flash('msg', 'Đăng ký thành công. Nhập mã code được gửi vào tài khoản để kích hoạt.');
                 session()->flash('emailActive', $email);
                 // return redirect('/kich-hoat')->with(['email', $email]);

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-Đơn hàng mới
+Đơn hàng đang xử lý
 @endsection
 @section('content')
 <!-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/modal.css')}}"> -->
@@ -90,7 +90,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home-admin">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="/product">Đơn hàng chưa xác nhận</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="/product">Đơn hàng đang xử lý</a></li>
                 </ol>
             </nav>
         </div>
@@ -138,12 +138,10 @@
                         @else
                         <td>Đã thanh toán</td>
                         @endif
-                        @if($item->status==0)
-                        <td>Khách hàng chưa xác nhận</td>
-                        @else
+                        @if($item->status==2)
                         <td>
-                            <button onclick="confirm({{$item->id}})" class="button btn-warning">
-                                Xác nhận
+                            <button onclick="confirm({{$item->id}})" class="button btn-primary">
+                                Đánh dấu hoàn thành
                             </button>
                         </td>
                         @endif
@@ -156,9 +154,10 @@
                                     <i class="dw dw-more"></i>
                                 </a> -->
                                 <!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"> -->
-                                <a onclick="showBill({{$item->id}})" class="droupdow-item product-item " data-toggle="modal" data-target="#bd-example-modal-lg" href="javascript:"data-color="#265ed7" style="/* color: rgb(38, 94, 215); */"><i style="font-size: 20px" class="dw dw-eye"></i></a>
+                                    <a onclick="showBill({{$item->id}})" class="droupdow-item product-item " data-toggle="modal" data-target="#bd-example-modal-lg" href="javascript:"data-color="#265ed7" style="/* color: rgb(38, 94, 215); */"><i style="font-size: 20px" class="dw dw-eye"></i></a>
+                                    {{-- <a class="droupdow-item product-item " href=""><i class="dw dw-eye"></i>Xem chi tiết </a> --}}
+                                    <a href="#" data-color="#e95959" style="color: rgb(233, 89, 89);margin-left: 10px"><i style="font-size: 20px" class="icon-copy dw dw-delete-3"></i></a>
                                 {{-- <a class="droupdow-item product-item " href=""><i class="dw dw-eye"></i>Xem chi tiết </a> --}}
-                                <a href="#" data-color="#e95959" style="color: rgb(233, 89, 89);margin-left: 10px;"><i style="font-size: 20px" class="icon-copy dw dw-delete-3"></i></a>
                             
                             </div>
                         </td>

@@ -22,6 +22,14 @@ class orderController extends Controller
      ->get();
      return view('admin.order.new',compact('order'));
    }
+   public function orderProcessed(){
+    $order=DB::table('order')
+    ->select('*')
+    ->where('status','=',2)
+    ->orderby('id','desc')
+    ->get();
+    return view('admin.order.processed',compact('order'));
+    }
    public function showBill($id){
     $order=DB::table('order')
     ->select('*')
@@ -33,5 +41,16 @@ class orderController extends Controller
     ->where('order_id',$id)
     ->get();
     return view('admin.order.show-bill',compact('order','order_detail'));
+   }
+   public function confirmOrder($id){
+   order::find($id)->update([
+      'status'=>2,
+    ]);
+    $order=DB::table('order')
+    ->select('*')
+    ->where('status','<',2)
+    ->orderby('id','desc')
+    ->get();
+    return view('admin.order.order-new-cut',compact('order'));
    }
 }

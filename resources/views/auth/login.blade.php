@@ -129,7 +129,7 @@
                                         <label class="form-check-label" for="remember">
 
                                         </label>
-                                        <label class="custom-control-label" for="customCheck1"> {{ __('Nhớ tôi')
+                                        <label class="custom-control-label" for="remember"> {{ __('Nhớ tôi')
                                             }}</label>
                                     </div>
                                 </div>
