@@ -23,6 +23,7 @@ class ArticleController extends Controller
         $this->category = $category;
         $this->product = $product;
         $this->brand = $brand;
+        $this->middleware('auth');
     }
 
     public function index()

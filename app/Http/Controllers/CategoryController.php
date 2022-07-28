@@ -21,6 +21,7 @@ class CategoryController extends Controller
     public function __construct(category $category)
     {
         $this->category = $category;
+        $this->middleware('auth');
     }
 
     public function index()

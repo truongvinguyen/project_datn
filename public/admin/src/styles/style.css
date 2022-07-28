@@ -30,7 +30,7 @@ body {
 	margin: 0;
 	padding: 0;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'Inter', sans-serif;
+	/* font-family: 'Inter', sans-serif; */
 	font-weight: 400;
 	width: 100%;
 	min-height: 100%;

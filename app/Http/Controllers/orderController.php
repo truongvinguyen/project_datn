@@ -13,7 +13,12 @@ use App\Models\order_detail;
 use App\Models\imageProduct;
 
 class orderController extends Controller
+
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
    public function new_order(){
      $order=DB::table('order')
      ->select('*')
@@ -43,9 +48,18 @@ class orderController extends Controller
     return view('admin.order.show-bill',compact('order','order_detail'));
    }
    public function confirmOrder($id){
-   order::find($id)->update([
-      'status'=>2,
-    ]);
+    order::find($id)->update([
+        'status'=>2,
+      ]);
+      $order=DB::table('order')
+      ->select('*')
+      ->where('status','<',2)
+      ->orderby('id','desc')
+      ->get();
+      return view('admin.order.order-new-cut',compact('order'));
+   }
+   public function deleteOrder($id){
+    order::find($id)->delete();
     $order=DB::table('order')
     ->select('*')
     ->where('status','<',2)
