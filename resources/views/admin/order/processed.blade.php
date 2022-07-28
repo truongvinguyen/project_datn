@@ -140,7 +140,7 @@
                         @endif
                         @if($item->status==2)
                         <td>
-                            <button onclick="confirm({{$item->id}})" class="button btn-primary">
+                            <button  class="button btn-primary">
                                 Đánh dấu hoàn thành
                             </button>
                         </td>
@@ -156,7 +156,7 @@
                                 <!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"> -->
                                     <a onclick="showBill({{$item->id}})" class="droupdow-item product-item " data-toggle="modal" data-target="#bd-example-modal-lg" href="javascript:"data-color="#265ed7" style="/* color: rgb(38, 94, 215); */"><i style="font-size: 20px" class="dw dw-eye"></i></a>
                                     {{-- <a class="droupdow-item product-item " href=""><i class="dw dw-eye"></i>Xem chi tiết </a> --}}
-                                    <a href="#" data-color="#e95959" style="color: rgb(233, 89, 89);margin-left: 10px"><i style="font-size: 20px" class="icon-copy dw dw-delete-3"></i></a>
+                                    <a  onclick="deleteOrder({{$item->id}})" href="javascript:" data-color="#e95959" style="color: rgb(233, 89, 89);margin-left: 10px;"><i style="font-size: 20px" class="icon-copy dw dw-delete-3"></i></a>
                                 {{-- <a class="droupdow-item product-item " href=""><i class="dw dw-eye"></i>Xem chi tiết </a> --}}
                             
                             </div>
@@ -264,7 +264,7 @@
             })
         ,550)
     }
-    function confirm(id){
+    function confirmOder(id){
         $.ajax({
                 url: `/confirm-order/${id}`,
                 type: 'GET',
@@ -272,6 +272,22 @@
                 $("#show").empty();
                 $("#show").html(response); 
             })
+    }
+    function deleteOrder(id){
+        if(confirm("Bạn có chắc muốn xóa đơn hàng")){
+            $.ajax({
+                    url: `/delete-order/${id}`,
+                    type: 'GET',
+                }).done(function (response) {
+                    alertify.message('Xóa thành công đơn hàng', 'custom', 2,
+                    function() {
+                        console.log('dismissed');
+                    });
+                    $("#show").empty();
+                    $("#show").html(response); 
+                
+                })}
+        
     }
 </script>
 @endsection

@@ -177,6 +177,7 @@ Route::prefix('admin/order')->group(function () {
 });
 Route::get('/show-bill/{id}', [orderController::class, 'showBill'])->name('show-bill');
 Route::get('/confirm-order/{id}', [orderController::class, 'confirmOrder'])->name('confirmOrder');
+Route::get('/delete-order/{id}', [orderController::class, 'deleteOrder'])->name('deleteOrder');
 
 
 

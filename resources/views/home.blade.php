@@ -109,6 +109,4 @@ Bảng tin
 		</div>
 	</div>
 </div>
-
-
 @endsection
