@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Client\HomeController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Client\GoogleController;
 
 
 /*
@@ -119,7 +120,9 @@ Route::get('quen-mat-khau', [HomeController::class,"getForgotPass"])->name('getF
 Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("postForgotPass");
 Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
 Route::get('dang-xuat', [HomeController::class, "getLogout"])->name('getLogout');
-Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
+Route::post('danh-gia', [HomeController::class, 'postReview'])->name('rating');
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('loginGG');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('loginGGCallback');
 
 Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');

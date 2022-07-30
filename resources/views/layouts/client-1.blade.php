@@ -71,7 +71,7 @@
                                         <li><a href="#">{{Session::get('userEmail')}}</a></li>
                                         <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
                                     @else
-                                        <li><a href="register_page.html">Tạo tài khoản</a></li>
+                                        <li><a href="{{route('dang-ky')}}">Tạo tài khoản</a></li>
                                         <li><a href="{{route('getLogin')}}">Đăng nhập</a></li>
                                     @endif
                                 </ul>
@@ -139,8 +139,20 @@
                             </div>
                             @endif
                             <!-- End shopping cart trigger -->
-                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a> <a
-                                href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
+                            @if (Session::has('userId'))
+                                @if (Session::get('userImage') == "")
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="{{asset('public/upload/client/user/anoymous.png')}}" alt="">
+                                    </a>
+                                @else
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="{{asset('public/upload/client/user/'.Session::get('userImage'))}}" alt="">
+                                    </a>
+                                @endif
+                            @else
+                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a>
+                            @endif
+                            <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
                         </div>
                     </div>
                 </div>

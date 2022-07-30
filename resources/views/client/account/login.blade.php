@@ -65,6 +65,11 @@
                       <button name="submit-dk" class="button"><i class="fa fa-user"></i>&nbsp; <span>Đăng nhập</span></button>
                     </div>
                   </div>
+                  <div class="col-xs-12 m-2" style="display: inline-flex">
+                    <div class="login-gg" style="cursor: pointer;">
+                      <a href="{{route('loginGG')}}"><img src="{{asset('client/images/loginGg.png')}}" alt=""></a>
+                    </div>
+                  </div>
                 </div>
                 @csrf
               </form>
@@ -115,4 +120,25 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('js')
+  {{-- <script>
+    var btnGG = document.querySelector(".login-gg");
+    btnGG.addEventListener("click", function(e) {
+      var position = (screen.width/3)
+      var popup = window.open("{{route('loginGG')}}","Login Google","width=400, height=600, top=200, left="+position);
+      // $.ajax({
+      //   url:"loginGGCallback",
+      //   type: "get"
+      //   data:{
+
+      //   },
+      //   dataType: "json",
+      //   success: function(resp){
+      //     console.log(resp);
+      //   }
+      // });
+    });
+  </script> --}}
 @endsection
