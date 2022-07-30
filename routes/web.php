@@ -8,6 +8,9 @@ use App\Http\Controllers\Client\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Client\GoogleController;
 
+use App\Http\Controllers\CheckoutController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -128,3 +131,15 @@ Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->
 Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
 Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');
 Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
+
+Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
+Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
+Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
+//Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
+
+//thanh toán
+Route::get('/checkout', function(){
+    return view('client.checkout.checkout');
+})->name('');
+Route::post('/order', [CheckoutController::class, 'order'])->name('order');
+

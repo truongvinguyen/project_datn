@@ -57,8 +57,8 @@
                     @enderror
                   </div>
                   <div class="col-xs-12">
-                    <p href="">Chưa có tài khoản ? <a href="">Đăng ký ngay</a></p>
-                    <p><a href="">Quên mật khẩu</a></p>
+                    <p href="">Chưa có tài khoản ? <a href="{{ route('dang-ky') }}">Đăng ký ngay</a></p>
+                    <p><a href="{{ route('getForgotPass') }}">Quên mật khẩu</a></p>
                   </div>
                   <div class="col-xs-12 m-2">
                     <div class="">

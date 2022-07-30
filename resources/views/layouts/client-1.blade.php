@@ -24,7 +24,7 @@
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" /></head>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" /></head> -->
 
 <body class="cms-index-index cms-home-page">
 
@@ -74,6 +74,7 @@
                                         <li><a href="{{route('dang-ky')}}">Tạo tài khoản</a></li>
                                         <li><a href="{{route('getLogin')}}">Đăng nhập</a></li>
                                     @endif
+
                                 </ul>
                                 <div class="language-currency-wrapper pull-right">
                                     <div class="inner-cl">
@@ -169,9 +170,9 @@
                                     <ul class="hidden-xs">
                                         <li class="active custom-menu"><a href="/">Trang chủ</a></li>
                                         <li class="megamenu"><a href="/product-grid">Sản phẩm <span class="menu-item-tag menu-item-tag-new">mới</span></a></li>
-                                        <li class="custom-menu"><a href="blog.html">Bài viết</a></li>
-                                        <li><a href="contact_us.html">Về chúng tôi</a></li>
-                                        <li><a href="contact_us.html">Liên hệ</a></li>
+                                        <li class="custom-menu"><a href="/article">Bài viết</a></li>
+                                        <li><a href="/contact-us">Về chúng tôi</a></li>
+                                        <li><a href="/contact-us">Liên hệ</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -182,6 +183,7 @@
         </header>
         @yield('content')
         <!-- Footer -->
+        
         <footer>
             <div class="container">
                 <div class="row">
@@ -392,7 +394,7 @@
     <!-- mobile menu -->
     <div id="jtv-mobile-menu" class="jtv-mobile-menu">
         <ul>
-            <li><a href="/home-page"><img alt="e-commerce" src="images/logo-mobile.png"></a></li>
+            <li><a href="/home-page"><img alt="e-commerce" src="client/images/logo-mobile.png"></a></li>
             <li><a href="/home-page">Trang chủ</a></li>
             <li><a href="/product-list">Sản phẩm</a></li>
             <li><a href="shop_grid.html">Bài viết</a></li>
@@ -422,6 +424,8 @@
     <script type="text/javascript" src="{{asset('client/js/cart.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/toast.js')}}"></script>
     <script src="{{ asset('/client/js/home-page.js') }}"></script>
+    <script src="{{ asset('/client/js/product-list.js') }}"></script>
+    <script src="{{ asset('/client/js/article.js') }}"></script>
     
     <script type='text/javascript'>
         jQuery(document).ready(function () {

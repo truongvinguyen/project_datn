@@ -49,4 +49,13 @@ class article extends Model
     {
         return $this->belongsTo(User::class, 'employee_id', 'id');
     }
+
+
+    public function article(){
+        $articles = article::select('*')
+        ->join('users','users.id','=','article.employee_id')
+        ->join('brand','brand.id','=','article.brand_id')
+        ->orderBy('article.id','DESC')->limit(4)->get();
+        return $articles;
+    }
 }

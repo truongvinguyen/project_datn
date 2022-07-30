@@ -29,34 +29,15 @@ class product extends Model
         
        
     ];
-    public function products (){
+
+    public function products (String $orderBy = 'qty_sold', String $sort = 'desc'){
         $data = DB::table('product')
-        ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
+        ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, sum(sold) as qty_sold')
         ->groupBy('product_inventory.product_id','product.id','product_name','product_price_sale', 'product_content', 'category_id','product_id','product_price', 'product_image')
-        ->orderBy('qty_sold','DESC')
+        ->orderBy($orderBy, $sort)
         ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
         ->get();
         return $data;
     }
-
-    public function productsByBrand($id){
-        $data = DB::table('product')
-        ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
-        ->groupBy('product_inventory.product_id','product.id','product_name','product_price_sale', 'product_content', 'category_id','product_id','product_price', 'product_image')
-        ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
-        ->where('category_id','=', $id)
-        ->get();
-        return $data;
-    }
-
     
-    public function productsById($id){
-        $data = DB::table('product')
-        ->selectRaw('product_name, product_price_sale, product_price, product_image, product_content, category_id, product.id as id, CAST(sum(inventory) as int) as qty_sold')
-        ->groupBy('product_inventory.product_id','product.id','product_name','product_price_sale', 'product_content', 'category_id','product_id','product_price', 'product_image')
-        ->join('product_inventory', 'product.id', '=', 'product_inventory.product_id')
-        ->where('product.id','=', $id)
-        ->get();
-        return $data;
-    }
 }
