@@ -421,7 +421,7 @@ class HomeController extends Controller
     public function getLogout(Request $request){
         // dd($request->header('referer'));
         $prePath = $request->header('referer');
-
+    }
     public function getLogout()
     {
         Session::forget('userId');
