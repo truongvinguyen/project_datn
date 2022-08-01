@@ -28,26 +28,38 @@ class showDataController extends Controller
         $products = $data::select('*')->orderBy('id','DESC')->get();
         $suggestions = $data::select('*')->limit(8)->get();
         $articles = $article->article();
-
         return view('client.home-page', compact('best_product','products','articles','suggestions'));
     }
 
     public function article_page(){
         $article = new article();
+
         $articles = $article->article();
         $length = article::all()->count();
         $brands = brand::all();
         return view('client.article.article-page',compact('articles','brands','length'));
     }
+    public function articleOne($id){
+        $art = new article();
+
+        $articles = $art->article();
+        $articleOne = $art::findOrFail($id);
+        $articleByCategory = $art->articleByCategory($articleOne->category_id);
+ 
+        return view('client.article.article-one',compact('articles','articleOne','articleByCategory'));
+    }
 
     public function product_grid(){
-        $categories = category::all();
+        $data = new product();
         $article = new article();
+
+        $categories = category::all();
         $articles = $article->article();
         $brands = brand::all();
-        $size = inventory::all();  
-        $length = product::all()->count();
-        return view('client.product.product-grid',compact('length','categories','brands','size','articles'));
+          
+        $products = $data::all();
+        $length = $data::all()->count();
+        return view('client.product.product-grid',compact('length','categories','brands','articles','products'));
     }
 
     public function product_list(){
@@ -60,12 +72,14 @@ class showDataController extends Controller
     public function product_by_id($id){
         $data = new product();
         $article = new article();
+
         $articles = $article->article();
         $categories = category::all();
         $brands = brand::all();
-        $size = inventory::all();  
+
+        $products = $data::all();
         $length = $data::all()->count();
-        return view('client.product.product-list',compact('length','categories','brands','size','articles'));
+        return view('client.product.product-list',compact('length','categories','brands','articles','products'));
     }
 
     public function aboutUs(){

@@ -1,6 +1,6 @@
 jQuery('#chart1').vectorMap({
 	map: 'world_mill_en',
-	backgroundColor: '#1b00ff',
+	backgroundColor: '#CF3341',
 	borderWidth: 1,
 	zoomOnScroll : false,
 	color: '#ddd',

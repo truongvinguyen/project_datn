@@ -19,9 +19,9 @@
 
     <!-- Styles -->
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('admin/vendors/images/apple-touch-icon.png')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
+    {{-- <link rel="apple-touch-icon" sizes="180x180" href="{{asset('admin/vendors/images/apple-touch-icon.png')}}"> --}}
+    {{-- <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png"> --}}
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -30,6 +30,7 @@
     
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/core.css')}}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{asset('client/css/toast.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/icon-font.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/dataTables.searchHighlight.css')}}">
@@ -51,6 +52,7 @@
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/app.css')}}">
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -74,6 +76,70 @@
             background-color: #151329;
             border-color: #31708f;
         }
+        .spinner {
+	--size: 15px;
+	--first-block-clr: #CF3341;
+	--second-block-clr: #3b4348;
+	--clr: #111;
+	width: 100px;
+	height: 100px;
+	
+   }
+   
+   .spinner::after,.spinner::before {
+	box-sizing: border-box;
+	position: absolute;
+	content: "";
+	width: var(--size);
+	height: var(--size);
+	top: 50%;
+	animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+	left: 50%;
+	background: var(--first-block-clr);
+   }
+   
+   .spinner::after {
+	background: var(--second-block-clr);
+	top: calc(50% - var(--size));
+	left: calc(50% - var(--size));
+	animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+   }
+   
+   @keyframes down {
+	0%, 100% {
+	 transform: none;
+	}
+   
+	25% {
+	 transform: translateX(100%);
+	}
+   
+	50% {
+	 transform: translateX(100%) translateY(100%);
+	}
+   
+	75% {
+	 transform: translateY(100%);
+	}
+   }
+   
+   @keyframes up {
+	0%, 100% {
+	 transform: none;
+	}
+   
+	25% {
+	 transform: translateX(-100%);
+	}
+   
+	50% {
+	 transform: translateX(-100%) translateY(-100%);
+	}
+   
+	75% {
+	 transform: translateY(-100%);
+	}
+   }
     </style>
 </head>
 
@@ -111,7 +177,19 @@
         alertify.set('notifier', 'position', 'bottom-right');
     </script>
     @endif
-    <!-- <hr> -->
+    {{-- @if(Session::has('success'))
+    <script>
+        toast({
+        title: "Thành công!",
+        message: {{Session::get('success')}},
+        type: "success",
+        duration: 5000
+      });
+    </script>
+    @endif --}}
+    <div id="toast">
+        
+    </div>
     <div class="header" id="global-header">
         <div class="header-left">
             <div class="menu-icon dw dw-menu"></div>
@@ -120,7 +198,7 @@
                 <form>
                     <div class="form-group mb-0">
                         <i class="dw dw-search2 search-icon"></i>
-                        <input type="text" class="form-control search-input" placeholder="Search Here">
+                        <input type="text" class="form-control search-input" placeholder="Tìm kiếm">
                         <div class="dropdown">
                             <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
                                 <i class="ion-arrow-down-c"></i>
@@ -163,55 +241,14 @@
             </div>
             <div class="user-notification">
                 <div class="dropdown">
-                    <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+                    <a onclick="loadNotification()" class="dropdown-toggle no-arrow" href="javascript:" role="button" data-toggle="dropdown">
                         <i class="icon-copy dw dw-notification"></i>
                         <span class="badge notification-active"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="notification-list mx-h-350 customscroll">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/img.jpg" alt="">
-                                        <h3>John Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/photo1.jpg" alt="">
-                                        <h3>Lea R. Frith</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/photo2.jpg" alt="">
-                                        <h3>Erik L. Richards</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/photo3.jpg" alt="">
-                                        <h3>John Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/photo4.jpg" alt="">
-                                        <h3>Renee I. Hansen</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="vendors/images/img.jpg" alt="">
-                                        <h3>Vicki M. Coleman</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-                                    </a>
-                                </li>
+                            <ul id="show-notification">
+                                
                             </ul>
                         </div>
                     </div>
@@ -226,12 +263,12 @@
                         <span class="user-name"> {{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                        <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Hồ sơ</a>
+                        <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Cài đặt</a>
+                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Trợ giúp</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            <i class="icon-copy dw dw-logout1"></i> {{ __('Đăng xuất') }}
+                            <i class="icon-copy dw dw-logout1"></i> Đăng xuất
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -239,9 +276,6 @@
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="github-link">
-                <a href="https://github.com/truongvinguyen/project_datn.git" target="_blank"><img src="/admin/vendors/images/github.svg" alt=""></a>
             </div>
         </div>
     </div>
@@ -324,8 +358,8 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="/">
-                <img src="{{asset('admin/src/images/logoblack.png')}}" alt="" width="150px" class="dark-logo">
                 <img src="{{asset('admin/src/images/logowhite.png')}}" alt="" width="150px" class="light-logo">
+                <img src="{{asset('admin/src/images/logoblack.png')}}" alt="" width="150px" class="dark-logo">
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -336,10 +370,10 @@
                 <ul id="accordion-menu">
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+                            <span class="micon dw dw-house-1"></span><span class="mtext">Trang chủ</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="/home">Dashboard</a></li>
+                            <li><a href="/home-admin">Thống kê</a></li>
 
                         </ul>
                     </li>
@@ -400,6 +434,19 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon fa fa-th-large"></span><span class="mtext">Đơn hàng</span>
+                            <i class="" aria-hidden="true"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="{{ route('new_order') }}">Đơn hàng mới</a></li>
+                            <li><a href="{{ route('order_processed') }}">Đơn hàng đã xử lý</a></li>
+                            <li><a href="">Đơn hàng đã hoàn thành</a></li>
+
+                            
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon icon-copy fi-graph-bar"></span><span class="mtext">Kho</span>
                             <i class="" aria-hidden="true"></i>
                         </a>
@@ -431,6 +478,7 @@
     <script src="{{asset('admin/vendors/scripts/script.min.js')}}"></script>
     <script src="{{asset('admin/vendors/scripts/process.js')}}"></script>
     <script src="{{asset('admin/vendors/scripts/layout-settings.js')}}"></script>
+    <script src="{{asset('client/js/toast.js')}}"></script>
     <script src="{{asset('admin/src/plugins/apexcharts/apexcharts.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -520,6 +568,10 @@
 
         });
     });
+</script>
+<script type="text/javascript">
+   
+ 
 </script>
 
 </body>

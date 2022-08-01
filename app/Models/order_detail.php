@@ -14,6 +14,7 @@ class order_detail extends Model
        
         'order_id',
         'product_id',
+        'product_name',
         'user_id',
         'quantity',
         'created_at',

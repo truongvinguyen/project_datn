@@ -40,4 +40,12 @@ class product extends Model
         return $data;
     }
     
+    public function productByCategory($cate){
+        $data = DB::table('product')->where('category_id','=',$cate)->get();
+        return $data;
+    }
+
+    public function searchProduct($value){
+        $data = DB::table('product')->where('product_name','like', '%' .$value. '%')->get();
+    }
 }

@@ -11,7 +11,7 @@ Trang Sản Phẩm
                 
                 <div class="shop-inner">
                     <div class="page-title"><h2>Sản phẩm</h2></div>
-                    <div class="category-description">
+                    {{-- <div class="category-description">
                         <div class="slider-items-products">
                             <div id="category-slider" class="product-flexslider hidden-buttons">
                                 <div class="slider-items slider-width-col4">
@@ -20,7 +20,7 @@ Trang Sản Phẩm
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="toolbar">
                         <div class="view-mode">
                             <ul>
@@ -30,7 +30,7 @@ Trang Sản Phẩm
                         </div>
                         <div class="tab-info">
                             <ul class="check-box-list productlg" id="data_price">
-                                <li data-price="discount">Gian hàng giảm giá</li>
+                                <li data-price="">Gian hàng giảm giá</li>
                                 <li data-price="">Giá từ cao đến thấp</li>
                                 <li data-price="ASC">Giá từ thấp đến cao</li>
                             </ul>
@@ -80,21 +80,7 @@ Trang Sản Phẩm
                                 </ul>
                             </div>
                         </div>
-
-                        <!-- <div class="layered-Category">
-                            <div class="layered-content">
-                                <h2 class="saider-bar-title">Theo size</h2>
-                                <ul class="check-box-list" id="productByCate">
-                                    @foreach($size as $s)
-                                        <li data-offset="{{$brand->id}}">
-                                            <p><i class="fa fa-angle-right"></i>&nbsp;{{$s->product_size}}</p>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div> -->
-
-                      
+                        
                     </div>
                 </div>
                 <div class="block blog-module">
@@ -108,10 +94,10 @@ Trang Sản Phẩm
                                 <ul class="blog-list-sidebar">   
                                     @foreach($articles as $article)
                                         <li>
-                                            <div class="post-thumb"> <a href="#"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
+                                            <div class="post-thumb"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
                                             <div class="post-info">
-                                                <h5 class="entry_title"><a href="#">{!!$article->article_title!!}</a></h5>
-                                                <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{$article->created_at}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
+                                                <h5 class="entry_title"><a href="/article-detail/{{$article->id}}">{!!$article->article_title!!}</a></h5>
+                                                <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{date('d-m-y', strtotime($article->created_at))}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
                                             </div>
                                         </li>
                                     @endforeach
@@ -141,4 +127,8 @@ Trang Sản Phẩm
         </div>
     </div>
 </div>
+
+<script src="{{asset('client/js/jquery.min.js')}}"></script>
+<script src="{{ asset('/client/js/home-page.js') }}"></script>
+
 @endsection

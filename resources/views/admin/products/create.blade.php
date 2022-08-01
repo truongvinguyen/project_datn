@@ -23,11 +23,7 @@ Thêm sản phẩm mới
     </div>
 </div>
 <div class="pd-20 card-box mb-30">
-<<<<<<< HEAD
     <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
-=======
-    <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
->>>>>>> 5d282b02e113f954f358a975a9dcda0fbe719530
         @csrf
         <div class="clearfix">
 
@@ -125,20 +121,37 @@ Thêm sản phẩm mới
                     <div class="col-sm-12 col-md-12">
                         <select class=" category_id form-control s" name="category_id"
                             style="width: 100%; height: 38px;">
-
-
                             <option value="">Chọn danh mục</option>
                             @foreach($category as $category )
                             <option value="{{$category->id}}">{{$category->category_name}}</option>
                             @endforeach
-
-
-
                         </select>
                         @error('category_id')
                         <div class="text-danger">{{ $message }}</div>
                         <style>
                             .category_id {
+                                border: 1px solid red;
+                            }
+                        </style>
+                        @enderror
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <label class="col-sm-6 col-md-12 col-form-label">Chọn thương hiệu<span
+                            class="text-danger">*</span></label>
+                    <div class="col-sm-12 col-md-12">
+                        <select class="brand_id form-control s" name="brand_id"
+                            style="width: 100%; height: 38px;">
+                            <option value="">Chọn thương hiệu</option>
+                          @foreach($brand as $item)
+                            <option value="{{$item->id}}">{{$item->brand_name}}</option>
+                          @endforeach
+                        </select>
+                        @error('brand_id')
+                        <div class="text-danger">{{ $message }}</div>
+                        <style>
+                            .brand_id{
                                 border: 1px solid red;
                             }
                         </style>

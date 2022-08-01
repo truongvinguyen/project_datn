@@ -8,6 +8,7 @@ use App\Models\article;
 use App\Models\brand;
 use App\Models\category;
 use App\Models\product;
+use App\Models\notification;
 use Illuminate\Support\Str;
 
 class ArticleController extends Controller
@@ -22,6 +23,7 @@ class ArticleController extends Controller
         $this->category = $category;
         $this->product = $product;
         $this->brand = $brand;
+        $this->middleware('auth');
     }
 
     public function index()
