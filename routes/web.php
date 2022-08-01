@@ -8,6 +8,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\orderController;
 use App\Models\notification;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Client\GoogleController;
 
 use App\Http\Controllers\CheckoutController;
 
@@ -132,7 +133,9 @@ Route::get('quen-mat-khau', [HomeController::class, "getForgotPass"])->name('get
 Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("postForgotPass");
 Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
 Route::get('dang-xuat', [HomeController::class, "getLogout"])->name('getLogout');
-Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
+Route::post('danh-gia', [HomeController::class, 'postReview'])->name('rating');
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('loginGG');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('loginGGCallback');
 
 Route::post('login-checkout', [HomeController::class, 'loginCheckout'])->name('loginCheckout');
 

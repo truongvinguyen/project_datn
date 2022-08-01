@@ -158,8 +158,20 @@
                             </div>
                             @endif
                             <!-- End shopping cart trigger -->
-                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a> <a
-                                href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
+                            @if (Session::has('userId'))
+                                @if (Session::get('userImage') == "")
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="{{asset('public/upload/client/user/anoymous.png')}}" alt="">
+                                    </a>
+                                @else
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="{{asset('public/upload/client/user/'.Session::get('userImage'))}}" alt="">
+                                    </a>
+                                @endif
+                            @else
+                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a>
+                            @endif
+                            <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
                         </div>
                     </div>
                 </div>

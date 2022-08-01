@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client\UserClient;
-use Mail;
+use Illuminate\Support\Str;
+// use Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Session;
+use Laravel\Ui\Presets\React;
+use phpDocumentor\Reflection\DocBlock\Tags\See;
 
 class HomeController extends Controller
 {
@@ -98,6 +102,11 @@ class HomeController extends Controller
         $fullname = $request->fullname;
         $address = $request->address;
         $phone = $request->phone;
+
+        $image = $request->file('file')->getClientOriginalName();
+        $fileExplode = explode('.', $image);
+        $fileExplode[0] = Str::random(50);
+        $image = implode('.', $fileExplode);
         if($request->has('file'))
         {
         $image = $file_name;
@@ -409,6 +418,10 @@ class HomeController extends Controller
         }
     }
 
+    public function getLogout(Request $request){
+        // dd($request->header('referer'));
+        $prePath = $request->header('referer');
+
     public function getLogout()
     {
         Session::forget('userId');
@@ -416,12 +429,71 @@ class HomeController extends Controller
         Session::forget('userFullname');
         Session::forget('userPhone');
         Session::forget('userAddress');
-        return redirect()->route('home_client');
+        return redirect($prePath);
     }
 
+
+    public function postReview(Request $request){
+        if(!Session::has('userId')){
+            return response()->json([
+                'code' => 1,
+                'msg' => "Bạn phải đăng nhập để bình luận."
+            ]);
+        }
+        $rules = [
+            "rating" => ['required', 'min:1', 'max:5'],
+            "content" => ['required', 'min:3', 'max:1024']
+        ];
+        $messages = [
+            "rating.required" =>"Vui lòng kiểm tra số sao :attribute.",
+            "rating.min" =>"Vui lòng kiểm tra số sao :attribute.",
+            "rating.max" =>"Vui lòng kiểm tra số sao :attribute.",
+            "content.required" =>"Vui lòng kiểm tra :attribute đánh giá.",
+            "content.min" =>"Vui lòng kiểm tra :attribute đánh giá. Tối thiểu 3 ký tự, tối đa 1024 ký tự.",
+            "content.max" => "Vui lòng kiểm tra :attribute đánh giá. Tối thiểu 3 ký tự, tối đa 1024 ký tự."
+        ];
+        $attributes = [
+            "rating" => "đánh giá.",
+            "content" => "nội dung"
+        ];
+
+        $validator = Validator::make($request->all(),$rules, $messages, $attributes);
+        if ($validator->fails()){
+            return response()->json(['err'=>$validator->errors()->all()], 400);
+        }
+        $userId = Session::get('userId');
+        $idPr = $request->idProduct;
+        $rating = $request->rating;
+        $content = $request->content;
+        $isRated = UserClient::checkRating($userId, $idPr);
+        if (!$isRated){
+            UserClient::addRating($userId, $idPr, $rating, $content);
+            return response()->json([
+                'code' => 0,
+                'msg' => "Đánh giá thành công."
+            ]);
+        }else{
+            return response()->json([
+                'code' => 2,
+                'msg' => "Bạn đã đánh giá sản phẩm này rồi ^.^"
+            ]);
+        }
     public function postReview(Request $request)
     {
         $user = Auth::user();
         dd($user);
     }
+
+    public function postRating(Request $request){
+        if(!Session::has('userId')){
+            return response()->json([
+                'code' => 1,
+                'msg' => "Bạn phải đăng nhập để bình luận."
+            ]);
+        }
+    }
+
+    // public function getRating(Request $request){
+    //     $idPr = $request->
+    // }
 }
