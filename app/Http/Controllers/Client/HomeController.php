@@ -418,10 +418,10 @@ class HomeController extends Controller
         }
     }
 
-    public function getLogout(Request $request){
-        // dd($request->header('referer'));
-        $prePath = $request->header('referer');
-    }
+    // public function getLogout(Request $request){
+    //     // dd($request->header('referer'));
+    //     $prePath = $request->header('referer');
+    // }
     public function getLogout()
     {
         Session::forget('userId');
@@ -479,11 +479,11 @@ class HomeController extends Controller
             ]);
         }
     }
-    public function postReview(Request $request)
-    {
-        $user = Auth::user();
-        dd($user);
-    }
+    // public function postReview(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     dd($user);
+    // }
 
     public function postRating(Request $request){
         if(!Session::has('userId')){
