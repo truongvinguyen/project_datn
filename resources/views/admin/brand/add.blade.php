@@ -34,13 +34,16 @@ Thêm thương hiệu mới
         <div class="row">
             <div class="col-md-8">
                 <div class="form-group row">
-                    <label class="col-sm-6 col-md-3 col-form-label">Tên danh mục<span class="text-danger">*</span></label>
+                    <label class="col-sm-6 col-md-3 col-form-label">Tên thương hiệu<span class="text-danger">*</span></label>
                     <div class="col-sm-12 col-md-12">
-                        <input value="" class="form-control" type="text" placeholder="Nhập tên danh mục" name="brand_name">
+                        <input value="" class="form-control @error('category_name') field-danger @enderror" type="text" placeholder="Nhập tên danh mục" name="brand_name">
+                        @error('brand_name')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-6 col-md-3 col-form-label">Slug<span class="text-danger">*</span></label>
+                    <label class="col-sm-6 col-md-3 col-form-label">Slug</label>
                     <div class="col-sm-12 col-md-12">
                         <input value="" class="form-control" type="text" placeholder="Nhập slug" name="brand_slug">
                     </div>
@@ -48,21 +51,18 @@ Thêm thương hiệu mới
                 <div class="form-group row">
                     <label class="col-sm-12 col-md-12 col-form-label">Mô tả</label>
                     <div class="col-sm-12 col-md-12">
-                        <div class="html-editor pd-20 card-box mb-30">
+                        <div class="html-editor card-box">
                             <textarea name="brand_description" class="textarea_editor form-control border-radius-0" placeholder="nhập mô tả ..."></textarea>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                
-                
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-12 col-form-label">Chọn hình ảnh sản phẩm <span class="text-danger">*</span></label>
-                    <div class="custom-file col-md-12">
-                        <input type="file" class="custom-file-input" name="brand_image">
-                        <label class="custom-file-label">Choose file</label>
-
+                    <label class="col-sm-6 col-md-12 col-form-label">Hình ảnh<span class="text-danger">*</span></label>
+                    <div class="col-sm-12 col-md-12">
+                        {{-- <label class="form-control">Chọn hình ảnh</label> --}}
+                        <input type="file" class="form-control" name="brand_image">
                     </div>
                 </div>
                 <input type="hidden" value="{{ Auth::user()->id }}" name="employee_id">

@@ -40,6 +40,7 @@ Thương hiệu
                     <th>Tên danh mục</th>
                     <th>Hình ảnh</th>
                     <!-- <th>Trạng thái</th> -->
+                    <th scope="col">Người thêm</th>
                     <th>Ngày thêm</th>
                     <th>Cập nhật lần cuối</th>
                     <th class="datatable-nosort" style="width: 12.5%;">Tuỳ chọn</th>
@@ -52,8 +53,9 @@ Thương hiệu
                     <td class="table-plus">
                         <img src="{{ _IMAGE::BRAND . $brand->brand_image }}" width="45px" height="45px" alt="">
                     </td>
-                    <td>{{$brand->created_at != null ? $brand->created_at : '...'}}</td>
-                    <td>{{$brand->updated_at != null ? $brand->updated_at : '...'}}</td>
+                    <td>{{ $brand->brandCreator->name ?? '' }}</td>
+                    <td>{{ $brand->created_at ?? '' }}</td>
+                    <td>{{ $brand->updated_at ?? '' }}</td>
                     <td style="width: 12.5%;">
                         {{-- <a href="#" data-target="#exampleModalCenter" class="droupdow-item btn btn-dark" data-toggle="modal">
                             <span class="dw dw-eye"></span>

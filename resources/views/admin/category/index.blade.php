@@ -50,6 +50,7 @@ Danh mục
                     <th scope="col">Hình ảnh</th>
                     <!-- <th scope="col">Trạng thái</th> -->
                     <th scope="col">Danh mục cha</th>
+                    <th scope="col">Người thêm</th>
                     <th scope="col">Ngày thêm</th>
                     <th scope="col">Cập nhật lần cuối</th>
                     <th scope="col" class="datatable-nosort" style="width: 12.5%;">Tuỳ chọn</th>
@@ -70,9 +71,10 @@ Danh mục
                         <td><span class="badge badge-pill" style="color: red; background-color: rgb(231, 235, 245);">Ẩn</span></td>
                     @endif
                      <td>{{ $category->category_status }}</td> -->
-                    <td>{{ $category->parent_id != null ? $category->parent_id : '...' }}</td>
-                    <td>{{ $category->created_at != null ? $category->created_at : '...' }}</td>
-                    <td>{{ $category->updated_at != null ? $category->updated_at : '...' }}</td>
+                    <td>{!! $category->parentCategory->category_name ?? '<em>(Chưa phân loại)</em>' !!}</td>
+                    <td>{{ $category->categoryCreator->name ?? '' }}</td>
+                    <td>{{ $category->created_at ?? '' }}</td>
+                    <td>{{ $category->updated_at ?? '' }}</td>
                     <td style="width: 12.5%;">
                         {{-- <a href="#" data-target="#exampleModalCenter" class="droupdow-item btn btn-dark" data-toggle="modal">
                             <span class="dw dw-eye"></span>

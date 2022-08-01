@@ -14,7 +14,7 @@ Thêm bài viết mới
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
                     <li class="breadcrumb-item" aria-current="page"><a href="{{ route('articles.index') }}">Bài viết</a></li>
-                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Thêm bài viết</span></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Chỉnh sửa</span></li>
                 </ol>
             </nav>
         </div>
@@ -40,36 +40,34 @@ Thêm bài viết mới
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-6 col-md-3 col-form-label">Slug<span class="text-danger">*</span></label>
+                    <label class="col-sm-6 col-md-3 col-form-label">Slug</label>
                     <div class="col-sm-12 col-md-12">
                     <input value="{{$articles->article_slug}}" class="form-control" type="text" placeholder="Nhập tên danh mục" name="article_slug">
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-12 col-form-label">Chọn hình ảnh bài viết <span class="text-danger">*</span></label>
-                    <div class="custom-file col-md-12">
-                        <input type="file" class="custom-file-input" name="article_thumbnail">
-                        <label class="custom-file-label">Choose file</label>
-                        <div class="row imageedit">
-                            <img src="/upload/article/{{$articles->article_thumbnail}}" alt="" width="100%" height="100px" object-fix: cover>
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" value="{{ Auth::user()->id }}" name="employee_id">
-
-            </div>
-            <div class="col-md-12">
-                <div class="form-group row">
-                    <label class="col-sm-12 col-md-12 col-form-label">Nội dung</label>
+                    <label class="col-sm-12 col-md-12 col-form-label">Nội dung<span class="text-danger">*</span></label>
                     <div class="col-sm-12 col-md-12">
-                        <div class="html-editor pd-20 card-box mb-30">
+                        <div class="html-editor card-box">
                             <textarea name="article_content" class="textarea_editor form-control border-radius-0" placeholder="nhập mô tả ..."></textarea>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group row">
+                    <label class="col-sm-6 col-md-12 col-form-label">Hình ảnh cũ</label>
+                    <div class="col-sm-12 col-md-12">
+                        <img src="/upload/article/{{$articles->article_thumbnail}}" alt="" width="100%" height="50px" object-fix: cover>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-6 col-md-12 col-form-label">Hình ảnh mới</label>
+                    <div class="col-sm-12 col-md-12">
+                        <input type="file" class="form-control" name="article_thumbnail">
+                    </div>
+                </div>
+                <input type="hidden" value="{{ Auth::user()->id }}" name="employee_id">
             </div>
         </div>
 </div>

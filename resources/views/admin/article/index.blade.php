@@ -46,6 +46,7 @@ Bài viết
                 <tr class="thead-light">
                     <th class="col-4">Tiêu đề</th>
                     <th class="col-2">Hình ảnh</th>
+                    <th class="col-2">Người thêm</th>
                     <th class="col-2">Ngày thêm</th>
                     <th class="col-2">Cập nhật lần cuối</th>
                     <th class="col-1 datatable-nosort" style="width: 12.5%;">Tuỳ chọn</th>
@@ -54,13 +55,14 @@ Bài viết
             <tbody id="data-table-tbody">
                 @foreach($articles as $article)
                     <tr>
-                        <td>{{strlen($article->article_title) > 50 ? mb_strimwidth($article->article_title, 0, 50, '...') : $article->article_title}}</td>
+                        <td>{{strlen($article->article_title) > 75 ? mb_strimwidth($article->article_title, 0, 75, '...') : $article->article_title}}</td>
                         <td class="table-plus">
                             <img src="{{ _IMAGE::ARTICLE . $article->article_thumbnail }}" width="45px" height="45px" alt="">
                         </td>
                         <!-- <td>{{$article->article_content}}</td> -->
-                        <td>{{$article->created_at != null ? $article->created_at : '...'}}</td>
-                        <td>{{$article->updated_at != null ? $article->updated_at : '...'}}</td>
+                        <td>{{ $article->articleAuthor->name ?? '' }}</td>
+                        <td>{{ $article->created_at ?? '' }}</td>
+                        <td>{{ $article->updated_at ?? '' }}</td>
                         <td style="width: 12.5%;">
                             {{-- <a href="#" data-target="#exampleModalCenter" class="droupdow-item btn btn-dark" data-toggle="modal">
                                 <span class="dw dw-eye"></span>
