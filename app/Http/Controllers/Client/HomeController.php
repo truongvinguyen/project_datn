@@ -478,6 +478,7 @@ class HomeController extends Controller
                 'msg' => "Bạn đã đánh giá sản phẩm này rồi ^.^"
             ]);
         }
+    }
     public function postReview(Request $request)
     {
         $user = Auth::user();
