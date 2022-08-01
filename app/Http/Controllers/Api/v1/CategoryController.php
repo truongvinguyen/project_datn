@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\category;
 use _ROLE, _IMAGE, _STATUS;
 
@@ -36,7 +37,11 @@ class CategoryController extends Controller
 
     public function getAllRecords(String $orderBy = 'id', String $sort = 'desc')
     {
-        $res = $this->__category::orderBy($orderBy, $sort)->get();
+        $fields = ['id', 'employee_id', 'parent_id', 'category_name', 'category_slug', 'category_image', 'category_description', 'created_at', 'updated_at'];
+        $res = CategoryResource::collection(
+            $this->__category::select('name')->orderBy($orderBy, $sort)->get()
+        );
+        // return $this->__category->categoryCreator;
         return response()->json($res, 200);
     }
 
@@ -204,9 +209,21 @@ class CategoryController extends Controller
         return response()->json($res, 200);
     }
 
-    public function getChildrensRecords(int $id)
+    public function getChildRecords(int $id)
     {
         $res = $this->__category::where('parent_id', '=', $id)->get();
+        return response()->json($res, 200);
+    }
+
+    public function getNameFieldOfParentRecords()
+    {
+        $res = $this->__category::select('id', 'category_name')->whereNull('parent_id')->get();
+        return response()->json($res, 200);
+    }
+
+    public function getNameFieldOfChildRecords()
+    {
+        $res = $this->__category::select('id', 'category_name')->whereNull('parent_id')->get();
         return response()->json($res, 200);
     }
 }
