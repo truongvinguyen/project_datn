@@ -279,7 +279,7 @@ Trang Chủ
                           <div class="item-info">
                             <div class="info-inner">
                               <div class="item-title">
-                                <h4> <a title="Product Title Here" href="/product-detail/{{$suggestion->id}}/{{$suggestion->category_id}}">{{$suggestion->product_name}}</a></h4>
+                                <h4> <a title="Product Title Here" href="/product-detail/{{$suggestion->id}}">{{$suggestion->product_name}}</a></h4>
                               </div>
                               <div class="item-content">
                                 <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div> -->

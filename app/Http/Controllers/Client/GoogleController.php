@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Client\UserClient;
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
+
   
 class GoogleController extends Controller
 {

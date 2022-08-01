@@ -4881,7 +4881,8 @@ ul.products-list .sale-left {
 .regular-price .price {
 	font-weight: bold;
 	font-size: 16px;
-	color: #fe0100
+	color: #fe0100;
+	
 }
 .block .regular-price, .block .regular-price .price {
 	color: #000000
@@ -4974,9 +4975,11 @@ font-weight: bold;
 ******************************************/
 
 .large-image img {
-	max-width: 100%;
-	height: auto;
-	border: 1px #e5e5e5 solid;
+	width: 100%;
+    height: auto;
+    border: 1px #e5e5e5 solid;
+    border-radius: 110px;
+	
 }
 .product-view-area .product-img-box .product-image {
 	margin: 0 0 13px;

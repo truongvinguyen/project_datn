@@ -140,7 +140,7 @@
                         @endif
                         @if($item->status==2)
                         <td>
-                            <button  class="button btn-primary">
+                            <button   class="button btn-primary">
                                 Đánh dấu hoàn thành
                             </button>
                         </td>

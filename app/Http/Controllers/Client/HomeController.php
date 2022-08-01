@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Client\UserClient;
 use Illuminate\Support\Str;
 // use Mail;
+use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
@@ -23,7 +24,29 @@ class HomeController extends Controller
 
     public function profile()
     {
-        return view('client.account.profile');
+        if (Session::has('userId')) {
+            $users=DB::table('customer_user')
+            ->select('*')
+            ->where('id',Session::get('userId'))
+            ->first();
+            $order=DB::table('order')
+            ->select('*')
+            ->where('customer_id',Session::get('userId'))
+            ->orderby('id','desc')
+            ->get();
+            // if($order){
+            $order_detail=DB::table('product_inventory')
+            ->join('=order_detail','=order_detail.product_id','=','product_inventory.id')
+            ->join('product','product.id','=','product_inventory.product_id')
+            ->select('product_inventory.*','=order_detail.product_name','=order_detail.quantity','=order_detail.order_id','product.product_image')
+            ->get();
+            // }
+            return view('client.account.profile',compact('users','order','order_detail'));
+        }
+        else{
+            return redirect()->route('getLogin');
+        }
+
     }
 
     public function getRegister()
@@ -103,10 +126,10 @@ class HomeController extends Controller
         $address = $request->address;
         $phone = $request->phone;
 
-        $image = $request->file('file')->getClientOriginalName();
-        $fileExplode = explode('.', $image);
-        $fileExplode[0] = Str::random(50);
-        $image = implode('.', $fileExplode);
+        // $image = $request->file('file')->getClientOriginalName();
+        // $fileExplode = explode('.', $image);
+        // $fileExplode[0] = Str::random(50);
+        // $image = implode('.', $fileExplode);
         if($request->has('file'))
         {
         $image = $file_name;
@@ -418,12 +441,9 @@ class HomeController extends Controller
         }
     }
 
-    // public function getLogout(Request $request){
-    //     // dd($request->header('referer'));
-    //     $prePath = $request->header('referer');
-    // }
-    public function getLogout()
-    {
+    public function getLogout(Request $request){
+        // dd($request->header('referer'));
+        $prePath = $request->header('referer');
         Session::forget('userId');
         Session::forget('userEmail');
         Session::forget('userFullname');
@@ -479,11 +499,7 @@ class HomeController extends Controller
             ]);
         }
     }
-    // public function postReview(Request $request)
-    // {
-    //     $user = Auth::user();
-    //     dd($user);
-    // }
+
 
     public function postRating(Request $request){
         if(!Session::has('userId')){

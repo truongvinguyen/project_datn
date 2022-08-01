@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon  -->
-    <link rel="shortcut icon" type="client/image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="x-icon" href="/client/images/favicon.ico">
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
@@ -161,11 +161,11 @@
                             @if (Session::has('userId'))
                                 @if (Session::get('userImage') == "")
                                     <a href="#" class="top-my-account" style="padding: 0">
-                                        <img src="{{asset('public/upload/client/user/anoymous.png')}}" alt="">
+                                        <img src="/upload/client/user/anoymous.png" alt="">
                                     </a>
                                 @else
                                     <a href="#" class="top-my-account" style="padding: 0">
-                                        <img src="{{asset('public/upload/client/user/'.Session::get('userImage'))}}" alt="">
+                                        <img src="/upload/client/user/'.Session::get('userImage')" alt="">
                                     </a>
                                 @endif
                             @else

@@ -30,7 +30,11 @@
               <div class="product-view-area">
                 <div class="product-big-image col-xs-12 col-sm-3 col-lg-3 col-md-3">
                   <div class="large-image">
+                    @if(Session::get('userImage')==null)
+                    <img  src="https://ui-avatars.com/api/?name={{Session::get('userFullname')}}" alt="">
+                    @else
                     <img src="{{ _IMAGE::USER }}user_avatar.jpg" alt="user">
+                    @endif
                   </div>
   
                   <!-- end: more-images -->
@@ -38,16 +42,17 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-lg-9 col-md-9 product-details-area">
                   <div class="product-name">
-                    <h1 class="no-cut">Trần Thị Yến Nhi</h1>
+                    <h1 class="no-cut">{{$users->fullname}}</h1>
                   </div>
                   <div class="ratings">
                     <p class="rating-links">
-                      Giới tính:
-                      <strong class="separator">Nữ</strong>
-                    </p>
-                    <p class="pull-right">
                       Tham gia ngày:
-                      <strong>21/05/2022</strong>
+                    <strong>21/05/2022</strong>
+                    </p>
+                   
+                    <p class="pull-right">
+                       Trạng thái tài khoản:
+                      <span>Kích hoạt</span>
                     </p>
                   </div>
                   <div class="ratings">
@@ -56,8 +61,7 @@
                       <strong class="separator">Nhân viên</strong>
                     </p> -->
                     <p class="availability active pull-right">
-                      Trạng thái tài khoản:
-                      <span>Kích hoạt</span>
+                    
                     </p>
                   </div>
                   <div class="product-variation">
@@ -65,21 +69,21 @@
                       <h4 class="rating-links">
                         <span>Email:</span>
                         &ensp;
-                        <strong class="separator">trendyshop@trendy.com.vn</strong>
+                        <strong class="separator">{{$users->email}}</strong>
                       </h4>
                     </div>
                     <div class="ratings">
                       <h4 class="rating-links">
                         <span>Số điện thoại:</span>
                         &ensp;
-                        <strong class="separator">012345678</strong>
+                        <strong class="separator">{{$users->phone}}</strong>
                       </h4>
                     </div>
                     <div class="ratings">
                       <h4 class="rating-links">
                         <span>Địa chỉ:</span>
                         &ensp;
-                        <strong class="separator">Quận 12, TP. Hồ Chí Minh, Việt Nam</strong>
+                        <strong class="separator">{{$users->address}}</strong>
                       </h4>
                     </div>
                   </div>
@@ -88,22 +92,51 @@
               <div class="product-overview-tab">
                 <div class="product-tab-inner">
                   <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
-                    <li class="active"> <a href="#description" data-toggle="tab"> Mô tả </a> </li>
-                    <li> <a href="#recents" data-toggle="tab">Đã mua gần đây</a> </li>
-                    <li><a href="#reviews" data-toggle="tab">Đánh giá gần đây</a></li>
+                    <li class="active"> <a href="#description" data-toggle="tab"> Đã mua gần đây </a></li>
                     <li> <a href="#wishlist" data-toggle="tab">Danh sách yêu thích</a> </li>
                   </ul>
-                  <div id="productTabContent" class="tab-content">
+                  <div id="productTabContent" class="tab-content" style="background-color: #f5f5f5;" >
                     <div class="tab-pane fade in active" id="description">
-                      <div class="std">
-                        <p>
-                          Mô tả về người dùng
-                        </p>
-                      </div>
-                    </div>
-                    <div id="recents" class="tab-pane fade">
-                    </div>
-                    <div class="tab-pane fade" id="reviews">
+                    @if($order)
+                      @foreach ($order as $item)
+                        <div class="card" style="margin: 20px;margin-bottom: 20px; background-color: white;padding: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;">
+                          <div class="card-header">
+                            Đơn hàng 
+                            @if ($item->status == 1)
+                              <span style="color:black;background-color:#ffc107;border-radius:3px;" class="badge bg-warning text-dark">Đang chờ xử lý</span>
+                            @elseif($item->status == 2)
+                              <span style="color:white;background-color:#198754;border-radius:3px;" class="badge bg-warning text-dark">Đang giao</span>
+                            @else
+                              <span class="badge bg-warning text-dark">Đã hoàn thành</span>
+                            @endif
+                          </div>
+                          
+                          @foreach($order_detail as $item2)
+                          @if($item2->order_id == $item->id)
+                          <div class="card-body row" style="padding: 10px;">
+                            <div class="col-md-2">
+                              <img src="/upload/product/{{$item2->product_image}}" alt="">
+                            </div>
+                            <div class="col-md-8">
+                              <h5 class="card-title">{{$item2->product_name}}.</h5>
+                              <p style="opacity: 0.7;" class="card-text">Kích thước: {{$item2->product_size}}</p>
+                              {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                              <h5 class="card-title">x {{$item2->quantity}}</h5>
+                            </div>
+                            <div class="col-md-2">
+                              <p>{{number_format($item2->price)}} vnđ</p>
+                            </div>
+                          </div>
+                          @endif
+                          @endforeach
+                          <hr>
+                          <div class="card-footer row">
+                            <div class="col-md-9"></div>
+                            <p class="col-md-3">Tổng thanh toán: {{number_format($item->total_price)}} vnđ</p>
+                          </div>
+                        </div>
+                      @endforeach
+                    @endif
                     </div>
                     <div class="tab-pane fade" id="wishlist">
                     </div>
