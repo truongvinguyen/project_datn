@@ -195,3 +195,24 @@ $('.checkbox-datatable tbody').on('change', 'input[type="checkbox"]', function()
 	}
 });
 });
+
+function loadNotification(){
+	document.getElementById('show-notification').innerHTML=` 
+			<div class="container d-flex justify-content-center align-items-center">
+				<div class="spinner"></div>
+			</div>`;
+
+	setTimeout(() =>
+		$.ajax(
+				{
+					url:`load-notification`,
+					type:'GET',
+
+					success: function(data) {
+						$("#show-notification").empty();
+						$("#show-notification").html(data);
+					}
+				}
+			)
+	,550)
+}

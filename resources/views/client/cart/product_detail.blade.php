@@ -100,10 +100,9 @@
                   <h2 class="saider-bar-title">Kích thước</h2>
                   <div class="size">
                     <ul>
-                     
                       @foreach($size as $item3)
-					  <li ><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
-					  @endforeach
+                      <li ><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
+                      @endforeach
                     </ul>
                   </div>
                 </div>
@@ -121,8 +120,8 @@
                   <div class="cart-plus-minus">
                     <label for="qty">Số lượng:</label>
                     <div class="numbers-row">
-                      <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) ) result.value--;return false;" class="dec qtybutton"><i class="fa fa-minus">&nbsp;</i></div>
-                      <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="quantity">
+                      <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) result.value--;return false;" class="dec qtybutton"><i class="fa fa-minus">&nbsp;</i></div>
+                      <input type="number" class="qty" title="Qty" min="1" max="200" value="1" id="quantity">
                       <input type="hidden" id="image" value="{{$data->product_image}}">
                       <input type="hidden" id="name" value="{{$data->product_name}}">
                       <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="inc qtybutton"><i class="fa fa-plus">&nbsp;</i></div>

@@ -14,7 +14,7 @@ Trang Chủ
             <div id='rev_slider_6_wrapper' class='rev_slider_wrapper fullwidthbanner-container' >
               <div id='rev_slider_6' class='rev_slider fullwidthabanner'>
                 <ul>
-                  <li data-transition='slideup' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="{{asset('/client/images/slider/slider-img1.jpg')}}" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
+                  <li data-transition='slideup' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="{{asset('/client/images/slider/50710988_2243339379021069_5005951689644048384_n.jpg')}}" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
                     <div class="caption-inner">
                       <div class='tp-caption LargeTitle sft  tp-resizeme' data-x='85'  data-y='145'  data-endspeed='500'  data-speed='500' data-start='1300' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:3; white-space:nowrap;'>GIẢM GIÁ</div>
                       <div class='tp-caption ExtraLargeTitle sft  tp-resizeme' data-x='82'  data-y='200'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>THEO MÙA</div>
@@ -23,7 +23,16 @@ Trang Chủ
                       <!-- <div class='tp-caption sfb  tp-resizeme ' data-x='105'  data-y='375'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'><a href='#' class="shop-now-btn">Mua ngay</a></div> -->
                     </div>
                   </li>
-                  <li data-transition='slidedown' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="client/images/slider/slider-img2.jpg" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
+                  <li data-transition='slidedown' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="client/images/slider/34482506_1888980371123640_4754449253877678080_n.png" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
+                    <div class="caption-inner">
+                      <div class='tp-caption LargeTitle sft  tp-resizeme' data-x='85'  data-y='145'  data-endspeed='500'  data-speed='500' data-start='1300' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:3; white-space:nowrap;'>MÙA HÈ NÀY</div>
+                      <div class='tp-caption ExtraLargeTitle sft  tp-resizeme' data-x='82'  data-y='200'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>bộ sưu tập</div>
+                      <div class='tp-caption ExtraLargeTitle jtv-text sft  tp-resizeme' data-x='85'  data-y='258'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>thời trang hè thu</div>
+                      <div class='tp-caption decs sft  tp-resizeme' data-x='105'  data-y='305'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Power2.easeInOut' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'>Sản phẩm ấn tượng với nhiều đợt khuyến mãi...</div>
+                      <!-- <div class='tp-caption sfb  tp-resizeme ' data-x='105'  data-y='375'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'><a href='#' class="shop-now-btn">Mua ngay</a></div> -->
+                    </div>
+                  </li>
+                  <li data-transition='slidedown' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="client/images/slider/17388842_1398984020123280_6196205311829635252_o.jpg" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
                     <div class="caption-inner">
                       <div class='tp-caption LargeTitle sft  tp-resizeme' data-x='85'  data-y='145'  data-endspeed='500'  data-speed='500' data-start='1300' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:3; white-space:nowrap;'>MÙA HÈ NÀY</div>
                       <div class='tp-caption ExtraLargeTitle sft  tp-resizeme' data-x='82'  data-y='200'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>bộ sưu tập</div>
@@ -80,6 +89,49 @@ Trang Chủ
 
   <div class="container">
     <div class="row">
+      <div class="offer-add">
+        <div class="tab-info" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
+          <h3 class="new-product-title pull-left">Danh mục nổi bậc</h3>
+          <ul class="nav home-nav-tabs home-product-tabs">
+            <li class="active"><a href="#all" data-toggle="tab" aria-expanded="false"></a></li>
+          </ul>
+          <!-- /.nav-tabs --> 
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+            <div class="image"> <a class="jtv-banner-opacity" href="#"><img src="client/images/slider/navy-350x350-0.jpg" alt="" height="432px"></a> </div>
+            <div class="jtv-content-text">
+              <h3 class="title">Mua 2</h3>
+              <span class="sub-title">tặng 1!</span><a href="#" class="button">Mua ngay!</a> </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+            <div class="image"> <a class="jtv-banner-opacity" href="#"><img src="client/images/slider/127815046_3751615794860079_1854692848132843020_n.jpg" alt=""></a> </div>
+            <div class="jtv-content-text hidden">
+              <h3 class="title">Mẫu mới</h3>
+            </div>
+          </div>
+          <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+            <div class="image "> <a class="jtv-banner-opacity" href="#" style="height: 233px;"><img src="client/images/slider/107040307_3341232402565089_4946627359952880076_n.jpg" alt=""></a> </div>
+            <div class="jtv-content-text">
+              <h3 class="title">Áo khoác</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 col-sm-5 col-xs-12">
+          <div class="jtv-banner-box" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+            <div class="image"> <a class="jtv-banner-opacity" href="#" style="height: 432px;"><img src="client/images/slider/291173832_5521650981189876_8701477637628993593_n.jpg" alt=""></a> </div>
+            <div class="jtv-content-text">
+              <h3 class="title">màu sắc thời thượng</h3>
+              <span class="sub-title">xu hướng thời trang mùa hè năm 2022</span> <a href="#" class="button">Mua ngay!</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
       <div class="best-selling-slider col-sm-6">
         <div class="title_block">
           <h3 class="products_title">Bán chạy nhất</h3>
@@ -101,7 +153,7 @@ Trang Chủ
                           <a href="#" onclick="quickviewProduct({{$product->id}})" id="modal" data-toggle="modal" data-target="#modal-quickview"><i class="fa fa-search-plus" aria-hidden="true"></i>Xem nhanh</a>
                         </button> 
                       </div>
-                      <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html" class="action add-to-wishlist" title="Add to Wishlist"></a> <a href="compare.html" class="action add-to-compare" title="Add to Compare"></a> </div>
+                      <div class="add-to-links" data-role="add-to-links"> <a href="wishlist/add/{{$product->id}}" class="action add-to-wishlist" title="Add to Wishlist"></a> <a href="compare.html" class="action add-to-compare" title="Add to Compare"></a> </div>
                     </div>
                     <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" alt=""></a> </div>
                   <div class="pro-box-info">
@@ -185,42 +237,7 @@ Trang Chủ
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="offer-add">
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="jtv-banner-box banner-inner">
-              <div class="image"> <a class="jtv-banner-opacity" href="#"><img src="client/images/v.jpg" alt=""></a> </div>
-              <div class="jtv-content-text">
-                <h3 class="title">Mua 2</h3>
-                <span class="sub-title">tặng 1!</span><a href="#" class="button">Mua ngay!</a> </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3 col-xs-12">
-            <div class="jtv-banner-box banner-inner">
-              <div class="image"> <a class="jtv-banner-opacity" href="#"><img src="client/images/jisoo.jpg" alt=""></a> </div>
-              <div class="jtv-content-text hidden">
-                <h3 class="title">Mẫu mới</h3>
-              </div>
-            </div>
-            <div class="jtv-banner-box banner-inner">
-              <div class="image "> <a class="jtv-banner-opacity" href="#" style="height: 220px;"><img src="client/images/rose.jpg" alt=""></a> </div>
-              <div class="jtv-content-text">
-                <h3 class="title">Áo khoác</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-5 col-sm-5 col-xs-12">
-            <div class="jtv-banner-box">
-              <div class="image"> <a class="jtv-banner-opacity" href="#" style="height: 432px;"><img src="client/images/junho.jpg" alt=""></a> </div>
-              <div class="jtv-content-text">
-                <h3 class="title">màu sắc thời thượng</h3>
-                <span class="sub-title">xu hướng thời trang mùa hè năm 2022</span> <a href="#" class="button">Mua ngay!</a> </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     <div class="container">
     <div class="row"> 
       <!-- main container -->
@@ -291,26 +308,7 @@ Trang Chủ
             <div class="jtv-promotion">
               <div class="container">
                 <div class="row">
-                  <div class="col-md-4 col-sm-5 col-xs-12">
-                    <div class="add-banner wow animated fadeInUp animated"> <a href="#"><img src="client/images/jenni1.jpg" alt="banner"></a> </div>
-                  </div>
-                  <div class="col-md-8 col-sm-7 col-xs-12">
-                    <div class="wrap">
-                      <div class="wow animated fadeInRight animated">
-                        <div class="box jtv-custom">
-                          <div class="box-content">
-                            <div class="promotion-center">
-                              <p class="text_medium">Chỉ trong mùa hè 2022</p>
-                              <div class="text_large">
-                                <div class="theme-color">đến 50%</div>
-                                Giảm giá</div>
-                              <p class="text_small">Tất cả sản phẩm &amp; một số ưu đãi</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
             </div>

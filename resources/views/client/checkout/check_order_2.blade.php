@@ -1,25 +1,26 @@
 
    
     <div style="width:600px;margin:0 auto">
-        <h5>Dear: {{$order->customer_name}} </h5>
+        <h5>Dear: {{$order_table->customer_name}} </h5>
         <p>Bạn thân mến! bạn vừa đặt hàng thành công tại trendy shop</p>
         <p>dưới đây là thông tin đơn hàng của bạn</p>
         <p></p>
         <h5>Thông tin đơn hàng</h5>
-        <b>Họ và tên: </b><i>{{$order->customer_name}}</i> <br>
-        <b>Điện thoại: </b><i>{{$order->customer_phone}}</i> <br>
-        <b>Địa chỉ: </b><i>{{$order->customer_address}}</i> <br>
-        <b>Phí ship: </b><i>{{number_format($order->ship_fee)}}</i> <br>
-        <b>Tổng thanh toán: </b><i>{{number_format($order->total_price)}}</i> <br>
+        <b>Họ và tên: </b><i>{{$order_table->customer_name}}</i> <br>
+        <b>Điện thoại: </b><i>{{$order_table->customer_phone}}</i> <br>
+        <b>Địa chỉ: </b><i>{{$order_table->customer_address}}</i> <br>
+        <b>Phí ship: </b><i>{{number_format($order_table->ship_fee)}}</i> <br>
+        <b>Tổng thanh toán: </b><i>{{number_format($order_table->total_price)}}</i> <br>
 
         <table style="text-align: center;width: 100%;" border="1">
+          <tr>
+            <th>Tên</th>
+            <th>Size</th>
+            <th>giá/số lượng</th>
+            <th>Tổng</th>
+        </tr>
             @foreach($order_detail as $item)
-            <tr>
-                <th>Tên</th>
-                <th>Size</th>
-                <th>giá/số lượng</th>
-                <th>Tổng</th>
-            </tr>
+           
               <tr>
                 <td>{{$item['productInfo']->product_name}}</td>
                 <td>{{$item['productInfo']->product_size}}</td>

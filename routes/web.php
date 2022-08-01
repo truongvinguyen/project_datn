@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\orderController;
+use App\Models\notification;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\CheckoutController;
@@ -28,6 +29,14 @@ use App\Http\Controllers\CheckoutController;
 Auth::routes();
 
 Route::get('/home-admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/load-notification', function(){
+        $notification = DB::table('notification')
+        ->select('*')
+        ->orderby('id','desc')
+        ->orderby('notification_status','desc')
+        ->get();
+        return view('layouts.notification',compact('notification'));
+})->name('');
 
 
 Route::prefix('admin/products')->group(function () {
@@ -130,18 +139,28 @@ Route::post('login-checkout', [HomeController::class, 'loginCheckout'])->name('l
 Route::get('ho-so', [HomeController::class, 'profile'])->name('profile');
 
 
-Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
-Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
-Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');
-Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
-Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
-Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
+// đổ sản phẩm ra layout
+Route::prefix('')->group(function () {
+    Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
+    Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
+    Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');
+    Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
+    
+    Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
+    Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
+    
+    Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
+    Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
+});
 
-Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
-Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
+//sản phẩm yêu thích
+Route::prefix('wishlist')->group(function () {
+    Route::get('/', [App\Http\Controllers\WishlistController::class, 'index'])->name('wishlist');
+    Route::get('/add/{id}', [App\Http\Controllers\WishlistController::class, 'create'])->name('');
+    Route::get('/delete/{id}', [App\Http\Controllers\WishlistController::class, 'destroy'])->name('');
+});
 
-//Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
 
 //thanh toán
 
@@ -152,7 +171,13 @@ Route::get('/accept-order/{id}', [CheckoutController::class, 'accept'])->name('a
 //đơn hàng
 Route::prefix('admin/order')->group(function () {
     Route::get('/order-new', [orderController::class, 'new_order'])->name('new_order');
+    Route::get('/order-processed', [orderController::class, 'orderProcessed'])->name('order_processed');
+   
+  
 });
+Route::get('/show-bill/{id}', [orderController::class, 'showBill'])->name('show-bill');
+Route::get('/confirm-order/{id}', [orderController::class, 'confirmOrder'])->name('confirmOrder');
+Route::get('/delete-order/{id}', [orderController::class, 'deleteOrder'])->name('deleteOrder');
 
 
 

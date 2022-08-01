@@ -40,7 +40,7 @@ class HomeController extends Controller
             "email" => "required|min:10|max:255|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix",
             "password" => "min:8|max:255|required",
             "cf_password" => "required|min:8|max:255|same:password",
-            "file" => "required|mimes:jpeg,png,jpg|max:1024"
+            "file" => "mimes:jpeg,png,jpg|max:1024"
         ];
         $messages = [
             "fullname.required" => ":attribute là bắt buộc.",
@@ -72,7 +72,6 @@ class HomeController extends Controller
             "code.size" => ":attribute không hợp lệ.",
             "code.regex" => ":attribute không hợp lệ.",
             // "code" => "Mã Code",
-            "file.required" => "::attribute là bắt buộc.",
             // "file.image" => "::attribute phải là ảnh.",
             "file.mimes" => "::attribute phải là png, jpeg, jpg.",
             "file.max" => "::attribute tối đa 1MB."
@@ -86,6 +85,12 @@ class HomeController extends Controller
             "cf_password" => "Xác thực mật khẩu",
             "file" => "Ảnh đại diện"
         ];
+        // $request->file('file')->move(base_path('public/upload/user'), $image);
+        if($request->has('file')){
+            $image_user = $request->file;
+            $file_name = $image_user->getClientOriginalName();
+            $image_user->move(base_path('public/upload/user'),$file_name);
+        }
         $request->validate($rules, $messages, $attributes);
         // dd($request->email);
         $email = $request->email;
@@ -93,7 +98,14 @@ class HomeController extends Controller
         $fullname = $request->fullname;
         $address = $request->address;
         $phone = $request->phone;
-        $image = $request->file('file')->getClientOriginalName();
+        if($request->has('file'))
+        {
+        $image = $file_name;
+        }
+        else
+        {
+        $image = ""; 
+        }
         $emailDB = UserClient::checkIssetEmail($email);
         // $emailDB = true;
         if (!$emailDB) {
@@ -113,8 +125,7 @@ class HomeController extends Controller
                     $mail->from($request->email);
                     $mail->subject('Mã kích hoạt tài khoản.');
                 });
-                $request->file('file')->move(public_path('public/upload/user'), $image);
-                // dd($image);
+              
                 session()->flash('msg', 'Đăng ký thành công. Nhập mã code được gửi vào tài khoản để kích hoạt.');
                 session()->flash('emailActive', $email);
                 // return redirect('/kich-hoat')->with(['email', $email]);
