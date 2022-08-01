@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function orderByList($offset = 0, $limit = 6, String $orderBy = 'id', String $sort = 'desc'){
+    public function orderByList($offset = 0, $limit = 4, String $orderBy = 'id', String $sort = 'desc'){
         $products = DB::table('product')
         ->orderBy($orderBy, $sort)
         ->offset($offset)->limit($limit) 
@@ -16,7 +16,7 @@ class ProductController extends Controller
         return view('client.product.productList',compact('products'));
     }
 
-    public function orderByGrid($offset = 0, $limit = 6, String $orderBy = 'id', String $sort = 'desc'){
+    public function orderByGrid($offset = 0, $limit = 9, String $orderBy = 'id', String $sort = 'desc'){
         $products = DB::table('product') 
         ->orderBy($orderBy, $sort)
         ->offset($offset)->limit($limit) 

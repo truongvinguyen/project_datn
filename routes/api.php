@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\product;
+use App\Models\category;
 use App\Models\notification;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
@@ -36,6 +37,12 @@ Route::controller(CategoryController::class)->prefix('categories')->middleware('
     Route::post('count/s/{col?}', 'countSearchedRecords')->name('count.search');
     Route::get('parents/', 'getAllParentRecords')->name('parents');
     Route::get('childrens/{id}', 'getChildrenRecords')->name('childrens');
+
+
+    Route::get('/', function () {
+        $nav = category::all();
+        return view('client.others.nav-product',compact('nav'));
+    });
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

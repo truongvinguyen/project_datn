@@ -10,6 +10,8 @@ use App\Models\brand;
 use App\Models\article;
 use App\Models\inventory;
 use App\Models\imageProduct;
+use App\Models\wishlist;
+use Session;
 class showDataController extends Controller
 {
     public function product(){
@@ -21,13 +23,15 @@ class showDataController extends Controller
     public function home_page(){
 
         $data = new product();
+        $wishlist = new wishlist();
         $article = new article();
         
         $best_product = $data->products();
         $products = $data::select('*')->orderBy('id','DESC')->get();
-        $suggestions = $data::select('*')->limit(8)->get();
+        
+        $suggestions = $wishlist->productList(Session::get('userId'));
         $articles = $article->article();
-        return view('client.home-page', compact('best_product','products','articles','suggestions'));
+        return view('client.others.home-page', compact('best_product','products','articles','suggestions'));
     }
 
     public function article_page(){
@@ -48,44 +52,54 @@ class showDataController extends Controller
         return view('client.article.article-one',compact('articles','articleOne','articleByCategory'));
     }
 
-    public function product_grid(){
+    public function product_grid($id){
         $data = new product();
         $article = new article();
 
         $categories = category::all();
         $articles = $article->article();
         $brands = brand::all();
-          
-        $products = $data::all();
+        $productByCategory = $data->productByCategory($id);
+        //  echo '<pre>';
+        //  var_dump($products);
+        //  echo '</pre>';
+        //  die;
         $length = $data::all()->count();
-        return view('client.product.product-grid',compact('length','categories','brands','articles','products'));
+        return view('client.product.product-grid',compact('length','categories','brands','articles','productByCategory'));
     }
 
-    public function product_list(){
+    public function search(Request $request){
         $data = new product();
         $article = new article();
 
         $articles = $article->article();
         $categories = category::all();
         $brands = brand::all();
-
-        $products = $data::all();
+        $value = $request->search;
+      
+        $products = $data->searchProduct($value);
         $length = $data::all()->count();
-        return view('client.product.product-list',compact('length','categories','brands','articles','products'));
+        return view('client.product.search',compact('length','categories','brands','articles','products'));
     }
 
     public function aboutUs(){
-        return view('client.aboutUs');
+        return view('client.others.aboutUs');
     }
 
-    public function contact(){
-        return view('client.contact');
+    public function policy(){
+        return view('client.others.policy');
+    }
+
+    
+    public function FAQs(){
+        return view('client.others.faqs');
     }
 
     public function quickview (Request $request,$id){
         $data = DB::table('product')
         ->select('*')
-        ->where('id',$id)
+        ->leftJoin('wishlist','wishlist.product_id','=','product.id')
+        ->where('product.id',$id)
         ->first();
         $image =imageProduct::where('product_id',$id)->get();    
    

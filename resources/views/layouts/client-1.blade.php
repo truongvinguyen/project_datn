@@ -109,7 +109,7 @@
                         <div class="col-xs-12 col-sm-4 col-md-4 col-md-4 top-search">
                             <!-- Search -->
                             <div id="search">
-                                <form>
+                                <form action="/search" method="get">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="tìm kiếm..." id="search" name="search">
                                         <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
@@ -145,8 +145,8 @@
                             </div>
                             @endif
                             <!-- End shopping cart trigger -->
-                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a> <a
-                                href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
+                            <a href="/ho-so" class="top-my-account"><i class="fa fa-user"></i></a> 
+                            <!-- <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a> -->
                         </div>
                     </div>
                 </div>
@@ -162,9 +162,19 @@
                                 <div class="main-menu">
                                     <ul class="hidden-xs">
                                         <li class="active custom-menu"><a href="/">Trang chủ</a></li>
-                                        <li class="megamenu"><a href="/product-grid">Sản phẩm <span class="menu-item-tag menu-item-tag-new">mới</span></a></li>
+                                        <li class="megamenu"><a href="">Sản phẩm<span class="menu-item-tag menu-item-tag-new">mới</span></a>
+                                            <div class="mega-menu">
+                                                <div class="menu-block menu-block-center">
+                                                    <div class="menu-block-1">
+                                                        <ul id="nav">
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
                                         <li class="custom-menu"><a href="/article">Bài viết</a></li>
-                                        <li><a href="/contact-us">Về chúng tôi</a></li>
+                                        <li><a href="/about-us">Về chúng tôi</a></li>
                                         <li><a href="/contact-us">Liên hệ</a></li>
                                     </ul>
                                 </div>
@@ -177,13 +187,13 @@
         @yield('content')
         <!-- Footer -->
         
-        <footer>
+        <footer style="padding-top:50px">
             <div class="container">
                 <div class="row">
-                    <div class="footer-newsletter">
+                    <!-- <div class="footer-newsletter">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-3 col-sm-5">
+                                <div class="col-md-7 col-sm-5">
                                     <h3 class="">đăng ký để nhận bản tin</h3>
                                     <span>Nhận các giao dịch mới nhất và ưu đãi đặc biệt</span>
                                 </div>
@@ -197,35 +207,16 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="social">
-                                        <ul class="inline-mode">
-                                            <li class="social-network fb"><a title="Connect us on Facebook"
-                                                    target="_blank" href="https://www.facebook.com/"><i
-                                                        class="fa fa-facebook"></i></a></li>
-                                            <li class="social-network googleplus"><a title="Connect us on Google+"
-                                                    target="_blank" href="https://plus.google.com/"><i
-                                                        class="fa fa-google-plus"></i></a></li>
-                                            <li class="social-network tw"><a title="Connect us on Twitter"
-                                                    target="_blank" href="https://twitter.com/"><i
-                                                        class="fa fa-twitter"></i></a></li>
-                                            <li class="social-network linkedin"><a title="Connect us on Linkedin"
-                                                    target="_blank" href="https://www.pinterest.com/"><i
-                                                        class="fa fa-linkedin"></i></a></li>
-                                            <li class="social-network rss"><a title="Connect us on Instagram"
-                                                    target="_blank" href="#"><i class="fa fa-rss"></i></a></li>
-                                            <li class="social-network instagram"><a title="Connect us on Instagram"
-                                                    target="_blank" href="https://instagram.com/"><i
-                                                        class="fa fa-instagram"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                              
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
                     <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
                         <div class="footer-logo"><a href="/home-page"><img style="width: 50%;"
                                     src="client/images/footer-logo.png" alt="fotter logo"></a> </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
                         <div class="footer-content">
                             <div class="email"> <i class="fa fa-envelope"></i>
                                 <p>
@@ -249,36 +240,22 @@
                             <h3 class="links-title">Hỏi đáp<a class="expander visible-xs" href="#TabBlock-1">+</a></h3>
                             <div class="tabBlock" id="TabBlock-1">
                                 <ul class="list-links list-unstyled">
-                                    <li><a href="#s">Về chúng tôi</a></li>
-                                    <li><a href="#">Liên hệ</a></li>
-                                    <li><a href="sitemap.html">Câu hỏi thường gặp</a></li>
+                                    <li><a href="/about-us">Về chúng tôi</a></li>
+                                    <li><a href="/contact-us">Liên hệ</a></li>
+                                    <li><a href="/fqas">Câu hỏi thường gặp</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
-                        <div class="footer-links">
-                            <h3 class="links-title">Danh mục sản phẩm<a class="expander visible-xs"
-                                    href="#TabBlock-3">+</a></h3>
-                            <div class="tabBlock" id="TabBlock-3">
-                                <ul class="list-links list-unstyled">
-                                    <li> <a href="sitemap.html">Áo khoác</a> </li>
-                                    <li> <a href="#">Quần</a> </li>
-                                    <li> <a href="#">Áo thun</a> </li>
-                                    <li> <a href="about_us.html">Áo sơ mi</a> </li>
-                                    <li> <a href="contact_us.html">Quần short</a> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+       
                     <div class="col-sm-6 col-md-2 col-xs-12 col-lg-3 collapsed-block">
                         <div class="footer-links">
                             <h3 class="links-title">Dịch vụ<a class="expander visible-xs" href="#TabBlock-4">+</a></h3>
                             <div class="tabBlock" id="TabBlock-4">
                                 <ul class="list-links list-unstyled">
-                                    <li> <a href="account_page.html">Tài khoản</a> </li>
-                                    <li> <a href="shopping_cart.html">Giỏ hàng</a> </li>
-                                    <li> <a href="#">Chính sách hoàn trả</a> </li>
+                                    <li> <a href="/ho-so">Tài khoản</a> </li>
+                                    <li> <a href="/cart/view-cart">Giỏ hàng</a> </li>
+                                    <li> <a href="/return-policy">Chính sách hoàn trả</a> </li>
                                 </ul>
                             </div>
                         </div>

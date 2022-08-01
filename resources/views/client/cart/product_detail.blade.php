@@ -55,7 +55,9 @@
 <!-- Breadcrumbs End -->
 <!-- Main Container -->
 <div class="main-container col1-layout">
+  
     <div class="container">
+
       <div class="row">
         <div class="col-main">
           <div class="product-view-area">
@@ -134,7 +136,12 @@
               </div>
               <div class="product-cart-option">
                 <ul>
-                  <li><a href="wishlist.html"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a></li>
+                  @if($data->wishlist_id == null)
+                    <li><a href="/wishlist/add/{{$data->id}}"><i class="fa fa-heart"></i><span>Thêm vào yêu thích</span></a></li>
+                  @else
+                    <li class="text-danger"><i class="fa fa-heart" style="margin-right: 8px;"></i><span>Đã yêu thích</span></li>
+                  @endif
+               
                   <li><a href="#"><i class="fa fa-retweet"></i><span>Add to Compare</span></a></li>
                   <li><a href="#"><i class="fa fa-envelope"></i><span>Email to a Friend</span></a></li>
                 </ul>
@@ -260,11 +267,8 @@
                                             <div class="box-hover">
                                                 <div class="btn-quickview"> <a href="#" data-toggle="modal"
                                                         data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                            aria-hidden="true"></i> Quick View</a> </div>
-                                                <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
-                                                        class="action add-to-wishlist" title="Add to Wishlist"></a> <a
-                                                        href="compare.html" class="action add-to-compare"
-                                                        title="Add to Compare"></a> </div>
+                                                            aria-hidden="true"></i> Xem nhanh</a> </div>
+                                                
                                             </div>
                                             <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img
                                                     class="product-image-photo" src="/upload/product/{{$product->product_image}}" alt=""></a>
@@ -278,10 +282,14 @@
                                                     <div class="item-content">
                                                        
                                                         <div class="item-price">
-                                                            <div class="price-box"> 
-                                                                <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price)}}₫</span></p> 
-                                                                <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">&nbsp;{{number_format($product->product_price_sale)}}₫</span> </p>
-                                                            </div>
+                                                          <div class="price-box">
+                                                            @if($product->product_price_sale != null)
+                                                                <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}₫</span></p>
+                                                                <p class="special-price"> <span class="price-label">Giá đặt biệt</span> &nbsp;<span class="price">₫{{number_format($product->product_price)}}₫</span> </p>
+                                                            @else
+                                                                <p class="special-price"> <span class="price-label">Giá thường:</span> <span class="regular-price">{{number_format($product->product_price)}}₫</span></p>
+                                                            @endif
+                                                          </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -291,7 +299,7 @@
                                                     <div class="pro-actions">
                                                         <button onclick="location.href='shopping_cart.html'"
                                                             class="action add-to-cart" type="button" title="Add to Cart">
-                                                            <span>Add to Cart</span> </button>
+                                                            <span>Thêm vào giỏ</span> </button>
                                                     </div>
 
                                                 </div>
@@ -305,10 +313,17 @@
                 </div>
             </div>
         </div>
+        
     </div>
+
 </section>
 <!-- Upsell Product Slider End -->
-
+@if(Session::has('success'))
+  <div id="dislike" class="bg-success">
+        <h4 class="text-white">{{Session::get('success')}}</h4>
+    </div>
+  </div>
+@endif
 <div class="container">
     <!-- service section -->
     <div class="jtv-service-area">
@@ -337,43 +352,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!-- our clients Slider -->
-<!-- our clients Slider -->
-
-<div class="container">
-    <div class="slider-items-products">
-        <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-          <div class="slider-items slider-width-col6"> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand1.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand2.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand3.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand4.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand5.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand6.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand7.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-          </div>
         </div>
     </div>
 </div>

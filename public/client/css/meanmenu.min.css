@@ -256,7 +256,7 @@ a.meanmenu-reveal {
 	background-color: #fff;
 	border: 1px #ddd solid;
 	border-top: 2px solid #CF3341;
-	left: 15px;
+	left: 455px;
 	margin: 0;
 	opacity: 0;
 	padding: 25px 15px 5px;
@@ -264,7 +264,7 @@ a.meanmenu-reveal {
 	text-align: left;
 	top: 130%;
 	transition: all 0.3s ease 0s;
-	width: 1170px;
+	/* width: 1170px; */
 	visibility: hidden;
 	z-index: 9999999;
 	text-align: left;
@@ -277,7 +277,7 @@ a.meanmenu-reveal {
 }
 .main-menu ul li .mega-menu ul {
 	float: left;
-	width: 25%;
+	/* width: 25%; */
 	padding-right: 15px;
 	padding-left: 15px;
 	text-align: left;

@@ -83,7 +83,9 @@
             </div>
             <div class="product-cart-option">
                 <ul>
-                    <li><a href="wishlist.html"><i class="fa fa-heart"></i><span>Thêm vào yêu thích</span></a></li>
+                    @if($data->wishlist_id != null)
+                        <li class="text-danger"><i class="fa fa-heart" style="margin-right: 8px;"></i><span>Đã yêu thích</span></li>
+                    @endif
                     <li><a style="color:#fe0100 ;" href="/product-detail/{{$data->id}}"><i class="fa fa-retweet"></i><span>Xem chi tiết</span></a></li>
                 </ul>
             </div>

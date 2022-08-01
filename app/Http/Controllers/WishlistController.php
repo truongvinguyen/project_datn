@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\product;
 use App\Models\wishlist;
 use Session;
+
 class WishlistController extends Controller
 {
     public function index(){
@@ -20,7 +21,7 @@ class WishlistController extends Controller
     public function create($product_id){
         $data = new wishlist();
         $product = $data->findId($product_id);
-       
+        // $Session::get('productId');
         if (Session::has('userId')) {
             if($product == null){
                 wishlist::create([
@@ -28,18 +29,25 @@ class WishlistController extends Controller
                     'user_id' => Session::get('userId'),
                     'created_at' => now()
                 ]);
-                return redirect()->route('home_client');
+
+                
+                return redirect()->route('product-detail',['id' => $product_id])->withSuccess('Đã thích');
+                
             }else{
-                return redirect()->route('home_client');
+                
+                return redirect()->route('product-detail/', ['id' => $product_id]);
             }
     
+        } else{
+            
+            return redirect()->route('getLogin');
         }
     }
 
     public function destroy($id){
-    $del = wishlist::find($id);
-    $del->delete();
-    return redirect()->route('wishlist');
+
+        DB::table('wishlist')->where('wishlist_id', '=', $id)->delete();
+        return redirect()->route('wishlist')->withSuccess('Bỏ thích');
     }
 }
 

@@ -209,4 +209,7 @@ class CategoryController extends Controller
         $res = $this->__category::where('parent_id', '=', $id)->get();
         return response()->json($res, 200);
     }
+
+
+    public function all()
 }
