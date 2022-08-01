@@ -3,24 +3,24 @@
 Thêm bài viết mới
 @endsection
 @section('content')
+
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Thêm bài viết </h4>
+                <h4><strong>Quản lý bài viết</strong></h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('articles.index') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('articles.create') }}">Thêm bài viết
-                            mới</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('articles.index') }}">Bài viết</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Thêm mới</span></li>
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-        </div>
     </div>
 </div>
+
 <div class="pd-20 card-box mb-30">
     <form action="{{route('articles.store')}}" method="post" enctype="multipart/form-data">
         @csrf

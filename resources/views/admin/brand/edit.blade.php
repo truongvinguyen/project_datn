@@ -3,24 +3,24 @@
 Sửa thương hiệu 
 @endsection
 @section('content')
+
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Sửa thương hiệu </h4>
+                <h4><strong>Quản lý thương hiệu</strong></h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('brands.index') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('brands.create') }}">Thêm danh mục
-                            mới</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('brands.index') }}">Thương hiệu</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Chỉnh sửa</span></li>
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-        </div>
     </div>
 </div>
+
 <div class="pd-20 card-box mb-30">
     <form action="{{ route('brands.update', ['id' => $brands->id]) }}" method="post" enctype="multipart/form-data">
         @csrf

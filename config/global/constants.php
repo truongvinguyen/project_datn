@@ -20,19 +20,6 @@ final class _ROLE
 }
 
 /**
- * Account's permissions
- * (Các quyền hạn tài khoản)
- * (!) usage example:  _ROLE::EMPLOYEE
- */
-final class _PERMISSION
-{
-	public const ARTICLE_VIEW = 'ARTICLE_VIEW';
-	public const ARTICLE_MANAGE = 'ARTICLE_MANAGE';
-	public const ARTICLE_VIEW = 'ARTICLE_VIEW';
-	public const ARTICLE_MANAGE = 'ARTICLE_MANAGE';
-}
-
-/**
  * Status of a data element
  * (Trạng thái được tuỳ chỉnh của một dữ liệu)
  * (!) usage example:  _STATUS::ACTIVED

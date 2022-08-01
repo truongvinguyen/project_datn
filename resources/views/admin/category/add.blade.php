@@ -3,24 +3,24 @@
 Thêm sản phẩm mới
 @endsection
 @section('content')
+
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Thêm danh mục </h4>
+                <h4><strong>Quản lý danh mục</strong></h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('categories.create') }}">Thêm danh mục
-                            mới</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('categories.index') }}">Danh mục</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Thêm mới</span></li>
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-        </div>
     </div>
 </div>
+
 <div class="pd-20 card-box mb-30">
     <form action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data">
         @csrf
