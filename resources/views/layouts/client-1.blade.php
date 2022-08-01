@@ -24,7 +24,7 @@
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 
 <body class="cms-index-index cms-home-page">
@@ -93,6 +93,7 @@
                                                      </div>
                                                         <ul>
                                                             <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                                            <li ><a href="/wishlist">Sản phẩm yêu thích</a></li>
                                                         </ul>
                                                     </div>
                                                     {{-- <div class="block block-currency">
@@ -123,7 +124,7 @@
                             <div id="search">
                                 <form>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="tìm kiếm..." name="search">
+                                        <input type="text" class="form-control" placeholder="tìm kiếm..." id="search" name="search">
                                         <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
                                     </div>
                                 </form>
@@ -137,7 +138,7 @@
                                 <div class="mm-toggle"> <i class="fa fa-align-justify"></i><span
                                         class="mm-label">Menu</span> </div>
                             </div>
-                            <div class="logo"><a title="e-commerce" href="/home-page"><img alt="e-commerce"
+                            <div class="logo"><a title="e-commerce" href="/"><img alt="e-commerce"
                                         style="width:30%;" src="/client/images/logo.png"></a> </div>
                         </div>
                         <div class="col-lg-4 col-sm-4 col-xs-12 top-cart">
@@ -157,8 +158,20 @@
                             </div>
                             @endif
                             <!-- End shopping cart trigger -->
-                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a> <a
-                                href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
+                            @if (Session::has('userId'))
+                                @if (Session::get('userImage') == "")
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="{{asset('public/upload/client/user/anoymous.png')}}" alt="">
+                                    </a>
+                                @else
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="{{asset('public/upload/client/user/'.Session::get('userImage'))}}" alt="">
+                                    </a>
+                                @endif
+                            @else
+                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a>
+                            @endif
+                            <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
                         </div>
                     </div>
                 </div>

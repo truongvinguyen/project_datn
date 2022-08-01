@@ -9,10 +9,14 @@ use App\Http\Controllers\Redirect;
 use App\Models\product;
 use App\Models\imageProduct;
 use App\Models\inventory;
+use App\Models\Client\UserClient;
 
 class productDetail extends Controller
 {
     public function index($id){
+
+    $rating = UserClient::getRating($id);
+    dd($rating);
     $product = new product();
      $data = DB::table('product')
      ->select('*')

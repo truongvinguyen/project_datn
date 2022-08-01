@@ -153,7 +153,7 @@ Trang Chủ
                           <a href="#" onclick="quickviewProduct({{$product->id}})" id="modal" data-toggle="modal" data-target="#modal-quickview"><i class="fa fa-search-plus" aria-hidden="true"></i>Xem nhanh</a>
                         </button> 
                       </div>
-                      <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html" class="action add-to-wishlist" title="Add to Wishlist"></a> <a href="compare.html" class="action add-to-compare" title="Add to Compare"></a> </div>
+                      <div class="add-to-links" data-role="add-to-links"> <a href="wishlist/add/{{$product->id}}" class="action add-to-wishlist" title="Add to Wishlist"></a> <a href="compare.html" class="action add-to-compare" title="Add to Compare"></a> </div>
                     </div>
                     <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" alt=""></a> </div>
                   <div class="pro-box-info">

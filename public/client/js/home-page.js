@@ -18,6 +18,29 @@ $(document).ready(function () {
     })
   });
 
+  $('#search').on('keyup', (function(){ 
+    var txt = $(this).val();
+    console.log(txt)
+    // $('#search_result').addClass('search_result_active');
+    if(txt != '')
+    {
+        $.ajax({
+            url: `/api/search/${value}`,
+            method: "post",
+            data: {search : txt},
+            dataType: "text",
+            success: function(data)
+            {
+                $('#search_result').html(data);
+            }
+        });
+    }
+    else
+    {
+        $('#search_result').removeClass('search_result_active');
+        $('#search_result').html('');
+    }
+}));
 
   $('#productByCate li').on('click', function (e) {
     console.log(e.target)
