@@ -27,6 +27,7 @@ class orderController extends Controller
      ->get();
      return view('admin.order.new',compact('order'));
    }
+
    public function orderProcessed(){
     $order=DB::table('order')
     ->select('*')
@@ -35,6 +36,16 @@ class orderController extends Controller
     ->get();
     return view('admin.order.processed',compact('order'));
     }
+
+    public function ordercomplete(){
+      $order=DB::table('order')
+      ->select('*')
+      ->where('status','=',3)
+      ->orderby('id','desc')
+      ->get();
+      return view('admin.order.order-complete',compact('order'));
+      }
+
    public function showBill($id){
     $order=DB::table('order')
     ->select('*')
@@ -66,5 +77,37 @@ class orderController extends Controller
     ->orderby('id','desc')
     ->get();
     return view('admin.order.order-new-cut',compact('order'));
+   }
+
+   public function finalcheckOrder($id){
+    order::find($id)->update([
+      'status'=>3,
+    ]);
+    $order=DB::table('order')
+    ->select('*')
+    ->where('status','=',2)
+    ->orderby('id','desc')
+    ->get();
+    return view('admin.order.processed_cut',compact('order'));
+   }
+
+   public function deleteOrderProcessed($id){
+    order::find($id)->delete();
+    $order=DB::table('order')
+    ->select('*')
+    ->where('status','=',2)
+    ->orderby('id','desc')
+    ->get();
+    return view('admin.order.processed_cut',compact('order'));
+   }
+
+   public function deleteOrderComplete($id){
+    order::find($id)->delete();
+    $order=DB::table('order')
+    ->select('*')
+    ->where('status','=',3)
+    ->orderby('id','desc')
+    ->get();
+    return view('admin.order.order-complete-cut',compact('order'));
    }
 }

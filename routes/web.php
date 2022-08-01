@@ -181,6 +181,10 @@ Route::prefix('admin/order')->group(function () {
 Route::get('/show-bill/{id}', [orderController::class, 'showBill'])->name('show-bill');
 Route::get('/confirm-order/{id}', [orderController::class, 'confirmOrder'])->name('confirmOrder');
 Route::get('/delete-order/{id}', [orderController::class, 'deleteOrder'])->name('deleteOrder');
+Route::get('/finalcheck-order/{id}', [orderController::class, 'finalcheckOrder'])->name('finalcheckOrder');
+Route::get('/order-complete', [orderController::class, 'ordercomplete'])->name('order_complete');
+Route::get('/delete-order-processed/{id}', [orderController::class, 'deleteOrderProcessed'])->name('deleteOrderProcessed');
+Route::get('/delete-order-complete/{id}', [orderController::class, 'deleteOrderComplete'])->name('deleteOrderComplete');
 
 
 
