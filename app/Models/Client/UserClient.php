@@ -117,4 +117,57 @@ class UserClient extends Model{
         ->where('email', $email)
         ->delete();
     }
+
+    static function addRating($userId, $idPr, $rating, $content){
+        DB::table('rating')->insert([
+            'user' => $userId,
+            'product' => $idPr,
+            'start' => $rating,
+            'content' => $content
+        ]);
+    }
+
+    static function checkRating($userId, $idPr){
+        $isRated = DB::table('rating')
+        ->select('user', 'product')
+        ->where('user', $userId)
+        ->where('product', $idPr)
+        ->first();
+        if($isRated == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    static function getRating($idPr){
+        $rating = DB::table('rating')
+        ->select('rating.start', 'rating.content', 'rating.create_at',
+            'customer_user.email', 'product.product_name', 'product.product_image')
+        ->join('customer_user', 'rating.user', '=','customer_user.id')
+        ->join('product', 'rating.product','=', 'product.id')
+        ->where('product', $idPr)
+        ->get();
+        return $rating;
+    }
+
+    static function findUserGg($email){
+        $user = DB::table('customer_user')
+        ->select('email')
+        ->where('email', $email)
+        ->first();
+        return $user;
+    }
+
+    static function addGGUser($email, $image, $fullname, $google_id){
+        $id_user = DB::table("customer_user")->insertGetId([
+            'email' => $email,
+            'password' => md5('123456bnctl'),
+            'image' => $image,
+            'approved'  => 1,
+            'fullname' => $fullname,
+            'google_id' => $google_id
+        ]);
+        return $id_user;
+    }
 }

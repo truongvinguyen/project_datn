@@ -163,29 +163,31 @@
                       <div class="col-sm-12 col-lg-12 col-md-12">
                         <div class="reviews-content-right">
                           <h2>Đánh giá sản phẩm</h2>
-                          <form action="{{route('review')}}" method="post">
+                          <form action="" method="post">
                             <div class="table-responsive reviews-table">
                                 <div class="start" style="display: inline-flex; flex-direction: row-reverse;">
-                                    <input class="star star-1" id="star-1" type="radio" name="star"/>
-                                    <label class="star star-1" for="star-1"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star"/>
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star"/>
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star"/>
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-5" id="star-5" type="radio" name="star"/>
-                                    <label class="star star-5" for="star-5"></label>
+                                    <input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
+                                    <label class="star star-5 label-start" for="star-5"></label>
+                                    <input class="star star-4" id="star-4" value="4" type="radio" name="star"/>
+                                    <label class="star star-4 label-start" for="star-4"></label>
+                                    <input class="star star-3" id="star-3" value="3" type="radio" name="star"/>
+                                    <label class="star star-3 label-start" for="star-3"></label>
+                                    <input class="star star-2" id="star-2" value="2" type="radio" name="star"/>
+                                    <label class="star star-2 label-start" for="star-2"></label>
+                                    <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
+                                    <label class="star star-1 label-start" for="star-1"></label>
                                 </div>
+                                <p id="starErr" class="text-danger"></p>
                             </div>
-                            <input type="hidden" value="{{$data->id}}">
+                            <input id="idProduct" type="hidden" value="{{$data->id}}">
                             <div class="form-area">
                               <div class="form-element">
                                 <label>Bình luận</label>
-                                <textarea style="resize:none;"></textarea>
+                                <textarea name="cmt" id="cmt" style="resize:none; width: 100%;"></textarea>
+                                <p id="cmtErr" class="text-danger"></p>
                               </div>
                               <div class="">
-                                <button class="button submit" title="Submit Review" type="submit"><span><i class="fa fa-thumbs-up"></i> &nbsp;Review</span></button>
+                                <button id="btn-rating" class="button submit" title="Submit Review" type="button"><span><i class="fa fa-thumbs-up"></i> &nbsp;Review</span></button>
                               </div>
                             </div>
                             @csrf
@@ -213,16 +215,35 @@
                     </div>
                     <div class="tab-pane fade" id="custom_tabs">
                       <div class="product-tabs-content-inner clearfix">
-                        <p><strong>Lorem Ipsum</strong><span>&nbsp;is
-                          simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                          has been the industry's standard dummy text ever since the 1500s, when 
-                          an unknown printer took a galley of type and scrambled it to make a type
-                          specimen book. It has survived not only five centuries, but also the 
-                          leap into electronic typesetting, remaining essentially unchanged. It 
-                          was popularised in the 1960s with the release of Letraset sheets 
-                          containing Lorem Ipsum passages, and more recently with desktop 
-                          publishing software like Aldus PageMaker including versions of Lorem 
-                          Ipsum.</span></p>
+                        <div class="rating">
+                            <div class="top" style="display: flex;">
+                                <div class="top-left" style="width: 75px; height: 75px; border-radius: 50%; border: 1px solid gray;">
+                                    <a href="">
+                                        <img style="width: 100%; border-radius: 50%;" src="{{asset('public/upload/client/user/'.Session::get('userImage'))}}" alt="avatar">
+                                    </a>
+                                </div>
+                                <div class="top-right">
+                                    @if (Session::has('userEmail'))
+                                    <p clas="" style="font-size: 16px;">{{Session::get('userEmail')}}</p>
+                                    @endif
+                                    <div class="table-responsive reviews-table">
+                                        <div class="start" style="display: inline-flex; flex-direction: row-reverse;">
+                                            <input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
+                                            <label class="star star-5 label-start" for="star-5"></label>
+                                            <input class="star star-4" id="star-4" value="4" type="radio" name="star"/>
+                                            <label class="star star-4 label-start" for="star-4"></label>
+                                            <input class="star star-3" id="star-3" value="3" type="radio" name="star"/>
+                                            <label class="star star-3 label-start" for="star-3"></label>
+                                            <input class="star star-2" id="star-2" value="2" type="radio" name="star"/>
+                                            <label class="star star-2 label-start" for="star-2"></label>
+                                            <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
+                                            <label class="star star-1 label-start" for="star-1"></label>
+                                        </div>
+                                        <p id="starErr" class="text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -376,4 +397,64 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+   <script>
+        var btnRating = document.querySelector("#btn-rating");
+        btnRating.addEventListener("click", function(e) {
+            e.preventDefault();
+            var star = $('input[name="star"]:checked').val();
+            var cmt = $("#cmt").val();
+            var starErr = $("#starErr");
+            var cmtErr = $("#cmtErr");
+            let isOk = false;
+            if(typeof(star) == "undefined" || star <=0 || star > 5){
+                starErr.text("Vui lòng kiểm tra số sao đánh giá.");
+                isOk = false;
+            }else{
+                starErr.text("");
+                isOk = true;
+            }
+            if(cmt.length < 3 || cmt.length > 1024){
+                cmtErr.text("Vui lòng kiểm tra nội dung đánh giá. Tối thiểu 3 ký tự, tối đa 1024 ký tự.");
+                isOk = false;
+            }else{
+                cmtErr.text("");
+                isOk = true;
+            }
+            console.log(isOk);
+            if (isOk){
+                let idProduct = $("#idProduct").val();
+                $.ajax({
+                    url: "{{route('rating')}}",
+                    type: "POST",
+                    dataType: "json",
+                    data:{
+                        rating : star,
+                        content: cmt,
+                        idProduct: idProduct,
+                        _token: $("input[name='_token']").val()
+                    },
+                    success: function (resp) {
+                       let code = resp['code'];
+                       switch (code) {
+                        case 0:
+                            console.log(resp);
+                            break;
+                        case 1:
+                            alert(resp['msg']);
+                            break;
+                        case 2:
+                            alert(resp['msg']);
+                            break;
+                        default:
+                        console.log(resp);
+                       }
+                    },
+                });
+            }
+            console.log(star, cmt);
+        });
+   </script>
 @endsection

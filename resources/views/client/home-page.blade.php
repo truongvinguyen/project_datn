@@ -387,7 +387,7 @@ Trang Chủ
     </div>
   </div>
           <!--Newsletter Popup Start -->
-          <div id="myModal" class="modal fade">
+          <!-- <div id="myModal" class="modal fade">
             <div class="modal-dialog newsletter-popup">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -416,7 +416,7 @@ Trang Chủ
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--End of Newsletter Popup-->
         
   </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\orderController;
 use App\Models\notification;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Client\GoogleController;
 
 use App\Http\Controllers\CheckoutController;
 
@@ -132,7 +133,9 @@ Route::get('quen-mat-khau', [HomeController::class, "getForgotPass"])->name('get
 Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("postForgotPass");
 Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
 Route::get('dang-xuat', [HomeController::class, "getLogout"])->name('getLogout');
-Route::post('danh-gia', [HomeController::class, 'postReview'])->name('review');
+Route::post('danh-gia', [HomeController::class, 'postReview'])->name('rating');
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('loginGG');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('loginGGCallback');
 
 Route::post('login-checkout', [HomeController::class, 'loginCheckout'])->name('loginCheckout');
 
@@ -176,6 +179,10 @@ Route::prefix('admin/order')->group(function () {
 Route::get('/show-bill/{id}', [orderController::class, 'showBill'])->name('show-bill');
 Route::get('/confirm-order/{id}', [orderController::class, 'confirmOrder'])->name('confirmOrder');
 Route::get('/delete-order/{id}', [orderController::class, 'deleteOrder'])->name('deleteOrder');
+Route::get('/finalcheck-order/{id}', [orderController::class, 'finalcheckOrder'])->name('finalcheckOrder');
+Route::get('/order-complete', [orderController::class, 'ordercomplete'])->name('order_complete');
+Route::get('/delete-order-processed/{id}', [orderController::class, 'deleteOrderProcessed'])->name('deleteOrderProcessed');
+Route::get('/delete-order-complete/{id}', [orderController::class, 'deleteOrderComplete'])->name('deleteOrderComplete');
 
 
 

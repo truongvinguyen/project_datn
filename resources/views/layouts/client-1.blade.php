@@ -24,6 +24,13 @@
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 
@@ -32,6 +39,15 @@
     <div id="toast">
         
     </div>
+    @if(Session::has('success'))
+    <script>
+        alertify.message('{{Session::get('success')}}', 'custom', 2,
+            function() {
+                console.log('dismissed');
+            });
+        alertify.set('notifier', 'position', 'bottom-right');
+    </script>
+    @endif
 
     <div id="page">
 
@@ -158,8 +174,20 @@
                             </div>
                             @endif
                             <!-- End shopping cart trigger -->
-                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a> <a
-                                href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
+                            @if (Session::has('userId'))
+                                @if (Session::get('userImage') == "")
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="{{asset('public/upload/client/user/anoymous.png')}}" alt="">
+                                    </a>
+                                @else
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="{{asset('public/upload/client/user/'.Session::get('userImage'))}}" alt="">
+                                    </a>
+                                @endif
+                            @else
+                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a>
+                            @endif
+                            <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
                         </div>
                     </div>
                 </div>
