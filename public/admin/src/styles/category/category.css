@@ -95,16 +95,3 @@
 	height: 4px;
 	top: calc(50% - 2px);
 }
-
-.dataTables_scrollHead {
-	width: 100% !important;
-}
-.dataTables_scrollHeadInner {
-	width: 100% !important;
-	padding-right: 0 !important;
-}
-
-.table-small tbody td{
-	padding-top: .5rem !important;
-	padding-bottom: .5rem !important;
-}

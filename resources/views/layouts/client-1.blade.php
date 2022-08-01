@@ -24,6 +24,13 @@
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 
@@ -32,6 +39,15 @@
     <div id="toast">
         
     </div>
+    @if(Session::has('success'))
+    <script>
+        alertify.message('{{Session::get('success')}}', 'custom', 2,
+            function() {
+                console.log('dismissed');
+            });
+        alertify.set('notifier', 'position', 'bottom-right');
+    </script>
+    @endif
 
     <div id="page">
 
@@ -92,8 +108,9 @@
                                                             </span>
                                                      </div>
                                                         <ul>
-                                                            <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                                            <li id=""><a href="{{route('profile')}}">Xem hồ sơ</a></li>
                                                             <li ><a href="/wishlist">Sản phẩm yêu thích</a></li>
+                                                            <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
                                                         </ul>
                                                     </div>
                                                     {{-- <div class="block block-currency">
@@ -158,19 +175,19 @@
                             </div>
                             @endif
                             <!-- End shopping cart trigger -->
-                            @if (Session::has('userId'))
-                                @if (Session::get('userImage') == "")
-                                    <a href="#" class="top-my-account" style="padding: 0">
-                                        <img src="/upload/client/user/anoymous.png" alt="">
+                            {{-- @if (Session::has('userId'))
+                                @if (Session::get('userImage') == "") --}}
+                                    <a href="{{ route('profile') }}" class="top-my-account" style="padding: 0">
+                                        <img src="/client/images/avatar.png" alt="">
                                     </a>
-                                @else
+                                {{-- @else
                                     <a href="#" class="top-my-account" style="padding: 0">
                                         <img src="/upload/client/user/'.Session::get('userImage')" alt="">
                                     </a>
-                                @endif
-                            @else
+                                @endif --}}
+                            {{-- @else
                             <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a>
-                            @endif
+                            @endif --}}
                             <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
                         </div>
                     </div>

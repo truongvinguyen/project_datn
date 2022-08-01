@@ -45,6 +45,15 @@ class CategoryController extends Controller
     //
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'category_name' => 'required',
+            'employee_id' => 'required'
+        ], [
+            'category_name.required' => 'Tên danh mục không được để trống',
+            'employee_id.required' => ''
+        ]);
+
+        $file_name = '';
         if ($request->has('category_image')) {
             $category_image = $request->category_image;
             $file_name = $category_image->getClientOriginalName();
@@ -80,14 +89,23 @@ class CategoryController extends Controller
     //
     public function update(Request $request, $id)
     {
-        $categories = category::find($id);
+        $this->validate($request, [
+            'category_name' => 'required',
+            'employee_id' => 'required'
+        ], [
+            'category_name.required' => 'Tên danh mục không được để trống',
+            'employee_id.required' => ''
+        ]);
 
+        $category = category::find($id);
+
+        $file_name = $category->category_image;
         if ($request->has('category_image')) {
             $category_image = $request->category_image;
             $file_name = $category_image->getClientOriginalName();
             $category_image->move(base_path('public' . _IMAGE::CATEGORY), $file_name);
         }
-        if (($request->category_slug == '') || ($request->category_name != $categories->category_name)) {
+        if (($request->category_slug == '') || ($request->category_name != $category->category_name)) {
             $request->category_slug = Str::slug($request->category_name);
         } else {
             $request->category_slug = Str::slug($request->category_slug);
@@ -111,19 +129,19 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->withSuccess('Xóa thành công');
     }
 
-    public function getSearchedRecords(Request $req, int $offset = 0, int $limit = 10, String $col = 'category_name')
-    {
-        // Call internal api
-        $params = "/$offset/$limit/$col";
-        $request = Request::create(
-            route('api.categories.search') . $params,
-            'POST',
-            parameters: [],
-            content: $req
-        );
-        $res = Route::dispatch($request)->getContent();
+    // public function getSearchedRecords(Request $req, int $offset = 0, int $limit = 10, String $col = 'category_name')
+    // {
+    //     // Call internal api
+    //     $params = "/$offset/$limit/$col";
+    //     $request = Request::create(
+    //         route('api.categories.search') . $params,
+    //         'POST',
+    //         parameters: [],
+    //         content: $req
+    //     );
+    //     $res = Route::dispatch($request)->getContent();
 
-        $records = json_decode($res, false);
-        return view('admin.category.fetch.records', compact('records'))->render();
-    }
+    //     $records = json_decode($res, false);
+    //     return view('admin.category.fetch.records', compact('records'))->render();
+    // }
 }

@@ -440,7 +440,7 @@
                         <ul class="submenu">
                             <li><a href="{{ route('new_order') }}">Đơn hàng mới</a></li>
                             <li><a href="{{ route('order_processed') }}">Đơn hàng đã xử lý</a></li>
-                            <li><a href="">Đơn hàng đã hoàn thành</a></li>
+                            <li><a href="{{ route('order_complete') }}">Đơn hàng đã hoàn thành</a></li>
 
                             
                         </ul>

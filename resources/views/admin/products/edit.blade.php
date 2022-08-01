@@ -11,7 +11,7 @@ Cập nhật sản phẩm
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="/product">Sản phẩm</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="">Cập nhật sản phẩm</a></li>
                 </ol>

@@ -30,13 +30,13 @@ use App\Http\Controllers\CheckoutController;
 Auth::routes();
 
 Route::get('/home-admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/load-notification', function(){
-        $notification = DB::table('notification')
+Route::get('/load-notification', function () {
+    $notification = DB::table('notification')
         ->select('*')
-        ->orderby('id','desc')
-        ->orderby('notification_status','desc')
+        ->orderby('id', 'desc')
+        ->orderby('notification_status', 'desc')
         ->get();
-        return view('layouts.notification',compact('notification'));
+    return view('layouts.notification', compact('notification'));
 })->name('');
 
 
@@ -69,7 +69,7 @@ Route::post('/delete-image-product', [App\Http\Controllers\imageProductControlle
 //end thành viên
 
 //danh mục
-Route::prefix('categories')->name('categories.')->group(function () {
+Route::prefix('admin/categories')->name('categories.')->group(function () {
     // Fetch
     Route::post('s/{col?}/{offset?}/{limit?}', [CategoryController::class, 'getSearchedRecords'])->name('search');
 
@@ -82,7 +82,7 @@ Route::prefix('categories')->name('categories.')->group(function () {
     Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('delete');
 });
 //thương hiệu
-Route::prefix('brands')->name('brands.')->group(function () {
+Route::prefix('admin/brands')->name('brands.')->group(function () {
     Route::get('/', [BrandController::class, 'index'])->name('index');
     Route::get('detail/{id}', [BrandController::class, 'detail'])->name('detail');
     Route::get('create', [BrandController::class, 'create'])->name('create');
@@ -92,7 +92,7 @@ Route::prefix('brands')->name('brands.')->group(function () {
     Route::get('delete/{id}', [BrandController::class, 'delete'])->name('delete');
 });
 //bài viết
-Route::prefix('articles')->name('articles.')->group(function () {
+Route::prefix('admin/articles')->name('articles.')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('index');
     Route::get('detail/{id}', [ArticleController::class, 'detail'])->name('detail');
     Route::get('create', [ArticleController::class, 'create'])->name('create');
@@ -149,10 +149,10 @@ Route::prefix('')->group(function () {
     Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
     Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');
     Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
-    
+
     Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
     Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
-    
+
     Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
     Route::get('/contact-us', [App\Http\Controllers\showDataController::class, 'contact'])->name('');
 });
@@ -175,14 +175,15 @@ Route::get('/accept-order/{id}', [CheckoutController::class, 'accept'])->name('a
 Route::prefix('admin/order')->group(function () {
     Route::get('/order-new', [orderController::class, 'new_order'])->name('new_order');
     Route::get('/order-processed', [orderController::class, 'orderProcessed'])->name('order_processed');
-   
-  
 });
 Route::get('/show-bill/{id}', [orderController::class, 'showBill'])->name('show-bill');
 Route::get('/confirm-order/{id}', [orderController::class, 'confirmOrder'])->name('confirmOrder');
 Route::get('/delete-order/{id}', [orderController::class, 'deleteOrder'])->name('deleteOrder');
+Route::get('/finalcheck-order/{id}', [orderController::class, 'finalcheckOrder'])->name('finalcheckOrder');
+Route::get('/order-complete', [orderController::class, 'ordercomplete'])->name('order_complete');
+Route::get('/delete-order-processed/{id}', [orderController::class, 'deleteOrderProcessed'])->name('deleteOrderProcessed');
+Route::get('/delete-order-complete/{id}', [orderController::class, 'deleteOrderComplete'])->name('deleteOrderComplete');
 
 
 
 Route::post('/order', [CheckoutController::class, 'order'])->name('order');
-

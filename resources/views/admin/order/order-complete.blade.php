@@ -114,8 +114,7 @@
                         {{-- <th>Địa chỉ giao hàng</th> --}}
                         {{-- <th>Email</th> --}}
                         <th>Tổng thanh toán</th>
-                        <th>Trạng thái thanh toán</th>
-                        <th>Trạng thái</th>
+                        <th>Phương thức thanh toán</th>
                         <th class="datatable-nosort">Tùy chọn</th>
                     </tr>
                 </thead>
@@ -138,14 +137,6 @@
                         @else
                         <td>Đã thanh toán</td>
                         @endif
-                        @if($item->status==2)
-                        <td>
-                            <button onclick="finalcheck({{$item->id}})"  class="button btn-primary">
-                                Đánh dấu hoàn thành
-                            </button>
-                        </td>
-                        @endif
-
                         <td class=" text-left">
                         
                             <div class="dropdown">
@@ -276,7 +267,7 @@
     function deleteOrder(id){
         if(confirm("Bạn có chắc muốn xóa đơn hàng")){
             $.ajax({
-                    url: `/delete-order-processed/${id}`,
+                    url: `/delete-order-complete/${id}`,
                     type: 'GET',
                 }).done(function (response) {
                     alertify.message('Xóa thành công đơn hàng', 'custom', 2,

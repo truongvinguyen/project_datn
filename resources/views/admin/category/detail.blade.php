@@ -3,28 +3,24 @@
 Sản phẩm
 @endsection
 @section('content')
+
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Quản lý sản phẩm <a href="/add-new-product"><button type="button"
-                            class="btn btn-xl btn-outline-primary"><i class="icon-copy fi-plus"></i>Thêm</button></a>
-                </h4>
+                <h4><strong>Quản lý danh mục</strong></h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/product">Sản phẩm</a></li>
-                    @foreach($product as $item)
-                    <li class="breadcrumb-item active" aria-current="page"><a href="">{{$item->product_name}}</a></li>
-                    @endforeach
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('categories.index') }}">Danh mục</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Chi tiết</span></li>
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-        </div>
     </div>
 </div>
+
 <div class="pd-20 card-box mb-30">
     @foreach($product as $item)
     <section class="py-4">
