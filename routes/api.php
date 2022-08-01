@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\product;
-use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\v1\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\articleController;
 
@@ -18,23 +18,35 @@ use App\Http\Controllers\Api\articleController;
 |
 */
 
-//danh mục
-Route::controller(CategoryController::class)->prefix('categories')->middleware('api')->name('api.categories.')->group(function () {
-    Route::get('home/{orderBy?}/{sort?}', 'getAllRecords')->name('index');
-    Route::get('p/{offset?}/{limit?}/{orderBy?}/{sort?}', 'getPageOfRecords')->name('paginate');
-    Route::post('s/{offset?}/{limit?}/{col?}', 'getSearchedRecords')->name('search');
-    Route::get('detail/{id}', 'getOneRecord')->name('detail');
-    Route::post('store', 'storeRecord')->name('store');
-    Route::put('update/{id}', 'updateRecord')->name('update');
-    Route::post('upload/image/{id}', 'uploadImage')->name('upload.image');
-    Route::put('delete/{id}', 'deleteRecord')->name('delete');
-    Route::put('restore/{id}', 'restoreRecord')->name('restore');
-    Route::delete('destroy/{id}', 'destroyRecord')->name('destroy');
-    Route::put('activate/{id}', 'activateRecord')->name('activate');
-    Route::put('disable/{id}', 'disableRecord')->name('disable');
-    Route::post('count/s/{col?}', 'countSearchedRecords')->name('count.search');
-    Route::get('parents/', 'getAllParentRecords')->name('parents');
-    Route::get('childrens/{id}', 'getChildrenRecords')->name('childrens');
+//  External API version 1
+Route::prefix('v1/e')->group(function () {
+
+    //  Category
+    Route::controller(CategoryController::class)->prefix('categories')->middleware('api')->name('api.categories.')->group(function () {
+        Route::get('home/{orderBy?}/{sort?}', 'getAllRecords')->name('index');
+        Route::get('p/{offset?}/{limit?}/{orderBy?}/{sort?}', 'getPageOfRecords')->name('paginate');
+        Route::post('s/{offset?}/{limit?}/{col?}', 'getSearchedRecords')->name('search');
+        Route::get('detail/{id}', 'getOneRecord')->name('detail');
+        Route::post('count/s/{col?}', 'countSearchedRecords')->name('count.search');
+        Route::get('parents/', 'getAllParentRecords')->name('parents');
+        Route::get('childrens/{id}', 'getChildrenRecords')->name('childrens');
+    });
+});
+
+//  Internal API version 1
+Route::prefix('v1/i')->group(function () {
+
+    //  Category
+    Route::controller(CategoryController::class)->prefix('categories')->middleware('api')->name('api.categories.')->group(function () {
+        Route::post('store', 'storeRecord')->name('store');
+        Route::put('update/{id}', 'updateRecord')->name('update');
+        Route::post('upload/image/{id}', 'uploadImage')->name('upload.image');
+        Route::put('delete/{id}', 'deleteRecord')->name('delete');
+        Route::put('restore/{id}', 'restoreRecord')->name('restore');
+        Route::delete('destroy/{id}', 'destroyRecord')->name('destroy');
+        Route::put('activate/{id}', 'activateRecord')->name('activate');
+        Route::put('disable/{id}', 'disableRecord')->name('disable');
+    });
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

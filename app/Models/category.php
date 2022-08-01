@@ -27,9 +27,16 @@ class category extends Model
         'deleted_at'
     ];
 
-    // public function parent(){
-    //     return $this->belongsTo(self::class, 'parent_id', 'id');
-    // }
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d h:i:s',
+        'updated_at' => 'datetime:Y-m-d h:i:s',
+        'deleted_at' => 'datetime:Y-m-d h:i:s'
+    ];
+
+    public function parentCategory()
+    {
+        return $this->belongsTo(self::class, 'parent_id', 'id');
+    }
 
     public function categoryProducts()
     {
@@ -38,7 +45,7 @@ class category extends Model
 
     public function categoryArticles()
     {
-        return $this->hasMany(Brand::class, 'category_id', 'id');
+        return $this->hasMany(Article::class, 'category_id', 'id');
     }
 
     public function categoryCreator()
