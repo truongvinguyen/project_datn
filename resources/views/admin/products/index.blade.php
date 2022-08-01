@@ -3,7 +3,7 @@
 Sản phẩm
 @endsection
 @section('content')
-<!-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/modal.css')}}"> -->
+
 
 
 <style>
@@ -279,6 +279,5 @@ Sản phẩm
         </div>
     </div>
 </div>
-
 @endforeach
 @endsection

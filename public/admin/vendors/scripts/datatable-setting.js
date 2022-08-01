@@ -89,8 +89,8 @@ let thisDataTable2 = $('#data-table-export-2').DataTable({
 	},
 	dom:
 		`<"#fixed-toolbar.row"
-			<"#custom-tools.col-md-6 col-sm-12 d-flex justify-content-start pb-20"f>
-			<"col-md-6 col-sm-12 d-flex justify-content-end pb-20"<"mr-20"B><"#btn-add-2">>
+			<"#custom-tools.col-md-4 col-sm-12 d-flex justify-content-start pb-20"f>
+			<"col-md-8 col-sm-12 d-flex justify-content-end pb-20"<"mr-20"B><"#btn-add-2">>
 		>
 		<rt>
 		<"row pt-20"
@@ -195,3 +195,24 @@ $('.checkbox-datatable tbody').on('change', 'input[type="checkbox"]', function()
 	}
 });
 });
+
+function loadNotification(){
+	document.getElementById('show-notification').innerHTML=` 
+			<div class="container d-flex justify-content-center align-items-center">
+				<div class="spinner"></div>
+			</div>`;
+
+	setTimeout(() =>
+		$.ajax(
+				{
+					url:`load-notification`,
+					type:'GET',
+
+					success: function(data) {
+						$("#show-notification").empty();
+						$("#show-notification").html(data);
+					}
+				}
+			)
+	,550)
+}

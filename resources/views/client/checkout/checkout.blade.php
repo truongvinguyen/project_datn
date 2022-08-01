@@ -13,6 +13,144 @@ Thanh toán
     .btn-proceed-checkout{
         display: none !important;
     }
+    /* From uiverse.io by @lenin55 */
+.cl-checkbox {
+ position: relative;
+ display: inline-block;
+}
+
+/* Input */
+.cl-checkbox > input {
+ appearance: none;
+ -moz-appearance: none;
+ -webkit-appearance: none;
+ z-index: -1;
+ position: absolute;
+ left: -10px;
+ top: -8px;
+ display: block;
+ margin: 0;
+ border-radius: 50%;
+ width: 40px;
+ height: 40px;
+ background-color: rgba(0, 0, 0, 0.6);
+ box-shadow: none;
+ outline: none;
+ opacity: 0;
+ transform: scale(1);
+ pointer-events: none;
+ transition: opacity 0.3s, transform 0.2s;
+}
+
+/* Span */
+.cl-checkbox > span {
+ display: inline-block;
+ width: 100%;
+ cursor: pointer;
+}
+
+/* Box */
+.cl-checkbox > span::before {
+ content: "";
+ display: inline-block;
+ box-sizing: border-box;
+ margin: 3px 11px 3px 1px;
+ border: solid 2px;
+ /* Safari */
+ border-color: rgba(0, 0, 0, 0.6);
+ border-radius: 2px;
+ width: 18px;
+ height: 18px;
+ vertical-align: top;
+ transition: border-color 0.2s, background-color 0.2s;
+}
+
+/* Checkmark */
+.cl-checkbox > span::after {
+ content: "";
+ display: block;
+ position: absolute;
+ top: 3px;
+ left: 1px;
+ width: 10px;
+ height: 5px;
+ border: solid 2px transparent;
+ border-right: none;
+ border-top: none;
+ transform: translate(3px, 4px) rotate(-45deg);
+}
+
+/* Checked, Indeterminate */
+.cl-checkbox > input:checked,
+.cl-checkbox > input:indeterminate {
+ background-color: #018786;
+}
+
+.cl-checkbox > input:checked + span::before,
+.cl-checkbox > input:indeterminate + span::before {
+ border-color: #018786;
+ background-color: #018786;
+}
+
+.cl-checkbox > input:checked + span::after,
+.cl-checkbox > input:indeterminate + span::after {
+ border-color: #fff;
+}
+
+.cl-checkbox > input:indeterminate + span::after {
+ border-left: none;
+ transform: translate(4px, 3px);
+}
+
+/* Hover, Focus */
+.cl-checkbox:hover > input {
+ opacity: 0.04;
+}
+
+.cl-checkbox > input:focus {
+ opacity: 0.12;
+}
+
+.cl-checkbox:hover > input:focus {
+ opacity: 0.16;
+}
+
+/* Active */
+.cl-checkbox > input:active {
+ opacity: 1;
+ transform: scale(0);
+ transition: transform 0s, opacity 0s;
+}
+
+.cl-checkbox > input:active + span::before {
+ border-color: #85b8b7;
+}
+
+.cl-checkbox > input:checked:active + span::before {
+ border-color: transparent;
+ background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Disabled */
+.cl-checkbox > input:disabled {
+ opacity: 0;
+}
+
+.cl-checkbox > input:disabled + span {
+ color: rgba(0, 0, 0, 0.38);
+ cursor: initial;
+}
+
+.cl-checkbox > input:disabled + span::before {
+ border-color: currentColor;
+}
+
+.cl-checkbox > input:checked:disabled + span::before,
+.cl-checkbox > input:indeterminate:disabled + span::before {
+ border-color: transparent;
+ background-color: currentColor;
+}
+
 </style>
 
 <div class="breadcrumbs">
@@ -39,6 +177,16 @@ Thanh toán
         <div class="page-content checkout-page"><div class="page-title">
           <h2>thanh toán</h2>
         </div>
+        @if((Session::has('userFullname')))
+        <h4 class="checkout-sep">1. Lời khuyên</h4>
+        <div class="box-border">
+            <div class="row">
+               <div class="col-sm-12 text-center">
+                  Bạn vẫn có thể giữ nguyên hoặc thay đổi thông tin mua hàng của mình
+               </div>
+            </div>
+        </div>
+        @else
             <h4 class="checkout-sep">1. Lời khuyên</h4>
             <div class="box-border">
                 <div class="row">
@@ -51,17 +199,30 @@ Thanh toán
                     </div>
                     <div class="col-sm-6">
                         <h5>Đăng nhập</h5>
-                        <p>Đã đăng ký? Vui lòng đăng nhập bên dưới:</p>
-                        <label>Địa chỉ email</label>
-                        <input type="text" class="form-control input">
-                        <label>Mật khẩu</label>
-                        <input type="password" class="form-control input">
-                        <p><a href="#">Quên mật khẩu?</a></p>
-                        <button class="button"><i class="icon-login"></i>&nbsp; <span>Đăng nhập</span></button>
+                        <p>Vui lòng đăng nhập bên dưới:</p>
+                        <form action="{{route('loginCheckout')}}" method="post">
+                          @csrf
+                          <label>Email:</label>
+                          <div class="input-text">
+                            <input type="text" name="email" value="{{old('email')}}" class="form-control input">
+                          </div>
+                          @error('email')
+                            <span style="color:red">{{$message}}</span>
+                          @enderror
+                          <label>Mật khẩu:</label>
+                          <div class="input-text">
+                            <input type="password" name="password" value="{{old('password')}}" class="form-control">
+                          </div>
+                          @error('password')
+                            <span style="color:red">{{$message}}</span>
+                          @enderror
+                          <p><a href="{{ route('getForgotPass') }}">Quên mật khẩu?</a></p>
+                          <button class="button" type="submit"><i class="icon-login"></i>&nbsp; <span>Đăng nhập</span></button>
+                        </form>
                     </div>
-
                 </div>
             </div>
+        @endif
             <h4 class="checkout-sep">2. thông tin thanh toán</h4>
             <form action="{{ route('order') }}" method="POST">
                 @csrf
@@ -73,7 +234,12 @@ Thanh toán
                         <div class="col-sm-12">
                             
                             <label for="first_name_1" class="required">Họ và tên của bạn</label>
+                            @if((Session::has('userFullname')))
+                            <input class="input form-control" type="text" name="customer_name" id="customer_name" value="{{Session::get('userFullname')}}">
+                            @else
                             <input class="input form-control" type="text" name="customer_name" id="customer_name" value="{{@old('customer_name')}}">
+                            @endif
+                           
                             @error('customer_name')
                                <span class="text-danger">{{$message}}</span>
                                <style>
@@ -101,7 +267,11 @@ Thanh toán
                         <div class="col-sm-12">
                             
                             <label for="email_address_1" class="required">Địa chỉ email</label>
+                            @if((Session::has('userFullname')))
+                            <input class="input form-control" type="text" name="customer_email" id="customer_email" value="{{Session::get('userEmail')}}">
+                            @else
                             <input class="input form-control" type="text" name="customer_email" id="customer_email" value="{{@old('customer_email')}}">
+                            @endif
                             @error('customer_email')
                             <span class="text-danger">{{$message}}</span>
                             <style>
@@ -116,50 +286,64 @@ Thanh toán
 
                         <li class="row">
                           
+                           @if((Session::has('userFullname')))
+                           <div class="col-sm-12">
+                            <label for="email_address_1" class="required">Địa chỉ giao hàng</label>
+                            <input class="input form-control" type="text" name="customer_address" id="telephone_1" value="{{Session::get('userAddress')}}">
+                            @error('customer_provinces')
+                            <span class="text-danger tinh">{{$message}}</span>
+                            <style>
+                              .tinh{
+                                border: 1px solid red;
+                              }
+                            </style>
+                            @enderror
+                          </div>
+                           @else
                             <div class="col-sm-4">
-                                <label for="email_address_1" class="required">Tỉnh / Thành phố</label>
-                                <select class="input form-control tinh" name="calc_shipping_provinces" >
-                                    <option value="">Tỉnh / Thành phố</option>
-                                </select>
-                                @error('customer_provinces')
-                                <span class="text-danger tinh">{{$message}}</span>
-                                <style>
-                                  .tinh{
-                                     border: 1px solid red;
-                                  }
-                                </style>
-                                 @enderror
+                              <label for="email_address_1" class="required">Tỉnh / Thành phố</label>
+                              <select class="input form-control tinh" name="calc_shipping_provinces" >
+                                  <option value="">Tỉnh / Thành phố</option>
+                              </select>
+                              @error('customer_provinces')
+                              <span class="text-danger tinh">{{$message}}</span>
+                              <style>
+                                .tinh{
+                                  border: 1px solid red;
+                                }
+                              </style>
+                              @enderror
                             </div>
-                           
+                       
                             <div class="col-sm-4">
                                 <label for="email_address_1" class="required">Quận / Huyện</label>
                                 <select class="input form-control quan" name="calc_shipping_district" >
                                     <option value="">Quận / Huyện</option>
-                               </select>
-                               @error('customer_district')
-                               <span class="text-danger quan">{{$message}}</span>
-                               <style>
-                                 .quan{
+                              </select>
+                              @error('customer_district')
+                              <span class="text-danger quan">{{$message}}</span>
+                              <style>
+                                .quan{
                                     border: 1px solid red;
-                                 }
-                               </style>
+                                }
+                              </style>
                                 @enderror
                             </div>
                             <div class="col-sm-4">
                                 <label for="email_address_1" class="required">Nhập tên xã / phường và địa chỉ nhà cụ thể</label>
                                 <input class="input form-control address" name="customer_address" value="{{@old('customer_address')}}">  
                                 @error('customer_address')
-                               <span class="text-danger address">{{$message}}</span>
-                               <style>
-                                 .address{
+                              <span class="text-danger address">{{$message}}</span>
+                              <style>
+                                .address{
                                     border: 1px solid red;
-                                 }
-                               </style>
+                                }
+                              </style>
                                 @enderror 
                             </div>
-                              <input class="billing_address_1" name="customer_provinces" type="hidden" value="">
-                              <input class="billing_address_2" name="customer_district" type="hidden" value="">
-
+                            <input class="billing_address_1" name="customer_provinces" type="hidden" value="">
+                            <input class="billing_address_2" name="customer_district" type="hidden" value="">
+                           @endif
                         </li><!--/ .row -->
 
 
@@ -174,7 +358,11 @@ Thanh toán
                         <div class="col-sm-12">
 
                             <label for="telephone_1" class="required">Diện thoại</label>
+                            @if((Session::has('userFullname')))
+                            <input class="input form-control" type="text" name="customer_phone" id="telephone_1" value="{{Session::get('userPhone')}}">
+                            @else
                             <input class="input form-control" type="text" name="customer_phone" id="telephone_1" value="{{@old('customer_phone')}}">
+                            @endif
                             @error('customer_phone')
                             <span class="text-danger address">{{$message}}</span>
                             <style>
@@ -190,6 +378,16 @@ Thanh toán
                             <textarea class="input form-control" type="text" name="customer_note" id="telephone_1">{{@old('customer_phone')}}</textarea>
 
                         </div><!--/ [col] -->
+                        @if((Session::has('userFullname')))
+                        <input type="hidden" name="status" value="1">
+                        @else
+                        <input type="hidden" name="status" value="0">
+                        @endif
+                        @if((Session::has('userFullname')))
+                        <input type="hidden" name="customer_id" value="{{Session::get('userId')}}">
+                        @else
+                        <input type="hidden" name="customer_id" value="0">
+                        @endif
                         </li>
                     </ul>
                     {{-- <button class="button"><i class="fa fa-angle-double-right"></i>&nbsp; <span>tiếp tục</span></button> --}}
@@ -212,13 +410,19 @@ Thanh toán
                 <h4 class="checkout-sep">3. Phương thức thanh toán</h4>
                 <div class="box-border" style="display:block;">
                     <ul>
-                        <li>
-                            <label for="radio_button_5"><input value="1" type="radio" checked name="payment_methods" id="radio_button_5">Thanh toán khi nhận hàng</label>
+                        <li >
+                            <label style="margin-left: 10px" for="radio_button_5" class="cl-checkbox">
+                              <input value="1" type="radio" checked name="payment_methods" id="radio_button_5">
+                              <span></span>
+                            </label>Thanh toán khi nhận hàng
                         </li>
 
                         <li>
                 
-                            <label for="radio_button_6"><input value="2" type="radio" name="payment_methods" id="radio_button_6">Ví điện tử (Momo)</label>
+                            <label style="margin-left: 10px;z-index: 2;" class="cl-checkbox" for="radio_button_6">
+                              <input value="2" type="radio" name="payment_methods" id="radio_button_6">
+                              <span></span>
+                            </label><img src="/client/images/momo.jpg" style="width:20%;margin-left: -25px ;z-index: 1;" alt="">
                         </li>
 
                     </ul>
@@ -228,6 +432,7 @@ Thanh toán
             <h4 class="checkout-sep last">6. Sản phậm trong đơn hàng</h4>
             <div class="box-border" style="display:block;">
             <div class="table-responsive">
+
                 <div id="show-list-cart">
                     @if(Session::has('cart') != null)
 
@@ -329,12 +534,16 @@ Thanh toán
                     </div>
 
                     @else
-                    <span>giỏ hàng của bạn đang trống</span>
+                    <span>giỏ hàng của bạn đang trống</span> <br>
+                    <a href="/product-grid"><button type="button" title="Continue Shopping" class="button btn-continue"><span>Tiếp tục mua sắm</span></button></a>
                     @endif
                 </div>
-            </div>
-                <button type="submit" class="button pull-right"><span>Đặt hàng</span></button>
-            </div>
+                @if(Session::has('cart') != null)
+                </div>
+                    <button type="submit" class="button pull-right"><span>Đặt hàng</span></button>
+                </div>
+                @else
+              @endif
         </form>
         </div>
       </div>

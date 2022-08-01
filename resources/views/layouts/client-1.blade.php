@@ -24,7 +24,8 @@
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" /></head> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+</head>
 
 <body class="cms-index-index cms-home-page">
 
@@ -65,36 +66,53 @@
                             <div class="headerlinkmenu col-md-7 col-sm-7 col-xs-12">
                                 <!-- Default Welcome Message -->
                                 <div class="welcome-msg hidden-xs">Chào mừng bạn đến với Website</div>
+                                @if((Session::has('userFullname')))
+                                <div class="welcome-msg hidden-xs"><a href="{{ route('checkout') }}">Thanh toán</a></div>
+                                @else
+                                <div class="welcome-msg hidden-xs"><a href="{{ route('checkout') }}">Thanh toán</a></div>
+                                @endif
                                 <ul class="links">
-                                    <li><a href="checkout.html">Thủ tục thanh toán</a></li>
-                                    @if((Session::has('userEmail')))
-                                        <li><a href="#">{{Session::get('userEmail')}}</a></li>
-                                        <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                    @if((Session::has('userFullname')))
+                                        <li class="nav-item dropdown">
+                                            <div class="language-currency-wrapper pull-right">
+                                                <div class="inner-cl">
+                                                    <div class="block block-language form-language">
+                                                        <div class="lg-cur">
+                                                             <span> 
+                                                                <span class="lg-fr">
+                                                                    <i class="fa fa-angle-down"></i> {{Session::get('userFullname')}}
+                                                                    @if(Session::get('userImage')==null)
+                                                                   <img class="img_user" src="https://ui-avatars.com/api/?name={{Session::get('userFullname')}}" alt="">
+                                                                   @else
+                                                                   <img class="img_user" src="/upload/user/{{Session::get('userImage')}}" alt="">
+                                                                   @endif
+                                                                   
+                                                                </span> 
+                                                               
+                                                            </span>
+                                                     </div>
+                                                        <ul>
+                                                            <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                                            <li ><a href="/wishlist">Sản phẩm yêu thích</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    {{-- <div class="block block-currency">
+                                                        <div class="item-cur"> <span>VND</span> <i class="fa fa-angle-down"></i>
+                                                        </div>
+                                                        <ul>
+                                                            <li> <a class="selected" href="#"><span class="cur_icon">$</span>USD</a> </li>
+                                                        </ul>
+                                                    </div> --}}
+                                                </div>
+                                            </div>
+                                        </li>
                                     @else
-                                        <li><a href="{{route('dang-ky')}}">Tạo tài khoản</a></li>
-                                        <li><a href="{{route('getLogin')}}">Đăng nhập</a></li>
+                                        <li style="line-height: 45px;"><a href="{{route('dang-ky')}}">Tạo tài khoản</a></li>
+                                        <li style="line-height: 45px;"><a href="{{route('getLogin')}}">Đăng nhập</a></li>
                                     @endif
 
                                 </ul>
-                                <div class="language-currency-wrapper pull-right">
-                                    <div class="inner-cl">
-                                        <div class="block block-language form-language">
-                                            <div class="lg-cur"> <span> <span class="lg-fr">Tiếng Việt</span> <i
-                                                        class="fa fa-angle-down"></i> </span> </div>
-                                            <ul>
-                                                <li> <a href="#"><span>English</span> </a> </li>
-                                            </ul>
-                                        </div>
-                                        <div class="block block-currency">
-                                            <div class="item-cur"> <span>VND</span> <i class="fa fa-angle-down"></i>
-                                            </div>
-                                            <ul>
-                                                <li> <a class="selected" href="#"><span class="cur_icon">$</span>
-                                                        USD</a> </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -106,7 +124,7 @@
                             <div id="search">
                                 <form>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search" name="search">
+                                        <input type="text" class="form-control" placeholder="tìm kiếm..." id="search" name="search">
                                         <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
                                     </div>
                                 </form>
@@ -120,7 +138,7 @@
                                 <div class="mm-toggle"> <i class="fa fa-align-justify"></i><span
                                         class="mm-label">Menu</span> </div>
                             </div>
-                            <div class="logo"><a title="e-commerce" href="/home-page"><img alt="e-commerce"
+                            <div class="logo"><a title="e-commerce" href="/"><img alt="e-commerce"
                                         style="width:30%;" src="/client/images/logo.png"></a> </div>
                         </div>
                         <div class="col-lg-4 col-sm-4 col-xs-12 top-cart">
@@ -300,10 +318,10 @@
                         <div class="col-sm-6 col-xs-12">
                             <div class="payment">
                                 <ul>
-                                    <li><a href="#"><img title="Visa" alt="Visa" src="client/images/visa.png"></a></li>
-                                    <li><a href="#"><img title="Paypal" alt="Paypal" src="client/images/paypal.png"></a></li>
-                                    <li><a href="#"><img title="Discover" alt="Discover" src="client/images/discover.png"></a></li>
-                                    <li><a href="#"><img title="Master Card" alt="Master Card"src="client/images/master-card.png"></a></li>
+                                    <li><a href="#"><img title="Visa" alt="Visa" src="{{asset('client/images/visa.png')}}"></a></li>
+                                    <li><a href="#"><img title="Paypal" alt="Paypal" src="{{asset('client/images/paypal.png')}}"></a></li>
+                                    <li><a href="#"><img title="Discover" alt="Discover" src="{{asset('client/images/discover.png')}}"></a></li>
+                                    <li><a href="#"><img title="Master Card" alt="Master Card"src="{{asset('client/images/master-card.png')}}"></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -327,9 +345,9 @@
                                 aria-hidden="true">×</span></button>
                         <h4 class="modal-title">Giỏ của bạn</h4>
                     </div>
-                    <div id="showcart" style="height: 720px">
+                    <div id="showcart" style="height: 100%">
                         @if(Session::has('cart') != null)
-                        <div class="modal-body" style="height:85%;">
+                        <div class="modal-body" >
 
                             <!-- Begin shopping cart content -->
                             <div class="cart-content">
@@ -371,7 +389,7 @@
                                 </div>
                                 <!-- /.col -->
 
-                                <div class="col-xs-6 no-padding"> <a href="checkout.html"
+                                <div class="col-xs-6 no-padding"> <a href="{{route('checkout')}}"
                                         class="btn-checkout no-margin">thanh toán</a> </div>
                                 <!-- /.col -->
                             </div>
@@ -416,7 +434,7 @@
     <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/main.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/jquery.bxslider.js')}}"></script>
-    {{-- <script type="text/javascript" src="{{asset('client/js/jquery.flexslider.js')}}"></script> --}}
+    <script type="text/javascript" src="{{asset('client/js/jquery.flexslider.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/magnific-popup.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/cloud-zoom.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>

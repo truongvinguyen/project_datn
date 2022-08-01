@@ -145,6 +145,28 @@ Cập nhật sản phẩm
                 </div>
                 <hr>
                 <div class="form-group row">
+                    <label class="col-sm-6 col-md-12 col-form-label">Chọn thương hiệu<span
+                            class="text-danger">*</span></label>
+                    <div class="col-sm-12 col-md-12">
+                        <select class="brand_id form-control s" name="brand_id"
+                            style="width: 100%; height: 38px;">
+                            <option value="">Chọn thương hiệu</option>
+                          @foreach($brand as $item)
+                            <option value="{{$item->id}}" {{($item->id==$product->brand_id)?'selected':''}}>{{$item->brand_name}}</option>
+                          @endforeach
+                        </select>
+                        @error('brand_id')
+                        <div class="text-danger">{{ $message }}</div>
+                        <style>
+                            .brand_id{
+                                border: 1px solid red;
+                            }
+                        </style>
+                        @enderror
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
                     <label class="col-sm-6 col-md-12 col-form-label">Trạng thái sản phẩm<span
                             class="text-danger">*</span> @error('product_status')
                         <div class="text-danger">{{ $message }}</div>

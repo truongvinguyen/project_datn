@@ -14,8 +14,10 @@ use App\Models\Client\UserClient;
 class productDetail extends Controller
 {
     public function index($id){
+
     $rating = UserClient::getRating($id);
     dd($rating);
+    $product = new product();
      $data = DB::table('product')
      ->select('*')
      ->where('id',$id)
@@ -23,7 +25,9 @@ class productDetail extends Controller
      $image =imageProduct::where('product_id',$id)->get();    
 
      $size = inventory::where('product_id',$id)->get();  
-    return view('client.cart.product_detail',compact('data','image','size'));
+
+     $products = $product->productByCategory($data->category_id);
+    return view('client.cart.product_detail',compact('data','image','size','products'));
 
     }
 }

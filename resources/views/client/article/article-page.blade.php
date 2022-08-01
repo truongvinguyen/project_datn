@@ -59,9 +59,9 @@ Trang Bài Viết
                         <ul class="blog-list-sidebar">   
                             @foreach($articles as $article)
                                 <li>
-                                    <div class="post-thumb"> <a href="#"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
+                                    <div class="post-thumb"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
                                     <div class="post-info">
-                                        <h5 class="entry_title"><a href="#">{!!$article->article_title!!}</a></h5>
+                                        <h5 class="entry_title"><a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a></h5>
                                         <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{$article->created_at}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
                                     </div>
                                 </li>
@@ -111,44 +111,69 @@ Trang Bài Viết
                 
                 <!-- ./tags --> 
                 <!-- Banner -->
-                <div class="single-img-add sidebar-add-slider">
+                <!-- <div class="single-img-add sidebar-add-slider">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
-                    <!-- Indicators -->
+          
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                     </ol>
                     
-                    <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active"> <img src="images/add-slide1.jpg" alt="slide1">
-                        <div class="carousel-caption">
-                            <h3><a href="single_product.html" title=" Sample Product">Sale Up to 50% off</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="#" class="info">shopping Now</a> </div>
+                            <div class="carousel-caption">
+                                <h3><a href="single_product.html" title=" Sample Product">Sale Up to 50% off</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <a href="#" class="info">shopping Now</a> 
+                            </div>
                         </div>
                         <div class="item"> <img src="images/add-slide2.jpg" alt="slide2">
-                        <div class="carousel-caption">
-                            <h3><a href="single_product.html" title=" Sample Product">Geniuswatch Collection</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="#" class="info">All Collection</a> </div>
-                        </div>
-                        <div class="item"> <img src="images/add-slide3.jpg" alt="slide3">
-                        <div class="carousel-caption">
-                            <h3><a href="single_product.html" title=" Sample Product">Summer Sale</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
+                            <div class="carousel-caption">
+                                <h3><a href="single_product.html" title=" Sample Product">Geniuswatch Collection</a></h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <a href="#" class="info">All Collection</a> 
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- Controls --> 
+                     
                     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
-                </div>
+                </div> -->
                 <!-- ./Banner --> 
                 </aside>
                 <!-- ./right colunm --> 
             </div>
         </div>
     </section>
+    <div class="container">
+    <div class="slider-items-products">
+      <div id="our-clients-slider" class="product-flexslider hidden-buttons">
+        <div class="slider-items slider-width-col6"> 
+          
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand1.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand2.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand3.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand4.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('/images/brand6.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          <!-- Item -->
+          <div class="item"> <a href="#"><img src="{{asset('client/images/brand7.png')}}" alt="Image" class="grayscale"></a> </div>
+          <!-- End Item --> 
+          
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
