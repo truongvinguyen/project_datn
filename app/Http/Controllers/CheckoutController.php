@@ -180,7 +180,7 @@ class CheckoutController extends Controller
                 'signature' => $signature);
             $result = $this->execPostRequest($endpoint, json_encode($data));
             $jsonResult = json_decode($result, true);  // decode json
-            //thanh toán
+            //thanh toán chay
             $order['customer_name'] = $request->customer_name;
             $order['customer_phone'] = $request->customer_phone;
             $order['customer_email'] = $request->customer_email;
