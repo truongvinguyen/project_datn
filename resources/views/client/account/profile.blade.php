@@ -5,7 +5,37 @@
 @endsection
 
 @section('content')
+<style>
+    .navtab {
+  height: 40px;
+  /* margin: 40px auto; */
+  /* background-color: rgba(23, 23, 50, 0.7); */
+  text-align: center;
+  color: black;
+  border-radius: 4px;
+}
+.navtab ul{
+  list-style-type: none;
+}
+.navtab .main {
+  display: flex;
+  justify-content: center;
+}
+.navtab .main > li {
+  margin: 0 2%;
+}
+.navtab .main > li a{
+  /* border-left:1px solid rgba(23, 23, 50, 1); */
+  text-decoration: none;
+  color: #666;
+  display: block;
+ 
+}
 
+/* .navtab .main > li a:hover {
+  background-color: #631818;
+} */
+</style>
     <!-- Breadcrumbs -->
 
     <div class="breadcrumbs">
@@ -42,7 +72,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-lg-9 col-md-9 product-details-area">
                   <div class="product-name">
-                    <h1 class="no-cut">{{$users->fullname}}</h1>
+                    <h3 class="no-cut">{{$users->fullname}}</h3>
                   </div>
                   <div class="ratings">
                     <p class="rating-links">
@@ -66,25 +96,25 @@
                   </div>
                   <div class="product-variation">
                     <div class="ratings">
-                      <h4 class="rating-links">
+                      <h5 class="rating-links">
                         <span>Email:</span>
                         &ensp;
                         <strong class="separator">{{$users->email}}</strong>
-                      </h4>
+                      </h5>
                     </div>
                     <div class="ratings">
-                      <h4 class="rating-links">
+                      <h5 class="rating-links">
                         <span>Số điện thoại:</span>
                         &ensp;
                         <strong class="separator">{{$users->phone}}</strong>
-                      </h4>
+                      </h5>
                     </div>
                     <div class="ratings">
-                      <h4 class="rating-links">
+                      <h5 class="rating-links">
                         <span>Địa chỉ:</span>
                         &ensp;
                         <strong class="separator">{{$users->address}}</strong>
-                      </h4>
+                      </h5>
                     </div>
                   </div>
                 </div>
@@ -97,46 +127,228 @@
                   </ul>
                   <div id="productTabContent" class="tab-content" style="background-color: #f5f5f5;" >
                     <div class="tab-pane fade in active" id="description">
-                    @if($order)
-                      @foreach ($order as $item)
-                        <div class="card" style="margin: 20px;margin-bottom: 20px; background-color: white;padding: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;">
-                          <div class="card-header">
-                            Đơn hàng 
-                            @if ($item->status == 1)
-                              <span style="color:black;background-color:#ffc107;border-radius:3px;" class="badge bg-warning text-dark">Đang chờ xử lý</span>
-                            @elseif($item->status == 2)
-                              <span style="color:white;background-color:#198754;border-radius:3px;" class="badge bg-warning text-dark">Đang giao</span>
-                            @else
-                              <span class="badge bg-warning text-dark">Đã hoàn thành</span>
-                            @endif
-                          </div>
-                          
-                          @foreach($order_detail as $item2)
-                          @if($item2->order_id == $item->id)
-                          <div class="card-body row" style="padding: 10px;">
-                            <div class="col-md-2">
-                              <img src="/upload/product/{{$item2->product_image}}" alt="">
+                      
+                    <div class="navtab">
+                      <ul class="main" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Tất cả</a></li>
+                        <li role="presentation"><a href="#dangxuly" aria-controls="dangxuly" role="tab" data-toggle="tab">Đang chờ xử lý</a></li>
+                        <li role="presentation"><a href="#danggiao" aria-controls="danggiao" role="tab" data-toggle="tab">Đang giao</a></li>
+                        <li role="presentation"><a href="#hoanthanh" aria-controls="hoanthanh" role="tab" data-toggle="tab">Đã hoàn thành</a></li>
+                        <li role="presentation"><a href="#dahuy" aria-controls="dahuy" role="tab" data-toggle="tab">Đã hủy</a></li>
+                      </ul>
+                    </div>
+                    
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        {{-- tab tất cả đơn hàng --}}
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                          @if($order)
+                          @foreach ($order as $item)
+                            <div class="card" style="margin: 20px;margin-bottom: 20px; background-color: white;padding: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;">
+                              <div class="card-header row">
+                                <div class="col-md-8">
+                                  Đơn hàng 
+                                  @if ($item->status == 1)
+                                    <span style="color:black;background-color:#ffc107;border-radius:3px;" class="badge bg-warning text-dark">Đang chờ xử lý</span>
+                                  @elseif($item->status == 2)
+                                    <span style="color:white;background-color:#198754;border-radius:3px;" class="badge bg-warning text-dark">Đang giao</span>
+                                  @else
+                                    <span style="border-radius:3px;" class="badge bg-warning text-dark">Đã hoàn thành ngày {{$item->updated_at}}}</span>
+                                  @endif
+                                </div>
+                                <div class="col-md-4">
+                                  <p>Ngày đặt hàng: {{$item->created_at}}</p>
+                                </div>
+                              </div>
+                              @foreach($order_detail as $item2)
+                              @if($item2->order_id == $item->id)
+                              <div class="card-body row" style="padding: 10px;">
+                                <div class="col-md-2">
+                                  <img src="/upload/product/{{$item2->product_image}}" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                  <h5 class="card-title">{{$item2->product_name}}.</h5>
+                                  <p style="opacity: 0.7;" class="card-text">Kích thước: {{$item2->product_size}}</p>
+                                  {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                                  <h5 class="card-title">x {{$item2->quantity}}</h5>
+                                </div>
+                                <div class="col-md-2">
+                                  <p>{{number_format($item2->price)}} vnđ</p>
+                                </div>
+                              </div>
+                              @endif
+                              @endforeach
+                              <hr>
+                              <div class="card-footer row">
+                                <div class="col-md-9"></div>
+                                <div class="col-md-3">
+                                  <p>Phí vận chuyển: {{number_format($item->ship_fee)}}</p>
+                                  <p class="">Tổng thanh toán: {{number_format($item->total_price)}} vnđ</p>
+                                </div>
+                              </div>
                             </div>
-                            <div class="col-md-8">
-                              <h5 class="card-title">{{$item2->product_name}}.</h5>
-                              <p style="opacity: 0.7;" class="card-text">Kích thước: {{$item2->product_size}}</p>
-                              {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-                              <h5 class="card-title">x {{$item2->quantity}}</h5>
-                            </div>
-                            <div class="col-md-2">
-                              <p>{{number_format($item2->price)}} vnđ</p>
-                            </div>
-                          </div>
-                          @endif
                           @endforeach
-                          <hr>
-                          <div class="card-footer row">
-                            <div class="col-md-9"></div>
-                            <p class="col-md-3">Tổng thanh toán: {{number_format($item->total_price)}} vnđ</p>
-                          </div>
+                        @endif
                         </div>
-                      @endforeach
-                    @endif
+                        {{-- tab đơn hàng đang xử lý --}}
+                        <div role="tabpanel" class="tab-pane" id="dangxuly">   
+                          @if($order)
+                            @foreach ($order as $item)
+                            @if($item->status ==1)
+                              <div class="card" style="margin: 20px;margin-bottom: 20px; background-color: white;padding: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;">
+                                <div class="card-header row">
+                                  <div class="col-md-8">
+                                    Đơn hàng 
+                                    @if ($item->status == 1)
+                                      <span style="color:black;background-color:#ffc107;border-radius:3px;" class="badge bg-warning text-dark">Đang chờ xử lý</span>
+                                    @elseif($item->status == 2)
+                                      <span style="color:white;background-color:#198754;border-radius:3px;" class="badge bg-warning text-dark">Đang giao</span>
+                                    @else
+                                      <span style="border-radius:3px;" class="badge bg-warning text-dark">Đã hoàn thành ngày {{$item->updated_at}}}</span>
+                                    @endif
+                                  </div>
+                                  <div class="col-md-4">
+                                    <p>Ngày đặt hàng: {{$item->created_at}}</p>
+                                  </div>
+                                </div>
+                                @foreach($order_detail as $item2)
+                                @if($item2->order_id == $item->id)
+                                <div class="card-body row" style="padding: 10px;">
+                                  <div class="col-md-2">
+                                    <img src="/upload/product/{{$item2->product_image}}" alt="">
+                                  </div>
+                                  <div class="col-md-8">
+                                    <h5 class="card-title">{{$item2->product_name}}.</h5>
+                                    <p style="opacity: 0.7;" class="card-text">Kích thước: {{$item2->product_size}}</p>
+                                    {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                                    <h5 class="card-title">x {{$item2->quantity}}</h5>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <p>{{number_format($item2->price)}} vnđ</p>
+                                  </div>
+                                </div>
+                                @endif
+                                @endforeach
+                                <hr>
+                                <div class="card-footer row">
+                                  <div class="col-md-9"></div>
+                                  <div class="col-md-3">
+                                    <p>Phí vận chuyển: {{number_format($item->ship_fee)}}</p>
+                                    <p class="">Tổng thanh toán: {{number_format($item->total_price)}} vnđ</p>
+                                  </div>
+                                </div>
+                              </div>
+                              @endif
+                            @endforeach
+                          @endif
+                        </div>
+                      {{-- tab đơn hàng đang giao --}}
+                        <div role="tabpanel" class="tab-pane" id="danggiao">
+                          @if($order)
+                            @foreach ($order as $item)
+                                @if($item->status ==2)
+                                  <div class="card" style="margin: 20px;margin-bottom: 20px; background-color: white;padding: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;">
+                                    <div class="card-header row">
+                                      <div class="col-md-8">
+                                        Đơn hàng 
+                                        @if ($item->status == 1)
+                                          <span style="color:black;background-color:#ffc107;border-radius:3px;" class="badge bg-warning text-dark">Đang chờ xử lý</span>
+                                        @elseif($item->status == 2)
+                                          <span style="color:white;background-color:#198754;border-radius:3px;" class="badge bg-warning text-dark">Đang giao</span>
+                                        @else
+                                          <span style="border-radius:3px;" class="badge bg-warning text-dark">Đã hoàn thành ngày {{$item->updated_at}}}</span>
+                                        @endif
+                                      </div>
+                                      <div class="col-md-4">
+                                        <p>Ngày đặt hàng: {{$item->created_at}}</p>
+                                      </div>
+                                    </div>
+                                    @foreach($order_detail as $item2)
+                                    @if($item2->order_id == $item->id)
+                                    <div class="card-body row" style="padding: 10px;">
+                                      <div class="col-md-2">
+                                        <img src="/upload/product/{{$item2->product_image}}" alt="">
+                                      </div>
+                                      <div class="col-md-8">
+                                        <h5 class="card-title">{{$item2->product_name}}.</h5>
+                                        <p style="opacity: 0.7;" class="card-text">Kích thước: {{$item2->product_size}}</p>
+                                        {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                                        <h5 class="card-title">x {{$item2->quantity}}</h5>
+                                      </div>
+                                      <div class="col-md-2">
+                                        <p>{{number_format($item2->price)}} vnđ</p>
+                                      </div>
+                                    </div>
+                                    @endif
+                                    @endforeach
+                                    <hr>
+                                    <div class="card-footer row">
+                                      <div class="col-md-9"></div>
+                                      <div class="col-md-3">
+                                        <p>Phí vận chuyển: {{number_format($item->ship_fee)}}</p>
+                                        <p class="">Tổng thanh toán: {{number_format($item->total_price)}} vnđ</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                @endif
+                            @endforeach
+                          @endif
+                        </div>
+                      {{-- tab đơn hàng đã hoàn thành --}}
+                        <div role="tabpanel" class="tab-pane" id="hoanthanh">
+                          @if($order)
+                            @foreach ($order as $item)
+                                @if($item->status ==3)
+                                  <div class="card" style="margin: 20px;margin-bottom: 20px; background-color: white;padding: 10px;box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;">
+                                    <div class="card-header row">
+                                      <div class="col-md-8">
+                                        Đơn hàng 
+                                        @if ($item->status == 1)
+                                          <span style="color:black;background-color:#ffc107;border-radius:3px;" class="badge bg-warning text-dark">Đang chờ xử lý</span>
+                                        @elseif($item->status == 2)
+                                          <span style="color:white;background-color:#198754;border-radius:3px;" class="badge bg-warning text-dark">Đang giao</span>
+                                        @else
+                                          <span style="border-radius:3px;" class="badge bg-warning text-dark">Đã hoàn thành ngày {{$item->updated_at}}}</span>
+                                        @endif
+                                      </div>
+                                      <div class="col-md-4">
+                                        <p>Ngày đặt hàng: {{$item->created_at}}</p>
+                                      </div>
+                                    </div>
+                                    @foreach($order_detail as $item2)
+                                    @if($item2->order_id == $item->id)
+                                    <div class="card-body row" style="padding: 10px;">
+                                      <div class="col-md-2">
+                                        <img src="/upload/product/{{$item2->product_image}}" alt="">
+                                      </div>
+                                      <div class="col-md-8">
+                                        <h5 class="card-title">{{$item2->product_name}}.</h5>
+                                        <p style="opacity: 0.7;" class="card-text">Kích thước: {{$item2->product_size}}</p>
+                                        {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                                        <h5 class="card-title">x {{$item2->quantity}}</h5>
+                                      </div>
+                                      <div class="col-md-2">
+                                        <p>{{number_format($item2->price)}} vnđ</p>
+                                      </div>
+                                    </div>
+                                    @endif
+                                    @endforeach
+                                    <hr>
+                                    <div class="card-footer row">
+                                      <div class="col-md-9"></div>
+                                      <div class="col-md-3">
+                                        <p>Phí vận chuyển: {{number_format($item->ship_fee)}}</p>
+                                        <p class="">Tổng thanh toán: {{number_format($item->total_price)}} vnđ</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                @endif
+                            @endforeach
+                          @endif
+                        </div>
+                      {{-- tab đơn hàng đã hủy --}}
+                        <div role="tabpanel" class="tab-pane" id="dahuy">huy..</div>
+                      </div>
                     </div>
                     <div class="tab-pane fade" id="wishlist">
                     </div>

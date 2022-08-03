@@ -153,8 +153,8 @@ class CheckoutController extends Controller
         $orderInfo = "Thanh toán qua MoMo";
         $amount = Session()->get('cart')->totalPrice+$ship_price;
         $orderId = time() . "";
-        $redirectUrl = "http://127.0.0.1:8000/checkout";
-        $ipnUrl = "http://127.0.0.1:8000/checkout";
+        $redirectUrl = "http://localhost:8000/checkout";
+        $ipnUrl = "http://localhost:8000/checkout";
         $extraData = "";
         
 
@@ -181,6 +181,9 @@ class CheckoutController extends Controller
             $result = $this->execPostRequest($endpoint, json_encode($data));
             $jsonResult = json_decode($result, true);  // decode json
             //thanh toán chay
+           
+        
+            //Just a example, please check more in there
             $order['customer_name'] = $request->customer_name;
             $order['customer_phone'] = $request->customer_phone;
             $order['customer_email'] = $request->customer_email;
@@ -202,48 +205,39 @@ class CheckoutController extends Controller
             $order_id =DB::table('order')->insertGetId($order);
  
             foreach(Session()->get('cart')->products as $item){
-             order_detail::create([
-                 'order_id'=>  $order_id,
-                 'product_id'=>$item['productInfo']->id,
-                 'quantity'=>$item['quanty'],
-                 'product_name'=>$item['productInfo']->product_name,
-                 'created_at'=>now(),
-                 'updated_at'=>now(),
-             ]);
+            order_detail::create([
+                'order_id'=>  $order_id,
+                'product_id'=>$item['productInfo']->id,
+                'quantity'=>$item['quanty'],
+                'product_name'=>$item['productInfo']->product_name,
+                'created_at'=>now(),
+                'updated_at'=>now(),
+            ]);
             }
             notification::create([
-             'notification_name'=>"Đơn hàng mới",
-             'notification_content'=>$request->customer_name." vừa đặt 1 đơn hàng mới, bạn vui lòng xử lý đơn hàng này nhé",
-             'notification_image'=>$notification_image,
-             'notification_status'=>1,
-             'order_id'=> $order_id
-         ]);
-
-         if($request->customer_id<1){
-            $order_table=DB::table('order')
-            ->select('*')
-            ->where('id',$order_id)
-            ->first();
-            $order_detail=Session()->get('cart')->products;
-            Mail::send('client.checkout.check_order',compact('order_table','order_detail'),function($mail) use ($request){
-                $mail->to($request->customer_email);
-                $mail->subject('Xác nhận đơn hàng.');
-            });
-        }else {
-            $order_table=DB::table('order')
-            ->select('*')
-            ->where('id',$order_id)
-            ->first();
-            $order_detail=Session()->get('cart')->products;
-            Mail::send('client.checkout.check_order_2',compact('order_table','order_detail'),function($mail) use ($request){
-                $mail->to($request->customer_email);
-                $mail->subject('Đặt hàng thành công.');
-            });
-        }
-         Session()->forget('cart'); 
-        
-            //Just a example, please check more in there
+            'notification_name'=>"Đơn hàng mới",
+            'notification_content'=>$request->customer_name." vừa đặt 1 đơn hàng mới, bạn vui lòng xử lý đơn hàng này nhé",
+            'notification_image'=>$notification_image,
+            'notification_status'=>1,
+            'order_id'=> $order_id
+             ]);
+ 
+        // if($order_id){
+        //     $order_table=DB::table('order')
+        //     ->select('*')
+        //     ->where('id',$order_id)
+        //     ->first();
+        //     $order_detail=Session()->get('cart')->products;
+        //     Mail::send('client.checkout.check_order_2',compact('order_table','order_detail'),function($mail) use ($request){
+        //         $mail->to($request->customer_email);
+        //         $mail->subject('Đặt hàng thành công.');
+        //     });
+           
+        // }
+        Session()->forget('cart'); 
+      
            return redirect()->to($jsonResult['payUrl']);
+
             // header('Location: ' . $jsonResult['payUrl']);
     
 
