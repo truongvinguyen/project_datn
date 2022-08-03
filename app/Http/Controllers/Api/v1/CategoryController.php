@@ -215,6 +215,10 @@ class CategoryController extends Controller
         return response()->json($res, 200);
     }
 
+<<<<<<< HEAD:app/Http/Controllers/Api/CategoryController.php
+
+    public function all()
+=======
     public function getNameFieldOfParentRecords()
     {
         $res = $this->__category::select('id', 'category_name')->whereNull('parent_id')->get();
@@ -226,4 +230,5 @@ class CategoryController extends Controller
         $res = $this->__category::select('id', 'category_name')->whereNull('parent_id')->get();
         return response()->json($res, 200);
     }
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1:app/Http/Controllers/Api/v1/CategoryController.php
 }

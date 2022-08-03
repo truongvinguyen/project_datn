@@ -25,14 +25,13 @@ Trang Bài Viết
             <div class="page-title">
               <h1>{{$articleOne->article_title}}</h1>
             </div>
-            <div class="entry-photo">
+            <!-- <div class="entry-photo">
               <figure><img src="/upload/article/{{$articleOne->article_thumbnail}}" alt="Blog"></figure>
-            </div>
+            </div> -->
             <div class="entry-meta-data"> <span class="author"> <i class="fa fa-user"></i>&nbsp; by: <a href="#">{{$articleOne->name}}</a></span> <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#">{{$articleOne->brand}} </a> </span> <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span> <span class="date"><i class="fa fa-calendar">&nbsp;</i>&nbsp;{{date('d-m-y', strtotime($articleOne->created_at))}}</span>
               <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>&nbsp; <span>(5 votes)</span></div> -->
             </div>
             <div class="content-text clearfix">
-              <blockquote>{!!$articleOne->article_content!!}</blockquote>
               <p class="post">{!!$articleOne->article_content!!}</p>
             </div>
             <div class="entry-tags"> <span>Thẻ:</span></a> <a href="#">{{$articleOne->slug}}</a> <a href="#">{{$articleOne->brand_name}}</a> </div>

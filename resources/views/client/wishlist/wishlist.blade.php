@@ -4,6 +4,7 @@ Trang Sản Phẩm Yêu Thích
 @endsection
 @section('content')
   <section class="main-container col2-right-layout">
+
     <div class="main container">
       <div class="row">
         <div class="col-main col-sm-9 col-xs-12">
@@ -25,23 +26,26 @@ Trang Sản Phẩm Yêu Thích
                 </thead>
                 <tbody>
                   @foreach($list as $wishlist)
-                    <tr>
-                      <td class="th-delate" id="th-delate"><a href="/wishlist/delete/{{$wishlist->id}}">X</a></td>
-                      <td class="th-product"><a href="/product-detail/{{$wishlist->product_id}}"><img src="/upload/product/{{$wishlist->product_image}}" alt="cart"></a></td>
-                      <td class="th-details"><h2><a href="/product-detail/{{$wishlist->product_id}}">{{$wishlist->product_name}}</a></h2></td>
-                      @if($wishlist->product_price_sale)
-                        <td class="th-price regular">{{number_format($wishlist->product_price_sale)}}₫</td>
-                        <td class="th-price price">{{number_format($wishlist->product_price)}}₫</td>
-                      @else
-                        <td class="th-price regular">{{number_format($wishlist->product_price)}}₫</td>
-                        <td class="th-price price"></td>
-                      @endif
-                      <th class="td-add-to-cart"><a href="/product-detail/{{$wishlist->product_id}}">Xem lại sản phẩm</a></th>
-                    </tr> 
+                  
+                      <tr id="/del/{{$wishlist->id}}">
+                        <td class="th-delate" id="th-delate"><a href="/wishlist/delete/{{$wishlist->id}}">X</a></td>
+                        <td class="th-product"><a href="/product-detail/{{$wishlist->product_id}}"><img src="/upload/product/{{$wishlist->product_image}}" alt="cart"></a></td>
+                        <td class="th-details"><h2><a href="/product-detail/{{$wishlist->product_id}}">{{$wishlist->product_name}}</a></h2></td>
+                        @if($wishlist->product_price_sale)
+                          <td class="th-price regular">{{number_format($wishlist->product_price_sale)}}₫</td>
+                          <td class="th-price price">{{number_format($wishlist->product_price)}}₫</td>
+                        @else
+                          <td class="th-price regular">{{number_format($wishlist->product_price)}}₫</td>
+                          <td class="th-price price"></td>
+                        @endif
+                        <th class="td-add-to-cart"><a href="/product-detail/{{$wishlist->product_id}}">Xem lại sản phẩm</a></th>
+                      </tr>
+                   
                   @endforeach
                 </tbody>
               </table>
             </div>
+           
           </div>
         </div>
         <!-- <aside class="right sidebar col-sm-3 col-xs-12">
@@ -68,43 +72,15 @@ Trang Sản Phẩm Yêu Thích
      
         </aside> -->
       </div>
-    </div>
-  </section>
-
-  <div class="container">
-    <div class="slider-items-products">
-      <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-        <div class="slider-items slider-width-col6"> 
-            
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand1.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand2.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand3.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand4.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand5.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand6.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand7.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-            
+      @if(Session::has('success'))
+        <div id="dislike" class="bg-success">
+              <h4 class="text-light m-auto">{{Session::get('success')}}</h4>
+          </div>
         </div>
-      </div>
+      @endif
     </div>
-  </div>
+   
+  </section>
   <script src="{{asset('client/js/jquery.min.js')}}"></script>
   <script src="{{ asset('/client/js/wishlist.js') }}"></script>
 @endsection

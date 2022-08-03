@@ -7,7 +7,7 @@
                 <div id="previews-list-slider" class="product-flexslider hidden-buttons">
                     <div class="slider-items slider-width-col6">
                         <a href="/upload/product/{{$data->product_image}}" class="cloud-zoom-gallery" id="zoom1">
-                            <img class="zoom-img" src="/upload/product/{{$data->product_image}}" alt="products">
+                            <img class="zoom-img" src="/upload/product/{{$data->product_image}}" alt="products" style="height: 480px;">
                         </a>
                        
                     </div>
@@ -83,7 +83,9 @@
             </div>
             <div class="product-cart-option">
                 <ul>
-                    <li><a href="wishlist.html"><i class="fa fa-heart"></i><span>Thêm vào yêu thích</span></a></li>
+                    @if($data->wishlist_id != null)
+                        <li class="text-danger"><i class="fa fa-heart" style="margin-right: 8px;"></i><span>Đã yêu thích</span></li>
+                    @endif
                     <li><a style="color:#fe0100 ;" href="/product-detail/{{$data->id}}"><i class="fa fa-retweet"></i><span>Xem chi tiết</span></a></li>
                 </ul>
             </div>

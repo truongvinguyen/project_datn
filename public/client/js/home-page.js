@@ -64,7 +64,7 @@ $(document).ready(function () {
 
   $('#productByBrand li').on('click', function (e) {
     let offset = e.target.dataset.offset;
-    // console.log(e.target)
+    console.log(e.target)
     $.ajax({
       url: `/api/products/gridProduct/brand_id/${offset}`,
       type: 'GET',
@@ -120,13 +120,14 @@ $(document).ready(function () {
 
 });
 
+//Categories
 $.ajax({
-  url: `/api/products/grid`,
+  url: `/api/categories`,
   type: 'GET',
   dataType: 'text',
   success: function (response){
     // console.log(response)
-    $(`#product-g`).html(response)   
+    $(`#nav`).html(response)   
   },
   error: function( error){
     console.log(error.message)
@@ -151,3 +152,6 @@ function quickviewProduct(id){
 
 }
   
+setTimeout(function () {
+  $("#dislike").hide();
+}, 10000);

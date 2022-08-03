@@ -25,7 +25,7 @@ class wishlist extends Model
 
     public function productList($user_id){
         $data = DB::table('wishlist')
-        ->selectRaw('wishlist.id as id,product_name, product_price, product_price_sale, product_image, product_image, product_id')
+        ->selectRaw('wishlist.wishlist_id as id,product_name, product_price, product_price_sale, product_image, product_image, product_id')
         ->join('product','product.id','=','wishlist.product_id')
         ->where('user_id','=',$user_id)
         ->get();
@@ -37,6 +37,7 @@ class wishlist extends Model
         $data = DB::table('wishlist')
         ->select('*')
         ->where('product_id','=',$product_id)
+        ->orWhere('wishlist_id','=',$product_id)
         ->first();
     
         return $data;

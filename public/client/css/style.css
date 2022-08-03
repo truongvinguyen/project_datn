@@ -80,7 +80,7 @@ body {
 	background: #fff;
 	color: #333;
 	font-family: "Roboto Condensed", sans-serif;
-	font-size: 13px;
+	font-size: 16px;
 	font-weight: 400;
 	line-height: 20px;
 	text-align: left
@@ -306,6 +306,22 @@ input:focus {
 	position: initial;
 	border: none;
 }
+
+#dislike{
+	background-color: #1bbaaf;
+	
+	position: absolute;
+	bottom: 80px;
+	right: 20px;
+	border-radius: 10px;
+	z-index: 1;
+}
+
+#dislike h4{
+	color: white;
+	padding: 5px 10px;
+}
+
 .newsletter-popup .close {
 	cursor: pointer;
 	line-height: 27px;
@@ -6552,6 +6568,11 @@ a.button-back:hover {
 	margin-top: 15px;
 	display: inline-block;
 	overflow: hidden;
+}
+.policy h2,
+.policy h3,
+.policy h4{
+	font-weight: 700;	
 }
 .about-slid {
 	background-size: cover;
