@@ -359,9 +359,9 @@ Thanh toán
 
                             <label for="telephone_1" class="required">Diện thoại</label>
                             @if((Session::has('userFullname')))
-                            <input class="input form-control" type="text" name="customer_phone" id="telephone_1" value="{{Session::get('userPhone')}}">
+                            <input class="input form-control" type="number" name="customer_phone" id="telephone_1" value="{{Session::get('userPhone')}}">
                             @else
-                            <input class="input form-control" type="text" name="customer_phone" id="telephone_1" value="{{@old('customer_phone')}}">
+                            <input class="input form-control" type="number" name="customer_phone" id="telephone_1" value="{{@old('customer_phone')}}">
                             @endif
                             @error('customer_phone')
                             <span class="text-danger address">{{$message}}</span>
