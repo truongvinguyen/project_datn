@@ -267,7 +267,7 @@
     function deleteOrder(id){
         if(confirm("Bạn có chắc muốn xóa đơn hàng")){
             $.ajax({
-                    url: `/delete-order/${id}`,
+                    url: `/delete-order-complete/${id}`,
                     type: 'GET',
                 }).done(function (response) {
                     alertify.message('Xóa thành công đơn hàng', 'custom', 2,

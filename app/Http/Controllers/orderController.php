@@ -61,6 +61,7 @@ class orderController extends Controller
    public function confirmOrder($id){
     order::find($id)->update([
         'status'=>2,
+        'updated_at'=>now()
       ]);
       $order=DB::table('order')
       ->select('*')
@@ -82,6 +83,7 @@ class orderController extends Controller
    public function finalcheckOrder($id){
     order::find($id)->update([
       'status'=>3,
+      'updated_at'=>now()
     ]);
     $order=DB::table('order')
     ->select('*')

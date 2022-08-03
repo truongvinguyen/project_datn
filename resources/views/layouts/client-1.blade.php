@@ -108,8 +108,9 @@
                                                             </span>
                                                      </div>
                                                         <ul>
-                                                            <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
+                                                            <li id=""><a href="{{route('profile')}}">Xem hồ sơ</a></li>
                                                             <li ><a href="/wishlist">Sản phẩm yêu thích</a></li>
+                                                            <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
                                                         </ul>
                                                     </div>
                                                     {{-- <div class="block block-currency">
@@ -174,19 +175,19 @@
                             </div>
                             @endif
                             <!-- End shopping cart trigger -->
-                            @if (Session::has('userId'))
-                                @if (Session::get('userImage') == "")
-                                    <a href="#" class="top-my-account" style="padding: 0">
-                                        <img src="/upload/client/user/anoymous.png" alt="">
+                            {{-- @if (Session::has('userId'))
+                                @if (Session::get('userImage') == "") --}}
+                                    <a href="{{ route('profile') }}" class="top-my-account" style="padding: 0">
+                                        <img src="/client/images/avatar.png" alt="">
                                     </a>
-                                @else
+                                {{-- @else
                                     <a href="#" class="top-my-account" style="padding: 0">
                                         <img src="/upload/client/user/'.Session::get('userImage')" alt="">
                                     </a>
-                                @endif
-                            @else
+                                @endif --}}
+                            {{-- @else
                             <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a>
-                            @endif
+                            @endif --}}
                             <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
                         </div>
                     </div>
@@ -437,6 +438,7 @@
         </ul>
     </div>
 
+  
     <!-- jquery js -->
     <script data-cfasync="false" src="{{asset('client/js/email-decode.min.js')}}"></script>
     <script src="{{asset('client/js/jquery.min.js')}}"></script>
@@ -460,7 +462,36 @@
     <script src="{{ asset('/client/js/home-page.js') }}"></script>
     <script src="{{ asset('/client/js/product-list.js') }}"></script>
     <script src="{{ asset('/client/js/article.js') }}"></script>
-    
+     <!-- Messenger Plugin chat Code -->
+   {{-- <div id="fb-root"></div>
+
+   <!-- Your Plugin chat code -->
+   <div id="fb-customer-chat" class="fb-customerchat">
+   </div>
+
+   <script>
+     var chatbox = document.getElementById('fb-customer-chat');
+     chatbox.setAttribute("page_id", "100366882781685");
+     chatbox.setAttribute("attribution", "biz_inbox");
+   </script>
+
+   <!-- Your SDK code -->
+   <script>
+     window.fbAsyncInit = function() {
+       FB.init({
+         xfbml            : true,
+         version          : 'v14.0'
+       });
+     };
+
+     (function(d, s, id) {
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) return;
+       js = d.createElement(s); js.id = id;
+       js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+   </script> --}}
     <script type='text/javascript'>
         jQuery(document).ready(function () {
             jQuery('#rev_slider_6').show().revolution({
