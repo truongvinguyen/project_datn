@@ -4,24 +4,24 @@ Thêm sản phẩm mới
 @endsection
 
 @section('content')
+
 <div class="page-header">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Thêm danh mục </h4>
+                <h4><strong>Quản lý danh mục</strong></h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('brands.create') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('categories.create') }}">Thêm danh mục
-                            mới</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('categories.index') }}">Danh mục</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Chỉnh sửa</span></li>
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-        </div>
     </div>
 </div>
+
 <div class="pd-20 card-box mb-30">
     <form action="{{route('categories.update', ['id' => $categories->id])}}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -49,7 +49,7 @@ Thêm sản phẩm mới
                 <div class="form-group row">
                     <label class="col-sm-12 col-md-12 col-form-label">Mô tả</label>
                     <div class="col-sm-12 col-md-12">
-                        <div class="html-editor pd-20 card-box mb-30">
+                        <div class="html-editor card-box">
                             <textarea name="category_description" class="textarea_editor form-control border-radius-0" placeholder="nhập mô tả ...">{{ $categories->category_description}}</textarea>
                         </div>
                     </div>
@@ -73,15 +73,15 @@ Thêm sản phẩm mới
                 </div>
                 <hr>
                 <div class="form-group row">
+                    <label class="col-sm-6 col-md-12 col-form-label">Hình ảnh cũ</label>
+                    <div class="col-sm-12 col-md-12">
+                        <img src="/upload/category/{{$category->category_image}}" alt="" width="100%" height="50px" object-fix: cover>
+                    </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-12 col-form-label">Chọn hình ảnh sản phẩm <span class="text-danger">*</span></label>
-                    <div class="custom-file col-md-12">
-                        <input type="file" class="custom-file-input" name="category_image">
-                        <label class="custom-file-label">Choose file</label>
-                        <div class="row imageedit">
-                            <img src="/upload/category/{{$categories->category_image}}" alt="" width="100%" height="300px" object-fix: cover>
-                        </div>
+                    <label class="col-sm-6 col-md-12 col-form-label">Hình ảnh mới</label>
+                    <div class="col-sm-12 col-md-12">
+                        <input type="file" class="form-control" name="category_image">
                     </div>
                 </div>
                 <input type="hidden" value="{{ Auth::user()->id }}" name="employee_id">

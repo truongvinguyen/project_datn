@@ -92,20 +92,19 @@
                 <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
                 <p class="availability in-stock pull-right">Availability: <span>In Stock</span></p>
               </div>
-              <div class="short-description">
+              {{-- <div class="short-description">
                 <h4>Quick Overview</h4>
                 <p>{!!$data->product_content!!}</p>
-              </div>
+              </div> --}}
 
               <div class="product-color-size-area">
                 <div class="size-area">
-                  <h2 class="saider-bar-title">Kích thước</h2>
+                  <h2 class="saider-bar-title">Kích thước <span><button data-toggle="modal" data-target="#modal-size" style="border: 1px solid red;color:red;padding:5px;" >gợi ý</button></span></h2>
                   <div class="size">
                     <ul>
-                     
                       @foreach($size as $item3)
-					  <li ><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
-					  @endforeach
+                      <li ><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
+                      @endforeach
                     </ul>
                   </div>
                 </div>
@@ -123,8 +122,8 @@
                   <div class="cart-plus-minus">
                     <label for="qty">Số lượng:</label>
                     <div class="numbers-row">
-                      <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) ) result.value--;return false;" class="dec qtybutton"><i class="fa fa-minus">&nbsp;</i></div>
-                      <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="quantity">
+                      <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) result.value--;return false;" class="dec qtybutton"><i class="fa fa-minus">&nbsp;</i></div>
+                      <input type="number" class="qty" title="Qty" min="1" max="200" value="1" id="quantity">
                       <input type="hidden" id="image" value="{{$data->product_image}}">
                       <input type="hidden" id="name" value="{{$data->product_name}}">
                       <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="inc qtybutton"><i class="fa fa-plus">&nbsp;</i></div>
@@ -155,8 +154,8 @@
               <div class="col-xs-12">
                 <div class="product-tab-inner">
                   <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
-                    <li class="active"> <a href="#description" data-toggle="tab"> Description </a> </li>
-                    <li> <a href="#reviews" data-toggle="tab">Reviews</a> </li>
+                    <li class="active"> <a href="#description" data-toggle="tab"> Mô tả chi tiết </a> </li>
+                    <li> <a href="#reviews" data-toggle="tab">Đánh giá</a> </li>
                     <li><a href="#product_tags" data-toggle="tab">Tags</a></li>
                     <li> <a href="#custom_tabs" data-toggle="tab">Custom Tab</a> </li>
                   </ul>
@@ -171,29 +170,31 @@
                       <div class="col-sm-12 col-lg-12 col-md-12">
                         <div class="reviews-content-right">
                           <h2>Đánh giá sản phẩm</h2>
-                          <form action="{{route('review')}}" method="post">
+                          <form action="" method="post">
                             <div class="table-responsive reviews-table">
                                 <div class="start" style="display: inline-flex; flex-direction: row-reverse;">
-                                    <input class="star star-1" id="star-1" type="radio" name="star"/>
-                                    <label class="star star-1" for="star-1"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star"/>
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star"/>
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star"/>
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-5" id="star-5" type="radio" name="star"/>
-                                    <label class="star star-5" for="star-5"></label>
+                                    <input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
+                                    <label class="star star-5 label-start" for="star-5"></label>
+                                    <input class="star star-4" id="star-4" value="4" type="radio" name="star"/>
+                                    <label class="star star-4 label-start" for="star-4"></label>
+                                    <input class="star star-3" id="star-3" value="3" type="radio" name="star"/>
+                                    <label class="star star-3 label-start" for="star-3"></label>
+                                    <input class="star star-2" id="star-2" value="2" type="radio" name="star"/>
+                                    <label class="star star-2 label-start" for="star-2"></label>
+                                    <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
+                                    <label class="star star-1 label-start" for="star-1"></label>
                                 </div>
+                                <p id="starErr" class="text-danger"></p>
                             </div>
-                            <input type="hidden" value="{{$data->id}}">
+                            <input id="idProduct" type="hidden" value="{{$data->id}}">
                             <div class="form-area">
                               <div class="form-element">
                                 <label>Bình luận</label>
-                                <textarea style="resize:none;"></textarea>
+                                <textarea name="cmt" id="cmt" style="resize:none; width: 100%;"></textarea>
+                                <p id="cmtErr" class="text-danger"></p>
                               </div>
                               <div class="">
-                                <button class="button submit" title="Submit Review" type="submit"><span><i class="fa fa-thumbs-up"></i> &nbsp;Review</span></button>
+                                <button id="btn-rating" class="button submit" title="Submit Review" type="button"><span><i class="fa fa-thumbs-up"></i> &nbsp;Thêm</span></button>
                               </div>
                             </div>
                             @csrf
@@ -221,16 +222,35 @@
                     </div>
                     <div class="tab-pane fade" id="custom_tabs">
                       <div class="product-tabs-content-inner clearfix">
-                        <p><strong>Lorem Ipsum</strong><span>&nbsp;is
-                          simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                          has been the industry's standard dummy text ever since the 1500s, when 
-                          an unknown printer took a galley of type and scrambled it to make a type
-                          specimen book. It has survived not only five centuries, but also the 
-                          leap into electronic typesetting, remaining essentially unchanged. It 
-                          was popularised in the 1960s with the release of Letraset sheets 
-                          containing Lorem Ipsum passages, and more recently with desktop 
-                          publishing software like Aldus PageMaker including versions of Lorem 
-                          Ipsum.</span></p>
+                        <div class="rating">
+                            <div class="top" style="display: flex;">
+                                <div class="top-left" style="width: 75px; height: 75px; border-radius: 50%; border: 1px solid gray;">
+                                    <a href="">
+                                        <img style="width: 100%; border-radius: 50%;" src="{{asset('public/upload/client/user/'.Session::get('userImage'))}}" alt="avatar">
+                                    </a>
+                                </div>
+                                <div class="top-right">
+                                    @if (Session::has('userEmail'))
+                                    <p clas="" style="font-size: 16px;">{{Session::get('userEmail')}}</p>
+                                    @endif
+                                    <div class="table-responsive reviews-table">
+                                        <div class="start" style="display: inline-flex; flex-direction: row-reverse;">
+                                            <input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
+                                            <label class="star star-5 label-start" for="star-5"></label>
+                                            <input class="star star-4" id="star-4" value="4" type="radio" name="star"/>
+                                            <label class="star star-4 label-start" for="star-4"></label>
+                                            <input class="star star-3" id="star-3" value="3" type="radio" name="star"/>
+                                            <label class="star star-3 label-start" for="star-3"></label>
+                                            <input class="star star-2" id="star-2" value="2" type="radio" name="star"/>
+                                            <label class="star star-2 label-start" for="star-2"></label>
+                                            <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
+                                            <label class="star star-1 label-start" for="star-1"></label>
+                                        </div>
+                                        <p id="starErr" class="text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -265,10 +285,17 @@
                                             </div>
                                             @endif
                                             <div class="box-hover">
-                                                <div class="btn-quickview"> <a href="#" data-toggle="modal"
+                                                <div class="btn-quickview"> <a href="#" onclick="quickviewProduct({{$product->id}})" data-toggle="modal"
                                                         data-target="#modal-quickview"><i class="fa fa-search-plus"
                                                             aria-hidden="true"></i> Xem nhanh</a> </div>
+<<<<<<< HEAD
                                                 
+=======
+                                                <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
+                                                        class="action add-to-wishlist" title="Add to Wishlist"></a> <a
+                                                        href="compare.html" class="action add-to-compare"
+                                                        title="Add to Compare"></a> </div>
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
                                             </div>
                                             <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img
                                                     class="product-image-photo" src="/upload/product/{{$product->product_image}}" alt=""></a>
@@ -282,6 +309,7 @@
                                                     <div class="item-content">
                                                        
                                                         <div class="item-price">
+<<<<<<< HEAD
                                                           <div class="price-box">
                                                             @if($product->product_price_sale != null)
                                                                 <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}₫</span></p>
@@ -290,10 +318,17 @@
                                                                 <p class="special-price"> <span class="price-label">Giá thường:</span> <span class="regular-price">{{number_format($product->product_price)}}₫</span></p>
                                                             @endif
                                                           </div>
+=======
+                                                            <div class="price-box"> 
+                                                                <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}đ</span></p> 
+                                                                <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">{{number_format($product->product_price)}}₫</span> </p>
+                                                            </div>
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+<<<<<<< HEAD
                                             <div class="box-hover">
                                                 <div class="product-item-actions">
                                                     <div class="pro-actions">
@@ -304,6 +339,9 @@
 
                                                 </div>
                                             </div>
+=======
+                                            
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
                                         </div>
                                     </div>
                                 </div>
@@ -355,4 +393,115 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+<!-- our clients Slider -->
+<!-- our clients Slider -->
+
+<div class="container">
+    <div class="slider-items-products">
+        <div id="our-clients-slider" class="product-flexslider hidden-buttons">
+          <div class="slider-items slider-width-col6"> 
+            
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand1.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand2.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand3.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand4.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand5.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand6.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            <!-- Item -->
+            <div class="item"> <a href="#"><img src="client/images/brand7.png" alt="Image" class="grayscale"></a> </div>
+            <!-- End Item --> 
+            
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal-size" class="modal fade in" role="dialog" style="">
+  <div class="modal-dialog">
+    <div class="modal-body">
+      <button type="button" class="close myclose" data-dismiss="modal">×</button>
+      <img src="/client/images/tvcs_1d3d68691e3742eca9c9672b6b58e449_2048x2048.jpg" alt="">
+    </div>
+    <div class="modal-footer"> <a href="#" class="btn-services-shop-now" data-dismiss="modal">Close</a> </div>
+  </div>
+</div>
+@endsection
+
+@section('js')
+   <script>
+        var btnRating = document.querySelector("#btn-rating");
+        btnRating.addEventListener("click", function(e) {
+            e.preventDefault();
+            var star = $('input[name="star"]:checked').val();
+            var cmt = $("#cmt").val();
+            var starErr = $("#starErr");
+            var cmtErr = $("#cmtErr");
+            let isOk = false;
+            if(typeof(star) == "undefined" || star <=0 || star > 5){
+                starErr.text("Vui lòng kiểm tra số sao đánh giá.");
+                isOk = false;
+            }else{
+                starErr.text("");
+                isOk = true;
+            }
+            if(cmt.length < 3 || cmt.length > 1024){
+                cmtErr.text("Vui lòng kiểm tra nội dung đánh giá. Tối thiểu 3 ký tự, tối đa 1024 ký tự.");
+                isOk = false;
+            }else{
+                cmtErr.text("");
+                isOk = true;
+            }
+            console.log(isOk);
+            if (isOk){
+                let idProduct = $("#idProduct").val();
+                $.ajax({
+                    url: "{{route('rating')}}",
+                    type: "POST",
+                    dataType: "json",
+                    data:{
+                        rating : star,
+                        content: cmt,
+                        idProduct: idProduct,
+                        _token: $("input[name='_token']").val()
+                    },
+                    success: function (resp) {
+                       let code = resp['code'];
+                       switch (code) {
+                        case 0:
+                            console.log(resp);
+                            break;
+                        case 1:
+                            alert(resp['msg']);
+                            break;
+                        case 2:
+                            alert(resp['msg']);
+                            break;
+                        default:
+                        console.log(resp);
+                       }
+                    },
+                });
+            }
+            console.log(star, cmt);
+        });
+   </script>
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
 @endsection

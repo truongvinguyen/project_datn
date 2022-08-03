@@ -61,7 +61,7 @@ Giỏ hàng của bạn
                                             <td class="price"><span>{{number_format($item['productInfo']->price)}}
                                                 </span></td>
                                             <td class="qty">
-                                                <input data-id="{{$item['productInfo']->id}}" id="quanty-item-{{$item['productInfo']->id}}" class="form-control input-sm" type="text" value="{{$item['quanty']}}"></td>
+                                                <input data-id="{{$item['productInfo']->id}}" id="quanty-item-{{$item['productInfo']->id}}" class="form-control input-sm" type="number" min="1" value="{{$item['quanty']}}"></td>
                                             <td class="price">
                                                 <span>{{number_format($item['productInfo']->price*$item['quanty'])}}</span>
                                             </td>

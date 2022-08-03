@@ -20,11 +20,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon  -->
-    <link rel="shortcut icon" type="client/image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="x-icon" href="/client/images/favicon.ico">
 
     <!-- CSS Style -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" /> -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 
 <body class="cms-index-index cms-home-page">
@@ -32,6 +39,15 @@
     <div id="toast">
         
     </div>
+    @if(Session::has('success'))
+    <script>
+        alertify.message('{{Session::get('success')}}', 'custom', 2,
+            function() {
+                console.log('dismissed');
+            });
+        alertify.set('notifier', 'position', 'bottom-right');
+    </script>
+    @endif
 
     <div id="page">
 
@@ -77,7 +93,20 @@
                                             <div class="language-currency-wrapper pull-right">
                                                 <div class="inner-cl">
                                                     <div class="block block-language form-language">
-                                                        <div class="lg-cur"> <span> <span class="lg-fr"><img class="img_user" src="/upload/user/{{Session::get('userImage')}}" alt="">{{Session::get('userFullname')}}</span> <i class="fa fa-angle-down"></i> </span> </div>
+                                                        <div class="lg-cur">
+                                                             <span> 
+                                                                <span class="lg-fr">
+                                                                    <i class="fa fa-angle-down"></i> {{Session::get('userFullname')}}
+                                                                    @if(Session::get('userImage')==null)
+                                                                   <img class="img_user" src="https://ui-avatars.com/api/?name={{Session::get('userFullname')}}" alt="">
+                                                                   @else
+                                                                   <img class="img_user" src="/upload/user/{{Session::get('userImage')}}" alt="">
+                                                                   @endif
+                                                                   
+                                                                </span> 
+                                                               
+                                                            </span>
+                                                     </div>
                                                         <ul>
                                                             <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
                                                             <li ><a href="/wishlist">Sản phẩm yêu thích</a></li>
@@ -145,8 +174,25 @@
                             </div>
                             @endif
                             <!-- End shopping cart trigger -->
+<<<<<<< HEAD
                             <a href="/ho-so" class="top-my-account"><i class="fa fa-user"></i></a> 
                             <!-- <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a> -->
+=======
+                            @if (Session::has('userId'))
+                                @if (Session::get('userImage') == "")
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="/upload/client/user/anoymous.png" alt="">
+                                    </a>
+                                @else
+                                    <a href="#" class="top-my-account" style="padding: 0">
+                                        <img src="/upload/client/user/'.Session::get('userImage')" alt="">
+                                    </a>
+                                @endif
+                            @else
+                            <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a>
+                            @endif
+                            <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
                         </div>
                     </div>
                 </div>

@@ -23,6 +23,7 @@ class ArticleController extends Controller
         $this->category = $category;
         $this->product = $product;
         $this->brand = $brand;
+        $this->middleware('auth');
     }
 
     public function index()
@@ -42,6 +43,18 @@ class ArticleController extends Controller
     //
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'article_title' => 'required',
+            'employee_id' => 'required',
+            'article_thumbnail' => 'required',
+            'article_content' => 'required'
+        ], [
+            'article_title.required' => 'Tiêu đề bài viết không được để trống',
+            'employee_id.required' => '',
+            'article_thumbnail.required' => 'Hình ảnh bài viết không được để trống',
+            'article_content.required' => 'Nội dung bài viết không được để trống',
+        ]);
+
         if ($request->has('article_thumbnail')) {
             $article_thumbnail = $request->article_thumbnail;
             $file_name = $article_thumbnail->getClientOriginalName();
@@ -52,15 +65,14 @@ class ArticleController extends Controller
         } else {
             $request->article_slug = Str::slug($request->article_slug);
         }
-        
+
         article::create([
-            'category_id' => $request->category_id,
             'article_title' => $request->article_title,
             'employee_id' => $request->employee_id,
             'article_slug' => $request->article_slug,
             'article_thumbnail' => $file_name,
             'article_content' => $request->article_content,
-            'created_at' => now(), 
+            'created_at' => now(),
             'updated_at' => now()
         ]);
 
@@ -69,20 +81,33 @@ class ArticleController extends Controller
     //
     public function edit($id)
     {
-        $articles=article::find($id);
+        $articles = article::find($id);
         $article = article::all();
         return (view('admin.article.edit', compact('article', 'articles')));
     }
     //
-    public function update(Request $request, $id){
-        $articles=article::find($id);
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'article_title' => 'required',
+            'employee_id' => 'required',
+            'article_thumbnail' => 'required',
+            'article_content' => 'required'
+        ], [
+            'article_title.required' => 'Tiêu đề bài viết không được để trống',
+            'employee_id.required' => '',
+            'article_thumbnail.required' => 'Hình ảnh bài viết không được để trống',
+            'article_content.required' => 'Nội dung bài viết không được để trống',
+        ]);
+
+        $articles = article::find($id);
         $file_name = $articles->article_thumbnail;
         if ($request->has('article_thumbnail')) {
             $article_thumbnail = $request->article_thumbnail;
             $file_name = $article_thumbnail->getClientOriginalName();
             $article_thumbnail->move(base_path('public/upload/article'), $file_name);
         }
-    
+
         if (($request->article_slug == '') || ($request->article_title != $articles->article_title)) {
             $request->article_slug = Str::slug($request->article_title);
         } else {
@@ -94,13 +119,14 @@ class ArticleController extends Controller
             'article_slug' => $request->article_slug,
             'article_thumbnail' => $file_name,
             'article_content' => $request->article_content,
-            'created_at' => now(), 
-            'updated_at' => now()         
-         ]);
-         return redirect()->route('articles.index')->withSuccess('Cập nhật bài viết thành công');
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        return redirect()->route('articles.index')->withSuccess('Cập nhật bài viết thành công');
     }
-    public function delete($id){
-        $delete=article::find($id);
+    public function delete($id)
+    {
+        $delete = article::find($id);
         $delete->delete();
         return redirect()->route('articles.index')->withSuccess('Xóa thành công');
     }

@@ -4,107 +4,6 @@ Thương hiệu
 @endsection
 @section('content')
 
-
-
-<style>
-    /* From uiverse.io by @mrhyddenn */
-    .icon-btn {
-        width: 50px;
-        height: 50px;
-        border: 1px solid #cdcdcd;
-        background: white;
-        border-radius: 25px;
-        overflow: hidden;
-        position: relative;
-        transition: width 0.2s ease-in-out;
-        font-weight: 500;
-        font-family: inherit;
-    }
-
-    .add-btn:hover {
-        width: 120px;
-    }
-
-    .add-btn::before,
-    .add-btn::after {
-        transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-        content: "";
-        position: absolute;
-        height: 4px;
-        width: 10px;
-        top: calc(50% - 2px);
-        background: seagreen;
-    }
-
-    .add-btn::after {
-        right: 14px;
-        overflow: hidden;
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-    }
-
-    .add-btn::before {
-        left: 14px;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-    }
-
-    .icon-btn:focus {
-        outline: none;
-    }
-
-    .btn-txt {
-        opacity: 0;
-        transition: opacity 0.2s;
-    }
-
-    .add-btn:hover::before,
-    .add-btn:hover::after {
-        width: 4px;
-        border-radius: 2px;
-    }
-
-    .add-btn:hover .btn-txt {
-        opacity: 1;
-    }
-
-    .add-icon::after,
-    .add-icon::before {
-        transition: all 0.2s ease-in-out;
-        content: "";
-        position: absolute;
-        height: 20px;
-        width: 2px;
-        top: calc(50% - 10px);
-        background: seagreen;
-        overflow: hidden;
-    }
-
-    .add-icon::before {
-        left: 22px;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-    }
-
-    .add-icon::after {
-        right: 22px;
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-    }
-
-    .add-btn:hover .add-icon::before {
-        left: 15px;
-        height: 4px;
-        top: calc(50% - 2px);
-    }
-
-    .add-btn:hover .add-icon::after {
-        right: 15px;
-
-        height: 4px;
-        top: calc(50% - 2px);
-    }
-</style>
 @if(Session::has('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>{{Session::get('success')}}</strong>
@@ -118,60 +17,55 @@ Thương hiệu
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="title">
-                <h4>Quản lý thương hiệu
-                    <a href="{{route('brands.create')}}">
-                        <button type="button" class="btn btn-xl btn-outline-primary"><i class="icon-copy fi-plus"></i>Thêm</button>
-
-                    </a>
-                </h4>
+                <h4><strong>Quản lý thương hiệu</strong></h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('brands.index')}}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('brands.create')}}">Quản lý thương hiệu</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li class="breadcrumb-item active text-muted" aria-current="page"><span>Thương hiệu</span></li>
                 </ol>
             </nav>
-        </div>
-        <div class="col-md-6 col-sm-12 text-right">
-
         </div>
     </div>
 </div>
 
 <div id="data-list-table" class="card-box mb-30">
-    <div class="pd-20">
-        <h4 class="" style="font-size:20px ;">Tất cả sản phẩm</h4>
+    <div class="pd-20 pb-0 d-none">
+        <h5 id="table-title" class=""><strong>Danh sách thương hiệu</strong></h5>
     </div>
     <div class="pd-20">
         <table class="table table-bordered table-small hover nowrap w-100" id="data-table-export-2" data-create-route="{{ route('brands.create') }}" data-order="[]">
             <thead>
-                <tr>
-                    <th>Id</th>
+                <tr class="thead-light">
                     <th>Tên danh mục</th>
                     <th>Hình ảnh</th>
                     <!-- <th>Trạng thái</th> -->
-                    <th>Mô tả</th>
+                    <th scope="col">Người thêm</th>
                     <th>Ngày thêm</th>
                     <th>Cập nhật lần cuối</th>
-                    <th>Action</th>
+                    <th class="datatable-nosort" style="width: 12.5%;">Tuỳ chọn</th>
                 </tr>
             </thead>
-            <tbody>
-
+            <tbody id="data-table-tbody">
                 @foreach($brands as $brand)
                 <tr>
-                    <th scope="row">{{$brand->id}}</th>
                     <td>{{$brand->brand_name}}</td>
                     <td class="table-plus">
                         <img src="{{ _IMAGE::BRAND . $brand->brand_image }}" width="45px" height="45px" alt="">
                     </td>
-
-                    <td>{{$brand->brand_description}}</td>
-                    <td>{{$brand->created_at != null ? $brand->created_at : '...'}}</td>
-                    <td>{{$brand->updated_at != null ? $brand->updated_at : '...'}}</td>
-                    <td>
-                        <a href="{{ route('brands.edit', ['id' => $brand->id]) }}" class="btn btn-default">Edit</a>
-                        <a href="{{ route('brands.delete', ['id' => $brand->id]) }}" class="btn btn-danger action_delete">Delete</a>
+                    <td>{{ $brand->brandCreator->name ?? '' }}</td>
+                    <td>{{ $brand->created_at ?? '' }}</td>
+                    <td>{{ $brand->updated_at ?? '' }}</td>
+                    <td style="width: 12.5%;">
+                        {{-- <a href="#" data-target="#exampleModalCenter" class="droupdow-item btn btn-dark" data-toggle="modal">
+                            <span class="dw dw-eye"></span>
+                        </a> --}}
+                        <a href="{{ route('brands.edit', ['id' => $brand->id]) }}" class="btn btn-dark">
+                            <span class="dw dw-edit2"></span>
+                        </a>
+                        <a href="{{ route('brands.delete', ['id' => $brand->id]) }}" class="btn btn-danger">
+                            <span class="dw dw-delete-3"></span>
+                        </a>
                     </td>
                 </tr>
                 @endforeach
@@ -180,4 +74,76 @@ Thương hiệu
         </table>
     </div>
 </div>
+
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chi tiết thương hiệu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless table-small">
+                    <tbody>
+                        <tr>
+                            <td rowspan="11" style="width: 50%" class="pl-20"><img src="/upload/category/2.jpg" alt="hình ảnh danh mục" class="w-100"></td>
+                        </tr>
+                        <tr>
+                            <td scope="row" style="width: 25%"><strong>Tên danh mục</strong></td>
+                            <td style="width: 25%">abc</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"><strong>Tên nhân viên</strong></td>
+                            <td>abc</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"><strong>Danh mục cha</strong></td>
+                            <td>adc</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"><strong>Slug</strong></td>
+                            <td>adc</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"><strong>Hình ảnh</strong></td>
+                            <td>adc</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"><strong>Tên danh mục cha</strong></td>
+                            <td>abc</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"><strong>Mô tả</strong></td>
+                            <td>abc</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"><strong>Trạng thái</strong></td>
+                            <td>abc</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"><strong>Ngày thêm</strong></td>
+                            <td>abc</td>
+                        </tr>
+                        <tr>
+                            <td scope="row"><strong>Ngày cập nhật</strong></td>
+                            <td>abc</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-dark" data-dismiss="modal">
+                    <i class="dw dw-edit2"></i>&ensp;Chỉnh sửa
+                </a>
+                <button type="button" class="btn btn-danger">
+                    <i class="dw dw-delete-3"></i>&ensp;Xóa
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection

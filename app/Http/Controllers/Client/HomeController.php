@@ -5,10 +5,15 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client\UserClient;
-use Mail;
+use Illuminate\Support\Str;
+// use Mail;
+use DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Session;
+use Laravel\Ui\Presets\React;
+use phpDocumentor\Reflection\DocBlock\Tags\See;
 
 class HomeController extends Controller
 {
@@ -19,7 +24,29 @@ class HomeController extends Controller
 
     public function profile()
     {
-        return view('client.account.profile');
+        if (Session::has('userId')) {
+            $users=DB::table('customer_user')
+            ->select('*')
+            ->where('id',Session::get('userId'))
+            ->first();
+            $order=DB::table('order')
+            ->select('*')
+            ->where('customer_id',Session::get('userId'))
+            ->orderby('id','desc')
+            ->get();
+            // if($order){
+            $order_detail=DB::table('product_inventory')
+            ->join('=order_detail','=order_detail.product_id','=','product_inventory.id')
+            ->join('product','product.id','=','product_inventory.product_id')
+            ->select('product_inventory.*','=order_detail.product_name','=order_detail.quantity','=order_detail.order_id','product.product_image')
+            ->get();
+            // }
+            return view('client.account.profile',compact('users','order','order_detail'));
+        }
+        else{
+            return redirect()->route('getLogin');
+        }
+
     }
 
     public function getRegister()
@@ -40,7 +67,7 @@ class HomeController extends Controller
             "email" => "required|min:10|max:255|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix",
             "password" => "min:8|max:255|required",
             "cf_password" => "required|min:8|max:255|same:password",
-            "file" => "required|mimes:jpeg,png,jpg|max:1024"
+            "file" => "mimes:jpeg,png,jpg|max:1024"
         ];
         $messages = [
             "fullname.required" => ":attribute là bắt buộc.",
@@ -72,7 +99,6 @@ class HomeController extends Controller
             "code.size" => ":attribute không hợp lệ.",
             "code.regex" => ":attribute không hợp lệ.",
             // "code" => "Mã Code",
-            "file.required" => "::attribute là bắt buộc.",
             // "file.image" => "::attribute phải là ảnh.",
             "file.mimes" => "::attribute phải là png, jpeg, jpg.",
             "file.max" => "::attribute tối đa 1MB."
@@ -86,6 +112,12 @@ class HomeController extends Controller
             "cf_password" => "Xác thực mật khẩu",
             "file" => "Ảnh đại diện"
         ];
+        // $request->file('file')->move(base_path('public/upload/user'), $image);
+        if($request->has('file')){
+            $image_user = $request->file;
+            $file_name = $image_user->getClientOriginalName();
+            $image_user->move(base_path('public/upload/user'),$file_name);
+        }
         $request->validate($rules, $messages, $attributes);
         // dd($request->email);
         $email = $request->email;
@@ -93,7 +125,19 @@ class HomeController extends Controller
         $fullname = $request->fullname;
         $address = $request->address;
         $phone = $request->phone;
-        $image = $request->file('file')->getClientOriginalName();
+
+        // $image = $request->file('file')->getClientOriginalName();
+        // $fileExplode = explode('.', $image);
+        // $fileExplode[0] = Str::random(50);
+        // $image = implode('.', $fileExplode);
+        if($request->has('file'))
+        {
+        $image = $file_name;
+        }
+        else
+        {
+        $image = ""; 
+        }
         $emailDB = UserClient::checkIssetEmail($email);
         // $emailDB = true;
         if (!$emailDB) {
@@ -113,8 +157,7 @@ class HomeController extends Controller
                     $mail->from($request->email);
                     $mail->subject('Mã kích hoạt tài khoản.');
                 });
-                $request->file('file')->move(base_path('public/upload/user'), $image);
-                // dd($image);
+              
                 session()->flash('msg', 'Đăng ký thành công. Nhập mã code được gửi vào tài khoản để kích hoạt.');
                 session()->flash('emailActive', $email);
                 // return redirect('/kich-hoat')->with(['email', $email]);
@@ -398,19 +441,76 @@ class HomeController extends Controller
         }
     }
 
-    public function getLogout()
-    {
+    public function getLogout(Request $request){
+        // dd($request->header('referer'));
+        $prePath = $request->header('referer');
         Session::forget('userId');
         Session::forget('userEmail');
         Session::forget('userFullname');
         Session::forget('userPhone');
         Session::forget('userAddress');
-        return redirect()->route('home_client');
+        return redirect($prePath);
     }
 
-    public function postReview(Request $request)
-    {
-        $user = Auth::user();
-        dd($user);
+
+    public function postReview(Request $request){
+        if(!Session::has('userId')){
+            return response()->json([
+                'code' => 1,
+                'msg' => "Bạn phải đăng nhập để bình luận."
+            ]);
+        }
+        $rules = [
+            "rating" => ['required', 'min:1', 'max:5'],
+            "content" => ['required', 'min:3', 'max:1024']
+        ];
+        $messages = [
+            "rating.required" =>"Vui lòng kiểm tra số sao :attribute.",
+            "rating.min" =>"Vui lòng kiểm tra số sao :attribute.",
+            "rating.max" =>"Vui lòng kiểm tra số sao :attribute.",
+            "content.required" =>"Vui lòng kiểm tra :attribute đánh giá.",
+            "content.min" =>"Vui lòng kiểm tra :attribute đánh giá. Tối thiểu 3 ký tự, tối đa 1024 ký tự.",
+            "content.max" => "Vui lòng kiểm tra :attribute đánh giá. Tối thiểu 3 ký tự, tối đa 1024 ký tự."
+        ];
+        $attributes = [
+            "rating" => "đánh giá.",
+            "content" => "nội dung"
+        ];
+
+        $validator = Validator::make($request->all(),$rules, $messages, $attributes);
+        if ($validator->fails()){
+            return response()->json(['err'=>$validator->errors()->all()], 400);
+        }
+        $userId = Session::get('userId');
+        $idPr = $request->idProduct;
+        $rating = $request->rating;
+        $content = $request->content;
+        $isRated = UserClient::checkRating($userId, $idPr);
+        if (!$isRated){
+            UserClient::addRating($userId, $idPr, $rating, $content);
+            return response()->json([
+                'code' => 0,
+                'msg' => "Đánh giá thành công."
+            ]);
+        }else{
+            return response()->json([
+                'code' => 2,
+                'msg' => "Bạn đã đánh giá sản phẩm này rồi ^.^"
+            ]);
+        }
     }
+
+
+    public function postRating(Request $request){
+        if(!Session::has('userId')){
+            return response()->json([
+                'code' => 1,
+                'msg' => "Bạn phải đăng nhập để bình luận."
+            ]);
+        }
+    }
+
+    // public function getRating(Request $request){
+    //     $idPr = $request->
+    // }
 }

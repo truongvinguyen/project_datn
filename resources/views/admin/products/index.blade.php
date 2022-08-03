@@ -3,7 +3,7 @@
 Sản phẩm
 @endsection
 @section('content')
-<!-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/modal.css')}}"> -->
+
 
 
 <style>
@@ -120,7 +120,7 @@ Sản phẩm
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="/product">quản lý sản phẩm</a></li>
                 </ol>
             </nav>
@@ -279,6 +279,5 @@ Sản phẩm
         </div>
     </div>
 </div>
-
 @endforeach
 @endsection

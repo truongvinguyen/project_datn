@@ -12,6 +12,7 @@ use App\Models\notification;
 use App\Models\order_detail;
 use App\Models\imageProduct;
 use Mail;
+use App\Models\inventory;
 
 class CheckoutController extends Controller
 {
@@ -88,7 +89,6 @@ class CheckoutController extends Controller
            $data['customer_id']=$request->customer_id;
            $data['created_at']=now();
            $data['updated_at']=now();
-
            $order_id =DB::table('order')->insertGetId($data);
 
            foreach(Session()->get('cart')->products as $item){
@@ -96,17 +96,22 @@ class CheckoutController extends Controller
                 'order_id'=>  $order_id,
                 'product_id'=>$item['productInfo']->id,
                 'quantity'=>$item['quanty'],
+                'product_name'=>$item['productInfo']->product_name,
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ]);
            }
+
+        //    inventory::find($item['productInfo']->id)->update([
+              
+        //    ]);
            notification::create([
             'notification_name'=>"Đơn hàng mới",
             'notification_content'=>$request->customer_name." vừa đặt 1 đơn hàng mới, bạn vui lòng xử lý đơn hàng này nhé",
             'notification_image'=>$notification_image,
             'notification_status'=>1,
             'order_id'=> $order_id
-        ]);
+           ]);
         if($request->customer_id<1){
             $order_table=DB::table('order')
             ->select('*')
@@ -117,6 +122,10 @@ class CheckoutController extends Controller
                 $mail->to($request->customer_email);
                 $mail->subject('Xác nhận đơn hàng.');
             });
+
+
+
+
         }else {
             $order_table=DB::table('order')
             ->select('*')
@@ -128,9 +137,11 @@ class CheckoutController extends Controller
                 $mail->subject('Đặt hàng thành công.');
             });
         }
+
         Session()->forget('cart'); 
+        return redirect()->route('home_client')->withSuccess('mua hàng thành công hãy kiểm tra email của bạn');
         }
-        else{
+        else {
         //thanh toán momo
 
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
@@ -169,7 +180,7 @@ class CheckoutController extends Controller
                 'signature' => $signature);
             $result = $this->execPostRequest($endpoint, json_encode($data));
             $jsonResult = json_decode($result, true);  // decode json
-            //thanh toán
+            //thanh toán chay
             $order['customer_name'] = $request->customer_name;
             $order['customer_phone'] = $request->customer_phone;
             $order['customer_email'] = $request->customer_email;
@@ -195,6 +206,7 @@ class CheckoutController extends Controller
                  'order_id'=>  $order_id,
                  'product_id'=>$item['productInfo']->id,
                  'quantity'=>$item['quanty'],
+                 'product_name'=>$item['productInfo']->product_name,
                  'created_at'=>now(),
                  'updated_at'=>now(),
              ]);
@@ -237,7 +249,7 @@ class CheckoutController extends Controller
 
         //
         }
-    echo "thanh toán thành công vui lòng kiểm tra mail của bạn";
+   
     }
     public function accept($id){
        

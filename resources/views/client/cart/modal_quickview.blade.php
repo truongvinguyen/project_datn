@@ -67,7 +67,7 @@
                     <div class="cart-plus-minus">
                         <label for="qty">Số lượng:</label>
                         <div class="numbers-row">
-                            <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;"
+                            <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) result.value--;return false;"
                                 class="dec qtybutton"><i class="fa fa-minus">&nbsp;</i></div>
                             <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="quantity" >
                             <div onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;"
