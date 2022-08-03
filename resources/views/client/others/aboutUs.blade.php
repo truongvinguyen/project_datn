@@ -53,9 +53,9 @@ Trang Về Chúng Tôi
               <div class="item">
                 <div class="team">
                   <div class="inner">
-                    <div class="avatar"><img src="client/images/team-img04.jpg" alt="" class="img-responsive" /></div>
-                    <h5>Tom Joana</h5>
-                    <p class="subtitle">Digital Creative Director</p>
+                    <div class="avatar"><img src="client/images/Vi.jpg" alt="" class="img-responsive" /></div>
+                    <h5>NGuyễn Trường Vi(Leader)</h5>
+                    <p class="subtitle">Back End</p>
                   </div>
                 </div>
               </div>
