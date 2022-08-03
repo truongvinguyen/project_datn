@@ -146,7 +146,6 @@ Route::get('ho-so', [HomeController::class, 'profile'])->name('profile');
 // đổ sản phẩm ra layout
 Route::prefix('')->group(function () {
     Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
-<<<<<<< HEAD
     Route::get('/product-grid/{id?}', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
     Route::get('/search', [App\Http\Controllers\showDataController::class, 'search'])->name('');
     Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('quickview');
@@ -154,15 +153,6 @@ Route::prefix('')->group(function () {
     Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
     Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
     Route::get('/fqas', [App\Http\Controllers\showDataController::class, 'FAQs'])->name('');
-=======
-    Route::get('/product-grid', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
-    Route::get('/product-list', [App\Http\Controllers\showDataController::class, 'product_list'])->name('');
-    Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('');
-
-    Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
-    Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
-
->>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
     Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
     Route::get('/return-policy', [App\Http\Controllers\showDataController::class, 'policy'])->name('');
 });
