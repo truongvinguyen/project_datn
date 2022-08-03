@@ -3,11 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\product;
-<<<<<<< HEAD
-use App\Models\category;
-=======
 use App\Http\Controllers\Api\v1\CategoryController;
->>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
 use App\Models\notification;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\articleController;
@@ -23,30 +19,6 @@ use App\Http\Controllers\Api\SearchController;
 |
 */
 
-<<<<<<< HEAD
-//danh mục
-Route::controller(CategoryController::class)->prefix('categories')->middleware('api')->name('api.categories.')->group(function () {
-    Route::get('home/{orderBy?}/{sort?}', 'getAllRecords')->name('index');
-    Route::get('p/{offset?}/{limit?}/{orderBy?}/{sort?}', 'getPageOfRecords')->name('paginate');
-    Route::post('s/{offset?}/{limit?}/{col?}', 'getSearchedRecords')->name('search');
-    Route::get('detail/{id}', 'getOneRecord')->name('detail');
-    Route::post('store', 'storeRecord')->name('store');
-    Route::put('update/{id}', 'updateRecord')->name('update');
-    Route::post('upload/image/{id}', 'uploadImage')->name('upload.image');
-    Route::put('delete/{id}', 'deleteRecord')->name('delete');
-    Route::put('restore/{id}', 'restoreRecord')->name('restore');
-    Route::delete('destroy/{id}', 'destroyRecord')->name('destroy');
-    Route::put('activate/{id}', 'activateRecord')->name('activate');
-    Route::put('disable/{id}', 'disableRecord')->name('disable');
-    Route::post('count/s/{col?}', 'countSearchedRecords')->name('count.search');
-    Route::get('parents/', 'getAllParentRecords')->name('parents');
-    Route::get('childrens/{id}', 'getChildrenRecords')->name('childrens');
-
-
-    Route::get('/', function () {
-        $nav = category::all();
-        return view('client.others.nav-product',compact('nav'));
-=======
 //  External API version 1
 Route::prefix('v1/e')->group(function () {
 
@@ -75,7 +47,6 @@ Route::prefix('v1/i')->group(function () {
         Route::delete('destroy/{id}', 'destroyRecord')->name('destroy');
         Route::put('activate/{id}', 'activateRecord')->name('activate');
         Route::put('disable/{id}', 'disableRecord')->name('disable');
->>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
     });
 });
 

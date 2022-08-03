@@ -69,18 +69,7 @@ class showDataController extends Controller
         return view('client.product.product-grid',compact('length','categories','brands','articles','productByCategory'));
     }
 
-<<<<<<< HEAD
     public function search(Request $request){
-=======
-    public function product_list(){
-
-        $data = new category();
-        $categories = $data::all();
-        return view('client.product-list',compact('categories'));
-    }
-
-    public function product_by_id($id){
->>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
         $data = new product();
         $article = new article();
 
