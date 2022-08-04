@@ -85,6 +85,10 @@ body {
 	line-height: 20px;
 	text-align: left
 }
+#nav-ul .active {
+	background-color: #CF3341;
+	color: white;
+}
 * {
 	margin: 0;
 	padding: 0
@@ -4994,7 +4998,6 @@ font-weight: bold;
 	width: 100%;
     height: auto;
     border: 1px #e5e5e5 solid;
-    border-radius: 110px;
 	
 }
 .product-view-area .product-img-box .product-image {

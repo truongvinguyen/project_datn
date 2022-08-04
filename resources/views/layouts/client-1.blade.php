@@ -348,7 +348,7 @@
         </footer>
         <a href="#" id="back-to-top" title="Back to top"><i class="fa fa-angle-up"></i></a>
         <div id="modal-quickview" class="modal fade" role="dialog">
-            <div class="modal-dialog" style="width: 1035px !important; border-radius: 10px; padding: 10px;height: 550px;">
+            <div class="modal-dialog" style="width: 1035px !important; padding: 10px;height: 550px;">
                 <div id="show-modal-quickview">
                    
                 </div>
@@ -492,6 +492,17 @@
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
    </script> --}}
+   <script>
+    // Add active class to the current button (highlight it)
+    const activeLink=document.querySelectorAll('#nav-ul li');
+    for(let clickTab of activeLink){  
+        clickTab.onclick=function(){
+            let activeClass=document.querySelectorAll('li.active');
+            activeClass[0].classList.remove('active')
+            clickTab.classList.add('active'); 
+        }  
+    }
+    </script>
     <script type='text/javascript'>
         jQuery(document).ready(function () {
             jQuery('#rev_slider_6').show().revolution({

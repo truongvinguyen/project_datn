@@ -120,6 +120,7 @@ Route::get('/delete-list-cart/{id}', [App\Http\Controllers\CartController::class
 Route::get('/delete-all-cart', [App\Http\Controllers\CartController::class, 'delete_all_cart'])->name('');
 Route::get('/save-cart-item/{id}/{quanty}', [App\Http\Controllers\CartController::class, 'save_cart'])->name('');
 Route::post('/save-all-cart', [App\Http\Controllers\CartController::class, 'save_all_cart'])->name('');
+Route::get('/reload-product-detail/{id}', [App\Http\Controllers\CartController::class, 'reLoadProductDetail'])->name('');
 
 // login
 // Route::get('kich-hoat', [HomeController::class, 'getAcctiveAccount'])->name('getAcctiveAccount');

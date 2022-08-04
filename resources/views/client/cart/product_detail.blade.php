@@ -98,12 +98,25 @@
               </div> --}}
 
               <div class="product-color-size-area">
-                <div class="size-area">
+                <div class="size-area" >
                   <h2 class="saider-bar-title">Kích thước <span><button data-toggle="modal" data-target="#modal-size" style="border: 1px solid red;color:red;padding:5px;" >gợi ý</button></span></h2>
-                  <div class="size">
-                    <ul>
+                  <div class="size" id="reload">
+                    <ul id="nav-ul">
                       @foreach($size as $item3)
-                      <li ><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
+                        <?php
+                        if(Session()->get('cart')){
+                           if( array_key_exists($item3->id,Session::get('cart')->products)){
+                        ?>
+                          <li class="nav-item"><a onclick="setsize({{$item3->id}},{{$item3->inventory - Session()->get('cart')->products[$item3->id]['quanty'] }})" href="javascript:">{{$item3->product_size}}</a></li>
+                        <?php   
+                          }else{
+                        ?>
+                      <li class="nav-item"><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
+                       <?php } 
+                       }else{
+                        ?>
+                         <li class="nav-item"><a onclick="setsize({{$item3->id}},{{$item3->inventory}})" href="javascript:">{{$item3->product_size}}</a></li>
+                         <?php } ?>
                       @endforeach
                     </ul>
                   </div>
@@ -130,7 +143,8 @@
                     </div>
                   </div>
                   <input type="hidden" id="showinventory" class="inventory" value="">
-                  <button class="button pro-add-to-cart addtocart" onclick="addtocart(id)" id="" title="Add to Cart" type="button"><span><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</span></button>
+                  <input type="hidden" id="product_id"  value="{{$data->id}}">
+                  <button class="button pro-add-to-cart addtocart" onclick="addtocartPD(id)" id="" title="Add to Cart" type="button"><span><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</span></button>
                 </form>
               </div>
               <div class="product-cart-option">
