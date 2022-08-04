@@ -36,7 +36,10 @@ Thêm bài viết mới
                 <div class="form-group row">
                     <label class="col-sm-6 col-md-3 col-form-label">Tiêu đề bài viết<span class="text-danger">*</span></label>
                     <div class="col-sm-12 col-md-12">
-                        <input value="" class="form-control" type="text" placeholder="Nhập tiêu đề" name="article_title">
+                        <input value="" class="form-control @error('article_title') field-danger @enderror" type="text" placeholder="Nhập tiêu đề" name="article_title">
+                        @error('article_title')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">
@@ -92,7 +95,10 @@ Thêm bài viết mới
                     <label class="col-sm-6 col-md-12 col-form-label">Hình ảnh<span class="text-danger">*</span></label>
                     <div class="col-sm-12 col-md-12">
                         {{-- <label class="form-control">Chọn hình ảnh</label> --}}
-                        <input type="file" class="form-control" name="article_thumbnail">
+                        <input type="file" class="form-control @error('article_thumbnail') field-danger @enderror" name="article_thumbnail">
+                        @error('article_thumbnail')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <input type="hidden" value="{{ Auth::user()->id }}" name="employee_id">
@@ -103,8 +109,11 @@ Thêm bài viết mới
                     <label class="col-sm-12 col-md-12 col-form-label">Nội dung</label>
                     <div class="col-sm-12 col-md-12">
                         <div class="html-editor card-box">
-                            <textarea name="article_content" class="textarea_editor form-control border-radius-0" placeholder="nhập mô tả ..."></textarea>
+                            <textarea name="article_content" class="textarea_editor form-control border-radius-0 @error('article_content') field-danger @enderror" placeholder="nhập mô tả ..."></textarea>
                         </div>
+                        @error('article_content')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>

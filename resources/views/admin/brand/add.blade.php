@@ -36,7 +36,7 @@ Thêm thương hiệu mới
                 <div class="form-group row">
                     <label class="col-sm-6 col-md-3 col-form-label">Tên thương hiệu<span class="text-danger">*</span></label>
                     <div class="col-sm-12 col-md-12">
-                        <input value="" class="form-control @error('category_name') field-danger @enderror" type="text" placeholder="Nhập tên danh mục" name="brand_name">
+                        <input value="" class="form-control @error('brand_name') field-danger @enderror" type="text" placeholder="Nhập tên danh mục" name="brand_name">
                         @error('brand_name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
