@@ -99,11 +99,7 @@ Trang Chủ
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
           <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-<<<<<<< HEAD:resources/views/client/others/home-page.blade.php
             <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/1"><img src="client/images/slider/271219003_4989708867717426_5471988687366907212_n.jpg" alt="" height="432px"></a> </div>
-=======
-            <div class="image"> <a class="jtv-banner-opacity" href="#"><img src="client/images/slider/navy-350x350-0.jpg" alt="" height="432px"></a> </div>
->>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1:resources/views/client/home-page.blade.php
             <div class="jtv-content-text">
               <h3 class="title">Mua 2</h3>
               <span class="sub-title">tặng 1!</span><a href="" class="button">Mua ngay!</a> </div>
