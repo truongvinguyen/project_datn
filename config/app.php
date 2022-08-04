@@ -55,9 +55,9 @@ return [
     */
 
     // 'url' => env('APP_URL', 'https://trendyshop.weit.tech'),
-    'url' => env('ASSET_URL'),
+    'url' => env('APP_URL', 'https://trendyshop.weit.tech'),
 
-    'asset_url' => env('ASSET_URL'),
+    'asset_url' => env('ASSET_URL', 'https://trendyshop.weit.tech'),
 
     /*
     |--------------------------------------------------------------------------
