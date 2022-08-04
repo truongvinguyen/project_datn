@@ -25,7 +25,10 @@ class CartController extends Controller
             $newCart->addCart($product,$id,$quantity);
             $request->session()->put('cart',$newCart);         
         }
-        return view('client.cart.cart');
+
+       
+        // dd(Session()->get('cart')->products[$id]['quanty']);
+       return view('client.cart.cart');
    }
    public function delete_item_cart(Request $request,$id){
         $cartO = Session('cart') ? Session('cart') : null;
@@ -37,6 +40,7 @@ class CartController extends Controller
         }else{
             $request->session()->forget('cart');   
         }
+        
         return view('client.cart.cart');
    }
    public function showCart(){
@@ -75,5 +79,9 @@ class CartController extends Controller
             $request->session()->put('cart',$newCart);  
         }
         return view('client.cart.showcart_cut');
+    }
+    public function reLoadProductDetail($id){
+        $size = inventory::where('product_id',$id)->get();  
+        return view('client.cart.product_detail_reload',compact('size'));
     }
 }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<title>Active Class Add And Remove In JavaScript</title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+   ul {
+    background: #2196f3;
+    display: table;
+    margin: 60px auto;
+    padding: 0px 20px;
+    border-radius: 8px;
+}
+ul li {
+    list-style: none;
+    display: inline-block;
+}
+ul li a {
+    font-family: arial;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    padding: 15px 10px;
+    font-size: 18px;
+    display: block;
+    z-index: 1;
+}
+ul li a + a {
+    margin-left: 16px;
+}
+ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 92%;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    background-color: #03A9F4;
+    transform-origin: bottom right;
+    transition: transform 0.5s ease;
+    transform: scaleX(0);
+    z-index: -1;
+}
+ul a:hover::after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+}
+ul li a.active::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 92%;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    background-color: #03A9F4;
+    transition: transform 0.5s ease;
+    transform-origin: bottom left;
+    transform: scaleX(1);
+    z-index: -1;
+}
+</style>
+<body>
+    
+    <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Services</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+
+</body>
+<script>
+   const activeLink=document.querySelectorAll('ul li a');
+   for(let clickTab of activeLink){  
+      clickTab.onclick=function(){
+         let activeClass=document.querySelectorAll('li a.active');
+         activeClass[0].classList.remove('active')
+         clickTab.classList.add('active'); 
+      }  
+   }
+</script>
+</html>
+

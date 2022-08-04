@@ -1,6 +1,5 @@
 @if(Session::has('cart') != null)
 <div class="modal-body">
-
     <!-- Begin shopping cart content -->
     <div class="cart-content">
         <ul class="cart-product-list">
@@ -43,6 +42,8 @@
     </div>
     <!-- /.row -->
 </div>
+<hr>
+
 @else
 <span>giỏ hàng của bạn đang trống</span>
 @endif

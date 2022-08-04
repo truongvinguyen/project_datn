@@ -148,6 +148,58 @@ function addtocart(id) {
         document.getElementById('showinventory').setAttribute('value', showinventory);
         }
 }
+function addtocartPD(id) {
+    let quantity = $("#quantity").val();
+    let inventory = $(".inventory").val();
+    let name =$("#name").val();
+   
+    if(!inventory){
+        toast({
+            title: "Thất bại!",
+            message: "xin hãy chọn kích thước trước khi thêm sản phẩm vào giỏ",
+            type: "error",
+            duration: 5000
+          });
+    }
+
+    // console.log(typeof inventory);
+    // console.log(typeof quantity);
+    if (inventory && parseInt(inventory) < parseInt(quantity)) {
+        toast({
+            title: "Thất bại!",
+            message: "sản phẩm vượt quá số lượng hàng tồn kho",
+            type: "error",
+            duration: 5000
+          });
+    } else {
+        $.ajax({
+            url:`/add-to-cart/${id}/${$("#quantity").val()}`,
+                type: 'get',		
+            }).done(function (response) {
+                toastAddToCart({
+                      image:$("#image").val(),
+                      title: "Thành công!",
+                      message: `sản phẩm đã được thêm vào giỏ hàng <h5>${name} x ${quantity}</h5> <a href="/cart/view-cart" class="btn btn-outline-success viewCart" >xem giỏ hàng</a>`,
+                      type: "success",
+                      duration: 5000
+                });
+                renderCart(response);
+                $.ajax({
+                    url:`/reload-product-detail/${$("#product_id").val()}`,
+                        type: 'get',		
+                    }).done(function (response) {
+                        $("#reload").empty();
+                        $("#reload").html(response);
+                    });
+                });
+        $('.js-panel-cart').addClass('show-header-cart')
+        let showinventory = inventory - quantity;
+        console.log(showinventory)
+        document.getElementById('showqty').innerHTML = showinventory;
+        document.getElementById('showinventory').setAttribute('value', showinventory);
+
+        }
+}
 
 //xóa item trong modal
 function deleteCart(id) {
@@ -162,6 +214,13 @@ function deleteCart(id) {
                     type: "success",
                     duration: 5000
                   });
+                  $.ajax({
+                    url:`/reload-product-detail/${$("#product_id").val()}`,
+                        type: 'get',		
+                    }).done(function (response) {
+                        $("#reload").empty();
+                        $("#reload").html(response);
+                    });
             });
 };
 //render trong modal
