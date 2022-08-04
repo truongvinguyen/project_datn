@@ -50,6 +50,7 @@ Route::prefix('v1/i')->group(function () {
     });
 });
 
+// Delete?
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -67,6 +68,7 @@ Route::put('product/{id}', function (Request $request, $id) {
     $product->update($request->all());
     return $product;
 });
+//
 
 Route::get('notification', function () {
     return $notification = DB::table('notification')
@@ -76,7 +78,7 @@ Route::get('notification', function () {
         ->get();
 });
 
-Route::controller(ProductController::class)->prefix('products')->name('products')->group(function () {
+Route::controller(ProductController::class)->prefix('products')->group(function () {
 
     Route::get('/list/{orderBy?}/{sort?}/{offset?}/{limit?}', 'orderByList')->name('');
     Route::get('/grid/{orderBy?}/{sort?}/{offset?}/{limit?}', 'orderByGrid')->name('');
@@ -89,6 +91,7 @@ Route::controller(ProductController::class)->prefix('products')->name('products'
 
     Route::get('price/list/{orderBy?}/{sort?}', 'listPrice')->name('');
     Route::get('discount/list/{orderBy?}/{sort?}', 'listDiscount')->name('');
+    Route::get('all/{orderBy?}/{sort?}', 'all')->name('');
 });
 
 
