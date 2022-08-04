@@ -36,14 +36,24 @@ class GoogleController extends Controller
             $user = Socialite::driver('google')->user();
             // dd($user);
             $finduser = UserClient::findUserGg($user->email, $user->id);
-
+            // dd($finduser);
             if($finduser != null){
-                if ($user->email == $finduser->email){
+                if ($user->email == $finduser->email && $user->id != $finduser->google_id){
                     // return response()->json([
                     //     'code'=> 1,
                     //     'msg'=> 'Email của bạn đã được đăng ký. Vui lòng sử dụng tài khoản khác.'
                     // ]);
                     return view('client.account.login')->with('msgErr', 'Email của bạn đã được đăng ký. Vui lòng sử dụng tài khoản khác.');
+                }
+                if ($user->email == $finduser->email && $user->id == $finduser->google_id){
+                    Session::put('userId',$finduser->id);
+                    Session::put('userEmail',$finduser->email);
+                    Session::put('userFullname',$finduser->fullname);
+                    Session::put('userImage',$finduser->image);
+                    Session::put('userPhone',$finduser->phone);
+                    Session::put('userAddress', $finduser->address);
+      
+                return redirect()->route('home_client')->with('success',"Đăng nhập thành công.");
                 }
                 // dd($user->email, $finduser);
                 // Auth::login($finduser);
