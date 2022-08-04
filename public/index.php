@@ -60,5 +60,4 @@ $kernel->terminate($request, $response);
 |--------------------------------------------------------------------------
 |
 */
-include_once '../config/global/constants.php';
-session_start();
+// include_once '../config/global/constants.php';
