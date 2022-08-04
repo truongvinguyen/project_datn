@@ -288,14 +288,7 @@
                                                 <div class="btn-quickview"> <a href="#" onclick="quickviewProduct({{$product->id}})" data-toggle="modal"
                                                         data-target="#modal-quickview"><i class="fa fa-search-plus"
                                                             aria-hidden="true"></i> Xem nhanh</a> </div>
-<<<<<<< HEAD
-                                                <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
-                                                        class="action add-to-wishlist" title="Add to Wishlist"></a> <a
-                                                        href="compare.html" class="action add-to-compare"
-                                                        title="Add to Compare"></a> </div>
-=======
                                                 
->>>>>>> 37119982f4eb78f215530f2e09064f94784ee333
                                             </div>
                                             <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img
                                                     class="product-image-photo" src="/upload/product/{{$product->product_image}}" alt=""></a>
@@ -309,12 +302,6 @@
                                                     <div class="item-content">
                                                        
                                                         <div class="item-price">
-<<<<<<< HEAD
-                                                            <div class="price-box"> 
-                                                                <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}đ</span></p> 
-                                                                <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">{{number_format($product->product_price)}}₫</span> </p>
-                                                            </div>
-=======
                                                           <div class="price-box">
                                                             @if($product->product_price_sale != null)
                                                                 <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}₫</span></p>
@@ -323,7 +310,6 @@
                                                                 <p class="special-price"> <span class="price-label">Giá thường:</span> <span class="regular-price">{{number_format($product->product_price)}}₫</span></p>
                                                             @endif
                                                           </div>
->>>>>>> 37119982f4eb78f215530f2e09064f94784ee333
                                                         </div>
                                                     </div>
                                                 </div>
