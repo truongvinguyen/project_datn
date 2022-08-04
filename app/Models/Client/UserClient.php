@@ -153,7 +153,7 @@ class UserClient extends Model{
 
     static function findUserGg($email){
         $user = DB::table('customer_user')
-        ->select('email')
+        ->select('*')
         ->where('email', $email)
         ->first();
         return $user;
