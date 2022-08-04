@@ -9,7 +9,7 @@ use App\Http\Controllers\orderController;
 use App\Models\notification;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Client\GoogleController;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CheckoutController;
 
 
