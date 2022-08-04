@@ -18,12 +18,12 @@
                                         Xem nhanh
                                     </a> 
                                 </div>
-                                <div class="add-to-links" data-role="add-to-links"> 
+                                <!-- <div class="add-to-links" data-role="add-to-links"> 
                                     <a href="wishlist.html" class="action add-to-wishlist" title="Add to Wishlist"></a> 
                                     <a href="compare.html" class="action add-to-compare" title="Add to Compare"></a> 
-                                </div>
+                                </div> -->
                             </div>
-                            <a href="/product-detail/${product.id}/{{$product->category_id}}" class="product-item-photo"> 
+                            <a href="/product-detail/{{$product->id}}" class="product-item-photo"> 
                                 <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
                             </a> 
                         </div>

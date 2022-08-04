@@ -50,6 +50,7 @@ Route::prefix('v1/i')->group(function () {
     });
 });
 
+<<<<<<< HEAD
 // Delete?
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -69,6 +70,8 @@ Route::put('product/{id}', function (Request $request, $id) {
     return $product;
 });
 //
+=======
+>>>>>>> 47b197a1cab72dd785d925d99f60dbc271c6d89c
 
 Route::get('notification', function () {
     return $notification = DB::table('notification')

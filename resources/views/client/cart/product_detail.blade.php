@@ -55,7 +55,9 @@
 <!-- Breadcrumbs End -->
 <!-- Main Container -->
 <div class="main-container col1-layout">
+  
     <div class="container">
+
       <div class="row">
         <div class="col-main">
           <div class="product-view-area">
@@ -90,14 +92,14 @@
                 <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
                 <p class="availability in-stock pull-right">Availability: <span>In Stock</span></p>
               </div>
-              <div class="short-description">
+              {{-- <div class="short-description">
                 <h4>Quick Overview</h4>
                 <p>{!!$data->product_content!!}</p>
-              </div>
+              </div> --}}
 
               <div class="product-color-size-area">
                 <div class="size-area">
-                  <h2 class="saider-bar-title">Kích thước</h2>
+                  <h2 class="saider-bar-title">Kích thước <span><button data-toggle="modal" data-target="#modal-size" style="border: 1px solid red;color:red;padding:5px;" >gợi ý</button></span></h2>
                   <div class="size">
                     <ul>
                       @foreach($size as $item3)
@@ -133,7 +135,12 @@
               </div>
               <div class="product-cart-option">
                 <ul>
-                  <li><a href="wishlist.html"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a></li>
+                  @if($data->wishlist_id == null)
+                    <li><a href="/wishlist/add/{{$data->id}}"><i class="fa fa-heart"></i><span>Thêm vào yêu thích</span></a></li>
+                  @else
+                    <li class="text-danger"><i class="fa fa-heart" style="margin-right: 8px;"></i><span>Đã yêu thích</span></li>
+                  @endif
+               
                   <li><a href="#"><i class="fa fa-retweet"></i><span>Add to Compare</span></a></li>
                   <li><a href="#"><i class="fa fa-envelope"></i><span>Email to a Friend</span></a></li>
                 </ul>
@@ -147,8 +154,8 @@
               <div class="col-xs-12">
                 <div class="product-tab-inner">
                   <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
-                    <li class="active"> <a href="#description" data-toggle="tab"> Description </a> </li>
-                    <li> <a href="#reviews" data-toggle="tab">Reviews</a> </li>
+                    <li class="active"> <a href="#description" data-toggle="tab"> Mô tả chi tiết </a> </li>
+                    <li> <a href="#reviews" data-toggle="tab">Đánh giá</a> </li>
                     <li><a href="#product_tags" data-toggle="tab">Tags</a></li>
                     <li> <a href="#custom_tabs" data-toggle="tab">Custom Tab</a> </li>
                   </ul>
@@ -187,7 +194,7 @@
                                 <p id="cmtErr" class="text-danger"></p>
                               </div>
                               <div class="">
-                                <button id="btn-rating" class="button submit" title="Submit Review" type="button"><span><i class="fa fa-thumbs-up"></i> &nbsp;Review</span></button>
+                                <button id="btn-rating" class="button submit" title="Submit Review" type="button"><span><i class="fa fa-thumbs-up"></i> &nbsp;Thêm</span></button>
                               </div>
                             </div>
                             @csrf
@@ -278,13 +285,17 @@
                                             </div>
                                             @endif
                                             <div class="box-hover">
-                                                <div class="btn-quickview"> <a href="#" data-toggle="modal"
+                                                <div class="btn-quickview"> <a href="#" onclick="quickviewProduct({{$product->id}})" data-toggle="modal"
                                                         data-target="#modal-quickview"><i class="fa fa-search-plus"
-                                                            aria-hidden="true"></i> Quick View</a> </div>
+                                                            aria-hidden="true"></i> Xem nhanh</a> </div>
+<<<<<<< HEAD
+                                                
+=======
                                                 <div class="add-to-links" data-role="add-to-links"> <a href="wishlist.html"
                                                         class="action add-to-wishlist" title="Add to Wishlist"></a> <a
                                                         href="compare.html" class="action add-to-compare"
                                                         title="Add to Compare"></a> </div>
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
                                             </div>
                                             <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img
                                                     class="product-image-photo" src="/upload/product/{{$product->product_image}}" alt=""></a>
@@ -298,24 +309,39 @@
                                                     <div class="item-content">
                                                        
                                                         <div class="item-price">
+<<<<<<< HEAD
+                                                          <div class="price-box">
+                                                            @if($product->product_price_sale != null)
+                                                                <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}₫</span></p>
+                                                                <p class="special-price"> <span class="price-label">Giá đặt biệt</span> &nbsp;<span class="price">₫{{number_format($product->product_price)}}₫</span> </p>
+                                                            @else
+                                                                <p class="special-price"> <span class="price-label">Giá thường:</span> <span class="regular-price">{{number_format($product->product_price)}}₫</span></p>
+                                                            @endif
+                                                          </div>
+=======
                                                             <div class="price-box"> 
-                                                                <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price)}}₫</span></p> 
-                                                                <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">&nbsp;{{number_format($product->product_price_sale)}}₫</span> </p>
+                                                                <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($product->product_price_sale)}}đ</span></p> 
+                                                                <p class="special-price"> <span class="price-label">Giá đặt biệt</span> <span class="price">{{number_format($product->product_price)}}₫</span> </p>
                                                             </div>
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+<<<<<<< HEAD
                                             <div class="box-hover">
                                                 <div class="product-item-actions">
                                                     <div class="pro-actions">
                                                         <button onclick="location.href='shopping_cart.html'"
                                                             class="action add-to-cart" type="button" title="Add to Cart">
-                                                            <span>Add to Cart</span> </button>
+                                                            <span>Thêm vào giỏ</span> </button>
                                                     </div>
 
                                                 </div>
                                             </div>
+=======
+                                            
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
                                         </div>
                                     </div>
                                 </div>
@@ -325,10 +351,17 @@
                 </div>
             </div>
         </div>
+        
     </div>
+
 </section>
 <!-- Upsell Product Slider End -->
-
+@if(Session::has('success'))
+  <div id="dislike" class="bg-success">
+        <h4 class="text-white">{{Session::get('success')}}</h4>
+    </div>
+  </div>
+@endif
 <div class="container">
     <!-- service section -->
     <div class="jtv-service-area">
@@ -360,6 +393,8 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
 <!-- our clients Slider -->
 <!-- our clients Slider -->
 
@@ -396,6 +431,17 @@
           </div>
         </div>
     </div>
+</div>
+
+
+<div id="modal-size" class="modal fade in" role="dialog" style="">
+  <div class="modal-dialog">
+    <div class="modal-body">
+      <button type="button" class="close myclose" data-dismiss="modal">×</button>
+      <img src="/client/images/tvcs_1d3d68691e3742eca9c9672b6b58e449_2048x2048.jpg" alt="">
+    </div>
+    <div class="modal-footer"> <a href="#" class="btn-services-shop-now" data-dismiss="modal">Close</a> </div>
+  </div>
 </div>
 @endsection
 
@@ -457,4 +503,5 @@
             console.log(star, cmt);
         });
    </script>
+>>>>>>> 2b0885412f125c5e8502af6ffdc5240e9d9755a1
 @endsection

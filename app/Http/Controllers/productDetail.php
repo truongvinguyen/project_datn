@@ -16,11 +16,11 @@ class productDetail extends Controller
     public function index($id){
 
     $rating = UserClient::getRating($id);
-    dd($rating);
     $product = new product();
      $data = DB::table('product')
      ->select('*')
-     ->where('id',$id)
+     ->leftJoin('wishlist','wishlist.product_id','=','product.id')
+     ->where('product.id',$id)
      ->first();
      $image =imageProduct::where('product_id',$id)->get();    
 
