@@ -205,9 +205,9 @@ gulp.task('connect-sync', function (done) {
 	browserSync.reload();
 	done();
     browserSync.init({
-      proxy: 'localhost/deskapp', // Change this value to match your local URL.
+      proxy: 'https://trendyshop.weit.tech/deskapp', // Change this value to match your local URL.
 	    socket: {
-	      domain: 'localhost:3000'
+	      domain: 'https://trendyshop.weit.tech'
 	    }
 	});
 	gulp.watch("*.html").on("change", reload);
