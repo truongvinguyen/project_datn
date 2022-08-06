@@ -63,4 +63,4 @@ $kernel->terminate($request, $response);
 |--------------------------------------------------------------------------
 |
 */
-include_once '../config/global/constants.php';
+include_once '../app/Global/constants.php';
