@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+if (session_id() == '') {
+    session_start();
+}
 /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
@@ -61,7 +64,3 @@ $kernel->terminate($request, $response);
 |
 */
 include_once '../config/global/constants.php';
-
-if (session_id() == '') {
-    session_start();
-}
