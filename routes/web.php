@@ -135,6 +135,7 @@ Route::post('quen-mat-khau', [HomeController::class, "postForgotPass"])->name("p
 Route::post('lay-ma-xac-thuc', [HomeController::class, "postGetCodeForgotPass"])->name('postGetCodeForgotPass');
 Route::get('dang-xuat', [HomeController::class, "getLogout"])->name('getLogout');
 Route::post('danh-gia', [HomeController::class, 'postReview'])->name('rating');
+Route::get('xoa-danh-gia/{id}', [HomeController::class, 'postReviewDelete'])->name('rating.delete');
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('loginGG');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('loginGGCallback');
 

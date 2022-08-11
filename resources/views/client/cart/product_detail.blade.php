@@ -14,7 +14,7 @@
     label.star {
     /* float: right; */
     padding: 10px;
-    font-size: 36px;
+    font-size: 25px;
     color: #444;
     /* transition: all .2s; */
     }
@@ -38,6 +38,80 @@
     content: '\f006';
     font-family: FontAwesome;
     }
+    ul.timeline-3 {
+list-style-type: none;
+position: relative;
+}
+ul.timeline-3:before {
+content: ' ';
+background: #d4d9df;
+display: inline-block;
+position: absolute;
+left: 29px;
+width: 2px;
+height: 100%;
+z-index: 400;
+}
+ul.timeline-3 > li {
+margin: 20px 0;
+padding-left: 40px;
+}
+ul.timeline-3 > li:before {
+content: ' ';
+background: white;
+display: inline-block;
+position: absolute;
+border-radius: 50%;
+border: 3px solid #CF3341;
+left: 20px;
+width: 20px;
+height: 20px;
+z-index: 400;
+}
+:root {
+  --star-size: 15px;
+  --star-color: #fff;
+  --star-background: #fc0;
+}
+.Stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+.Stars::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.navtab {
+  height: 40px;
+  /* margin: 40px auto; */
+  /* background-color: rgba(23, 23, 50, 0.7); */
+  text-align: center;
+  color: black;
+  border-radius: 4px;
+}
+.navtab ul{
+  list-style-type: none;
+}
+.navtab .main {
+  display: flex;
+  justify-content: center;
+}
+.navtab .main > li {
+  margin: 0 2%;
+}
+.navtab .main > li a{
+  /* border-left:1px solid rgba(23, 23, 50, 1); */
+  text-decoration: none;
+  color: #666;
+  display: block;
+ 
+}
 </style>
 <div class="breadcrumbs">
     <div class="container">
@@ -169,9 +243,9 @@
                 <div class="product-tab-inner">
                   <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
                     <li class="active"> <a href="#description" data-toggle="tab"> Mô tả chi tiết </a> </li>
-                    <li> <a href="#reviews" data-toggle="tab">Đánh giá</a> </li>
-                    <li><a href="#product_tags" data-toggle="tab">Tags</a></li>
-                    <li> <a href="#custom_tabs" data-toggle="tab">Custom Tab</a> </li>
+                    <li> <a href="#reviews" data-toggle="tab">Viết bình luận</a> </li>
+                    {{-- <li><a href="#product_tags" data-toggle="tab">Tags</a></li> --}}
+                    <li> <a href="#custom_tabs" data-toggle="tab">Xem bình luận</a> </li>
                   </ul>
                   <div id="productTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="description">
@@ -180,43 +254,52 @@
                        
                       </div>
                     </div>
+                    
                     <div id="reviews" class="tab-pane fade">
                       <div class="col-sm-12 col-lg-12 col-md-12">
                         <div class="reviews-content-right">
-                          <h2>Đánh giá sản phẩm</h2>
-                          <form action="" method="post">
-                            <div class="table-responsive reviews-table">
-                                <div class="start" style="display: inline-flex; flex-direction: row-reverse;">
-                                    <input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
-                                    <label class="star star-5 label-start" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" value="4" type="radio" name="star"/>
-                                    <label class="star star-4 label-start" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" value="3" type="radio" name="star"/>
-                                    <label class="star star-3 label-start" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" value="2" type="radio" name="star"/>
-                                    <label class="star star-2 label-start" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
-                                    <label class="star star-1 label-start" for="star-1"></label>
+                          @if(Session::has('userEmail'))
+                            @if($checkBuy > 0)
+                            <h2>Đánh giá sản phẩm</h2>
+                            <form action="" method="post">
+                              <div class="table-responsive reviews-table">
+                                  <div class="start" style="display: inline-flex; flex-direction: row-reverse;">
+                                      <input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
+                                      <label class="star star-5 label-start" for="star-5"></label>
+                                      <input class="star star-4" id="star-4" value="4" type="radio" name="star"/>
+                                      <label class="star star-4 label-start" for="star-4"></label>
+                                      <input class="star star-3" id="star-3" value="3" type="radio" name="star"/>
+                                      <label class="star star-3 label-start" for="star-3"></label>
+                                      <input class="star star-2" id="star-2" value="2" type="radio" name="star"/>
+                                      <label class="star star-2 label-start" for="star-2"></label>
+                                      <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
+                                      <label class="star star-1 label-start" for="star-1"></label>
+                                  </div>
+                                  <p id="starErr" class="text-danger"></p>
+                              </div>
+                              <input id="idProduct" type="hidden" value="{{$data->id}}">
+                              <div class="form-area">
+                                <div class="form-element">
+                                  <label>Bình luận</label>
+                                  <textarea name="cmt" id="cmt" style="resize:none; width: 100%;"></textarea>
+                                  <p id="cmtErr" class="text-danger"></p>
                                 </div>
-                                <p id="starErr" class="text-danger"></p>
-                            </div>
-                            <input id="idProduct" type="hidden" value="{{$data->id}}">
-                            <div class="form-area">
-                              <div class="form-element">
-                                <label>Bình luận</label>
-                                <textarea name="cmt" id="cmt" style="resize:none; width: 100%;"></textarea>
-                                <p id="cmtErr" class="text-danger"></p>
+                                <div class="">
+                                  <button id="btn-rating" class="button submit" title="Submit Review" type="button"><span><i class="fa fa-thumbs-up"></i> &nbsp;Thêm</span></button>
+                                </div>
                               </div>
-                              <div class="">
-                                <button id="btn-rating" class="button submit" title="Submit Review" type="button"><span><i class="fa fa-thumbs-up"></i> &nbsp;Thêm</span></button>
-                              </div>
-                            </div>
-                            @csrf
-                          </form>
+                              @csrf
+                            </form>
+                            @else
+                            Bạn chưa mua sản phẩm này hãy mua và đánh giá 5 sao bạn nhé
+                            @endif
+                          @else 
+                            Bạn chưa đăng nhập hãy đăng nhập và đánh giá 5 sao bạn nhé
+                          @endif
                         </div>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="product_tags">
+                    {{-- <div class="tab-pane fade" id="product_tags">
                       <div class="box-collateral box-tags">
                         <div class="tags">
                           <form id="addTagForm" action="#" method="get">
@@ -233,37 +316,135 @@
                         <!--tags-->
                         <p class="note">Use spaces to separate tags. Use single quotes (') for phrases.</p>
                       </div>
-                    </div>
+                    </div> --}}
                     <div class="tab-pane fade" id="custom_tabs">
                       <div class="product-tabs-content-inner clearfix">
-                        <div class="rating">
-                            <div class="top" style="display: flex;">
-                                <div class="top-left" style="width: 75px; height: 75px; border-radius: 50%; border: 1px solid gray;">
-                                    <a href="">
-                                        <img style="width: 100%; border-radius: 50%;" src="{{asset('public/upload/client/user/'.Session::get('userImage'))}}" alt="avatar">
-                                    </a>
-                                </div>
-                                <div class="top-right">
-                                    @if (Session::has('userEmail'))
-                                    <p clas="" style="font-size: 16px;">{{Session::get('userEmail')}}</p>
-                                    @endif
-                                    <div class="table-responsive reviews-table">
-                                        <div class="start" style="display: inline-flex; flex-direction: row-reverse;">
-                                            <input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
-                                            <label class="star star-5 label-start" for="star-5"></label>
-                                            <input class="star star-4" id="star-4" value="4" type="radio" name="star"/>
-                                            <label class="star star-4 label-start" for="star-4"></label>
-                                            <input class="star star-3" id="star-3" value="3" type="radio" name="star"/>
-                                            <label class="star star-3 label-start" for="star-3"></label>
-                                            <input class="star star-2" id="star-2" value="2" type="radio" name="star"/>
-                                            <label class="star star-2 label-start" for="star-2"></label>
-                                            <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
-                                            <label class="star star-1 label-start" for="star-1"></label>
+                        <div class="container my-5">
+                          <div class="row">
+                            <div class="col-md-8 offset-md-3">
+                              <div class="navtab">
+                                <ul class="main" role="tablist">
+                                  <li role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">Tất cả</a></li>
+                                  <li role="presentation"><a href="#cuaban" aria-controls="cuaban" role="tab" data-toggle="tab">Của bạn</a></li>
+                                </ul>
+                              </div>
+                              <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="all">
+                                  <ul class="timeline-3">
+                                  @if(!$report)
+                                  <p>Chưa có đánh giá</p>
+                                  @else
+                                    @foreach ($report as $item)
+                                      @if(Session::has('userFullname') &&  Session::get('userId') == $item->user)
+                                      <li class="row">
+                                        <div class="col-md-1">
+                                          @if(!$item->image)
+                                          <img class="" style="max-width:50px;" src="https://ui-avatars.com/api/?name={{$item->fullname}}" alt="">
+                                          @else
+                                          <img class="" style="max-width:50px;" src="/upload/user/{{$item->image}}" alt="">
+                                          @endif
                                         </div>
-                                        <p id="starErr" class="text-danger"></p>
-                                    </div>
+                                        <div class="col-md-10">
+                                          <h5 style="font-weight: 500">{{$item->fullname}}<span style="margin-left: 10px"> <button onclick="deleteMyCmt({{$item->id}})" ><i style="color: #CF3341" class="">Xóa</i></button></span></h5>
+                                            <a href="#!" class="float-end" style="opacity: 0.7;">{{$item->create_at}}</a><br>
+                                            <p class="Stars" style="--rating: {{$item->start}};" aria-label="Rating of this product is 2.3 out of 5."></p>
+                                            <p class="mt-2">{{$item->content}}</p>
+                                        </div>
+                                        <div class="col-md-1">
+                                         
+                                        </div>
+                                      </li>
+                                      @else
+                                      <li class="row">
+                                        <div class="col-md-1">
+                                          @if(!$item->image)
+                                          <img class="" style="max-width:50px;" src="https://ui-avatars.com/api/?name={{$item->fullname}}" alt="">
+                                          @else
+                                          <img class="" style="max-width:50px;" src="/upload/user/{{$item->image}}" alt="">
+                                          @endif
+                                        </div>
+                                        <div class="col-md-11">
+                                            <h5 style="font-weight: 500">{{$item->fullname}}</h5>
+                                            <a href="#!" class="float-end" style="opacity: 0.7;">{{$item->create_at}}</a><br>
+                                            <p class="Stars" style="--rating: {{$item->start}};" aria-label="Rating of this product is 2.3 out of 5."></p>
+                                            <p class="mt-2">{{$item->content}}</p>
+                                        </div>
+                                      </li>
+                                      @endif
+                                    @endforeach
+                                  @endif
+                                  </ul>
                                 </div>
+                                <div role="tabpanel" class="tab-pane" id="cuaban">
+                                  @foreach ($report as $item)
+                                    @if(Session::has('userFullname') &&  Session::get('userId') == $item->user)
+                                    <li class="row">
+                                      <div class="col-md-1">
+                                        @if(!$item->image)
+                                        <img class="" style="max-width:50px;" src="https://ui-avatars.com/api/?name={{$item->fullname}}" alt="">
+                                        @else
+                                        <img class="" style="max-width:50px;" src="/upload/user/{{$item->image}}" alt="">
+                                        @endif
+                                      </div>
+                                      <div class="col-md-10">
+                                        <h5 style="font-weight: 500">{{$item->fullname}}<span style="margin-left: 10px"> <button onclick="deleteMyCmt({{$item->id}})" ><i style="color: #CF3341" class="">Xóa</i></button></span></h5>
+                                          <a href="#!" class="float-end" style="opacity: 0.7;">{{$item->create_at}}</a><br>
+                                          <p class="Stars" style="--rating: {{$item->start}};" aria-label="Rating of this product is 2.3 out of 5."></p>
+                                          <p class="mt-2">{{$item->content}}</p>
+                                      </div>
+                                      <div class="col-md-1">
+                                       
+                                      </div>
+                                    </li>   
+                                    @endif
+                                  @endforeach
+                                </div>
+                              </div>
+                              {{-- <h4 style="margin-left: 1.2rem;">Tất cả</h4>
+                              <ul class="timeline-3">
+                                <li class="row">
+                                  <div class="col-md-1">
+                                    <img class="" style="max-width:50px;" src="https://ui-avatars.com/api/?name=TRường Vi" alt="">
+                                  </div>
+                                  <div class="col-md-11">
+                                      <h5 style="font-weight: 500">New Web Design</h5>
+                                      <a href="#!" class="float-end" style="opacity: 0.7;">21 March, 2014</a><br>
+                                      <p class="Stars" style="--rating: 4;background-color: gray;" aria-label="Rating of this product is 2.3 out of 5."></p>
+                                      <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam
+                                        non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis
+                                        ligula in sodales vehicula....</p>
+                                  </div>
+                                </li>
+                                <li class="row">
+                                  <div class="col-md-1">
+
+                                  </div>
+                                  <div class="col-md-11">
+                                      <h5 style="font-weight: 500">New Web Design</h5>
+                                      <a href="#!" class="float-end" style="opacity: 0.7;">21 March, 2014</a><br>
+                                      <p class="Stars" style="--rating: 4;background-color: gray;" aria-label="Rating of this product is 2.3 out of 5."></p>
+                                      <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam
+                                        non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis
+                                        ligula in sodales vehicula....</p>
+                                  </div>
+                                </li>
+                                <li class="row">
+                                  <div class="col-md-1">
+
+                                  </div>
+                                  <div class="col-md-11">
+                                      <h5 style="font-weight: 500">New Web Design</h5>
+                                      <a href="#!" class="float-end" style="opacity: 0.7;">21 March, 2014</a><br>
+                                      <p class="Stars" style="--rating: 5;background-color: gray;" aria-label="Rating of this product is 2.3 out of 5."></p>
+                                      <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam
+                                        non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis
+                                        ligula in sodales vehicula....</p>
+                                  </div>
+                                </li>
+                              
+                              </ul> --}}
                             </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -428,6 +609,17 @@
     <div class="modal-footer"> <a href="#" class="btn-services-shop-now" data-dismiss="modal">Close</a> </div>
   </div>
 </div>
+@foreach($report as $item)
+<div id="modal-edit-cmt{{$item->id}}" class="modal fade in" role="dialog" style="">
+  <div class="modal-dialog">
+    <div class="modal-body">
+      <button type="button" class="close myclose" data-dismiss="modal">×</button>
+      <p>Bạn có chắc muốn xóa</p>
+    </div>
+    <div class="modal-footer"> <a href="#" class="btn-services-shop-now" data-dismiss="modal">Close</a> </div>
+  </div>
+</div>
+@endforeach
 @endsection
 
 @section('js')
@@ -435,7 +627,7 @@
         var btnRating = document.querySelector("#btn-rating");
         btnRating.addEventListener("click", function(e) {
             e.preventDefault();
-            var star = $('input[name="star"]:checked').val();
+            var star = $('input[name="starup"]:checked').val();
             var cmt = $("#cmt").val();
             var starErr = $("#starErr");
             var cmtErr = $("#cmtErr");
@@ -487,5 +679,20 @@
             }
             console.log(star, cmt);
         });
+
+     
+   </script>
+   <script>
+    function deleteMyCmt(id){
+      if(confirm("Bạn có chắc muốn xóa đánh giá")){
+            $.ajax({
+                    url: `/xoa-danh-gia/${id}`,
+                    type: 'GET',
+                }).done(function (response) {
+                  location.reload()  
+                
+                })}
+        
+    }
    </script>
 @endsection

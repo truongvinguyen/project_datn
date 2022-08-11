@@ -371,7 +371,6 @@
                                 <ul class="cart-product-list">
                                     @foreach(Session::get('cart')->products as $item)
                                     <li>
-
                                         <!-- Begin shopping cart product -->
                                         <div class="cart-product"> <a href="#" class="cart-pr-thumb bg-image"><img
                                                     src="/upload/product/{{$item['productInfo']->product_image}}"
