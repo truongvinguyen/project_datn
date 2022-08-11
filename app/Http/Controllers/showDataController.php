@@ -30,7 +30,14 @@ class showDataController extends Controller
         $best_product = $data->products();
         $products = $data::select('*')->orderBy('id','DESC')->get();
         
-        $suggestions = $wishlist->productList(Session::get('userId'));
+
+        if(Session::has('userId')){
+            $suggestions = $wishlist->productList(Session::get('userId'));
+        }else {
+            $suggestions = $data->whereNotNull('product_price_sale')->limit(4)->get();
+        }
+       
+    
         $articles = $article->article();
         return view('client.others.home-page', compact('best_product','products','articles','suggestions'));
     }
@@ -60,27 +67,55 @@ class showDataController extends Controller
         $categories = category::all();
         $articles = $article->article();
         $brands = brand::all();
-        $productByCategory = $data->productByCategory($id);
-        //  echo '<pre>';
-        //  var_dump($products);
-        //  echo '</pre>';
-        //  die;
-        $length = $data::all()->count();
-        return view('client.product.product-grid',compact('length','categories','brands','articles','productByCategory'));
+        $productAll = $data->productByCategory($id)->get();
+
+        $lowToHigh = $data->priceLow();
+        $highToLow = $data->priceHigh();
+        $productSale = $data->whereNotNull('product_price_sale')->offset(0)->limit(6)->where('category_id','=',$id)->get();
+ 
+        $productSaleLength = $data::whereNotNull('product_price_sale')->where('category_id','=',$id)->count();
+        $productAllLength = $data->productByCategory($id)->count();
+        return view('client.product.product-cate',compact('brands','productSaleLength','productAllLength','categories','articles','productAll','highToLow','lowToHigh','productSale'));
+    }
+
+    public function all_product(Request $request){
+        $data = new product();
+        $article = new article();
+        $categories = category::all();
+
+        $brands = brand::all();
+        $articles = $article->article();
+        $productAll = $data->productAll();
+        $lowToHigh = $data->priceLow();
+        $highToLow = $data->priceHigh();
+        $productSale = $data->priceSale();
+ 
+        $productSaleLength = $data::whereNotNull('product_price_sale')->count();
+        $productAllLength = $data::orderBy('id','desc')->count();
+        return view('client.product.product-grid',compact('brands','productSaleLength','productAllLength','categories','articles','productAll','highToLow','lowToHigh','productSale'));
+    }
+
+    public function pagination($orderBy,$sort){
+        $data = new product();
+        $products = $data->pagination($orderBy,$sort)->paginate(6);
+        return view('client.product.productGrid',compact('products'));
     }
 
     public function search(Request $request){
         $data = new product();
-        $article = new article();
 
-        $articles = $article->article();
-        $categories = category::all();
-        $brands = brand::all();
         $value = $request->search;
-      
-        $products = $data->searchProduct($value);
-        $length = $data::all()->count();
-        return view('client.product.search',compact('length','categories','brands','articles','products'));
+        
+        $lowToHigh = $data->orderBy('product_price','asc')->where('product_name', 'like','%' .$value. '%')->offset(0)->limit(6)->get();
+        $highToLow = $data->orderBy('product_price','desc')->where('product_name', 'like','%' .$value. '%')->offset(0)->limit(6)->get();
+        $productSale = $data->whereNotNull('product_price_sale')->where('product_name', 'like','%' .$value. '%') ->offset(0)->limit(6) ->get();
+
+        $productSaleLength = $data::where('product_name', 'like','%' .$value. '%')->whereNotNull('product_price_sale')->count();
+        $productAllLength = $data::where('product_name', 'like','%' .$value. '%')->count();
+
+        $products = $data->searchProduct($value);  
+        
+        return view('client.product.search',compact('productSaleLength','productAllLength','products','highToLow','lowToHigh','productSale'));
     }
 
     public function aboutUs(){

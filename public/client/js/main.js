@@ -1,3 +1,33 @@
+function contact(){
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var phone = $('#phone').val();
+    var comment = $('#comment').val();
+    
+    $.ajax({
+        url: `/feedback`,
+        type: "POST",
+        data: {
+            _token: $(".token_saveall").val(),
+            data:{
+                "name":name,
+                "email":email,
+                "phone":phone,
+                "comment":comment
+            },
+        },
+    }).done(function (response) {
+        alert('ok')
+        // toast({
+        //     title: "Thành công!",
+        //     message: "Bạn đã cập nhật số lượng thành công",
+        //     type: "success",
+        //     duration: 5000,
+        // });
+        // renderListCart(response);
+    });
+}
+
 jQuery(document).ready( function() {
     "use strict";
 

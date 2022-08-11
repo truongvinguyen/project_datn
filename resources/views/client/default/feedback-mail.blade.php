@@ -10,7 +10,6 @@ Trang Liên Hệ
                 <div class="col-xs-12 col-sm-12"> 
                     
                     <h3>{{$name}}</h3>
-                    <p>{{$address}}</p>
                     <p>{{$email}}</p>
                     <p>{{$phone}}</p>
                     <br>

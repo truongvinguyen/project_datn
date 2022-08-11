@@ -109,7 +109,6 @@
                                                      </div>
                                                         <ul>
                                                             <li id=""><a href="{{route('profile')}}">Xem hồ sơ</a></li>
-                                                            <li ><a href="/wishlist">Sản phẩm yêu thích</a></li>
                                                             <li id="logout"><a href="{{route('getLogout')}}">Đăng xuất</a></li>
                                                         </ul>
                                                     </div>
@@ -139,9 +138,9 @@
                         <div class="col-xs-12 col-sm-4 col-md-4 col-md-4 top-search">
                             <!-- Search -->
                             <div id="search">
-                                <form>
+                                <form action="/search" method="get">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="tìm kiếm..." id="search" name="search">
+                                        <input type="text" class="form-control" placeholder="tìm kiếm..." name="search">
                                         <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
                                     </div>
                                 </form>
@@ -204,9 +203,19 @@
                                 <div class="main-menu">
                                     <ul class="hidden-xs">
                                         <li class="active custom-menu"><a href="/">Trang chủ</a></li>
-                                        <li class="megamenu"><a href="/product-grid">Sản phẩm <span class="menu-item-tag menu-item-tag-new">mới</span></a></li>
+                                        <li class="megamenu"><a href="/all-product">Sản phẩm <span class="menu-item-tag menu-item-tag-new">mới</span></a>
+                                            <div class="mega-menu">
+                                                <div class="menu-block menu-block-center">
+                                                    <div class="menu-block-1">
+                                                        <ul class="nav-menu">
+                                                            <li><a href="/all-product">Tất cả sản phẩm</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
                                         <li class="custom-menu"><a href="/article">Bài viết</a></li>
-                                        <li><a href="/contact-us">Về chúng tôi</a></li>
+                                        <li><a href="/about-us">Về chúng tôi</a></li>
                                         <li><a href="/contact-us">Liên hệ</a></li>
                                     </ul>
                                 </div>
@@ -225,11 +234,11 @@
                     <div class="footer-newsletter">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-3 col-sm-5">
+                                <div class="col-md-6 col-sm-5">
                                     <h3 class="">đăng ký để nhận bản tin</h3>
                                     <span>Nhận các giao dịch mới nhất và ưu đãi đặc biệt</span>
                                 </div>
-                                <div class="col-md-5 col-sm-7">
+                                <div class="col-md-6 col-sm-7">
                                     <form id="newsletter-validate-detail" method="post" action="#">
                                         <div class="newsletter-inner">
                                             <input class="newsletter-email" name='Email'
@@ -239,7 +248,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
+                                <!-- <div class="col-md-4 col-sm-12">
                                     <div class="social">
                                         <ul class="inline-mode">
                                             <li class="social-network fb"><a title="Connect us on Facebook"
@@ -261,14 +270,18 @@
                                                         class="fa fa-instagram"></i></a></li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
-                        <div class="footer-logo"><a href="/home-page"><img style="width: 50%;"
-                                    src="client/images/footer-logo.png" alt="fotter logo"></a> </div>
-                        <div class="footer-content">
+                    <div class="col-sm-6 col-md-3 col-xs-12 col-lg-2">
+                        <div class="footer-logo">
+                            <a href="/home-page"><img src="{{asset('client/images/footer-logo.png')}}" alt="fotter logo"></a> 
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-6 col-md-2 col-xs-12 col-lg-3">
+                         <div class="footer-content">
                             <div class="email"> <i class="fa fa-envelope"></i>
                                 <p>
                                     <a href="https://htmlgenius.justthemevalley.com/cdn-cgi/l/email-protection"
@@ -286,14 +299,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+                    <div class="col-sm-6 col-md-2 col-xs-12 col-lg-2 collapsed-block">
                         <div class="footer-links">
                             <h3 class="links-title">Hỏi đáp<a class="expander visible-xs" href="#TabBlock-1">+</a></h3>
                             <div class="tabBlock" id="TabBlock-1">
                                 <ul class="list-links list-unstyled">
-                                    <li><a href="#s">Về chúng tôi</a></li>
-                                    <li><a href="#">Liên hệ</a></li>
-                                    <li><a href="sitemap.html">Câu hỏi thường gặp</a></li>
+                                    <li><a href="/about-us">Về chúng tôi</a></li>
+                                    <li><a href="/contact-us">Liên hệ</a></li>
+                                    <li><a href="/fqas">Câu hỏi thường gặp</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -303,24 +316,20 @@
                             <h3 class="links-title">Danh mục sản phẩm<a class="expander visible-xs"
                                     href="#TabBlock-3">+</a></h3>
                             <div class="tabBlock" id="TabBlock-3">
-                                <ul class="list-links list-unstyled">
-                                    <li> <a href="sitemap.html">Áo khoác</a> </li>
-                                    <li> <a href="#">Quần</a> </li>
-                                    <li> <a href="#">Áo thun</a> </li>
-                                    <li> <a href="about_us.html">Áo sơ mi</a> </li>
-                                    <li> <a href="contact_us.html">Quần short</a> </li>
+                                <ul class="nav-menu list-links list-unstyled" >
+                                
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-2 col-xs-12 col-lg-3 collapsed-block">
+                    <div class="col-sm-6 col-md-2 col-xs-12 col-lg-2 collapsed-block">
                         <div class="footer-links">
                             <h3 class="links-title">Dịch vụ<a class="expander visible-xs" href="#TabBlock-4">+</a></h3>
                             <div class="tabBlock" id="TabBlock-4">
                                 <ul class="list-links list-unstyled">
-                                    <li> <a href="account_page.html">Tài khoản</a> </li>
-                                    <li> <a href="shopping_cart.html">Giỏ hàng</a> </li>
-                                    <li> <a href="#">Chính sách hoàn trả</a> </li>
+                                    <li> <a href="/ho-so">Tài khoản</a> </li>
+                                    <li> <a href="/cart/view-cart">Giỏ hàng</a> </li>
+                                    <li> <a href="/return-policy">Chính sách hoàn trả</a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -330,8 +339,7 @@
             <div class="footer-coppyright">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2022-2030 <a href="#"> Trendy </a> Đã
-                            đăng ký Bản quyền.</div>
+                        <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2022-2030 <a href="#"> Trendy </a> Đã đăng ký Bản quyền.</div>
                         <div class="col-sm-6 col-xs-12">
                             <div class="payment">
                                 <ul>
@@ -467,7 +475,6 @@
    <!-- Your Plugin chat code -->
    <div id="fb-customer-chat" class="fb-customerchat">
    </div>
-
    <script>
      var chatbox = document.getElementById('fb-customer-chat');
      chatbox.setAttribute("page_id", "100366882781685");

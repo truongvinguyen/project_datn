@@ -7,6 +7,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\orderController;
 use App\Models\notification;
+use App\Models\category;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Client\GoogleController;
 
@@ -148,9 +149,11 @@ Route::get('ho-so', [HomeController::class, 'profile'])->name('profile');
 // đổ sản phẩm ra layout
 Route::prefix('')->group(function () {
     Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
-    Route::get('/product-grid/{id?}', [App\Http\Controllers\showDataController::class, 'product_grid'])->name('');
+    Route::get('/all-product', [App\Http\Controllers\showDataController::class, 'all_product']);
+    Route::get('/product-grid/{id?}', [App\Http\Controllers\showDataController::class, 'product_grid']);
     Route::get('/search', [App\Http\Controllers\showDataController::class, 'search'])->name('');
     Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('quickview');
+    Route::get('/pagination/{orderBy}/{sort}', [App\Http\Controllers\showDataController::class, 'pagination']);
     
     Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
     Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
@@ -158,11 +161,15 @@ Route::prefix('')->group(function () {
     Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
     Route::get('/return-policy', [App\Http\Controllers\showDataController::class, 'policy'])->name('');
 });
+Route::get('/navigation', function () {
+    $nav = category::all();
+    return view('client.others.nav-product',compact('nav'));
+});
 
 // Mail phản hồi
 Route::prefix('')->group(function () {
     Route::get('/contact-us', [App\Http\Controllers\MailController::class, 'contact'])->name('contact');
-    Route::get('/feedback', [App\Http\Controllers\MailController::class, 'send_mail'])->name('');
+    Route::post('/feedback', [App\Http\Controllers\MailController::class, 'send_mail'])->name('');
 });
 
 //sản phẩm yêu thích

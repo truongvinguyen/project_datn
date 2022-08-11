@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\product;
+use App\Models\category;
 use App\Http\Controllers\Api\v1\CategoryController;
 use App\Models\notification;
 use App\Http\Controllers\Api\ProductController;
@@ -60,18 +61,8 @@ Route::get('notification', function () {
 });
 
 Route::controller(ProductController::class)->prefix('products')->name('products')->group(function () {
-
-    Route::get('/list/{orderBy?}/{sort?}/{offset?}/{limit?}', 'orderByList')->name('');
     Route::get('/grid/{orderBy?}/{sort?}/{offset?}/{limit?}', 'orderByGrid')->name('');
     Route::get('/gridProduct/{columns_name?}/{cate_id?}', 'gridByColumns')->name('');
-    Route::get('/listProduct/{columns_name?}/{cate_id?}', 'listByColumns')->name('');
-    // Route::get('/filter/{brand_id?}','productByCategory')->name('');      
-
-    Route::get('price/grid/{orderBy?}/{sort?}', 'gridPrice')->name('');
-    Route::get('discount/grid/{orderBy?}/{sort?}', 'gridDiscount')->name('');
-
-    Route::get('price/list/{orderBy?}/{sort?}', 'listPrice')->name('');
-    Route::get('discount/list/{orderBy?}/{sort?}', 'listDiscount')->name('');
 });
 
 
