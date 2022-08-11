@@ -126,6 +126,14 @@ class UserClient extends Model{
             'content' => $content
         ]);
     }
+    static function updateRating($userId, $idPr, $rating, $content){
+        DB::table('rating')->update([
+            'user' => $userId,
+            'product' => $idPr,
+            'start' => $rating,
+            'content' => $content
+        ]);
+    }
 
     static function checkRating($userId, $idPr){
         $isRated = DB::table('rating')

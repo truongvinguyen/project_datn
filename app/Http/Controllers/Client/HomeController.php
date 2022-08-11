@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client\UserClient;
+use App\Models\Client\order;
+use App\Models\Client\order_detail;
 use Illuminate\Support\Str;
+
 // use Mail;
 use DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Ui\Presets\React;
 use phpDocumentor\Reflection\DocBlock\Tags\See;
+
 
 class HomeController extends Controller
 {
@@ -481,6 +485,13 @@ class HomeController extends Controller
         if ($validator->fails()){
             return response()->json(['err'=>$validator->errors()->all()], 400);
         }
+        // $order = DB::table('order')->select('customer_id')->where('customer_id',Session::get('userId'))->get();
+        // $order_detail=DB::table('product_inventory')
+        //     ->join('=order_detail','=order_detail.product_id','=','product_inventory.id')
+        //     ->select('product_inventory.*','=order_detail.product_name','=order_detail.quantity','=order_detail.order_id','product.product_image')
+        //     ->get();
+        //     // }
+
         $userId = Session::get('userId');
         $idPr = $request->idProduct;
         $rating = $request->rating;
@@ -500,7 +511,13 @@ class HomeController extends Controller
         }
     }
 
+  
 
+
+
+    public function postReviewDelete($id){
+        $deleted = DB::table('rating')->where('id', $id)->delete();
+    }
     public function postRating(Request $request){
         if(!Session::has('userId')){
             return response()->json([

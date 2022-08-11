@@ -77,7 +77,7 @@
                   <div class="ratings">
                     <p class="rating-links">
                       Tham gia ngày:
-                    <strong>21/05/2022</strong>
+                    <strong>{{$users->create_at}}2</strong>
                     </p>
                    
                     <p class="pull-right">
@@ -347,7 +347,7 @@
                           @endif
                         </div>
                       {{-- tab đơn hàng đã hủy --}}
-                        <div role="tabpanel" class="tab-pane" id="dahuy">huy..</div>
+                        <div role="tabpanel" class="tab-pane" id="dahuy">Không có</div>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="wishlist">
