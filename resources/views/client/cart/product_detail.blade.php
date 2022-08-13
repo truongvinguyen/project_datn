@@ -474,13 +474,13 @@ z-index: 400;
                                 <div class="product-item">
                                     <div class="item-inner">
                                         <div class="product-thumbnail">
-                                            @if($product->product_price_sale != null)
+                                            @if(isset($product->product_price_sale))
                                             <div class="icon-sale-label sale-left">
                                                 {{round((($product->product_price_sale-$product->product_price)/$product->product_price_sale)*100)}}%
                                             </div>
                                             @endif
                                             <div class="box-hover">
-                                                <div class="btn-quickview"> <a href="#" onclick="quickviewProduct({{$product->id}})" data-toggle="modal"
+                                                <div class="btn-quickview"> <a href="javascript:" onclick="quickviewProduct()" id="{{$product->id}}" data-toggle="modal"
                                                         data-target="#modal-quickview"><i class="fa fa-search-plus"
                                                             aria-hidden="true"></i> Xem nhanh</a> </div>
                                                 
@@ -532,7 +532,7 @@ z-index: 400;
 @endif
 <div class="container">
     <!-- service section -->
-    <div class="jtv-service-area">
+    {{-- <div class="jtv-service-area">
         <div class="row">
             <div class="col col-md-4 col-sm-4 col-xs-12 no-padding">
                 <div class="block-wrapper ship">
@@ -560,11 +560,11 @@ z-index: 400;
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- our clients Slider -->
 <!-- our clients Slider -->
 
-<div class="container">
+{{-- <div class="container">
     <div class="slider-items-products">
         <div id="our-clients-slider" class="product-flexslider hidden-buttons">
           <div class="slider-items slider-width-col6"> 
@@ -597,7 +597,7 @@ z-index: 400;
           </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 <div id="modal-size" class="modal fade in" role="dialog" style="">
@@ -623,65 +623,63 @@ z-index: 400;
 @endsection
 
 @section('js')
-   <script>
-        var btnRating = document.querySelector("#btn-rating");
-        btnRating.addEventListener("click", function(e) {
-            e.preventDefault();
-            var star = $('input[name="starup"]:checked').val();
-            var cmt = $("#cmt").val();
-            var starErr = $("#starErr");
-            var cmtErr = $("#cmtErr");
-            let isOk = false;
-            if(typeof(star) == "undefined" || star <=0 || star > 5){
-                starErr.text("Vui lòng kiểm tra số sao đánh giá.");
-                isOk = false;
-            }else{
-                starErr.text("");
-                isOk = true;
-            }
-            if(cmt.length < 3 || cmt.length > 1024){
-                cmtErr.text("Vui lòng kiểm tra nội dung đánh giá. Tối thiểu 3 ký tự, tối đa 1024 ký tự.");
-                isOk = false;
-            }else{
-                cmtErr.text("");
-                isOk = true;
-            }
-            console.log(isOk);
-            if (isOk){
-                let idProduct = $("#idProduct").val();
-                $.ajax({
-                    url: "{{route('rating')}}",
-                    type: "POST",
-                    dataType: "json",
-                    data:{
-                        rating : star,
-                        content: cmt,
-                        idProduct: idProduct,
-                        _token: $("input[name='_token']").val()
-                    },
-                    success: function (resp) {
-                       let code = resp['code'];
-                       switch (code) {
-                        case 0:
-                            console.log(resp);
-                            break;
-                        case 1:
-                            alert(resp['msg']);
-                            break;
-                        case 2:
-                            alert(resp['msg']);
-                            break;
-                        default:
-                        console.log(resp);
-                       }
-                    },
-                });
-            }
-            console.log(star, cmt);
-        });
-
-     
-   </script>
+<script>
+  var btnRating = document.querySelector("#btn-rating");
+  btnRating.addEventListener("click", function(e) {
+      e.preventDefault();
+      var star = $('input[name="star"]:checked').val();
+      var cmt = $("#cmt").val();
+      var starErr = $("#starErr");
+      var cmtErr = $("#cmtErr");
+      let isOk = false;
+      if(typeof(star) == "undefined" || star <=0 || star > 5){
+          starErr.text("Vui lòng kiểm tra số sao đánh giá.");
+          isOk = false;
+      }else{
+          starErr.text("");
+          isOk = true;
+      }
+      if(cmt.length < 3 || cmt.length > 1024){
+          cmtErr.text("Vui lòng kiểm tra nội dung đánh giá. Tối thiểu 3 ký tự, tối đa 1024 ký tự.");
+          isOk = false;
+      }else{
+          cmtErr.text("");
+          isOk = true;
+      }
+      console.log(isOk);
+      if (isOk){
+          let idProduct = $("#idProduct").val();
+          $.ajax({
+              url: "{{route('rating')}}",
+              type: "POST",
+              dataType: "json",
+              data:{
+                  rating : star,
+                  content: cmt,
+                  idProduct: idProduct,
+                  _token: $("input[name='_token']").val()
+              },
+              success: function (resp) {
+                 let code = resp['code'];
+                 switch (code) {
+                  case 0:
+                      console.log(resp);
+                      break;
+                  case 1:
+                      alert(resp['msg']);
+                      break;
+                  case 2:
+                      alert(resp['msg']);
+                      console.log("ok");
+                      break;
+                  default:
+                  console.log("ok");
+                 }
+              },
+          });
+      }
+  });
+</script>
    <script>
     function deleteMyCmt(id){
       if(confirm("Bạn có chắc muốn xóa đánh giá")){
