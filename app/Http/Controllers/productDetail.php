@@ -42,7 +42,7 @@ class productDetail extends Controller
     ->select('rating.*','customer_user.fullname','customer_user.image')
     ->get();
      
-     $products = $product->productByCategory($data->category_id);
+    $products = $product->relatedProducts($data->category_id);
     return view('client.cart.product_detail',compact('data','image','size','products','checkBuy','report'));
 
     }

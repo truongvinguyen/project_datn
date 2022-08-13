@@ -147,6 +147,7 @@ Route::get('ho-so', [HomeController::class, 'profile'])->name('profile');
 
 
 // đổ sản phẩm ra layout
+
 Route::prefix('')->group(function () {
     Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
     Route::get('/all-product', [App\Http\Controllers\showDataController::class, 'all_product']);
@@ -156,11 +157,16 @@ Route::prefix('')->group(function () {
     Route::get('/pagination/{orderBy}/{sort}', [App\Http\Controllers\showDataController::class, 'pagination']);
     
     Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
+    Route::get('/article_by_brand/{id}', [App\Http\Controllers\showDataController::class, 'article_by_brand'])->name('');
     Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
+    Route::get('/artPagination/{id}', [App\Http\Controllers\showDataController::class, 'artPagination']);
+    Route::get('/artPagePagination', [App\Http\Controllers\showDataController::class, 'artPagePagination']);
+
     Route::get('/fqas', [App\Http\Controllers\showDataController::class, 'FAQs'])->name('');
     Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
     Route::get('/return-policy', [App\Http\Controllers\showDataController::class, 'policy'])->name('');
 });
+
 Route::get('/navigation', function () {
     $nav = category::all();
     return view('client.others.nav-product',compact('nav'));

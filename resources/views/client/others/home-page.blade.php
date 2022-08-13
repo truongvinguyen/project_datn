@@ -91,7 +91,7 @@ Trang Chủ
     <div class="row">
       <div class="offer-add">
         <div class="tab-info" style="padding-left:15px;padding-right:15px;padding-bottom: 15px;">
-          <h3 class="new-product-title pull-left">Danh mục nổi bậc</h3>
+          <h3 class="new-product-title pull-left">Danh mục nổi bật</h3>
           <ul class="nav home-nav-tabs home-product-tabs">
             <li class="active"><a href="#all" data-toggle="tab" aria-expanded="false"></a></li>
           </ul>
@@ -323,18 +323,18 @@ Trang Chủ
               </div>
             </div>
             <div class="latest-post">
-              @foreach($articles as $article)
+            @foreach($articles as $article)
                 <article class="jtv-entry col-md-6">
                   <div class="jtv-post-inner">
                     <div class="feature-post images-hover"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="image"></a>
                       <div class="overlay"></div>
                     </div>
                     <div class="jtv-content-post">
-                      <h4 class="title-post" style="overflow: hidden;height: 50px;" > <a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a> </h4>
+                      <h4 class="title-post" style="overflow: hidden;height: 45px;" > <a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a> </h4>
                       <ul class="meta-post">
                         <li class="day"> <a href="#">{{date('d-m-y', strtotime($article->created_at))}}/</a> </li>
-                        <!-- <li class="author"> <a href="#">{{$article->name}} /</a> </li>
-                        <li class="travel"> <a href="#">{{$article->brand_name}}</a> </li> -->
+                        <li class="author"> <a href="#">{{$article->name}} /</a> </li>
+                        <li class="travel"> <a href="#">{{$article->brand_name}}</a> </li>
                       </ul>
                       <div class="jtv-entry-post excerpt" style="overflow: hidden;height: 50px;">
                         <p>{!!$article->article_content!!}</p>

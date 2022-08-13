@@ -38,25 +38,48 @@ class showDataController extends Controller
         }
        
     
-        $articles = $article->article();
+        $articles = $article->article()->limit(4)->get();
         return view('client.others.home-page', compact('best_product','products','articles','suggestions'));
     }
 
     public function article_page(){
         $article = new article();
-
-        $articles = $article->article();
-        $length = article::all()->count();
+        $articles = $article->article()->limit(4)->get();
+        $artBrandLength = $article->pageStatus()->count();
         $brands = brand::all();
-        return view('client.article.article-page',compact('articles','brands','length'));
+        return view('client.article.article-page',compact('articles','brands','artBrandLength'));
     }
+
+    public function article_by_brand($id){
+        $article = new article();
+        $artByBrand = $article->articleByBrand($id)->get();
+        $artBrandLength = $article->articleByBrand($id)->count();
+        $idBrand = $id;
+        return view('client.article.article',compact('idBrand','artByBrand','artBrandLength'));
+    }
+
+    public function artPagePagination(){
+        $article = new article();
+        $artByBrand = $article->pageStatus()->get();
+        return view('client.article.article_pages',compact('artByBrand'));
+    }
+
+    public function artPagination($id){
+        $article = new article();
+        $artByBrand = $article->status($id)->get();
+        $artBrandLength = $article->status($id)->count();
+        $idBrand = $id;
+        return view('client.article.article',compact('idBrand','artByBrand','artBrandLength'));
+    }
+
+
     public function articleOne($id){
         $art = new article();
 
-        $articles = $art->article();
+        $articles = $art->article()->limit(4)->get();
         $articleOne = $art::findOrFail($id);
-        $articleByCategory = $art->articleByCategory($articleOne->category_id);
- 
+        $articleByCategory = $art->articleByCategory($articleOne->category_id)->get();
+      
         return view('client.article.article-one',compact('articles','articleOne','articleByCategory'));
     }
 

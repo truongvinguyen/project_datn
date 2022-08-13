@@ -7,19 +7,41 @@ Trang Bài Viết
         <div class="container"> 
             <div class="row"> 
                 <div class="col-xs-12 col-sm-9" id="center_column">
-                    <div class="center_column">
+                    <div class="center_column" id="blog-posts">
                         <div class="page-title">
                             <h2>Bài viết</h2>
                         </div>
-                        <ul class="blog-posts" id="blog-posts">
-                        
+                        <ul class="blog-posts" id="art-pages">
+                            @foreach($articles as $article)
+
+                                <li class="post-item">
+                                    <article class="entry">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="entry-thumb"> <a href="single_post.html"><figure><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></figure></a> </div>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <h3 class="entry-title"><a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a></h3>
+                                                    <div class="entry-meta-data"> 
+                                                        <span class="author"> <i class="fa fa-user"></i>&nbsp; Tác giả: <a href="#">{{$article->name}}</a></span> 
+                                                        <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#" onclick="artByBrand({{$article->brand_id}})">{{$article->brand_name}}</a> </span> 
+                                                        <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span> 
+                                                        <span class="date"><i class="fa fa-calendar"></i>&nbsp;{{date('d-m-y', strtotime($article->created_at))}}</span> 
+                                                    </div>
+                                                    <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>&nbsp; <span>(5 votes)</span></div> -->
+                                            <div class="entry-excerpt">{!!$article->article_content!!}</div>
+                                            <a href="#" class="button read-more">Xem thêm&nbsp; <i class="fa fa-angle-double-right"></i></a> </div>
+                                        </div>
+                                    </article>
+                                </li>
+                            @endforeach
                         </ul>
                         <div class="pagination-area ">
-                            <ul id="pagination">
-                                @for($i = 1; $i <= ceil($length/6); $i++ )
-                                    <li data-offset="{{$i}}" class="{{$i == 1 ? 'active': '' }}">{{$i}}</li>
-                                @endfor
-                            </ul>
+                                <ul id="pagination-article">
+                                    @for($i = 1; $i <= ceil($artBrandLength/6); $i++ )
+                                        <li data-offset="{{$i}}" class="{{$i == 1 ? 'active': '' }}">{{$i}}</li>
+                                    @endfor
+                                </ul>
                         </div>
                     </div>
                 </div>
@@ -35,9 +57,11 @@ Trang Bài Viết
                     <!-- layered -->
                     <div class="layered layered-category">
                         <div class="layered-content">
-                        <ul class="tree-menu">
+                        <ul class="tree-menu" id="tree-menu">
                             @foreach($brands as $brand)
-                                <li data-offset="{{$brand->id}}"><i class="fa fa-angle-right"></i>&nbsp;{{$brand->brand_name}}</li>
+                                <li data-offset="{{$brand->id}}">
+                                    <i class="fa fa-angle-right"></i>&nbsp;{{$brand->brand_name}}
+                                </li>
                             @endforeach
                         
                         </ul>
@@ -62,7 +86,12 @@ Trang Bài Viết
                                     <div class="post-thumb"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
                                     <div class="post-info">
                                         <h5 class="entry_title"><a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a></h5>
-                                        <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{$article->created_at}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
+                                    </div>
+                                    <div class="post-meta" style="font-size: 11px;"> 
+                                        <span class="author"> <i class="fa fa-user"></i>&nbsp; Tác giả: <a href="#">{{$article->name}}</a></span> 
+                                        <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#" onclick="artByBrand({{$article->brand_id}})">{{$article->brand_name}}</a> </span> 
+                                        <!-- <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span>  -->
+                                        <span class="date"><i class="fa fa-calendar"></i>&nbsp;{{date('d-m-y', strtotime($article->created_at))}}</span> 
                                     </div>
                                 </li>
                             @endforeach
@@ -75,12 +104,13 @@ Trang Bài Viết
                 <!-- ./Popular Posts --> 
                 
                 <!-- Recent Comments -->
-                <div class="block blog-module">
+
+                
+                <!-- <div class="block blog-module">
                     <div class="sidebar-bar-title">
                         <h3>bình luận gần đây</h3>
                     </div>
                     <div class="block_content"> 
-                    <!-- layered -->
                         <div class="layered">
                             <div class="layered-content">
                                 <ul class="recent-comment-list">
@@ -93,12 +123,13 @@ Trang Bài Viết
                                 </ul>
                             </div>
                         </div>
-                    <!-- ./layered --> 
                     </div>
-                </div>
+                </div> -->
                 <!-- ./Recent Comments --> 
                 <!-- tags -->
-                <div class="popular-tags-area block">
+
+                
+                <!-- <div class="popular-tags-area block">
                     <div class="sidebar-bar-title">
                         <h3>thẻ được tìm kiếm nhiều</h3>
                     </div>
@@ -108,7 +139,7 @@ Trang Bài Viết
                         </ul>
                     </div>
                 </div>
-                
+                 -->
                 <!-- ./tags --> 
                 <!-- Banner -->
                 <!-- <div class="single-img-add sidebar-add-slider">
@@ -145,35 +176,6 @@ Trang Bài Viết
             </div>
         </div>
     </section>
-    <div class="container">
-    <div class="slider-items-products">
-      <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-        <div class="slider-items slider-width-col6"> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand1.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand2.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand3.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand4.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('/images/brand6.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand7.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-        </div>
-      </div>
-    </div>
-  </div>
+  
+<script src="{{ asset('/client/js/article.js') }}"></script>
 @endsection
