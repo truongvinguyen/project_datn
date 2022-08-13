@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client\UserClient;
 use App\Models\Client\order;
+use App\Models\wishlist;
 use App\Models\Client\order_detail;
 use Illuminate\Support\Str;
 
@@ -28,6 +29,7 @@ class HomeController extends Controller
 
     public function profile()
     {
+        $wishlist = new wishlist();
         if (Session::has('userId')) {
             $users=DB::table('customer_user')
             ->select('*')
@@ -45,7 +47,8 @@ class HomeController extends Controller
             ->select('product_inventory.*','=order_detail.product_name','=order_detail.quantity','=order_detail.order_id','product.product_image')
             ->get();
             // }
-            return view('client.account.profile',compact('users','order','order_detail'));
+            $list = $wishlist->productList(Session::get('userId'));
+            return view('client.account.profile',compact('users','order','order_detail','list'));
         }
         else{
             return redirect()->route('getLogin');

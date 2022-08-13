@@ -177,7 +177,7 @@ a.meanmenu-reveal {
 .main-menu ul li .mega-menu li a {
 	color: #333;
 	display: inline-block;
-	font-size: 13px;
+	font-size: 15px;
 	font-weight: 400;
 	letter-spacing: 0.5px;
 	padding: 0px;
@@ -749,7 +749,7 @@ body.modal-open {
 	width: 100%;
 }
 .menu-block-1 {
-	width: 72%;
+	width: 100%;
 	display: inline-block;
 	float: left;
 }

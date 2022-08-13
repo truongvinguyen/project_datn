@@ -40,15 +40,54 @@ class product extends Model
         return $data;
     }
     
-    public function productByCategory($cate){
-        $data = DB::table('product')->where('category_id','=',$cate)->get();
+    public function productByCategory($cate,$offset = 0, $limit = 6){
+        $data = DB::table('product')->offset($offset)->limit($limit)->where('category_id','=',$cate);
    
         return $data;
     }
 
-    public function searchProduct($value){
-        $data = DB::table('product')->where('product_name','like', '%' .$value. '%')->get();
-   
+    public function searchProduct($value,$offset = 0, $limit = 6){
+        $data = DB::table('product') ->offset($offset)->limit($limit) ->where('product_name', 'like','%' .$value. '%')->get();
+
+        return $data;
+    }
+
+
+    public function productAll($offset = 0, $limit = 6){
+        $data = DB::table('product')
+        ->offset($offset)->limit($limit) 
+        ->get();
+        return $data;
+    }
+
+    public function priceLow($offset = 0, $limit = 6){
+        $data = DB::table('product')
+        ->offset($offset)->limit($limit) 
+        ->orderBy('product_price', 'asc')
+        ->get();
+        return $data;
+    }
+
+    public function priceHigh($offset = 0, $limit = 6){
+        $data = DB::table('product')
+        ->offset($offset)->limit($limit) 
+        ->orderBy('product_price', 'desc')
+        ->get();
+        return $data;
+    }
+
+    public function priceSale($offset = 0, $limit = 6){
+        $data = DB::table('product')
+        ->offset($offset)->limit($limit) 
+        ->whereNotNull('product_price_sale')
+        ->get();
+    
+        return $data;
+    }
+
+    public function pagination(String $orderBy, String $sort){
+        $data = DB::table('product')
+        ->orderBy($orderBy, $sort);
         return $data;
     }
 }

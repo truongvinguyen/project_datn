@@ -5,11 +5,17 @@ Trang Liên Hệ
 @section('content')
 <section class="main-container col1-layout">
     <div class="main container">
+  
       <div class="row">
+        @if(Session::has('success'))
+          <div id="dislike" class="bg-success">
+                <h4 class="text-light m-auto">{{Session::get('success')}}</h4>
+            </div>
+          </div>
+        @endif
         <section class="col-main col-sm-12">
           
           <div id="contact" class="page-content page-contact">
-            <!-- <div id="message-box-conact">We're available for new projects</div> -->
             <div class="row">
               <div class="col-xs-12 col-sm-7" id="contact_form_map">
                 <h3 class="page-subheading">liên hệ chúng tôi</h3>
@@ -29,8 +35,9 @@ Trang Liên Hệ
               <div class="col-sm-5">
                 <h3 class="page-subheading">Liên lạc</h3>
                 <div class="contact-form-box">
-                  <form action="/feedback" method="get" enctype="multipart/form-data">
-                    <div class="form-selector">
+                  <form action="/feedback" method="post" enctype="multipart/form-data">
+                  @csrf
+                    <div class="form-selector"> 
                       <label>Họ và tên</label>
                       <input type="text"  value="{{old('name')}}" class="form-control input-sm" id="name" name="name"/>
                       @error('name')
@@ -62,6 +69,33 @@ Trang Liên Hệ
                       <button class="button"><i class="fa fa-send"></i>&nbsp; <span>Gởi</span></button>
                     </div>
                   </form>
+
+                  <!-- <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" value="{{csrf_token()}}" class="token_saveall">
+                    <div class="form-selector"> 
+                      <label>Họ và tên</label>
+                      <input type="text" value="{{old('name')}}" class="form-control input-sm" id="name" name="name"/>
+                   
+                    </div>
+                    <div class="form-selector">
+                      <label>Email</label>
+                      <input type="text"  value="{{old('email')}}" class="form-control input-sm" id="email" name="email"/>
+                    
+                    </div>
+                    <div class="form-selector">
+                      <label>Điện thoại</label>
+                      <input type="text" value="{{old('phone')}}" class="form-control input-sm" id="phone" name="phone"/>
+                  
+                    </div>
+                    <div class="form-selector">
+                      <label>Nội dung</label>
+                      <textarea class="form-control input-sm" value="{{old('comment')}}" rows="30" id="comment" name="comment"></textarea>
+              
+                    </div>
+                    <div class="form-selector">
+                      <button type="button" onclick="contact()" class="button"><i class="fa fa-send"></i>&nbsp; <span>Gởi</span></button>
+                    </div>
+                  </form> -->
                 </div>
               </div>
             </div>

@@ -73,7 +73,7 @@ Trang Sản Phẩm
                                             </ul>
                                         </div>
                                     </div>
-                                
+                                   
                                 </div>
 
                                 <div class="tab-pane" id="lowToHigh">
@@ -133,7 +133,7 @@ Trang Sản Phẩm
                                     <div class="pagination-area ">
                                         <ul id="paginationLowToHigh">
                                         @for($i = 1; $i <= ceil($productAllLength/6); $i++ )
-                                            <li class="{{$i == 1 ? 'active': '' }}" data-offset="{{$i}}">{{$i}}</li>
+                                            <li  class="{{$i == 1 ? 'active': '' }}" data-offset="{{$i}}">{{$i}}</li>
                                         @endfor
                                         </ul>
                                     </div>
@@ -195,7 +195,7 @@ Trang Sản Phẩm
                                     <div class="pagination-area ">
                                         <ul id="paginationHighToLow">
                                         @for($i = 1; $i <= ceil($productAllLength/6); $i++ )
-                                            <li class="{{$i == 1 ? 'active': '' }}" data-offset="{{$i}}">{{$i}}</li>
+                                            <li  class="{{$i == 1 ? 'active': '' }}" data-offset="{{$i}}">{{$i}}</li>
                                         @endfor
                                         </ul>
                                     </div>
@@ -338,7 +338,6 @@ Trang Sản Phẩm
                 <div class="block shop-by-side">
                     <div class="sidebar-bar-product-title"><h3>Danh mục sản phẩm</h3></div>
                     <div class="block-content">
-                    <!-- <p class="block-subtitle">Shopping Options</p> -->
                         <div class="layered-Category">
                             <div class="layered-content">
                                 <ul id="product-detail-tab">
@@ -346,7 +345,7 @@ Trang Sản Phẩm
                                         <a href="#cate" data-toggle="tab" style="color: #000 !important;">
                                             <ul class="check-box-list" id="productByCate">
                                                 @foreach($categories as $cate)
-                                                    <li data-offset="{{$cate->id}}"><i class="fa fa-angle-right"></i>&nbsp;{{$cate->category_name}}</li>
+                                                    <li> <a href="/product-grid/{{$cate->id}}"><i class="fa fa-angle-right"></i>&nbsp;{{$cate->category_name}}</a></li>
                                                 @endforeach
                                             </ul>
                                         </a> 

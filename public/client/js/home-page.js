@@ -1,9 +1,8 @@
 $(document).ready(function () {
   $('#pagination li').on('click', function (e) {
     let offset = e.target.dataset.offset;
-     console.log(e.target.dataset.offset)
     $.ajax({
-      url: `/api/products/grid/${offset}`,
+      url: `/pagination/id/asc?page=${offset}`,
       type: 'GET',
       dataType: 'text',
       success: function (response){
@@ -18,41 +17,77 @@ $(document).ready(function () {
     })
   });
 
-  $('#search').on('keyup', (function(){ 
-    var txt = $(this).val();
-    console.log(txt)
-    // $('#search_result').addClass('search_result_active');
-    if(txt != '')
-    {
-        $.ajax({
-            url: `/api/search/${value}`,
-            method: "post",
-            data: {search : txt},
-            dataType: "text",
-            success: function(data)
-            {
-                $('#search_result').html(data);
-            }
-        });
-    }
-    else
-    {
-        $('#search_result').removeClass('search_result_active');
-        $('#search_result').html('');
-    }
-}));
+  $(document).ready(function () {
+    $('#paginationSale li').on('click', function (e) {
+      let offset = e.target.dataset.offset;
+      $.ajax({
+        url: `/pagination/product_price_sale/desc?page=${offset}`,
+        type: 'GET',
+        dataType: 'text',
+        success: function (response){
+          // console.log(response)
+          $(`#productSale`).html(response)   
+          $(`#paginationSale li.active`).toggleClass(`active`);
+          $(e.target).toggleClass('active');
+        },
+        error: function( error){
+          console.log(error.message)
+        }
+      })
+    })
+  });
+
+  
+  $(document).ready(function () {
+    $('#paginationHighToLow li').on('click', function (e) {
+      let offset = e.target.dataset.offset;
+      //  console.log(e.target.dataset.offset)
+      $.ajax({
+        url: `/pagination/product_price/desc?page=${offset}`,
+        type: 'GET',
+        dataType: 'text',
+        success: function (response){
+          // console.log(response)
+          $(`#productHighToLow`).html(response)   
+          $(`#paginationHighToLow li.active`).toggleClass(`active`);
+          $(e.target).toggleClass('active');
+        },
+        error: function( error){
+          console.log(error.message)
+        }
+      })
+    })
+  });
+
+  $(document).ready(function () {
+    $('#paginationLowToHigh li').on('click', function (e) {
+      let offset = e.target.dataset.offset;
+      $.ajax({
+        url: `/pagination/product_price/asc?page=${offset}`,
+        type: 'GET',
+        dataType: 'text',
+        success: function (response){
+          // console.log(response)
+          $(`#productLowToHigh`).html(response)   
+          $(`#paginationLowToHigh li.active`).toggleClass(`active`);
+          $(e.target).toggleClass('active');
+        },
+        error: function( error){
+          console.log(error.message)
+        }
+      })
+    })
+  });
 
   $('#productByCate li').on('click', function (e) {
-    console.log(e.target)
     let offset = e.target.dataset.offset;
-    // console.log(e.target)
     $.ajax({
       url: `/api/products/gridProduct/category_id/${offset}`,
       type: 'GET',
       dataType: 'text',
       success: function (response){
         // console.log(response)
-        $(`#product-g`).html(response)   
+        $(`#category`).html(response)   
         $(`#productByCate li.active`).toggleClass(`active`);
         $(e.target).toggleClass('active');
       },
@@ -64,14 +99,13 @@ $(document).ready(function () {
 
   $('#productByBrand li').on('click', function (e) {
     let offset = e.target.dataset.offset;
-    console.log(e.target)
     $.ajax({
       url: `/api/products/gridProduct/brand_id/${offset}`,
       type: 'GET',
       dataType: 'text',
       success: function (response){
         // console.log(response)
-        $(`#product-g`).html(response)   
+        $(`#category`).html(response)   
         $(`#productByBrand li.active`).toggleClass(`active`);
         $(e.target).toggleClass('active');
       },
@@ -80,54 +114,18 @@ $(document).ready(function () {
       }
     })
   });
-
-
-  $('#data_price ').on('click', function (e) {
-    let price = e.target.dataset.price;
-    console.log(e.target.dataset)
-    $.ajax({
-      url: `/api/products/price/grid/product_price/${price}`,
-      type: 'GET',
-      dataType: 'text',
-      success: function (response){
-        console.log(response)
-        $(`#product-g`).html(response)    
-        $(`#data_price li.active`).toggleClass(`active`);
-        $(e.target).toggleClass('active');
-      },
-      error: function( error){
-        console.log(error.message)
-      }
-    })
-  });
-
-  $('#data_price ').on('click', function (e) {
-    let price = e.target.dataset.price;
-    console.log(e.target.dataset)
-    $.ajax({
-      url: `/api/products/discount/grid/product_price/${price}`,
-      type: 'GET',
-      dataType: 'text',
-      success: function (response){
-        console.log(response)
-        $(`#product-g`).html(response)   
-      },
-      error: function( error){
-        console.log(error.message)
-      }
-    })
-  });
-
 });
+
+
 
 //Categories
 $.ajax({
-  url: `/api/categories`,
+  url: `/navigation`,
   type: 'GET',
   dataType: 'text',
   success: function (response){
     // console.log(response)
-    $(`#nav`).html(response)   
+    $(`.nav-menu`).html(response)   
   },
   error: function( error){
     console.log(error.message)
@@ -151,7 +149,7 @@ function quickviewProduct(id){
  ,550)
 
 }
-  
+
 setTimeout(function () {
   $("#dislike").hide();
-}, 10000);
+}, 3000);

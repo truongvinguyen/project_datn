@@ -30,19 +30,31 @@ class MailController extends Controller
            'comment.required'=>'Lời nhắn không được trống'
         ]);
 
-            Mail::send('default.feedback-mail',[
+            Mail::send('client.default.feedback-mail',[
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'phone' => $data['phone'],
                 'comment' => $data['comment']
 
             ],function($mail) use ($data){
-                $mail->to('nhitty28@gmail.com','nhitty28@gmail.com');
-                $mail->from('nhitty28@gmail.com');
+                $mail->to($data['email']);
                 $mail->subject('THƯ GÓP Ý CỦA KHÁCH HÀNG');
             });
 
-            return redirect('contact')->withSuccess('Gửi liên hệ thành công.Chúng tôi sẽ phản hồi bạn sớm nhất có thể.');
+            return redirect()->route('contact')->withSuccess('Gửi liên hệ thành công.Chúng tôi sẽ phản hồi bạn sớm nhất có thể.');
+
+            // Mail::send('client.default.feedback-mail',[
+            //     'name' => $data['name'],
+            //     'email' => $data['email'],
+            //     'phone' => $data['phone'],
+            //     'comment' => $data['comment']
+
+            // ],function($mail) use ($data){
+            //     $mail->to($data->email);
+            //     $mail->subject('THƯ GÓP Ý CỦA KHÁCH HÀNG');
+            // });
+
+            // echo 'Okie';
     }
 
 }

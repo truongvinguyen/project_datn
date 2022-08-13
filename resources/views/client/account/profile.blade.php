@@ -351,6 +351,47 @@
                       </div>
                     </div>
                     <div class="tab-pane fade" id="wishlist">
+                      <div class="main container">
+                        <div class="row">
+                          <div class="col-main col-sm-9 col-xs-12" style="padding-left: 0 !important;">
+                            <div class="my-account" style="margin: 20px;">
+
+                              <div class="wishlist-item table-responsive">
+                                <table class="col-md-12">
+                                  <thead>
+                                    <tr>
+                                      <th class="th-product">Hình</th>
+                                      <th class="th-details">Tên sản phẩm</th>
+                                      <th class="th-price">Giá bán</th>
+                                      <th class="th-price">Giá đặc biệt</th>
+                                      <th class="th-total th-add-to-cart"></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    @foreach($list as $wishlist)
+                                    
+                                      <tr id="/del/{{$wishlist->id}}">
+                                        <td class="th-product"><a href="/product-detail/{{$wishlist->product_id}}"><img src="/upload/product/{{$wishlist->product_image}}" alt="cart"></a></td>
+                                        <td class="th-details"><h2><a href="/product-detail/{{$wishlist->product_id}}">{{$wishlist->product_name}}</a></h2></td>
+                                        @if($wishlist->product_price_sale)
+                                          <td class="th-price regular">{{number_format($wishlist->product_price_sale)}}₫</td>
+                                          <td class="th-price price">{{number_format($wishlist->product_price)}}₫</td>
+                                        @else
+                                          <td class="th-price regular">{{number_format($wishlist->product_price)}}₫</td>
+                                          <td class="th-price price"></td>
+                                        @endif
+                                        <th class="td-add-to-cart"><a href="/product-detail/{{$wishlist->product_id}}">Xem lại sản phẩm</a></th>
+                                      </tr>
+                                    
+                                    @endforeach
+                                  </tbody>
+                                </table>
+                              </div>
+                            
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -365,13 +406,6 @@
                   <div class="layered-Category">
                     <div class="layered-content">
                       <ul class="check-box-list check-box-list-tools">
-                        <!-- <li>
-                          <label for="jtv1">
-                            <h4 class="button"><i class="fa fa-user"></i>&ensp;
-                              <span>Trang quản trị</span>
-                            </h4>
-                          </label>
-                        </li> -->
                         <li>
                           <label for="jtv1">
                             <h4 class="button"><i class="fa fa-pencil"></i>&ensp;
@@ -380,12 +414,13 @@
                           </label>
                         </li>
                         <li>
-                          <label for="jtv2">
-                            <h4 class="button"><i class="fa fa-heart"></i>&ensp;
-                              <span>Danh sách yêu thích</span>
-                              <span class="count">(2)</span>
-                            </h4>
-                          </label>
+                          <a href="/wishlist">
+                            <label for="jtv2">
+                              <h4 class="button"><i class="fa fa-heart"></i>&ensp;
+                                <span>Danh sách yêu thích</span>
+                              </h4>
+                            </label>
+                          </a>
                         </li>
                       </ul>
                     </div>
