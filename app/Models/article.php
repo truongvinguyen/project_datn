@@ -52,11 +52,11 @@ class article extends Model
     }
 
 
-    public function article(){
+    public function article($offset = 0, $limit = 6){
         $articles = article::select('*')
-        // ->join('users','users.id','=','article.employee_id')
-        // ->join('brand','brand.id','=','article.brand_id')
-        ->orderBy('id','DESC')->limit(4)->get();
+        ->join('users','users.id','=','article.employee_id')
+        ->join('brand','brand.id','=','article.brand_id')
+        ->offset($offset)->limit($limit);
         return $articles;
     }
 
@@ -68,8 +68,38 @@ class article extends Model
         return $articles;
     }
 
+    public function articleByBrand($cate,$offset = 0, $limit = 6){
+        $data = DB::table('article') 
+        ->join('users','users.id','=','article.employee_id')
+        ->join('brand','brand.id','=','article.brand_id')
+        ->where('brand_id','=',$cate)    
+        ->offset($offset)->limit($limit);
+        return $data;
+    }
+
+    public function status($cate){
+        $data = DB::table('article')
+        ->join('users','users.id','=','article.employee_id')
+        ->join('brand','brand.id','=','article.brand_id')
+        ->where('brand_id','=',$cate)    
+        ->where('article.article_status','=','1');
+        return $data;
+    }
+
+    public function pageStatus($offset = 0, $limit = 6){
+        $data = DB::table('article')
+        ->join('users','users.id','=','article.employee_id')
+        ->join('brand','brand.id','=','article.brand_id')
+        ->where('article.article_status','=','1')
+        ->offset($offset)->limit($limit);
+        return $data;
+    }
+
     public function articleByCategory($cate){
-        $data = DB::table('article')->where('category_id','=',$cate)->get();
+        $data = DB::table('article')
+        ->where('brand_id','=',$cate) 
+        ->join('users','users.id','=','article.employee_id')
+        ->join('brand','brand.id','=','article.brand_id')   ;
         return $data;
     }
 }

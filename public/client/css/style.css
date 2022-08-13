@@ -3778,6 +3778,7 @@ nav {
     color: #fff;
 }
 #pagination li:hover,
+#pagination-article li:hover,
 #paginationSale li:hover,
 #paginationLowToHigh li:hover,
 #paginationHighToLow li:hover{
@@ -3787,6 +3788,7 @@ nav {
 }
 
 #pagination .active,
+#pagination-article .active,
 #paginationSale .active,
 #paginationLowToHigh .active,
 #paginationHighToLow .active{
@@ -3796,6 +3798,12 @@ nav {
     color: #fff;
     transition: all .4s ease-out .2s;
 }
+
+#tree-menu .active{
+    color: #CF3341;
+    transition: all .4s ease-out .2s;
+}
+
 
 .view-mode li.active a {
 	color: #fff;
@@ -3838,6 +3846,11 @@ nav {
 	border-radius: 0px;
 	cursor: pointer
 }
+
+.layered-content ul li {
+	cursor: pointer
+}
+
 .pagination-area ul li a {
 	border: 1px solid #e0e0e0;
 	color: #363636;

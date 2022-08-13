@@ -50,8 +50,12 @@ Trang Bài Viết
                         <div class="entry-thumb"> <a href="/article-detail/{{$article->id}}"> <img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"> </a> </div>
                         <div class="entry-info">
                           <h3 class="entry-title"><a href="/article-detail/{{$article->id}}" style="width: 300px;">{{$article->article_title}}</a></h3>
-                          <div class="entry-meta-data"> <span class="comment-count"> <i class="fa fa-comment-o">&nbsp;</i> 1 </span> <span class="date"> <i class="fa fa-calendar">&nbsp;</i>{{date('d-m-y', strtotime($article->created_at))}}</span> </div>
-                          <div class="entry-more"> <a href="/article-detail/{{$article->id}}">Xem thêm</a> </div>
+                          <ul class="meta-post" style="display: inline-flex;list-style-type:none;font-size: 12px;">
+                            <li class="day"> <a href="#">{{date('d-m-y', strtotime($article->created_at))}}/</a> </li>
+                            <li class="author"> <a href="#">{{$article->name}} /</a> </li>
+                            <li class="travel"> <a href="#">{{$article->brand_name}}</a> </li>
+                          </ul>
+                          <div class="entry-more" style="display:block"> <a href="/article-detail/{{$article->id}}">Xem thêm</a> </div>
                         </div>
                       </article>
                     </div>
@@ -63,19 +67,19 @@ Trang Bài Viết
           </div>
           <!-- ./Related Posts --> 
           <!-- Comment -->
-          <div class="single-box">
+          <!-- <div class="single-box">
             <div class="title_block">
               <h2 class="">Bình luận</h2>
             </div>
             <div class="comment-list">
               <ul>
-                <!-- <li>
+                <li>
                   <div class="avartar"> <img src="images/avatar.png" alt="Avatar"> </div>
                   <div class="comment-body">
                     <div class="comment-meta"> <span class="author"><a href="#">Admin</a></span> <span class="date">2015-04-01</span> </div>
                     <div class="comment"> Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. </div>
                   </div>
-                </li> -->
+                </li>
               </ul>
             </div>
           </div>
@@ -94,10 +98,10 @@ Trang Bài Viết
                   <label for="email">Email</label>
                   <input id="email" type="text" class="form-control">
                 </div>
-                <!-- <div class="col-sm-12">
+                <div class="col-sm-12">
                   <label for="website">Website URL</label>
                   <input id="website" type="text" class="form-control">
-                </div> -->
+                </div>
                 <div class="col-sm-12">
                   <label for="message">Nội dung</label>
                   <textarea name="message" id="message" rows="8" class="form-control"></textarea>
@@ -105,7 +109,7 @@ Trang Bài Viết
               </div>
               <button class="button"><span>Đăng</span></button>
             </div>
-          </div>
+          </div> -->
           <!-- ./Comment --> 
         </div>
         <!-- right colunm -->
@@ -125,7 +129,13 @@ Trang Bài Viết
                       <div class="post-thumb"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
                       <div class="post-info">
                         <h5 class="entry_title"><a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a></h5>
-                        <div class="post-meta"> <span class="date"><i class="fa fa-calendar"></i> {{date('d-m-y', strtotime($article->created_at))}}</span> <span class="comment-count"> <i class="fa fa-comment-o"></i> 3 </span> </div>
+                      </div>
+                      <div class="post-meta" style="font-size: 11px;"> 
+                        <span class="author"> <i class="fa fa-user"></i>&nbsp; Tác giả: <a href="#">{{$article->name}}</a></span> 
+                        <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#">{{$article->brand_name}}</a> </span> 
+                        <!-- <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span>  -->
+                        <span class="date"><i class="fa fa-calendar"></i>&nbsp;{{date('d-m-y', strtotime($article->created_at))}}</span> 
+                      </div>
                       </div>
                     </li>
                   @endforeach
@@ -138,31 +148,33 @@ Trang Bài Viết
           <!-- ./Popular Posts --> 
           
           <!-- Recent Comments -->
-          <div class="block blog-module">
+
+
+          <!-- <div class="block blog-module">
             <div class="sidebar-bar-title">
               <h3>bình luận gần đây</h3>
             </div>
             <div class="block_content"> 
-              <!-- layered -->
               <div class="layered">
                 <div class="layered-content">
                   <ul class="recent-comment-list">
 
-                    <!-- <li>
+                    <li>
                       <h5><a href="#">Lorem ipsum dolor sit amet</a></h5>
                       <div class="comment"> "Consectetuer adipis. Mauris accumsan nulla vel diam. Sed in..." </div>
                       <div class="author">Được đăng bởi <a href="#">Admin</a></div>
-                    </li> -->
+                    </li>
 
                   </ul>
                 </div>
               </div>
-              <!-- ./layered --> 
             </div>
-          </div>
+          </div> -->
+
+
           <!-- ./Recent Comments --> 
           <!-- tags -->
-          <div class="popular-tags-area block">
+          <!-- <div class="popular-tags-area block">
             <div class="sidebar-bar-title">
               <h3>thẻ được tìm kiếm nhiều</h3>
             </div>
@@ -171,7 +183,7 @@ Trang Bài Viết
                 <li><a href="#">Boys</a></li>
               </ul>
             </div>
-          </div>
+          </div> -->
           
           <!-- ./tags --> 
           <!-- Banner -->
@@ -243,35 +255,6 @@ Trang Bài Viết
     </div>
   </div>
   <!-- our clients Slider -->
-  <div class="container">
-    <div class="slider-items-products">
-      <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-        <div class="slider-items slider-width-col6"> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand1.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand2.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand3.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand4.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('/images/brand6.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="{{asset('client/images/brand7.png')}}" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item --> 
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
 @endsection
