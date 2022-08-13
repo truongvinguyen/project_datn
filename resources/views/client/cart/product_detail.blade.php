@@ -530,74 +530,7 @@ z-index: 400;
     </div>
   </div>
 @endif
-<div class="container">
-    <!-- service section -->
-    {{-- <div class="jtv-service-area">
-        <div class="row">
-            <div class="col col-md-4 col-sm-4 col-xs-12 no-padding">
-                <div class="block-wrapper ship">
-                    <div class="text-des"> <i class="icon-rocket"></i>
-                        <h3>FREE SHIPPING & RETURN</h3>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-md-4 col-sm-4 col-xs-12 no-padding">
-                <div class="block-wrapper return">
-                    <div class="text-des"> <i class="fa fa-dollar"></i>
-                        <h3>MONEY BACK GUARANTEE</h3>
-                        <p>Lorem ipsum dolor sit amet.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-md-4 col-sm-4 col-xs-12 no-padding">
-                <div class="block-wrapper support">
-                    <div class="text-des"> <i class="fa fa-headphones"></i>
-                        <h3>ONLINE SUPPORT 24/7</h3>
-                        <p>Lorem ipsum dolor sit amet. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-<!-- our clients Slider -->
-<!-- our clients Slider -->
 
-{{-- <div class="container">
-    <div class="slider-items-products">
-        <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-          <div class="slider-items slider-width-col6"> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand1.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand2.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand3.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand4.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand5.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand6.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="client/images/brand7.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-          </div>
-        </div>
-    </div>
-</div> --}}
 
 
 <div id="modal-size" class="modal fade in" role="dialog" style="">
