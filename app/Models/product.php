@@ -41,7 +41,7 @@ class product extends Model
     }
     
     public function productByCategory($cate,$offset = 0, $limit = 6){
-        $data = DB::table('product')->offset($offset)->limit($limit)->where('category_id','=',$cate);
+        $data = DB::table('product')->offset($offset)->limit($limit)->where('category_id','=',$cate)->get();
    
         return $data;
     }
