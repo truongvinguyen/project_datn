@@ -118,7 +118,7 @@ Trang Về Chúng Tôi
             <div class="item">
                 <div class="team">
                   <div class="inner">
-                    <div class="avatar"><img src="client/images/team-img04.jpg" alt="" style="height: 242px;margin: 0 auto;" class="img-responsive" /></div>
+                    <div class="avatar"><img src="client/images/Toan.jpg" alt="" style="height: 242px;margin: 0 auto;" class="img-responsive" /></div>
                     <h5>Nguyễn Bảo Toàn</h5>
                     <p class="subtitle">Back End</p>
                   </div>
@@ -129,7 +129,7 @@ Trang Về Chúng Tôi
                <div class="item">
                 <div class="team">
                   <div class="inner">
-                    <div class="avatar"><img src="client/images/team-img04.jpg" alt="" style="height: 242px;margin: 0 auto;" class="img-responsive" /></div>
+                    <div class="avatar"><img src="client/images/Truong.jpg" alt="" style="height: 242px;margin: 0 auto;" class="img-responsive" /></div>
                     <h5>Nguyễn Phan Trường</h5>
                     <p class="subtitle">Back End</p>
                   </div>
