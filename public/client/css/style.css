@@ -2177,7 +2177,7 @@ Featured products
 }
 .product-flexslider {
 	margin: 30px -12px;
-	margin-top: 20px
+	margin-top: 30px
 }
 .owl-theme .owl-controls .owl-buttons div {
 	background: none
@@ -6700,6 +6700,7 @@ label[for="rememberme"] {
 	display: inline-block;
 	width: 100%;
 	margin-bottom: 15px;
+	background: #f3f5f6;
 }
 .our-team .page-header h2 {
 	border-bottom: 1px solid #e0e0e0;
@@ -7321,4 +7322,21 @@ nav.stick {
     right: 0;
     left: 0; */
     z-index: 100; background-color:#fff;
+}
+
+.about-content__title {
+    color: #3b4348;
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -.5px;
+    line-height: 43px;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.p-aboutUs{
+	padding: 10px;
+	margin: auto 20px;
+    font-size: 22px;
+    line-height: 34px;
 }
