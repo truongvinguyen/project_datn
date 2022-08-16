@@ -8,6 +8,11 @@
 
 
 ################################################################# */ 
+
+.entry_title{
+	font-weight: 500;
+    margin-top: 5px;
+}
 .blog_post {
 	margin-top: 30px;
 }
@@ -210,12 +215,13 @@ a.read-more {
 .blog-posts .post-item .entry-meta-data {
 	padding: 3px 0 5px;
 	color: #666;
-	font-size: 13px;
+	font-size: 15px;
 }
 .entry-excerpt{ 
 	padding-top:4px;
-	height: 100px;
-    overflow: hidden;
+	font-size: 16px;
+	color: rgb(116, 113, 113);
+    line-height: 1.5;
 }
 .blog-posts .post-item .entry-meta-data span {
 	margin-right: 12px;
@@ -281,7 +287,7 @@ a.read-more {
 }
 .blog-list-sidebar li .post-info .post-meta {
 	font-size: 12px;
-	margin-top: 5px;
+	margin: 5px auto;
 }
 .blog-list-sidebar li .post-info .fa {
 	line-height: inherit;
@@ -317,7 +323,7 @@ a.read-more {
 }
 /** Blog detail **/
 .entry-detail {
- font-size:15px;
+ font-size:17px;
 }
 .entry-detail .page-title h1{ margin-bottom:12px; text-transform:uppercase; font-size:24px; font-weight:700; letter-spacing:0.5px;}
 

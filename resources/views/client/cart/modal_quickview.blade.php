@@ -2,7 +2,7 @@
     <button type="button" class="close myclose" data-dismiss="modal">×</button>
     <div class="product-view-area">
         <div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
-            <div class="icon-sale-label sale-left">Sale</div>
+    
             <div class="slider-items-products">
                 <div id="previews-list-slider" class="product-flexslider hidden-buttons">
                     <div class="slider-items slider-width-col6">

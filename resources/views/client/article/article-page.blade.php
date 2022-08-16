@@ -25,12 +25,11 @@ Trang Bài Viết
                                                     <div class="entry-meta-data"> 
                                                         <span class="author"> <i class="fa fa-user"></i>&nbsp; Tác giả: <a href="#">{{$article->name}}</a></span> 
                                                         <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#" onclick="artByBrand({{$article->brand_id}})">{{$article->brand_name}}</a> </span> 
-                                                        <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span> 
+                                                        <!-- <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span>  -->
                                                         <span class="date"><i class="fa fa-calendar"></i>&nbsp;{{date('d-m-y', strtotime($article->created_at))}}</span> 
                                                     </div>
                                                     <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>&nbsp; <span>(5 votes)</span></div> -->
-                                            <div class="entry-excerpt">{!!$article->article_content!!}</div>
-                                            <a href="#" class="button read-more">Xem thêm&nbsp; <i class="fa fa-angle-double-right"></i></a> </div>
+                                            <div class="entry-excerpt">{!! substr( $article->article_content, 0, 300 )!!} ...<a href="/article-detail/{{$article->id}}">  Xem thêm</a></div>
                                         </div>
                                     </article>
                                 </li>
@@ -59,7 +58,7 @@ Trang Bài Viết
                         <div class="layered-content">
                         <ul class="tree-menu" id="tree-menu">
                             @foreach($brands as $brand)
-                                <li data-offset="{{$brand->id}}">
+                                <li data-offset="{{$brand->id}}" style="font-weight: 600">
                                     <i class="fa fa-angle-right"></i>&nbsp;{{$brand->brand_name}}
                                 </li>
                             @endforeach
@@ -73,29 +72,14 @@ Trang Bài Viết
                 <!-- ./blog category  --> 
                 <!-- Popular Posts -->
                 <div class="block blog-module">
-                    <div class="sidebar-bar-title">
-                    <h3>bài viết phổ biến</h3>
-                    </div>
+                    <div class="sidebar-bar-title"><h3>bài viết phổ biến</h3></div>
                     <div class="block_content"> 
-                    <!-- layered -->
+                   
                     <div class="layered">
                         <div class="layered-content">
-                        <ul class="blog-list-sidebar">   
-                            @foreach($articles as $article)
-                                <li>
-                                    <div class="post-thumb"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
-                                    <div class="post-info">
-                                        <h5 class="entry_title"><a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a></h5>
-                                    </div>
-                                    <div class="post-meta" style="font-size: 11px;"> 
-                                        <span class="author"> <i class="fa fa-user"></i>&nbsp; Tác giả: <a href="#">{{$article->name}}</a></span> 
-                                        <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#" onclick="artByBrand({{$article->brand_id}})">{{$article->brand_name}}</a> </span> 
-                                        <!-- <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span>  -->
-                                        <span class="date"><i class="fa fa-calendar"></i>&nbsp;{{date('d-m-y', strtotime($article->created_at))}}</span> 
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
+                            <ul class="popular-posts">   
+                            
+                            </ul>
                         </div>
                     </div>
                     <!-- ./layered --> 

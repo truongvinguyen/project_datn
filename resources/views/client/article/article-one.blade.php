@@ -9,7 +9,7 @@ Trang Bài Viết
       <div class="row">
         <div class="col-xs-12">
           <ul>
-            <li class="home text-uppercase"> <a title="Go to Home Page" href="index.html">trang chủ</a><span>&raquo;</span></li>
+            <li class="home text-uppercase"> <a title="Go to Home Page" href="/">trang chủ</a><span>&raquo;</span></li>
             <li class="text-uppercase"><strong>chi tiết bài viết</strong></li>
           </ul>
         </div>
@@ -28,13 +28,18 @@ Trang Bài Viết
             <!-- <div class="entry-photo">
               <figure><img src="/upload/article/{{$articleOne->article_thumbnail}}" alt="Blog"></figure>
             </div> -->
-            <div class="entry-meta-data"> <span class="author"> <i class="fa fa-user"></i>&nbsp; by: <a href="#">{{$articleOne->name}}</a></span> <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#">{{$articleOne->brand}} </a> </span> <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span> <span class="date"><i class="fa fa-calendar">&nbsp;</i>&nbsp;{{date('d-m-y', strtotime($articleOne->created_at))}}</span>
+            <div class="entry-meta-data"> 
+              <span class="author"> <i class="fa fa-user"></i>&nbsp;{{$articleOne->name}}</span> 
+              <span class="cat"> <i class="fa fa-folder"></i>&nbsp; {{$articleOne->brand_name}} </span> 
+              <!-- <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span>  -->
+              <span class="date"><i class="fa fa-calendar"></i>&nbsp;{{date('d-m-y', strtotime($articleOne->created_at))}}</span>
               <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>&nbsp; <span>(5 votes)</span></div> -->
             </div>
             <div class="content-text clearfix">
-              <p class="post">{!!$articleOne->article_content!!}</p>
+              <div class="post">{!!$articleOne->article_content!!}</div>
             </div>
-            <div class="entry-tags"> <span>Thẻ:</span></a> <a href="#">{{$articleOne->slug}}</a> <a href="#">{{$articleOne->brand_name}}</a> </div>
+            <div class="entry-tags">
+              <span>Thẻ:</span>{{$articleOne->article_slug}}/{{$articleOne->brand_name}}</div>
           </div>
           <!-- Related Posts -->
           <div class="single-box">
@@ -47,7 +52,7 @@ Trang Bài Viết
                   @foreach($articleByCategory as $article)  
                     <div class="product-item">
                       <article class="entry">
-                        <div class="entry-thumb"> <a href="/article-detail/{{$article->id}}"> <img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"> </a> </div>
+                        <div class="entry-thumb"> <a href="/article-detail/{{$article->id}}"> <img style="height: 153px;" src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"> </a> </div>
                         <div class="entry-info">
                           <h3 class="entry-title"><a href="/article-detail/{{$article->id}}" style="width: 300px;">{{$article->article_title}}</a></h3>
                           <ul class="meta-post" style="display: inline-flex;list-style-type:none;font-size: 12px;">
@@ -123,22 +128,8 @@ Trang Bài Viết
               <!-- layered -->
               <div class="layered">
                 <div class="layered-content">
-                  <ul class="blog-list-sidebar">
-                  @foreach($articles as $article)
-                    <li>
-                      <div class="post-thumb"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></a> </div>
-                      <div class="post-info">
-                        <h5 class="entry_title"><a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a></h5>
-                      </div>
-                      <div class="post-meta" style="font-size: 11px;"> 
-                        <span class="author"> <i class="fa fa-user"></i>&nbsp; Tác giả: <a href="#">{{$article->name}}</a></span> 
-                        <span class="cat"> <i class="fa fa-folder"></i>&nbsp; <a href="#">{{$article->brand_name}}</a> </span> 
-                        <!-- <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span>  -->
-                        <span class="date"><i class="fa fa-calendar"></i>&nbsp;{{date('d-m-y', strtotime($article->created_at))}}</span> 
-                      </div>
-                      </div>
-                    </li>
-                  @endforeach
+                  <ul class="popular-posts">
+               
                   </ul>
                 </div>
               </div>

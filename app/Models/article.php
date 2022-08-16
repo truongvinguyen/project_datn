@@ -56,20 +56,33 @@ class article extends Model
         $articles = article::select('*')
         ->join('users','users.id','=','article.employee_id')
         ->join('brand','brand.id','=','article.brand_id')
+        ->select('article.*', 'users.name', 'brand.brand_name')
         ->offset($offset)->limit($limit);
         return $articles;
     }
 
-    public function articleOne($id){
-        $articles = article::select('*')
+    public function popular(){
+        $articles = DB::table('article')
         ->join('users','users.id','=','article.employee_id')
         ->join('brand','brand.id','=','article.brand_id')
+        ->orderBy('article_view_count','desc')
+        ->select('article.*', 'users.name', 'brand.brand_name')
+        ->limit(4);
+        return $articles;
+    }
+
+
+    public function articleOne($id){
+        $articles = DB::table('article')
+        ->join('users','users.id','=','article.employee_id')
+        ->join('brand','brand.id','=','article.brand_id')
+        ->select('article.*', 'users.name', 'brand.brand_name')
         ->where('article.id','=',$id)->first();
         return $articles;
     }
 
     public function articleByBrand($cate,$offset = 0, $limit = 6){
-        $data = DB::table('article') 
+        $data = DB::table('article')
         ->join('users','users.id','=','article.employee_id')
         ->join('brand','brand.id','=','article.brand_id')
         ->where('brand_id','=',$cate)    
@@ -81,6 +94,7 @@ class article extends Model
         $data = DB::table('article')
         ->join('users','users.id','=','article.employee_id')
         ->join('brand','brand.id','=','article.brand_id')
+        ->select('article.*', 'users.name', 'brand.brand_name')
         ->where('brand_id','=',$cate)    
         ->where('article.article_status','=','1');
         return $data;
@@ -90,6 +104,7 @@ class article extends Model
         $data = DB::table('article')
         ->join('users','users.id','=','article.employee_id')
         ->join('brand','brand.id','=','article.brand_id')
+        ->select('article.*', 'users.name', 'brand.brand_name')
         ->where('article.article_status','=','1')
         ->offset($offset)->limit($limit);
         return $data;
@@ -99,7 +114,8 @@ class article extends Model
         $data = DB::table('article')
         ->where('brand_id','=',$cate) 
         ->join('users','users.id','=','article.employee_id')
-        ->join('brand','brand.id','=','article.brand_id')   ;
+        ->join('brand','brand.id','=','article.brand_id')
+        ->select('article.*', 'users.name', 'brand.brand_name');
         return $data;
     }
 }

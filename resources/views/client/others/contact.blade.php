@@ -17,7 +17,7 @@ Trang Liên Hệ
           
           <div id="contact" class="page-content page-contact">
             <div class="row">
-              <div class="col-xs-12 col-sm-7" id="contact_form_map">
+              <div class="col-xs-12 col-sm-7" id="contact_form_map" style="font-size:16px">
                 <h3 class="page-subheading">liên hệ chúng tôi</h3>
                 <p>Mọi thắt mắc vui lòng gởi mail về cho chúng tôi. Chúng tôi sẽ liên hệ cho Quý Khách sớm nhất có thể</p>
                 <ul class="store_info">

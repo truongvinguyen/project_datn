@@ -4,11 +4,9 @@
             <div class="about-page">
                 <div class="col-xs-12 col-sm-12"> 
                     
-                    <h3>{{$name}}</h3>
+                    <h3>KHÁCH HÀNG ĐĂNG KÝ NHẬN BẢN TIN</h3>
+                    
                     <p>{{$email}}</p>
-                    <p>{{$phone}}</p>
-                    <br>
-                    <p>{{$comment}}</p>
                 </div>
             </div>
         </div>

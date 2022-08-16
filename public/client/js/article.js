@@ -55,15 +55,15 @@ function artByBrand($id){
   })
 }
 
-// $.ajax({
-//     url: `/artPagePagination`,
-//     type: 'GET',
-//     dataType: 'text',
-//     success: function (response){
-//       // console.log(response)
-//       $(`#blog-posts`).html(response)   
-//     },
-//     error: function( error){
-//       console.log(error.message)
-//     }
-// })
+$.ajax({
+    url: `/popular-post`,
+    type: 'GET',
+    dataType: 'text',
+    success: function (response){
+      // console.log(response)
+      $(`.popular-posts`).html(response)   
+    },
+    error: function( error){
+      console.log(error.message)
+    }
+})
