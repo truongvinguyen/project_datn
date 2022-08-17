@@ -330,16 +330,17 @@ Trang Chủ
                       <div class="overlay"></div>
                     </div>
                     <div class="jtv-content-post">
-                      <h4 class="title-post" style="overflow: hidden;height: 45px;" > <a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a> </h4>
+                      <h4 class="title-post" style="overflow: hidden;height: 45px;" > <a href="/article-detail/{{$article->id}}">{{substr( $article->article_title, 0, 100 )}} ...</a> </h4>
                       <ul class="meta-post">
                         <li class="day"> <a href="#">{{date('d-m-y', strtotime($article->created_at))}}/</a> </li>
                         <li class="author"> <a href="#">{{$article->name}} /</a> </li>
                         <li class="travel"> <a href="#">{{$article->brand_name}}</a> </li>
                       </ul>
-                      <div class="jtv-entry-post excerpt" style="overflow: hidden;height: 50px;">
-                        <p>{!!$article->article_content!!}</p>
+                      <div class="jtv-entry-post excerpt">
+                        <p>{!! substr( $article->article_content, 0, 90 )!!}...
+                          <a href="/article-detail/{{$article->id}}"><i class="fa fa-caret-right"></i>Xem thêm</a>
+                        </p>
                       </div>
-                      <div class="read-more"><a href="/article-detail/{{$article->id}}"><i class="fa fa-caret-right"></i>Xem thêm</a></div>
                     </div>
                   </div>
                 </article>

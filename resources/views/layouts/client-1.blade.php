@@ -187,7 +187,6 @@
                             {{-- @else
                             <a href="account_page.html" class="top-my-account"><i class="fa fa-user"></i></a>
                             @endif --}}
-                            <a href="compare.html" class="top-compare"><i class="fa fa-signal"></i></a>
                         </div>
                     </div>
                 </div>
@@ -239,12 +238,18 @@
                                     <span>Nhận các giao dịch mới nhất và ưu đãi đặc biệt</span>
                                 </div>
                                 <div class="col-md-6 col-sm-7">
-                                    <form id="newsletter-validate-detail" method="post" action="#">
-                                        <div class="newsletter-inner">
-                                            <input class="newsletter-email" name='Email'
-                                                placeholder='Nhập email của bạn' />
-                                            <button class="button subscribe" type="submit" title="Subscribe">Đăng
-                                                ký</button>
+                                    <form id="newsletter-validate-detail" method="post" action="/receive-information" enctype="multipart/form-data">
+                                    @csrf
+                                    
+                                        <div class="newsletter-inner" style="display: grid;">
+                                            <div class="form-selector">
+                                                <input class="newsletter-email" value="{{old('email')}}" class="form-control input-sm" name="email"/>
+                                                <button class="button subscribe" type="submit" title="Subscribe">Đăng ký</button>
+                                            </div>
+                                            @error('email')
+                                                <div class="text-danger" style="margin-top: 5px;">{{ $message }}</div>
+                                            @enderror
+                                            
                                         </div>
                                     </form>
                                 </div>
@@ -274,14 +279,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-3 col-xs-12 col-lg-2">
+                    <div class="col-sm-6 col-md-3 col-xs-12 col-lg-4">
                         <div class="footer-logo">
                             <a href="/home-page"><img src="{{asset('client/images/footer-logo.png')}}" alt="fotter logo"></a> 
+                            
                         </div>
+                        <h2 style="color: white; text-align: center;">ĐỘC - ĐẸP - LẠ</h2>
                         
                     </div>
-                    <div class="col-sm-6 col-md-2 col-xs-12 col-lg-3">
-                         <div class="footer-content">
+                    <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3" style="margin-top: 10px;">
+                        <div class="footer-content">
                             <div class="email"> <i class="fa fa-envelope"></i>
                                 <p>
                                     <a href="https://htmlgenius.justthemevalley.com/cdn-cgi/l/email-protection"
@@ -299,19 +306,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-2 col-xs-12 col-lg-2 collapsed-block">
-                        <div class="footer-links">
-                            <h3 class="links-title">Hỏi đáp<a class="expander visible-xs" href="#TabBlock-1">+</a></h3>
-                            <div class="tabBlock" id="TabBlock-1">
-                                <ul class="list-links list-unstyled">
-                                    <li><a href="/about-us">Về chúng tôi</a></li>
-                                    <li><a href="/contact-us">Liên hệ</a></li>
-                                    <li><a href="/fqas">Câu hỏi thường gặp</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+                    
+                    <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3">
                         <div class="footer-links">
                             <h3 class="links-title">Danh mục sản phẩm<a class="expander visible-xs"
                                     href="#TabBlock-3">+</a></h3>
@@ -324,6 +320,16 @@
                     </div>
                     <div class="col-sm-6 col-md-2 col-xs-12 col-lg-2 collapsed-block">
                         <div class="footer-links">
+                            <h3 class="links-title">Hỏi đáp<a class="expander visible-xs" href="#TabBlock-1">+</a></h3>
+                            <div class="tabBlock" id="TabBlock-1">
+                                <ul class="list-links list-unstyled">
+                                    <li><a href="/about-us">Về chúng tôi</a></li>
+                                    <li><a href="/contact-us">Liên hệ</a></li>
+                                    <li><a href="/fqas">Câu hỏi thường gặp</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-links" style="margin-top: 25px;">
                             <h3 class="links-title">Dịch vụ<a class="expander visible-xs" href="#TabBlock-4">+</a></h3>
                             <div class="tabBlock" id="TabBlock-4">
                                 <ul class="list-links list-unstyled">
@@ -336,7 +342,7 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-coppyright">
+            <!-- <div class="footer-coppyright">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2022-2030 <a href="#"> Trendy </a> Đã đăng ký Bản quyền.</div>
@@ -352,7 +358,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </footer>
         <a href="#" id="back-to-top" title="Back to top"><i class="fa fa-angle-up"></i></a>
         <div id="modal-quickview" class="modal fade" role="dialog">

@@ -93,7 +93,7 @@ Trang Về Chúng Tôi
                <div class="item">
                 <div class="team">
                   <div class="inner">
-                    <div class="avatar"><img src="client/images/Vu.jpg" alt="" class="img-responsive" /></div>
+                    <div class="avatar"><img src="client/images/Vu.jpg" style="height: 242px;margin: 0 auto;" alt="" class="img-responsive" /></div>
                     <h5>Nguyễn Lưu Phi Vũ</h5>
                     <p class="subtitle">Back End</p>
                   </div>

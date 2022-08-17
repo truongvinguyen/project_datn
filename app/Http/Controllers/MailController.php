@@ -57,4 +57,38 @@ class MailController extends Controller
             // echo 'Okie';
     }
 
+    public function receive_information(Request $data){
+        $validate= $data->validate([
+            'email'=>['required']
+        ],
+        
+        [
+           'email.required'=>'Email không được trống',
+           'email.ends_with'=>'Email không đúng định dạng ví dụ:(nguyenvana@gmail.com)',
+        ]);
+
+            Mail::send('client.default.receive-information',[
+                'email' => $data['email'],
+
+            ],function($mail) use ($data){
+                $mail->to($data['email']);
+                $mail->subject('THƯ ĐĂNG KÝ NHẬN BẢN TIN');
+            });
+
+            return redirect()->route('home-page')->withSuccess('Gửi liên hệ thành công.Chúng tôi sẽ phản hồi bạn sớm nhất có thể.');
+
+            // Mail::send('client.default.feedback-mail',[
+            //     'name' => $data['name'],
+            //     'email' => $data['email'],
+            //     'phone' => $data['phone'],
+            //     'comment' => $data['comment']
+
+            // ],function($mail) use ($data){
+            //     $mail->to($data->email);
+            //     $mail->subject('THƯ GÓP Ý CỦA KHÁCH HÀNG');
+            // });
+
+            // echo 'Okie';
+    }
+
 }

@@ -161,7 +161,8 @@ Route::prefix('')->group(function () {
     Route::get('/article-detail/{id}', [App\Http\Controllers\showDataController::class, 'articleOne'])->name('');
     Route::get('/artPagination/{id}', [App\Http\Controllers\showDataController::class, 'artPagination']);
     Route::get('/artPagePagination', [App\Http\Controllers\showDataController::class, 'artPagePagination']);
-
+    Route::get('/popular-post', [App\Http\Controllers\showDataController::class, 'popular_posts']);
+    
     Route::get('/fqas', [App\Http\Controllers\showDataController::class, 'FAQs'])->name('');
     Route::get('/about-us', [App\Http\Controllers\showDataController::class, 'aboutUs'])->name('');
     Route::get('/return-policy', [App\Http\Controllers\showDataController::class, 'policy'])->name('');
@@ -175,6 +176,7 @@ Route::get('/navigation', function () {
 // Mail phản hồi
 Route::prefix('')->group(function () {
     Route::get('/contact-us', [App\Http\Controllers\MailController::class, 'contact'])->name('contact');
+    Route::post('/receive-information', [App\Http\Controllers\MailController::class, 'receive_information']);
     Route::post('/feedback', [App\Http\Controllers\MailController::class, 'send_mail'])->name('');
 });
 

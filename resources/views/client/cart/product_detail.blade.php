@@ -118,9 +118,9 @@ z-index: 400;
         <div class="row">
             <div class="col-xs-12">
                 <ul>
-                    <li class="home"> <a title="Go to Home Page" href="index.html">Home</a><span>&raquo;</span></li>
-                    <li class=""> <a title="Go to Home Page" href="shop_grid.html">Watches</a><span>&raquo;</span></li>
-                    <li><strong>Lorem Ipsum is simply</strong></li>
+                    <li class="home"> <a title="Go to Home Page" href="/">Trang chủ</a><span>&raquo;</span></li>
+                    <li class=""> <a title="Go to Home Page" href="/product-all">Trang sản phẩm</a><span>&raquo;</span></li>
+                    <li><strong>Chi tiết sản phẩm</strong></li>
                 </ul>
             </div>
         </div>
@@ -136,7 +136,9 @@ z-index: 400;
         <div class="col-main">
           <div class="product-view-area">
             <div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
-              <div class="icon-sale-label sale-left">Sale</div>
+              <div class="icon-sale-label sale-left">
+              {{round((($data->product_price_sale-$data->product_price)/$data->product_price_sale)*100)}}%
+              </div>
               <div class="large-image"> <a href="/upload/product/{{$data->product_image}}" class="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20"> <img class="zoom-img" src="/upload/product/{{$data->product_image}}" alt="products"> </a> </div>
             <div class="slider-items-products col-md-12">
               <div id="thumbnail-slider" class="product-flexslider hidden-buttons product-thumbnail">
@@ -163,13 +165,9 @@ z-index: 400;
               </div>
               <div class="ratings">
                 <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
-                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
-                <p class="availability in-stock pull-right">Availability: <span>In Stock</span></p>
+                <p class="rating-links"> <a href="#">1 Đánh giá(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
+                <p class="availability in-stock pull-right">Tình trạng: <span>còn hàng</span></p>
               </div>
-              {{-- <div class="short-description">
-                <h4>Quick Overview</h4>
-                <p>{!!$data->product_content!!}</p>
-              </div> --}}
 
               <div class="product-color-size-area">
                 <div class="size-area" >
@@ -228,9 +226,6 @@ z-index: 400;
                   @else
                     <li class="text-danger"><i class="fa fa-heart" style="margin-right: 8px;"></i><span>Đã yêu thích</span></li>
                   @endif
-               
-                  <li><a href="#"><i class="fa fa-retweet"></i><span>Add to Compare</span></a></li>
-                  <li><a href="#"><i class="fa fa-envelope"></i><span>Email to a Friend</span></a></li>
                 </ul>
               </div>
             </div>

@@ -58,6 +58,12 @@ class showDataController extends Controller
         return view('client.article.article',compact('idBrand','artByBrand','artBrandLength'));
     }
 
+    public function popular_posts(){
+        $article = new article();
+        $articles = $article->popular()->limit(4)->get();
+        return view('client.article.popular-posts',compact('articles'));
+    }
+
     public function artPagePagination(){
         $article = new article();
         $artByBrand = $article->pageStatus()->get();
@@ -77,7 +83,8 @@ class showDataController extends Controller
         $art = new article();
 
         $articles = $art->article()->limit(4)->get();
-        $articleOne = $art::findOrFail($id);
+        $articleOne = $art->articleOne($id);
+    
         $articleByCategory = $art->articleByCategory($articleOne->category_id)->get();
       
         return view('client.article.article-one',compact('articles','articleOne','articleByCategory'));
@@ -90,7 +97,7 @@ class showDataController extends Controller
         $categories = category::all();
         $articles = $article->article();
         $brands = brand::all();
-        $productAll = $data->productByCategory($id)->get();
+        $productAll = $data->productByCategory($id);
 
         $lowToHigh = $data->priceLow();
         $highToLow = $data->priceHigh();

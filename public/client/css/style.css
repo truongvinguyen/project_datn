@@ -1620,9 +1620,11 @@ ul#cart-sidebar {
 }
 .icon-sale-label {
 	background: none repeat scroll 0 0 #fe0100;
+	border-radius: 25px;
+    padding: 18px 2px 30px 15px;
 	color: #fff;
-	font-size: 11px;
-	font-weight: 400;
+	font-size: 15px;
+	font-weight: 500;
 	left: 0;
 	line-height: 22px;
 	margin: 0;
@@ -5522,7 +5524,7 @@ button.button.pro-add-to-cart span i {
 .tab-content {
 	padding: 5px 0px 0px 0px;
 	overflow: hidden;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 20px;
 	margin-top: 5px;
 	margin-bottom: 0px
