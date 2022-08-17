@@ -36,7 +36,25 @@ class HomeController extends Controller
         ->orderby('id','desc')
         ->orderby('notification_status','desc')
         ->get();
-        return view('home');
+ //số đơn hàng
+        $totalOrder =count( DB::table('order')->select('*')->where('status',3)->get());
+        $totalProduct = count( DB::table('=order_detail')->join('order','=order_detail.order_id','=','order.id')->select('order.status')->where('order.status','3')->get());
+        //tổng doanh thu
+        $doanhthu = [];
+        $tongdoanhthu = 0;
+        $doanhthu =  DB::table('order')->select('total_price','id')->where('status',3)->get();
+        foreach($doanhthu as $item){
+            $tongdoanhthu += (int)$item->total_price;
+        }
+        $customer = count(DB::table('customer_user')->select('id')->get());
+
+        
+        
+        // $khachmua = DB::table('order')->join('customer_user','order.customer_id','=','customer_user.id')->select('customer_user.fullname','customer_user.image','order.*')->orderBy('order.total_price','desc')->limit(5);
+        // dd($khachmua);
+        return view('home',compact('totalOrder','tongdoanhthu','totalProduct','customer'));
+
+
     }
     public function loadNotification(){
         $notification = DB::table('notification')

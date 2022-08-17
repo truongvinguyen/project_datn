@@ -1,7 +1,8 @@
 <?php
  namespace App\Models;
-    class cart{
-        public $products = null;
+ 
+    class cartclass{
+        public $products = [];
         public $totalPrice = 0;
         public $totalQty = 0;
         public function __construct($cart){
