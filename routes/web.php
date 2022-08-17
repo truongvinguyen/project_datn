@@ -60,7 +60,10 @@ Route::get('/delete-inventory/{id}', [App\Http\Controllers\inventoryController::
 //end tồn kho
 
 //thành viên
-Route::get('add-new-user', [App\Http\Controllers\UserController::class, 'form_add_user'])->name('');
+Route::get('add-new-user', [App\Http\Controllers\UserController::class, 'form_add_user'])->name('users.create');
+Route::get('edt-new-user/{id}', [App\Http\Controllers\UserController::class, 'form_edit_user'])->name('users.edit');
+
+Route::post('/update-user/{id}', [App\Http\Controllers\UserController::class, 'update_user'])->name('');
 Route::post('save-user', [App\Http\Controllers\UserController::class, 'save_user'])->name('');
 Route::get('users', [App\Http\Controllers\UserController::class, 'index'])->name('');
 Route::get('/add-image-product/{product_id}/for={product_name}', [App\Http\Controllers\imageProductController::class, 'add_imageproduct'])->name('');

@@ -28,7 +28,7 @@ class inventoryController extends Controller
           foreach($inventory as $item){
             if($item->product_size == $request->size){
               
-               return redirect()->back()->withErrors('Trùng kích thước');
+               return redirect()->back()->withError('Trùng kích thước');
             }       
           }
         

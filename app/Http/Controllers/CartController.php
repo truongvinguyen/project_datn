@@ -9,7 +9,7 @@ use App\Http\Controllers\Redirect;
 use App\Models\product;
 use App\Models\imageProduct;
 use App\Models\inventory;
-use App\Models\Cart;
+use App\Models\cartclass;
 
 class CartController extends Controller
 {
@@ -20,8 +20,8 @@ class CartController extends Controller
         ->where('product_inventory.id',$id)
         ->first();
         if($product != null){     
-            $cartO = Session('cart') ? Session('cart') : null;
-            $newCart = new Cart($cartO);
+            $cartO = session('cart') ? session('cart') : null;
+            $newCart = new cartclass($cartO);
             $newCart->addCart($product,$id,$quantity);
             $request->session()->put('cart',$newCart);         
         }
@@ -31,8 +31,8 @@ class CartController extends Controller
        return view('client.cart.cart');
    }
    public function delete_item_cart(Request $request,$id){
-        $cartO = Session('cart') ? Session('cart') : null;
-        $newCart= new Cart($cartO);
+        $cartO = session('cart') ? session('cart') : null;
+        $newCart= new cartclass($cartO);
         $newCart->DeleteItem($id);
         if(count( $newCart->products)>0)
         {
@@ -47,8 +47,8 @@ class CartController extends Controller
        return view('client.cart.showcart');
    }
    public function delete_item_list_cart(Request $request,$id){
-    $cartO = Session('cart') ? Session('cart') : null;
-    $newCart= new cart($cartO);
+    $cartO = session('cart') ? session('cart') : null;
+    $newCart= new cartclass($cartO);
     $newCart->DeleteItem($id);
     if(count( $newCart->products)>0)
      {
@@ -65,7 +65,7 @@ class CartController extends Controller
    }
    public function save_cart(Request $request,$id,$quanty){
     $cartO = Session('cart') ? Session('cart') : null;
-    $newCart= new cart($cartO);
+    $newCart= new cartclass($cartO);
     $newCart->updateCart($id,$quanty);
     $request->session()->put('cart',$newCart);  
     return view('client.cart.showcart_cut');
@@ -73,8 +73,8 @@ class CartController extends Controller
     public function save_all_cart(Request $request){
         $data = $request->data;
         foreach($data as $item) {
-            $cartO = Session('cart') ? Session('cart') : null;
-            $newCart= new cart($cartO);
+            $cartO = session('cart') ? session('cart') : null;
+            $newCart= new cartclass($cartO);
             $newCart->updateCart($item["key"],$item["value"]);
             $request->session()->put('cart',$newCart);  
         }

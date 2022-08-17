@@ -160,7 +160,7 @@
         alertify.set('notifier', 'position', 'bottom-right');
     </script>
     @endif
-    @if(Session::has('errors'))
+    @if(Session::has('error'))
     <style>
         .ajs-message.ajs-custom {
             color: #ffffff;
@@ -169,8 +169,7 @@
         }
     </style>
     <script>
-        alertify.notify('{{Session::get('
-            errors')}}', 'custom', 2,
+        alertify.notify('{{Session::get('error')}}', 'custom', 2,
             function() {
                 console.log('dismissed');
             });
@@ -385,6 +384,7 @@
                         <ul class="submenu">
                             <li><a href="/users">Quản lý thành viên</a></li>
                             <li><a href="/add-new-user">Thêm thành viên</a></li>
+                            <li><a href="/customer-account">Tài khoản khách hàng</a></li>
 
                         </ul>
                     </li>
