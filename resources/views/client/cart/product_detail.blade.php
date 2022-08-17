@@ -527,6 +527,7 @@ z-index: 400;
 @endif
 
 
+
 <div id="modal-size" class="modal fade in" role="dialog" style="">
   <div class="modal-dialog">
     <div class="modal-body">
