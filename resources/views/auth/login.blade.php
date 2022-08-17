@@ -70,7 +70,7 @@
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
                 <a href="login.html">
-                    <img src="/admin/vendors/images/logoblack.png" alt="">
+                    <img src="/admin/vendors/images/3.png" alt="" style="max-width: 140px">
                 </a>
             </div>
             

@@ -103,8 +103,9 @@ class showDataController extends Controller
         $highToLow = $data->priceHigh();
         $productSale = $data->whereNotNull('product_price_sale')->offset(0)->limit(6)->where('category_id','=',$id)->get();
  
-        $productSaleLength = $data::whereNotNull('product_price_sale')->where('category_id','=',$id)->count();
-        $productAllLength = $data->productByCategory($id)->count();
+        $productSaleLength = $data::whereNotNull('product_price_sale')->where('category_id','=',$id,)->count();
+        $productAllLength = $data->paginateCate($id)->count();
+    
         return view('client.product.product-cate',compact('brands','productSaleLength','productAllLength','categories','articles','productAll','highToLow','lowToHigh','productSale'));
     }
 
@@ -128,6 +129,13 @@ class showDataController extends Controller
     public function pagination($orderBy,$sort){
         $data = new product();
         $products = $data->pagination($orderBy,$sort)->paginate(6);
+        return view('client.product.productGrid',compact('products'));
+    }
+
+    public function paginateCate($columns_name,$cate){
+        $data = new product();
+        $products = $data->paginateCate($columns_name,$cate)->paginate(6);
+    
         return view('client.product.productGrid',compact('products'));
     }
 

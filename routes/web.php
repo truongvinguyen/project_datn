@@ -158,6 +158,7 @@ Route::prefix('')->group(function () {
     Route::get('/search', [App\Http\Controllers\showDataController::class, 'search'])->name('');
     Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('quickview');
     Route::get('/pagination/{orderBy}/{sort}', [App\Http\Controllers\showDataController::class, 'pagination']);
+    Route::get('/paginateCate/{columns_name}/{cate}', [App\Http\Controllers\showDataController::class, 'paginateCate']);
     
     Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
     Route::get('/article_by_brand/{id}', [App\Http\Controllers\showDataController::class, 'article_by_brand'])->name('');

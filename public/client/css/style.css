@@ -3780,6 +3780,7 @@ nav {
     color: #fff;
 }
 #pagination li:hover,
+#paginateCate li:hover,
 #pagination-article li:hover,
 #paginationSale li:hover,
 #paginationLowToHigh li:hover,
@@ -3790,6 +3791,7 @@ nav {
 }
 
 #pagination .active,
+#paginateCate .active,
 #pagination-article .active,
 #paginationSale .active,
 #paginationLowToHigh .active,
@@ -5741,7 +5743,7 @@ p.note {
 	width: 48%
 }
 .col2-left-layout .nav-tabs.product-tabs>li>a {
-	padding: 8px 5px
+	padding: 8px 10px
 }
 .page-content {
 	margin-bottom: 30px;

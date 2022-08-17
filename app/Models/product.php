@@ -97,4 +97,12 @@ class product extends Model
         ->orderBy($orderBy, $sort);
         return $data;
     }
+
+    public function paginateCate($columns_name,$cate){
+        $data = DB::table('product')
+        ->where($columns_name,'=',$cate);
+        return $data;
+    }
+
+ 
 }

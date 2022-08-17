@@ -17,6 +17,25 @@ $(document).ready(function () {
     })
   });
 
+  $('#paginateCate li').on('click', function (e) {
+    let offset = e.target.dataset.offset;
+    let brand = e.target.dataset.brand;
+    $.ajax({
+      url: `/paginateCate/${brand}?page=${offset}`,
+      type: 'GET',
+      dataType: 'text',
+      success: function (response){
+        // console.log(response)
+        $(`#product-g`).html(response)   
+        $(`#pagination li.active`).toggleClass(`active`);
+        $(e.target).toggleClass('active');
+      },
+      error: function( error){
+        console.log(error.message)
+      }
+    })
+  });
+
   $(document).ready(function () {
     $('#paginationSale li').on('click', function (e) {
       let offset = e.target.dataset.offset;
