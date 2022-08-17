@@ -333,7 +333,7 @@ Trang Sản Phẩm
                                         </div>
                                     </div>
                                     <div class="pagination-area ">
-                                        <ul class="pagination">
+                                        <ul id="pagination">
                                         @for($i = 1; $i <= ceil($productAllLength/6); $i++ )
                                             <li class="{{$i == 1 ? 'active': '' }}" data-offset="{{$i}}">{{$i}}</li>
                                         @endfor
@@ -359,7 +359,7 @@ Trang Sản Phẩm
                                         <a href="#cate" data-toggle="tab" style="color: #000 !important;">
                                             <ul class="check-box-list" id="productByCate">
                                                 @foreach($categories as $cate)
-                                                    <li> <a href="/product-grid/{{$cate->id}}"><i class="fa fa-angle-right"></i>&nbsp;{{$cate->category_name}}</a></li>
+                                                    <li> <a href="/product-grid/category_id/{{$cate->id}}"><i class="fa fa-angle-right"></i>&nbsp;{{$cate->category_name}}</a></li>
                                                 @endforeach
                                             </ul>
                                         </a> 

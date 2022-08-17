@@ -90,7 +90,7 @@ class showDataController extends Controller
         return view('client.article.article-one',compact('articles','articleOne','articleByCategory'));
     }
 
-    public function product_grid($id){
+    public function product_grid($columns_name,$id){
         $data = new product();
         $article = new article();
 
@@ -103,8 +103,8 @@ class showDataController extends Controller
         $highToLow = $data->priceHigh();
         $productSale = $data->whereNotNull('product_price_sale')->offset(0)->limit(6)->where('category_id','=',$id)->get();
  
-        $productSaleLength = $data::whereNotNull('product_price_sale')->where('category_id','=',$id,)->count();
-        $productAllLength = $data->paginateCate($id)->count();
+        $productSaleLength = $data::whereNotNull('product_price_sale')->where('category_id','=',$id,)->where('product_status','=','1')->count();
+        $productAllLength = $data->paginateCate($columns_name,$id)->count();
     
         return view('client.product.product-cate',compact('brands','productSaleLength','productAllLength','categories','articles','productAll','highToLow','lowToHigh','productSale'));
     }
@@ -122,19 +122,19 @@ class showDataController extends Controller
         $productSale = $data->priceSale();
  
         $productSaleLength = $data::whereNotNull('product_price_sale')->count();
-        $productAllLength = $data::orderBy('id','desc')->count();
+        $productAllLength = $data::orderBy('id','desc')->where('product_status','=','1')->count();
         return view('client.product.product-grid',compact('brands','productSaleLength','productAllLength','categories','articles','productAll','highToLow','lowToHigh','productSale'));
     }
 
     public function pagination($orderBy,$sort){
         $data = new product();
-        $products = $data->pagination($orderBy,$sort)->paginate(6);
+        $products = $data->pagination($orderBy,$sort) ->where('product_status','=','1')->paginate(6);
         return view('client.product.productGrid',compact('products'));
     }
 
     public function paginateCate($columns_name,$cate){
         $data = new product();
-        $products = $data->paginateCate($columns_name,$cate)->paginate(6);
+        $products = $data->paginateCate($columns_name,$cate) ->where('product_status','=','1')->paginate(6);
     
         return view('client.product.productGrid',compact('products'));
     }
@@ -149,7 +149,7 @@ class showDataController extends Controller
         $productSale = $data->whereNotNull('product_price_sale')->where('product_name', 'like','%' .$value. '%') ->offset(0)->limit(6) ->get();
 
         $productSaleLength = $data::where('product_name', 'like','%' .$value. '%')->whereNotNull('product_price_sale')->count();
-        $productAllLength = $data::where('product_name', 'like','%' .$value. '%')->count();
+        $productAllLength = $data::where('product_name', 'like','%' .$value. '%') ->where('product_status','=','1')->count();
 
         $products = $data->searchProduct($value);  
         

@@ -56,6 +56,7 @@ class article extends Model
         $articles = article::select('*')
         ->join('users','users.id','=','article.employee_id')
         ->join('brand','brand.id','=','article.brand_id')
+        ->where('article.article_status','=','1')
         ->select('article.*', 'users.name', 'brand.brand_name')
         ->offset($offset)->limit($limit);
         return $articles;
@@ -66,6 +67,7 @@ class article extends Model
         ->join('users','users.id','=','article.employee_id')
         ->join('brand','brand.id','=','article.brand_id')
         ->orderBy('article_view_count','desc')
+        ->where('article.article_status','=','1')
         ->select('article.*', 'users.name', 'brand.brand_name')
         ->limit(4);
         return $articles;
@@ -77,7 +79,8 @@ class article extends Model
         ->join('users','users.id','=','article.employee_id')
         ->join('brand','brand.id','=','article.brand_id')
         ->select('article.*', 'users.name', 'brand.brand_name')
-        ->where('article.id','=',$id)->first();
+        ->where('article.id','=',$id)
+        ->first();
         return $articles;
     }
 
@@ -86,6 +89,7 @@ class article extends Model
         ->join('users','users.id','=','article.employee_id')
         ->join('brand','brand.id','=','article.brand_id')
         ->where('brand_id','=',$cate)    
+        ->where('article.article_status','=','1')
         ->offset($offset)->limit($limit);
         return $data;
     }

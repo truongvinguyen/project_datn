@@ -333,7 +333,7 @@ Trang Sản Phẩm
                                         </div>
                                     </div>
                                     <div class="pagination-area ">
-                                        <ul class="pagination">
+                                        <ul id="pagination">
                                         @for($i = 1; $i <= ceil($productAllLength/6); $i++ )
                                             <li class="{{$i == 1 ? 'active': '' }}" data-offset="{{$i}}">{{$i}}</li>
                                         @endfor
