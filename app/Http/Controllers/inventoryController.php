@@ -24,39 +24,41 @@ class inventoryController extends Controller
 
 
     public function add_new_inventory(Request $request){
-        $inventory=DB::table('product_inventory')->where('product_id',$request->product_id)->get();
-          foreach($inventory as $item){
-            if($item->product_size == $request->size){
-              
-               return redirect()->back()->withError('Trùng kích thước');
-            }       
-          }
-        
+
+          $inventory=DB::table('product_inventory')->select('product_size','id')->where('product_id',$request->product_id)->where('product_size',$request->size)->get();
+          if(count($inventory)>0){
+             return 1;
+          }else{
             inventory::create([
-            'product_size' => $request->size,
-            'import_price'=> $request->import_price,
-            'price'=>$request->price,
-            'inventory'=>$request->inventory,
-            'sold'=>$request->sold,
-            'product_id'=>$request->product_id      
-             ]);
-             return redirect()->back()->withSuccess('Thêm kích thước thành công');     
+               'product_size' => $request->size,
+               // 'import_price'=> $request->import_price,
+               // 'price'=>$request->price,
+               'inventory'=>$request->inventory,
+               'sold'=>$request->sold,
+               'product_id'=>$request->product_id      
+                ]);
+                $product_id =$request->product_id;
+                $data=inventory::where('product_id',$request->product_id )->get();
+                return view('admin.inventory_cut',compact('data','product_id'));  
+          }         
     }
     public function update_inventory(Request $request,$id){
        $inventory= inventory::find($id);
        $inventory->update([
-        'product_size' => $request->size,
-        'import_price'=> $request->import_price,
-        'price'=>$request->price,
         'inventory'=>$request->inventory,
-        'sold'=>$request->sold,
-        'product_id'=>$request->product_id  
+        'sold'=>$request->sold
        ]);
-       return redirect()->back()->withSuccess('Cập nhật thành công');  
+       $product_id =$request->product_id;
+       $data=inventory::where('product_id',$request->product_id )->get();
+       return view('admin.inventory_cut',compact('data','product_id'));  
     }
     public function delete_inventory(Request $request,$id){
       $inventory= inventory::find($id);
       $inventory->delete();
-      return redirect()->back()->withSuccess('Xóa nhật thành công');  
+      return redirect()->back()->withSuccess('Xóa thành công');  
+   }
+   public function edit_inventory($id){
+      $dataedit = DB::table('product_inventory')->select('*')->where('id',$id)->first();
+      return view('admin.modalinven',compact('dataedit'));
    }
 }
