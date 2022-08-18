@@ -99,7 +99,7 @@ Trang Chủ
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
           <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/1"><img src="client/images/slider/271219003_4989708867717426_5471988687366907212_n.jpg" alt="" height="432px"></a> </div>
+            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/category_id/1"><img src="client/images/slider/271219003_4989708867717426_5471988687366907212_n.jpg" alt="" height="432px"></a> </div>
             <div class="jtv-content-text">
               <h3 class="title">Mua 2</h3>
               <span class="sub-title">tặng 1!</span><a href="" class="button">Mua ngay!</a> </div>
@@ -107,13 +107,13 @@ Trang Chủ
         </div>
         <div class="col-md-3 col-sm-3 col-xs-12">
           <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/3"><img src="client/images/slider/127815046_3751615794860079_1854692848132843020_n.jpg" alt=""></a> </div>
+            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/category_id/3"><img src="client/images/slider/127815046_3751615794860079_1854692848132843020_n.jpg" alt=""></a> </div>
             <div class="jtv-content-text hidden">
               <h3 class="title">Mẫu mới</h3>
             </div>
           </div>
           <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-            <div class="image "> <a class="jtv-banner-opacity" href="/product-grid/4" style="height: 233px;"><img src="client/images/slider/107040307_3341232402565089_4946627359952880076_n.jpg" alt=""></a> </div>
+            <div class="image "> <a class="jtv-banner-opacity" href="/product-grid/category_id/4" style="height: 233px;"><img src="client/images/slider/107040307_3341232402565089_4946627359952880076_n.jpg" alt=""></a> </div>
             <div class="jtv-content-text">
               <h3 class="title">Áo khoác</h3>
             </div>
@@ -121,7 +121,7 @@ Trang Chủ
         </div>
         <div class="col-md-5 col-sm-5 col-xs-12">
           <div class="jtv-banner-box" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/4" style="height: 432px;"><img src="client/images/slider/291173832_5521650981189876_8701477637628993593_n.jpg" alt=""></a> </div>
+            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/category_id/4" style="height: 432px;"><img src="client/images/slider/291173832_5521650981189876_8701477637628993593_n.jpg" alt=""></a> </div>
             <div class="jtv-content-text">
               <h3 class="title">màu sắc thời thượng</h3>
               <span class="sub-title">xu hướng thời trang mùa hè năm 2022</span> <a href="#" class="button">Mua ngay!</a> </div>

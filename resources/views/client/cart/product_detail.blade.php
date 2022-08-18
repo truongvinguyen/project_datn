@@ -136,9 +136,12 @@ z-index: 400;
         <div class="col-main">
           <div class="product-view-area">
             <div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
-              <div class="icon-sale-label sale-left">
-              {{round((($data->product_price_sale-$data->product_price)/$data->product_price_sale)*100)}}%
-              </div>
+              @if($data->product_price_sale != null)
+                <div class="icon-sale-label sale-left">
+                    {{round((($data->product_price_sale-$data->product_price)/$data->product_price_sale)*100)}}%
+                </div>
+              @endif
+            
               <div class="large-image"> <a href="/upload/product/{{$data->product_image}}" class="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20"> <img class="zoom-img" src="/upload/product/{{$data->product_image}}" alt="products"> </a> </div>
             <div class="slider-items-products col-md-12">
               <div id="thumbnail-slider" class="product-flexslider hidden-buttons product-thumbnail">
@@ -159,9 +162,14 @@ z-index: 400;
               <div class="product-name">
                 <h1>{{$data->product_name}}</h1>
               </div>
+           
               <div class="price-box">
-                <p class="special-price"> <span class="price-label">Special Price</span> <span class="price">{{number_format($data->product_price)}} vnđ</span> </p>
-                <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price">{{number_format($data->product_price_sale)}} vnđ</span> </p>
+                @if($data->product_price_sale != null)
+                  <p class="old-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($data->product_price_sale)}}₫</span></p>
+                  <p class="special-price"> <span class="price-label">Giá đặt biệt</span> &nbsp;<span class="price">₫{{number_format($data->product_price)}}₫</span> </p>
+                @else
+                  <p class="special-price"> <span class="price-label">Giá thường:</span> <span class="price">{{number_format($data->product_price)}}₫</span></p>
+                @endif
               </div>
               <div class="ratings">
                 <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>

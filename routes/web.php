@@ -155,10 +155,11 @@ Route::get('ho-so', [HomeController::class, 'profile'])->name('profile');
 Route::prefix('')->group(function () {
     Route::get('/', [App\Http\Controllers\showDataController::class, 'home_page'])->name('home_client');
     Route::get('/all-product', [App\Http\Controllers\showDataController::class, 'all_product']);
-    Route::get('/product-grid/{id?}', [App\Http\Controllers\showDataController::class, 'product_grid']);
+    Route::get('/product-grid/{columns_name}/{id?}', [App\Http\Controllers\showDataController::class, 'product_grid']);
     Route::get('/search', [App\Http\Controllers\showDataController::class, 'search'])->name('');
     Route::get('/quickview/{id}', [App\Http\Controllers\showDataController::class, 'quickview'])->name('quickview');
     Route::get('/pagination/{orderBy}/{sort}', [App\Http\Controllers\showDataController::class, 'pagination']);
+    Route::get('/paginateCate/{columns_name}/{cate}', [App\Http\Controllers\showDataController::class, 'paginateCate']);
     
     Route::get('/article', [App\Http\Controllers\showDataController::class, 'article_page'])->name('');
     Route::get('/article_by_brand/{id}', [App\Http\Controllers\showDataController::class, 'article_by_brand'])->name('');
