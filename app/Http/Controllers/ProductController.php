@@ -85,7 +85,7 @@ class ProductController extends Controller
         ->join('category','product.category_id','=','category.id')
         ->select('product.*','category.category_name')
         ->orderBy('product.id','desc')
-        ->paginate(15);
+        ->get();
 
         $image =imageProduct::all();
         return view('admin.products.index',compact('product','image'));

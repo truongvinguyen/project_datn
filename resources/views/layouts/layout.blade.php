@@ -140,18 +140,16 @@
 	 transform: translateY(-100%);
 	}
    }
+   .ajs-message.ajs-custom {
+            color: #ffffff;
+            background-color: red;
+            border-color: white;
+        }
     </style>
 </head>
 
 <body>
     @if(Session::has('success'))
-    <style>
-        .ajs-message.ajs-custom {
-            color: black;
-            background-color: #fff;
-            border-color: black;
-        }
-    </style>
     <script>
         alertify.message('{{Session::get('success')}}', 'custom', 2,
             function() {

@@ -56,6 +56,7 @@ Route::prefix('admin/products')->group(function () {
 Route::get('/view-inventory/{product_id}-{product_name}', [App\Http\Controllers\inventoryController::class, 'index'])->name('');
 Route::post('/add-new-inventory', [App\Http\Controllers\inventoryController::class, 'add_new_inventory'])->name('');
 Route::post('/update-inventory/{id}', [App\Http\Controllers\inventoryController::class, 'update_inventory'])->name('');
+Route::get('/edit-inventory/{id}', [App\Http\Controllers\inventoryController::class, 'edit_inventory'])->name('');
 Route::get('/delete-inventory/{id}', [App\Http\Controllers\inventoryController::class, 'delete_inventory'])->name('');
 //end tồn kho
 
