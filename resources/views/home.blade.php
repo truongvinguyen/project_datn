@@ -164,7 +164,7 @@ Bảng tin
 		</div>
 	</div> --}}
 
-	<div class="row">
+	{{-- <div class="row">
 		<div class="col-lg-4 col-md-6 mb-20">
 			<div class="card-box height-100-p pd-20 min-height-200px">
 				<div class="d-flex justify-content-between pb-10">
@@ -178,7 +178,7 @@ Bảng tin
 							<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
 							<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
 						</div> --}}
-					</div>
+					{{-- </div>
 				</div>
 				<div class="user-list">
 					<ul>
@@ -279,8 +279,8 @@ Bảng tin
 				</div>
 			</div>
 		</div>
-	</div>
-
+	</div> --}}
+{{-- 
 	<div class="card-box pb-10">
 		<div class="h5 pd-20 mb-0">Recent Patient</div>
 		<table class="data-table table nowrap">
@@ -482,13 +482,13 @@ Bảng tin
 				</tr>
 			</tbody>
 		</table>
-	</div>
+	</div> --}}
 
-	<div class="title pb-20 pt-20">
+	{{-- <div class="title pb-20 pt-20">
 		<h2 class="h3 mb-0">Quick Start</h2>
-	</div>
+	</div> --}}
 
-	<div class="row">
+	{{-- <div class="row">
 		<div class="col-md-4 mb-20">
 			<a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
 				<div class="img pb-30">
@@ -522,10 +522,10 @@ Bảng tin
 				</div>
 			</a>
 		</div>
-	</div>
+	</div> --}}
 
-	<div class="footer-wrap pd-20 mb-20 card-box">
+	{{-- <div class="footer-wrap pd-20 mb-20 card-box">
 		DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-	</div>
+	</div> --}}
 </div>
 @endsection
