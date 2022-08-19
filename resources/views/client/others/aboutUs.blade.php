@@ -27,7 +27,7 @@ Trang Về Chúng Tôi
             <img style="border-radius: 20px;height: 350px;" src="https://images.squarespace-cdn.com/content/v1/5bc840789d41495b62ce3b19/1625474039900-COXIHXD5V210SL3KR38J/logic_cover+2.png?format=750w" alt="">
             <div style="margin: 40px auto;">
               <h4 style="color: #CF3341;text-decoration: 2px underline;" class="about-content__title">Tầm nhìn</h4>
-              <p class="p-aboutUs"><span style="font-size:50px;">Trendy</span> phấn đấu trở thành một trong những công ty cung cấp dịch vụ hàng đầu dành cho các doanh nghiệp, uy tín, có thương hiệu. Mục tiêu của chúng tôi là trở thành thương đáng tin cậy về Website vào năm 2022. Chúng tôi luôn sẵn sàng là nơi trao gởi niềm tin lý tưởng của khách hàng.</p>
+              <p class="p-aboutUs"><span style="font-size:50px;">Trendy</span> phấn đấu trở thành một trong những công ty cung cấp dịch vụ hàng đầu dành cho các doanh nghiệp, uy tín, có thương hiệu. Mục tiêu của chúng tôi là trở thành thương hiệu đáng tin cậy về Website vào năm 2023. Chúng tôi luôn sẵn sàng là nơi trao gởi niềm tin lý tưởng của khách hàng.</p>
          
             </div>
            </div>
