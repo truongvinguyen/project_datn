@@ -8,7 +8,7 @@
 
                 <!-- Begin shopping cart product -->
                 <div class="cart-product"> <a href="#" class="cart-pr-thumb bg-image"><img
-                            src="/upload/product/{{$item['productInfo']->product_image}}" alt="Lorem ipsum dolor"
+                            src="public/upload/product/{{$item['productInfo']->product_image}}" alt="Lorem ipsum dolor"
                             width="65"></a>
                     <div class="cart-pr-info"> <a href="#"
                             class="cart-pr-title">{{$item['productInfo']->product_name}}</a>

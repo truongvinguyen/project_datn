@@ -2,7 +2,7 @@
     <li style="border-bottom: 1px solid #c1c1c1; margin-bottom: 20px;">
         <div class="post-thumb"> 
             <a href="/article-detail/{{$article->id}}">
-                <img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog">
+                <img src="public/upload/article/{{$article->article_thumbnail}}" alt="Blog">
             </a> 
         </div>
         <div class="post-info">

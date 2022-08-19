@@ -17,7 +17,7 @@
                 @foreach(Session::get('cart')->products as $item)
                 <tr>
                     <td class="cart_product"><a href="#"><img
-                                src="/upload/product/{{$item['productInfo']->product_image}}"
+                                src="public/upload/product/{{$item['productInfo']->product_image}}"
                                 alt="Product"></a></td>
                     <td class="cart_description">
                         <p class="product-name"><a

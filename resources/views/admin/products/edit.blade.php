@@ -195,7 +195,7 @@ Cập nhật sản phẩm
                 <div class="form-group row">
                     <label class="col-sm-12 col-md-12 col-form-label">Chọn hình ảnh sản phẩm <span
                             class="text-danger">*</span></label>
-                            <img src="/upload/product/{{$product->product_image}}" width="60px" height="60px" alt="">
+                            <img src="public/upload/product/{{$product->product_image}}" width="60px" height="60px" alt="">
                     <div class="custom-file col-md-12">
                        
                         <input type="file" class="custom-file-input product_image" name="product_image">

@@ -58,7 +58,7 @@ Thêm bài viết mới
                 <div class="form-group row">
                     <label class="col-sm-6 col-md-12 col-form-label">Hình ảnh cũ</label>
                     <div class="col-sm-12 col-md-12">
-                        <img src="/upload/article/{{$articles->article_thumbnail}}" alt="" width="100%" height="50px" object-fix: cover>
+                        <img src="public/upload/article/{{$articles->article_thumbnail}}" alt="" width="100%" height="50px" object-fix: cover>
                     </div>
                 </div>
                 <div class="form-group row">

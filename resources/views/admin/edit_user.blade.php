@@ -114,7 +114,7 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-12 col-form-label">Chọn ảnh đại diện <span
                                     class="text-danger">*</span></label>
-                                    <img width="50px" style="margin-left: 20px" src="/upload/user/{{$data->user_img}}" alt="">
+                                    <img width="50px" style="margin-left: 20px" src="public/upload/user/{{$data->user_img}}" alt="">
                             <div class="custom-file col-md-12">
                                
                                 <input type="file" class="custom-file-input form-control user_img" name="user_img">

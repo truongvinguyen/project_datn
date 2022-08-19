@@ -319,7 +319,7 @@ function toastAddToCart({
 
         toast.innerHTML = `
                       <div class="toast__icon">
-                          <img class="img-toast" src="/upload/product/${image}">
+                          <img class="img-toast" src="public/upload/product/${image}">
                       </div>
                       <div class="toast__body">
                           <h3 class="toast__title">${title}</h3>

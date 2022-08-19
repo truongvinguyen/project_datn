@@ -81,7 +81,7 @@ Trang Về Chúng Tôi
               <div class="item">
                 <div class="team">
                   <div class="inner">
-                    <div class="avatar"><img src="client/images/Phuong.jpg" alt="" class="img-responsive" /></div>
+                    <div class="avatar"><img src="public/client/images/Phuong.jpg" alt="" class="img-responsive" /></div>
                     <h5>Đinh Tiến Phương</h5>
                     <p class="subtitle">Back End</p>
                   </div>
@@ -93,7 +93,7 @@ Trang Về Chúng Tôi
                <div class="item">
                 <div class="team">
                   <div class="inner">
-                    <div class="avatar"><img src="client/images/Vu.jpg" style="height: 242px;margin: 0 auto;" alt="" class="img-responsive" /></div>
+                    <div class="avatar"><img src="public/client/images/Vu.jpg" style="height: 242px;margin: 0 auto;" alt="" class="img-responsive" /></div>
                     <h5>Nguyễn Lưu Phi Vũ</h5>
                     <p class="subtitle">Back End</p>
                   </div>
@@ -105,7 +105,7 @@ Trang Về Chúng Tôi
               <div class="item">
                 <div class="team">
                   <div class="inner">
-                    <div class="avatar"><img src="client/images/Nhi.jpg" alt="" style="height: 242px;margin: 0 auto;" class="img-responsive" /></div>
+                    <div class="avatar"><img src="public/client/images/Nhi.jpg" alt="" style="height: 242px;margin: 0 auto;" class="img-responsive" /></div>
                     <h5>Trần Thị Yến Nhi</h5>
                     <p class="subtitle">Back End</p>
                   </div>
@@ -129,7 +129,7 @@ Trang Về Chúng Tôi
                <div class="item">
                 <div class="team">
                   <div class="inner">
-                    <div class="avatar"><img src="client/images/Truong.jpg" alt="" style="height: 242px;margin: 0 auto;" class="img-responsive" /></div>
+                    <div class="avatar"><img src="public/client/images/Truong.jpg" alt="" style="height: 242px;margin: 0 auto;" class="img-responsive" /></div>
                     <h5>Nguyễn Phan Trường</h5>
                     <p class="subtitle">Back End</p>
                   </div>

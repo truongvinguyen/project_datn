@@ -45,7 +45,7 @@ Thành viên
                 <td class="table-plus">
                     <div class="name-avatar d-flex align-items-center">
                         <div class="avatar mr-2 flex-shrink-0">
-                            <img src="/upload/user/{{$item->user_img}}" class="border-radius-100 shadow" width="40"
+                            <img src="public/upload/user/{{$item->user_img}}" class="border-radius-100 shadow" width="40"
                                 height="40" alt="">
                         </div>
                         <div class="txt">

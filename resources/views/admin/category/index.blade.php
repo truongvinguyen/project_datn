@@ -120,7 +120,7 @@ Danh mục
                 <table class="table table-borderless table-small">
                     <tbody>
                         <tr>
-                            <td rowspan="11" style="width: 50%" class="pl-20"><img src="/upload/category/2.jpg" alt="hình ảnh danh mục" class="w-100"></td>
+                            <td rowspan="11" style="width: 50%" class="pl-20"><img src="public/upload/category/2.jpg" alt="hình ảnh danh mục" class="w-100"></td>
                         </tr>
                         <tr>
                             <td scope="row" style="width: 25%"><strong>Tên danh mục</strong></td>

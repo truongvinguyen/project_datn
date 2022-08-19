@@ -33,7 +33,7 @@ return [
     'google' => [
         'client_id' => '640200158381-7rn81agjsfcdoa0l8j9c13pmjf6h9eur.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
+        'redirect' => 'http://trendyshops.tech/auth/google/callback',
     ],
 
 ];

@@ -24,7 +24,7 @@
                                 </div> -->
                             </div>
                             <a href="/product-detail/{{$product->id}}" class="product-item-photo"> 
-                                <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
+                                <img class="product-image-photo" src="public/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
                             </a> 
                         </div>
                         <div class="pro-box-info">

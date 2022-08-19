@@ -20,10 +20,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon  -->
-    <link rel="shortcut icon" type="x-icon" href="/client/images/favicon.ico">
+    <link rel="shortcut icon" type="x-icon" href="public/client/images/favicon.ico">
 
     <!-- CSS Style -->
-    <link rel="stylesheet" href="{{asset('client/style.css')}}">
+    <link rel="stylesheet" href="{{asset('public/client/style.css')}}">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Default theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
@@ -101,7 +101,7 @@
                                                                     @if(Session::get('userImage')==null)
                                                                    <img class="img_user" src="https://ui-avatars.com/api/?name={{Session::get('userFullname')}}" alt="">
                                                                    @else
-                                                                   <img class="img_user" src="/upload/user/{{Session::get('userImage')}}" alt="">
+                                                                   <img class="img_user" src="/public/upload/user/{{Session::get('userImage')}}" alt="">
                                                                    @endif
                                                                    
                                                                 </span> 
@@ -156,7 +156,7 @@
                                         class="mm-label">Menu</span> </div>
                             </div>
                             <div class="logo"><a title="e-commerce" href="/"><img alt="e-commerce"
-                                        style="width:30%;" src="/client/images/logo.png"></a> </div>
+                                        style="width:30%;" src="/public/client/images/logo.png"></a> </div>
                         </div>
                         <div class="col-lg-4 col-sm-4 col-xs-12 top-cart">
                             @if(Session::has('cart') != null)
@@ -178,7 +178,7 @@
                             {{-- @if (Session::has('userId'))
                                 @if (Session::get('userImage') == "") --}}
                                     <a href="{{ route('profile') }}" class="top-my-account" style="padding: 0">
-                                        <img src="/client/images/avatar.png" alt="">
+                                        <img src="/public/client/images/avatar.png" alt="">
                                     </a>
                                 {{-- @else
                                     <a href="#" class="top-my-account" style="padding: 0">
@@ -282,7 +282,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3 col-xs-12 col-lg-4">
                         <div class="footer-logo">
-                            <a href="/home-page"><img src="{{asset('client/images/footer-logo.png')}}" alt="fotter logo"></a> 
+                            <a href="/home-page"><img src="{{asset('public/client/images/footer-logo.png')}}" alt="fotter logo"></a> 
                             
                         </div>
                         <h2 style="color: white; text-align: center;">ĐỘC - ĐẸP - LẠ</h2>
@@ -388,7 +388,7 @@
                                     <li>
                                         <!-- Begin shopping cart product -->
                                         <div class="cart-product"> <a href="#" class="cart-pr-thumb bg-image"><img
-                                                    src="/upload/product/{{$item['productInfo']->product_image}}"
+                                                    src="/public/upload/product/{{$item['productInfo']->product_image}}"
                                                     alt="Lorem ipsum dolor" width="65"></a>
                                             <div class="cart-pr-info"> <a href="#"
                                                     class="cart-pr-title">{{$item['productInfo']->product_name}}</a>
@@ -443,7 +443,7 @@
     <!-- mobile menu -->
     <div id="jtv-mobile-menu" class="jtv-mobile-menu">
         <ul>
-            <li><a href="/home-page"><img alt="e-commerce" src="client/images/logo-mobile.png"></a></li>
+            <li><a href="/home-page"><img alt="e-commerce" src="/public/client/images/logo-mobile.png"></a></li>
             <li><a href="/home-page">Trang chủ</a></li>
             <li><a href="/product-list">Sản phẩm</a></li>
             <li><a href="shop_grid.html">Bài viết</a></li>
@@ -454,28 +454,28 @@
 
   
     <!-- jquery js -->
-    <script data-cfasync="false" src="{{asset('client/js/email-decode.min.js')}}"></script>
-    <script src="{{asset('client/js/jquery.min.js')}}"></script>
-    <script src="{{asset('client/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/owl.carousel.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/jquery.meanmenu.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/jquery-ui.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/countdown.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/wow.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/jtv-mobile-menu.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/main.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/jquery.bxslider.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/jquery.flexslider.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/magnific-popup.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/cloud-zoom.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/revolution-slider.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/jquery.nivo.slider.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/cart.js')}}"></script>
-    <script type="text/javascript" src="{{asset('client/js/toast.js')}}"></script>
-    <script src="{{ asset('/client/js/home-page.js') }}"></script>
-    <script src="{{ asset('/client/js/product-list.js') }}"></script>
-    <script src="{{ asset('/client/js/article.js') }}"></script>
+    <script data-cfasync="false" src="{{asset('public/client/js/email-decode.min.js')}}"></script>
+    <script src="{{asset('public/client/js/jquery.min.js')}}"></script>
+    <script src="{{asset('public/client/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/owl.carousel.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/jquery.meanmenu.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/jquery-ui.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/countdown.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/wow.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/jtv-mobile-menu.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/revolution-slider.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/main.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/jquery.bxslider.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/jquery.flexslider.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/magnific-popup.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/cloud-zoom.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/revolution-slider.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/jquery.nivo.slider.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/cart.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/client/js/toast.js')}}"></script>
+    <script src="{{ asset('public/client/js/home-page.js') }}"></script>
+    <script src="{{ asset('public/client/js/product-list.js') }}"></script>
+    <script src="{{ asset('public/client/js/article.js') }}"></script>
      <!-- Messenger Plugin chat Code -->
    {{-- <div id="fb-root"></div>
 

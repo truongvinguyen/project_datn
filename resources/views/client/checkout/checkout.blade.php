@@ -422,7 +422,7 @@ Thanh toán
                             <label style="margin-left: 10px;z-index: 2;" class="cl-checkbox" for="radio_button_6">
                               <input value="2" type="radio" name="payment_methods" id="radio_button_6">
                               <span></span>
-                            </label><img src="/client/images/momo.jpg" style="width:20%;margin-left: -25px ;z-index: 1;" alt="">
+                            </label><img src="public/client/images/momo.jpg" style="width:20%;margin-left: -25px ;z-index: 1;" alt="">
                         </li>
 
                     </ul>
@@ -453,7 +453,7 @@ Thanh toán
                                     @foreach(Session::get('cart')->products as $item)
                                     <tr>
                                         <td class="cart_product"><a href="#"><img
-                                                    src="/upload/product/{{$item['productInfo']->product_image}}"
+                                                    src="public/upload/product/{{$item['productInfo']->product_image}}"
                                                     alt="Product"></a></td>
                                         <td class="cart_description">
                                             <p class="product-name"><a
@@ -594,42 +594,7 @@ Thanh toán
   <!-- Main Container End -->
    <!-- our clients Slider -->
   
-  <div class="our-clients">
-    <div class="container">
-      <div class="slider-items-products">
-        <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-          <div class="slider-items slider-width-col6"> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="images/brand1.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="images/brand2.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="images/brand3.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="images/brand4.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="images/brand5.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="images/brand6.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="images/brand7.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
   <script src='https://cdn.jsdelivr.net/gh/vietblogdao/js/districts.min.js'></script>
   <script>//<![CDATA[

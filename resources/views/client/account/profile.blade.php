@@ -63,7 +63,7 @@
                     @if(Session::get('userImage')==null)
                     <img  src="https://ui-avatars.com/api/?name={{Session::get('userFullname')}}" alt="">
                     @else
-                    <img src="{{ _IMAGE::USER }}user_avatar.jpg" alt="user">
+                    <img src="public/upload/user/{{Session::get('userImage')}}" alt="user">
                     @endif
                   </div>
   
@@ -164,7 +164,7 @@
                               @if($item2->order_id == $item->id)
                               <div class="card-body row" style="padding: 10px;">
                                 <div class="col-md-2">
-                                  <img src="/upload/product/{{$item2->product_image}}" alt="">
+                                  <img src="public/upload/product/{{$item2->product_image}}" alt="">
                                 </div>
                                 <div class="col-md-8">
                                   <h5 class="card-title">{{$item2->product_name}}.</h5>
@@ -215,7 +215,7 @@
                                 @if($item2->order_id == $item->id)
                                 <div class="card-body row" style="padding: 10px;">
                                   <div class="col-md-2">
-                                    <img src="/upload/product/{{$item2->product_image}}" alt="">
+                                    <img src="public/upload/product/{{$item2->product_image}}" alt="">
                                   </div>
                                   <div class="col-md-8">
                                     <h5 class="card-title">{{$item2->product_name}}.</h5>
@@ -267,7 +267,7 @@
                                     @if($item2->order_id == $item->id)
                                     <div class="card-body row" style="padding: 10px;">
                                       <div class="col-md-2">
-                                        <img src="/upload/product/{{$item2->product_image}}" alt="">
+                                        <img src="public/upload/product/{{$item2->product_image}}" alt="">
                                       </div>
                                       <div class="col-md-8">
                                         <h5 class="card-title">{{$item2->product_name}}.</h5>
@@ -319,7 +319,7 @@
                                     @if($item2->order_id == $item->id)
                                     <div class="card-body row" style="padding: 10px;">
                                       <div class="col-md-2">
-                                        <img src="/upload/product/{{$item2->product_image}}" alt="">
+                                        <img src="public/upload/product/{{$item2->product_image}}" alt="">
                                       </div>
                                       <div class="col-md-8">
                                         <h5 class="card-title">{{$item2->product_name}}.</h5>
@@ -371,7 +371,7 @@
                                     @foreach($list as $wishlist)
                                     
                                       <tr id="/del/{{$wishlist->id}}">
-                                        <td class="th-product"><a href="/product-detail/{{$wishlist->product_id}}"><img src="/upload/product/{{$wishlist->product_image}}" alt="cart"></a></td>
+                                        <td class="th-product"><a href="/product-detail/{{$wishlist->product_id}}"><img src="public/upload/product/{{$wishlist->product_image}}" alt="cart"></a></td>
                                         <td class="th-details"><h2><a href="/product-detail/{{$wishlist->product_id}}">{{$wishlist->product_name}}</a></h2></td>
                                         @if($wishlist->product_price_sale)
                                           <td class="th-price regular">{{number_format($wishlist->product_price_sale)}}₫</td>
@@ -479,42 +479,6 @@
         </div>
     </div>
 
-    <!-- our clients Slider -->
-    <div class="our-clients">
-        <div class="container">
-            <div class="slider-items-products">
-            <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-                <div class="slider-items slider-width-col6">
-
-                <!-- Item -->
-                <div class="item"> <a href="#"><img src="client/images/brand1.png" alt="Image" class="grayscale"></a> </div>
-                <!-- End Item -->
-
-                <!-- Item -->
-                <div class="item"> <a href="#"><img src="client/images/brand2.png" alt="Image" class="grayscale"></a> </div>
-                <!-- End Item -->
-
-                <!-- Item -->
-                <div class="item"> <a href="#"><img src="client/images/brand3.png" alt="Image" class="grayscale"></a> </div>
-                <!-- End Item -->
-
-                <!-- Item -->
-                <div class="item"> <a href="#"><img src="client/images/brand4.png" alt="Image" class="grayscale"></a> </div>
-                <!-- End Item -->
-                <!-- Item -->
-                <div class="item"> <a href="#"><img src="client/images/brand5.png" alt="Image" class="grayscale"></a> </div>
-                <!-- End Item -->
-                <!-- Item -->
-                <div class="item"> <a href="#"><img src="client/images/brand6.png" alt="Image" class="grayscale"></a> </div>
-                <!-- End Item -->
-                <!-- Item -->
-                <div class="item"> <a href="#"><img src="client/images/brand7.png" alt="Image" class="grayscale"></a> </div>
-                <!-- End Item -->
-
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
+   
 
 @endsection

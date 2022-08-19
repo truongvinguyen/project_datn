@@ -156,7 +156,7 @@ Sản phẩm
                 <tr>
                     <td></td>
                     <td class="table-plus">
-                        <img src="/upload/product/{{ $item->product_image }}" width="45px" height="45px" alt="">
+                        <img src="public/upload/product/{{ $item->product_image }}" width="45px" height="45px" alt="">
                     </td>
                     <td>
                         <a href="" data-toggle="modal" data-target="#exampleModalCenter{{$item->id}}">

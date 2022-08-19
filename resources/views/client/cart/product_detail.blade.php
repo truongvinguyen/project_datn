@@ -142,13 +142,13 @@ z-index: 400;
                 </div>
               @endif
             
-              <div class="large-image"> <a href="/upload/product/{{$data->product_image}}" class="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20"> <img class="zoom-img" src="/upload/product/{{$data->product_image}}" alt="products"> </a> </div>
+              <div class="large-image"> <a href="public/upload/product/{{$data->product_image}}" class="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20"> <img class="zoom-img" src="/upload/product/{{$data->product_image}}" alt="products"> </a> </div>
             <div class="slider-items-products col-md-12">
               <div id="thumbnail-slider" class="product-flexslider hidden-buttons product-thumbnail">
                 <div class="slider-items slider-width-col3">
-                  <div class="thumbnail-items"><a href='/upload/product/{{$data->product_image}}' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: '/upload/product/{{$data->product_image}}' "><img src="/upload/product/{{$data->product_image}}" alt = "Thumbnail 2"/></a></div>
+                  <div class="thumbnail-items"><a href='public/upload/product/{{$data->product_image}}' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'public/upload/product/{{$data->product_image}}' "><img src="public/upload/product/{{$data->product_image}}" alt = "Thumbnail 2"/></a></div>
                   @foreach($image as $item)
-                  <div class="thumbnail-items"><a href='/upload/product/{{$item->image}}' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: '/upload/product/{{$item->image}}' "><img src="/upload/product/{{$item->image}}" alt = "Thumbnail 1"/></a></div>
+                  <div class="thumbnail-items"><a href='public/upload/product/{{$item->image}}' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'public/upload/product/{{$item->image}}' "><img src="public/upload/product/{{$item->image}}" alt = "Thumbnail 1"/></a></div>
                   @endforeach
                 </div>
               </div>
@@ -344,7 +344,7 @@ z-index: 400;
                                           @if(!$item->image)
                                           <img class="" style="max-width:50px;" src="https://ui-avatars.com/api/?name={{$item->fullname}}" alt="">
                                           @else
-                                          <img class="" style="max-width:50px;" src="/upload/user/{{$item->image}}" alt="">
+                                          <img class="" style="max-width:50px;" src="public/upload/user/{{$item->image}}" alt="">
                                           @endif
                                         </div>
                                         <div class="col-md-10">
@@ -363,7 +363,7 @@ z-index: 400;
                                           @if(!$item->image)
                                           <img class="" style="max-width:50px;" src="https://ui-avatars.com/api/?name={{$item->fullname}}" alt="">
                                           @else
-                                          <img class="" style="max-width:50px;" src="/upload/user/{{$item->image}}" alt="">
+                                          <img class="" style="max-width:50px;" src="public/upload/user/{{$item->image}}" alt="">
                                           @endif
                                         </div>
                                         <div class="col-md-11">
@@ -386,7 +386,7 @@ z-index: 400;
                                         @if(!$item->image)
                                         <img class="" style="max-width:50px;" src="https://ui-avatars.com/api/?name={{$item->fullname}}" alt="">
                                         @else
-                                        <img class="" style="max-width:50px;" src="/upload/user/{{$item->image}}" alt="">
+                                        <img class="" style="max-width:50px;" src="public/upload/user/{{$item->image}}" alt="">
                                         @endif
                                       </div>
                                       <div class="col-md-10">
@@ -489,7 +489,7 @@ z-index: 400;
                                                 
                                             </div>
                                             <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img
-                                                    class="product-image-photo" src="/upload/product/{{$product->product_image}}" alt=""></a>
+                                                    class="product-image-photo" src="public/upload/product/{{$product->product_image}}" alt=""></a>
                                         </div>
                                         <div class="pro-box-info">
                                             <div class="item-info">
@@ -540,7 +540,7 @@ z-index: 400;
   <div class="modal-dialog">
     <div class="modal-body">
       <button type="button" class="close myclose" data-dismiss="modal">×</button>
-      <img src="/client/images/tvcs_1d3d68691e3742eca9c9672b6b58e449_2048x2048.jpg" alt="">
+      <img src="public/client/images/tvcs_1d3d68691e3742eca9c9672b6b58e449_2048x2048.jpg" alt="">
     </div>
     <div class="modal-footer"> <a href="#" class="btn-services-shop-now" data-dismiss="modal">Close</a> </div>
   </div>

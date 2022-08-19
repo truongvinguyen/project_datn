@@ -29,7 +29,7 @@ Trang Sản Phẩm Yêu Thích
                   
                       <tr id="/del/{{$wishlist->id}}">
                         <td class="th-delate" id="th-delate"><a href="/wishlist/delete/{{$wishlist->id}}">X</a></td>
-                        <td class="th-product"><a href="/product-detail/{{$wishlist->product_id}}"><img src="/upload/product/{{$wishlist->product_image}}" alt="cart"></a></td>
+                        <td class="th-product"><a href="/product-detail/{{$wishlist->product_id}}"><img src="public/upload/product/{{$wishlist->product_image}}" alt="cart"></a></td>
                         <td class="th-details"><h2><a href="/product-detail/{{$wishlist->product_id}}">{{$wishlist->product_name}}</a></h2></td>
                         @if($wishlist->product_price_sale)
                           <td class="th-price regular">{{number_format($wishlist->product_price_sale)}}₫</td>

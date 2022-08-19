@@ -18,7 +18,7 @@ Trang Bài Viết
                                     <article class="entry">
                                         <div class="row">
                                             <div class="col-sm-5">
-                                                <div class="entry-thumb"> <a href="single_post.html"><figure><img src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"></figure></a> </div>
+                                                <div class="entry-thumb"> <a href="single_post.html"><figure><img src="public/upload/article/{{$article->article_thumbnail}}" alt="Blog"></figure></a> </div>
                                             </div>
                                             <div class="col-sm-7">
                                                 <h3 class="entry-title"><a href="/article-detail/{{$article->id}}">{{$article->article_title}}</a></h3>

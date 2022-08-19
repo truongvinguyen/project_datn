@@ -54,11 +54,11 @@ final class _STATE
  */
 final class _IMAGE
 {
-	public const USER = '/upload/user/';
-	public const PRODUCT = '/upload/product/';
-	public const CATEGORY = '/upload/category/';
-	public const BRAND = '/upload/brand/';
-	public const ARTICLE = '/upload/article/';
+	public const USER = 'public/upload/user/';
+	public const PRODUCT = 'public/upload/product/';
+	public const CATEGORY = 'public/upload/category/';
+	public const BRAND = 'public/upload/brand/';
+	public const ARTICLE = 'public/upload/article/';
 }
 
 /**

@@ -52,7 +52,7 @@ Trang Bài Viết
                   @foreach($articleByCategory as $article)  
                     <div class="product-item">
                       <article class="entry">
-                        <div class="entry-thumb"> <a href="/article-detail/{{$article->id}}"> <img style="height: 153px;" src="/upload/article/{{$article->article_thumbnail}}" alt="Blog"> </a> </div>
+                        <div class="entry-thumb"> <a href="/article-detail/{{$article->id}}"> <img style="height: 153px;" src="public/upload/article/{{$article->article_thumbnail}}" alt="Blog"> </a> </div>
                         <div class="entry-info">
                           <h3 class="entry-title"><a href="/article-detail/{{$article->id}}" style="width: 300px;">{{$article->article_title}}</a></h3>
                           <ul class="meta-post" style="display: inline-flex;list-style-type:none;font-size: 12px;">

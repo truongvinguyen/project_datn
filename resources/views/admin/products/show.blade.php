@@ -30,7 +30,7 @@ Sản phẩm
     <section class="py-4">
         <div class="row  gx-lg-5 ">
             <div class="col-md-6">
-                <img class="card-img-top mb-5 mb-md-0" src="/upload/product/{{$item->product_image}}" alt="..."
+                <img class="card-img-top mb-5 mb-md-0" src="public/upload/product/{{$item->product_image}}" alt="..."
                     id="show-img" width="412px" height="412px" />
             </div>
             <div class="col-md-6">
@@ -91,12 +91,12 @@ Sản phẩm
     <section class="py-4">
         <div class="row  gx-lg-5 ">
             <div class="col-md-2">
-                <img onclick="chageImg(id)" id="anhchinh" src="/upload/product/{{$item->product_image}}" alt="">
+                <img onclick="chageImg(id)" id="anhchinh" src="public/upload/product/{{$item->product_image}}" alt="">
             </div>
             @foreach($image as $item2)
             @if($item2->product_id == $item->id)
             <div class="col-md-2">
-                <img onclick="chageImg({{$item2->id}})" id="{{$item2->id}}" src="/upload/product/{{$item2->image}}"
+                <img onclick="chageImg({{$item2->id}})" id="{{$item2->id}}" src="public/upload/product/{{$item2->image}}"
                     alt="">
             </div>
             @endif

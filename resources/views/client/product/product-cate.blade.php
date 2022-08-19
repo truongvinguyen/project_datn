@@ -57,7 +57,7 @@ Trang Sản Phẩm
                                                                     
                                                                     </div>
                                                                     <a href="/product-detail/{{$product->id}}" class="product-item-photo"> 
-                                                                        <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
+                                                                        <img class="product-image-photo" src="public/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
                                                                     </a> 
                                                                 </div>
                                                                 <div class="pro-box-info">
@@ -114,7 +114,7 @@ Trang Sản Phẩm
                                                                        
                                                                     </div>
                                                                     <a href="/product-detail/{{$product->id}}" class="product-item-photo"> 
-                                                                        <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
+                                                                        <img class="product-image-photo" src="public/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
                                                                     </a> 
                                                                 </div>
                                                                 <div class="pro-box-info">
@@ -176,14 +176,14 @@ Trang Sản Phẩm
                                                                        
                                                                     </div>
                                                                     <a href="/product-detail/{{$product->id}}" class="product-item-photo"> 
-                                                                        <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
+                                                                        <img class="product-image-photo" src="public/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
                                                                     </a> 
                                                                 </div>
                                                                 <div class="pro-box-info">
                                                                     <div class="item-info">
                                                                         <div class="info-inner">
                                                                             <div class="item-title">
-                                                                                <h4> <a title="Product Title Here" href="/product-detail/{{$product->id}}">{{$product->product_name}}</a></h4>
+                                                                                <h4> <a title="Product Title Here" href="public/product-detail/{{$product->id}}">{{$product->product_name}}</a></h4>
                                                                             </div>
                                                                             <div class="item-content">
                                                                                 <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div> -->
@@ -239,14 +239,14 @@ Trang Sản Phẩm
                                                                        
                                                                     </div>
                                                                     <a href="/product-detail/{{$product->id}}" class="product-item-photo"> 
-                                                                        <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
+                                                                        <img class="product-image-photo" src="public/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
                                                                     </a> 
                                                                 </div>
                                                                 <div class="pro-box-info">
                                                                     <div class="item-info">
                                                                         <div class="info-inner">
                                                                             <div class="item-title">
-                                                                                <h4> <a title="Product Title Here" href="/product-detail/{{$product->id}}">{{$product->product_name}}</a></h4>
+                                                                                <h4> <a title="Product Title Here" href="public/product-detail/{{$product->id}}">{{$product->product_name}}</a></h4>
                                                                             </div>
                                                                             <div class="item-content">
                                                                                 <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div> -->
@@ -302,7 +302,7 @@ Trang Sản Phẩm
                                                                        
                                                                     </div>
                                                                     <a href="/product-detail/{{$product->id}}" class="product-item-photo"> 
-                                                                        <img class="product-image-photo" src="/upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
+                                                                        <img class="product-image-photo" src="public//upload/product/{{$product->product_image}}" style="height:271px;" alt="{{$product->product_name}}">
                                                                     </a> 
                                                                 </div>
                                                                 <div class="pro-box-info">

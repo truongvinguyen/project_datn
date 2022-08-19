@@ -14,7 +14,7 @@ Trang Chủ
             <div id='rev_slider_6_wrapper' class='rev_slider_wrapper fullwidthbanner-container' >
               <div id='rev_slider_6' class='rev_slider fullwidthabanner'>
                 <ul>
-                  <li data-transition='slideup' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="{{asset('/client/images/slider/50710988_2243339379021069_5005951689644048384_n.jpg')}}" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
+                  <li data-transition='slideup' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="{{asset('public/client/images/slider/50710988_2243339379021069_5005951689644048384_n.jpg')}}" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
                     <div class="caption-inner">
                       <div class='tp-caption LargeTitle sft  tp-resizeme' data-x='85'  data-y='145'  data-endspeed='500'  data-speed='500' data-start='1300' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:3; white-space:nowrap;'>GIẢM GIÁ</div>
                       <div class='tp-caption ExtraLargeTitle sft  tp-resizeme' data-x='82'  data-y='200'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>THEO MÙA</div>
@@ -23,7 +23,7 @@ Trang Chủ
                       <!-- <div class='tp-caption sfb  tp-resizeme ' data-x='105'  data-y='375'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'><a href='#' class="shop-now-btn">Mua ngay</a></div> -->
                     </div>
                   </li>
-                  <li data-transition='slidedown' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="client/images/slider/34482506_1888980371123640_4754449253877678080_n.png" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
+                  <li data-transition='slidedown' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="public/client/images/slider/34482506_1888980371123640_4754449253877678080_n.png" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
                     <div class="caption-inner">
                       <div class='tp-caption LargeTitle sft  tp-resizeme' data-x='85'  data-y='145'  data-endspeed='500'  data-speed='500' data-start='1300' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:3; white-space:nowrap;'>MÙA HÈ NÀY</div>
                       <div class='tp-caption ExtraLargeTitle sft  tp-resizeme' data-x='82'  data-y='200'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>bộ sưu tập</div>
@@ -32,7 +32,7 @@ Trang Chủ
                       <!-- <div class='tp-caption sfb  tp-resizeme ' data-x='105'  data-y='375'  data-endspeed='500'  data-speed='500' data-start='1500' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:4; white-space:nowrap;'><a href='#' class="shop-now-btn">Mua ngay</a></div> -->
                     </div>
                   </li>
-                  <li data-transition='slidedown' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="client/images/slider/17388842_1398984020123280_6196205311829635252_o.jpg" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
+                  <li data-transition='slidedown' data-slotamount='7' data-masterspeed='1000' data-thumb=''><img src="public/client/images/slider/17388842_1398984020123280_6196205311829635252_o.jpg" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner"/>
                     <div class="caption-inner">
                       <div class='tp-caption LargeTitle sft  tp-resizeme' data-x='85'  data-y='145'  data-endspeed='500'  data-speed='500' data-start='1300' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:3; white-space:nowrap;'>MÙA HÈ NÀY</div>
                       <div class='tp-caption ExtraLargeTitle sft  tp-resizeme' data-x='82'  data-y='200'  data-endspeed='500'  data-speed='500' data-start='1100' data-easing='Linear.easeNone' data-splitin='none' data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' style='z-index:2; white-space:nowrap;'>bộ sưu tập</div>
@@ -99,7 +99,7 @@ Trang Chủ
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
           <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/category_id/1"><img src="client/images/300153667_5655440724477567_1818368536313262925_n.jpg" alt="" height="432px"></a> </div>
+            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/category_id/1"><img src="public/client/images/300153667_5655440724477567_1818368536313262925_n.jpg" alt="" height="432px"></a> </div>
             <div class="jtv-content-text">
               <h3 class="title">Mua 2</h3>
               <span class="sub-title">tặng 1!</span><a href="" class="button">Mua ngay!</a> </div>
@@ -107,13 +107,13 @@ Trang Chủ
         </div>
         <div class="col-md-3 col-sm-3 col-xs-12">
           <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/category_id/7"><img src="client/images/slider/127815046_3751615794860079_1854692848132843020_n.jpg" alt=""></a> </div>
+            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/category_id/7"><img src="public/client/images/slider/127815046_3751615794860079_1854692848132843020_n.jpg" alt=""></a> </div>
             <div class="jtv-content-text hidden">
               <h3 class="title">Mẫu mới</h3>
             </div>
           </div>
           <div class="jtv-banner-box banner-inner" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-            <div class="image "> <a class="jtv-banner-opacity" href="/product-grid/category_id/2" style="height: 233px;"><img src="client/images/278675023_5303301973024779_8351323745030059880_n.jpg" alt=""></a> </div>
+            <div class="image "> <a class="jtv-banner-opacity" href="/product-grid/category_id/2" style="height: 233px;"><img src="public/client/images/278675023_5303301973024779_8351323745030059880_n.jpg" alt=""></a> </div>
             <div class="jtv-content-text">
               <h3 class="title">Áo khoác</h3>
             </div>
@@ -121,7 +121,7 @@ Trang Chủ
         </div>
         <div class="col-md-5 col-sm-5 col-xs-12">
           <div class="jtv-banner-box" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/category_id/4" style="height: 432px;"><img src="client/images/slider/291173832_5521650981189876_8701477637628993593_n.jpg" alt=""></a> </div>
+            <div class="image"> <a class="jtv-banner-opacity" href="/product-grid/category_id/4" style="height: 432px;"><img src="public/client/images/slider/291173832_5521650981189876_8701477637628993593_n.jpg" alt=""></a> </div>
             <div class="jtv-content-text">
               <h3 class="title">màu sắc thời thượng</h3>
               <span class="sub-title">xu hướng thời trang mùa hè năm 2022</span> <a href="#" class="button">Mua ngay!</a> </div>
@@ -154,7 +154,7 @@ Trang Chủ
                         </button> 
                       </div>
                     </div>
-                    <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="/upload/product/{{$product->product_image}}" alt=""></a> </div>
+                    <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="public/upload/product/{{$product->product_image}}" alt=""></a> </div>
                   <div class="pro-box-info">
                     <div class="item-info">
                       <div class="info-inner">
@@ -206,7 +206,7 @@ Trang Chủ
                     <div class="box-hover">
                       <div class="btn-quickview"> <a onclick="quickviewProduct({{$product->id}})" data-toggle="modal" data-target="#modal-quickview"><i class="fa fa-search-plus" aria-hidden="true"></i>Xem nhanh</a> </div>
                     </div>
-                    <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="/upload/product/{{$product->product_image}}" alt=""></a> </div>
+                    <a href="/product-detail/{{$product->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="public/upload/product/{{$product->product_image}}" alt=""></a> </div>
                   <div class="pro-box-info">
                     <div class="item-info">
                       <div class="info-inner">
@@ -264,9 +264,9 @@ Trang Chủ
                           <div class="slider-items-products">
                             <div id="pro1-slider" class="product-flexslider hidden-buttons">
                               <div class="slider-items slider-width-col6"> 
-                                <a href="/product-detail/{{$suggestion->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="/upload/product/{{$suggestion->product_image}}" alt=""></a>
-                                <a href="/product-detail/{{$suggestion->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="/upload/product/{{$suggestion->product_image}}" alt=""></a> 
-                                <a href="/product-detail/{{$suggestion->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="/upload/product/{{$suggestion->product_image}}" alt=""></a> 
+                                <a href="/product-detail/{{$suggestion->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="public/upload/product/{{$suggestion->product_image}}" alt=""></a>
+                                <a href="/product-detail/{{$suggestion->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="public/upload/product/{{$suggestion->product_image}}" alt=""></a> 
+                                <a href="/product-detail/{{$suggestion->id}}" class="product-item-photo"> <img class="product-image-photo img-php" src="public/upload/product/{{$suggestion->product_image}}" alt=""></a> 
                               </div>
                             </div>
                           </div>
@@ -317,7 +317,7 @@ Trang Chủ
             @foreach($articles as $article)
                 <article class="jtv-entry col-md-6 col-sm-6">
                   <div class="jtv-post-inner">
-                    <div class="feature-post images-hover"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="image"></a>
+                    <div class="feature-post images-hover"> <a href="/article-detail/{{$article->id}}"><img src="public/upload/article/{{$article->article_thumbnail}}" alt="image"></a>
                       <div class="overlay"></div>
                     </div>
                     <div class="jtv-content-post">

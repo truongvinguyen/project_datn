@@ -175,7 +175,7 @@
             <div class="modal-header" style="background-color: #3b4348;">
                 <div class="invoice-header">
                     <div class="logo text-center">
-                        <img src="vendors/images/deskapp-logo.png" alt="">
+                        <img src="public/vendors/images/deskapp-logo.png" alt="">
                     </div>
                 </div>
                 <h4 class="text-center mb-30 weight-600 text-white">Hóa đơn</h4>

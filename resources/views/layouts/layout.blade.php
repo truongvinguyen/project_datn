@@ -29,19 +29,19 @@
     <!-- Google Font -->
     
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/core.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/admin/vendors/styles/core.css')}}">
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('client/css/toast.css')}}"> --}}
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/icon-font.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/dataTables.searchHighlight.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/styles/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/admin/vendors/styles/icon-font.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/admin/src/plugins/datatables/css/dataTables.searchHighlight.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/admin/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/admin/vendors/styles/style.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/switchery/switchery.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/admin/src/plugins/switchery/switchery.min.css')}}">
     <!-- bootstrap-tagsinput css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/admin/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
     <!-- bootstrap-touchspin css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/admin/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css')}}">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Default theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
@@ -50,7 +50,7 @@
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 	<!-- Custom CSS -->
-	<link rel="stylesheet" type="text/css" href="{{asset('admin/src/styles/app.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('public/admin/src/styles/app.css')}}">
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
@@ -255,7 +255,7 @@
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                         <span class="user-icon">
-                            <img src="/upload/user/{{ Auth::user()->user_img }}" alt="">
+                            <img src="public/upload/user/{{ Auth::user()->user_img }}" alt="">
                         </span>
                         <span class="user-name"> {{ Auth::user()->name }}</span>
                     </a>
@@ -355,8 +355,8 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="/">
-                <img src="{{asset('admin/src/images/logowhite.png')}}" alt="" width="150px" class="light-logo">
-                <img src="{{asset('admin/src/images/logoblack.png')}}" alt="" width="150px" class="dark-logo">
+                <img src="{{asset('public/admin/src/images/logowhite.png')}}" alt="" width="150px" class="light-logo">
+                <img src="{{asset('public/admin/src/images/logoblack.png')}}" alt="" width="150px" class="dark-logo">
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>

@@ -11,7 +11,7 @@ Bảng tin
 @endif
 <div class="pre-loader">
 	<div class="pre-loader-box">
-		<div class="loader-logo"><img src="/admin/src/images/logowhite.png" width="270px" alt=""></div>
+		<div class="loader-logo"><img src="public/admin/src/images/logowhite.png" width="270px" alt=""></div>
 		<div class='loader-progress' id="progress_div">
 			<div class='bar' id='bar1'></div>
 		</div>
@@ -26,7 +26,7 @@ Bảng tin
 
 		<div class="row align-items-center">
 			<div class="col-md-2">
-				<img src="/upload/user/{{ Auth::user()->user_img }}" width="150px" alt="">
+				<img src="public/upload/user/{{ Auth::user()->user_img }}" width="150px" alt="">
 			</div>
 			<div class="col-md-10">
 				<h4 class="font-20 weight-500 mb-10 text-capitalize">

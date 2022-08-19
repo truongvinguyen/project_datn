@@ -70,7 +70,7 @@
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
                 <a href="login.html">
-                    <img src="/admin/vendors/images/3.png" alt="" style="max-width: 140px">
+                    <img src="public/admin/vendors/images/3.png" alt="" style="max-width: 140px">
                 </a>
             </div>
             
@@ -80,7 +80,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 col-lg-7">
-                    <img src="/admin/vendors/images/login-page-img.png" alt="">
+                    <img src="public/admin/vendors/images/login-page-img.png" alt="">
                 </div>
                 <div class="col-md-6 col-lg-5">
                     <div class="login-box bg-white box-shadow border-radius-10">

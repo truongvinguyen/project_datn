@@ -65,7 +65,7 @@
             <h1 class="my-5 display-3 fw-bold ls-tight">
               Thuận tiện nhanh chóng <br />
         
-                  <a class="button-logingg" href="{{route('loginGG')}}"><img src="/client/images/Google__G__Logo.png" width="35px" alt=""> Đang nhập cùng google</a>
+                  <a class="button-logingg" href="{{route('loginGG')}}"><img src="public/client/images/Google__G__Logo.png" width="35px" alt=""> Đang nhập cùng google</a>
             </h1>
             <h4>Đăng nhập và tiết kiệm thời gian!</h4>
             <p>Đăng nhập với chúng tôi để thuận tiện trong tương lai:</p>
@@ -135,42 +135,7 @@
   <!-- Main Container End --> 
   <!-- our clients Slider -->
   
-  <div class="our-clients">
-    <div class="container">
-      <div class="slider-items-products">
-        <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-          <div class="slider-items slider-width-col6"> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="/client/images/brand1.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="/client/images/brand2.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="/client/images/brand3.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="/client/images/brand4.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="/client/images/brand5.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="/client/images/brand6.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            <!-- Item -->
-            <div class="item"> <a href="#"><img src="/client/images/brand7.png" alt="Image" class="grayscale"></a> </div>
-            <!-- End Item --> 
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 @endsection
 
 @section('js')

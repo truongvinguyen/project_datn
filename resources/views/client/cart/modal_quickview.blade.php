@@ -7,7 +7,7 @@
                 <div id="previews-list-slider" class="product-flexslider hidden-buttons">
                     <div class="slider-items slider-width-col6">
                         <a href="/upload/product/{{$data->product_image}}" class="cloud-zoom-gallery" id="zoom1">
-                            <img class="zoom-img" src="/upload/product/{{$data->product_image}}" alt="products" style="height: 480px;">
+                            <img class="zoom-img" src="public/upload/product/{{$data->product_image}}" alt="products" style="height: 480px;">
                         </a>
                        
                     </div>
