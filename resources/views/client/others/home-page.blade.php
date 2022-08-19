@@ -236,7 +236,6 @@ Trang Chủ
       </div>
     </div>
     
-    <div class="container">
     <div class="row"> 
       <!-- main container -->
       <div class="home-tab">
@@ -301,20 +300,12 @@ Trang Chủ
               </div>
             </div>
             
-            <!-- prom banner-->
-            <div class="jtv-promotion">
-              <div class="container">
-                <div class="row">
-                 
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
+
     <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -324,7 +315,7 @@ Trang Chủ
             </div>
             <div class="latest-post">
             @foreach($articles as $article)
-                <article class="jtv-entry col-md-6">
+                <article class="jtv-entry col-md-6 col-sm-6">
                   <div class="jtv-post-inner">
                     <div class="feature-post images-hover"> <a href="/article-detail/{{$article->id}}"><img src="/upload/article/{{$article->article_thumbnail}}" alt="image"></a>
                       <div class="overlay"></div>

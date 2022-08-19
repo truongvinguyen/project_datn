@@ -141,7 +141,7 @@
                                 <form action="/search" method="get">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="tìm kiếm..." name="search">
-                                        <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
+                                        <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
                                     </div>
                                 </form>
                             </div>
