@@ -65,10 +65,10 @@ Hồ sơ người dùng
         <div class="product-view-area">
           <div class="product-big-image col-xs-12 col-sm-3 col-lg-3 col-md-3">
             <div class="large-image">
-              @if(Session::get('userImage')==null)
+              @if($users->image==null)
               <img src="https://ui-avatars.com/api/?name={{Session::get('userFullname')}}" alt="">
               @else
-              <img src="{{ _IMAGE::USER }}user_avatar.jpg" alt="user">
+              <img src="/upload/user/{{$users->image}}" alt="user">
               @endif
             </div>
 
@@ -167,7 +167,7 @@ Hồ sơ người dùng
                             class="badge bg-warning text-dark">Đang giao</span>
                           @else
                           <span style="border-radius:3px;" class="badge bg-warning text-dark">Đã hoàn thành ngày
-                            {{$item->updated_at}}}</span>
+                            {{$item->updated_at}}</span>
                           @endif
                         </div>
                         <div class="col-md-4">
@@ -440,7 +440,7 @@ Hồ sơ người dùng
                 <ul class="check-box-list check-box-list-tools">
                   <li>
                     <label for="jtv1">
-                      <h4 class="button"><i class="fa fa-pencil"></i>&ensp;
+                      <h4 class="button">
                         <span data-toggle="modal" data-target="#edit-profile">Chỉnh sửa hồ sơ</span>
                       </h4>
                     </label>
@@ -448,30 +448,27 @@ Hồ sơ người dùng
                   <li>
                     <a href="/wishlist">
                       <label for="jtv2">
-                        <h4 class="button"><i class="fa fa-heart"></i>&ensp;
+                        <h4>
                           <span>Danh sách yêu thích</span>
                         </h4>
                       </label>
                     </a>
                   </li>
+                  {{-- <li>
+                    <a href="javascript:">
+                      <label for="jtv2">
+                        <h4>
+                          <span onclick="deleteAccount({{$users->id}})" class="text-danger">Xóa tài khoản</span>
+                        </h4>
+                      </label>
+                    </a>
+                  </li> --}}
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <div class="block popular-tags-area ">
-          <div class="sidebar-bar-title">
-            <h3>Từ khoá gần đây</h3>
-          </div>
-          <div class="tag">
-            <ul>
-              <li><a href="#">Quần kaki</a></li>
-              <li><a href="#">Áo khoác</a></li>
-              <li><a href="#">Quần jean</a></li>
-              <li><a href="#">Áo sơ mi</a></li>
-            </ul>
-          </div>
-        </div>
+       
       </aside>
     </div>
   </div>
@@ -513,18 +510,16 @@ Hồ sơ người dùng
 
 <div id="edit-profile" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <form action="{{ route('update_customer', ['id'=>$users->id]) }}" method="post">
+    <form action="{{ route('update_customer', ['id'=>$users->id]) }}" method="post" enctype="multipart/form-data">
       @csrf
       <div class="row" style="padding: 50px;background-color:#eee;">
         <div class="col-md-5">
           <div class="card-body text-center">
-            @if(Session::get('userImage')==null)
-            <img src="https://ui-avatars.com/api/?name={{Session::get('userFullname')}}" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
-            @else
-            <img src="public/upload/user/{{$users->image}}" alt="avatar" class="rounded-circle img-fluid"
-              style="width: 150px;">
-            @endif
+            @if($users->image==null)
+              <img src="https://ui-avatars.com/api/?name={{Session::get('userFullname')}}" alt="">
+              @else
+              <img src="/upload/user/{{$users->image}}" alt="user">
+              @endif
             <input type="file" name="file" class="form-control">
           </div>
         </div>
@@ -541,10 +536,10 @@ Hồ sơ người dùng
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                {{-- <p class="mb-0">Email</p> --}}
               </div>
               <div class="col-sm-9">
-                <input type="text" name="email" class="form-control" value="{{$users->email}}" required>
+                <input type="hidden" name="id" class="form-control" value="{{$users->id}}" required>
               </div>
             </div>
             <hr>
@@ -579,41 +574,5 @@ Hồ sơ người dùng
   </div>
 </div>
 <!-- our clients Slider -->
-<div class="our-clients">
-  <div class="container">
-    <div class="slider-items-products">
-      <div id="our-clients-slider" class="product-flexslider hidden-buttons">
-        <div class="slider-items slider-width-col6">
-
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand1.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item -->
-
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand2.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item -->
-
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand3.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item -->
-
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand4.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item -->
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand5.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item -->
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand6.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item -->
-          <!-- Item -->
-          <div class="item"> <a href="#"><img src="client/images/brand7.png" alt="Image" class="grayscale"></a> </div>
-          <!-- End Item -->
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 @endsection

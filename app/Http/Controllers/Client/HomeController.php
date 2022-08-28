@@ -513,13 +513,6 @@ class HomeController extends Controller
             ]);
         }
     }
-
-  
-    public function updateUser(Request $request, $id){
-        dd($request->all());
-    }
-
-
     public function postReviewDelete($id){
         $deleted = DB::table('rating')->where('id', $id)->delete();
     }
@@ -531,7 +524,26 @@ class HomeController extends Controller
             ]);
         }
     }
-
+    public function updateUser(Request $request, $id){
+        $user = DB::table('customer_user')->where('id',$id)->first();
+        // dd($request->all());
+        if($request->has('file')){
+            $image_user = $request->file;
+            $file_name = $image_user->getClientOriginalName();
+            $image_user->move(base_path('public/upload/user'),$file_name);
+        }else{$file_name = $user->image;}
+        DB::table('customer_user')->where("id","=",$request->id)->update([
+            'fullname'=>$request->fullname,
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'image'=>$file_name
+        ]);
+        return redirect('/ho-so');
+    }
+    // public function deleteAccount($id){
+    //     DB::table('customer_user')->where('id',$id)->delete();
+    //     DB::table('rating')->where('user',$id)->delete();
+    // }
     // public function getRating(Request $request){
     //     $idPr = $request->
     // }

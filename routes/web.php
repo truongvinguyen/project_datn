@@ -143,9 +143,9 @@ Route::post('danh-gia', [HomeController::class, 'postReview'])->name('rating');
 Route::get('xoa-danh-gia/{id}', [HomeController::class, 'postReviewDelete'])->name('rating.delete');
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('loginGG');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('loginGGCallback');
-Route::post('update-customer/{id}', [HomeController::class, 'updateUser'])->name('update_customer');
+Route::post('cap-nhat-tai-khoan/{id}', [HomeController::class, 'updateUser'])->name('update_customer');
 Route::post('login-checkout', [HomeController::class, 'loginCheckout'])->name('loginCheckout');
-
+Route::get('xoa-tai-khoan/{id}', [HomeController::class, 'deleteAccount'])->name('delete');
 Route::get('ho-so', [HomeController::class, 'profile'])->name('profile');
 
 
